@@ -1,5 +1,5 @@
 /* /////////////////////////// Global styles and variables ///////////////////// */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap');
 
 :root{
     --background-color: #f8f8f8;
@@ -12,12 +12,16 @@
     --border: 1px solid var(--border-grey)
 }
 
-
 body {
     background-color: #f8f8f8;
     font-family: 'Poppins', sans-serif;
 }
 
+h3 {
+    font-weight: 200;
+    font-size: 2rem;
+    letter-spacing: .3rem;
+}
 
 /* /////////////////////////// Navigation bar styling ///////////////////// */
 
@@ -61,7 +65,6 @@ nav i {
 .nav-list {
     text-transform: uppercase;
 }
-
 
 @media only screen and (max-width: 992px) {
     nav {
@@ -138,7 +141,6 @@ nav i {
     }
 }
 
-
 /* /////////////////////////// Footer ///////////////////// */
 
 .footer {
@@ -177,6 +179,23 @@ footer li {
     color: var(--background-color);
 }
 
+/* /////////////////////////// Home ///////////////////// */
+
+.home-header {
+    height: 80vh;
+    width: 100vw;
+}
+
+.hero{
+    padding-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.hero-text {
+    margin: .5rem 0 0 0 ;
+}
 /* /////////////////////////// Helpers ///////////////////// */
 
 .hidden {
