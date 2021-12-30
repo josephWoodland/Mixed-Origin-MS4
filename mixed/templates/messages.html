@@ -1,33 +1,27 @@
-<!-- {% if messages %}
+{% if messages %}
     {% for message in messages %}
 
-        <div class="container alert alert-{{ message.tags }}">
-            <div class="alert-icon">
-                {% if message.tags == success %}
-                    <i class="fas fa-check"></i>
-                {% else %}
-                    <i class="fa-exclimation-triangle"></i>
-                {% endif %}
-            </div>
+    <div class="container message" id="message">
+        <div class="alert alert-{{ message.tags}}">
+
+            {% if message.tags == 'error' %}
+                <div class="alert-icon-box error">        
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem;"></i>
+                </div>
+            {% else %}
+                <div class="alert-icon-box success">        
+                    <i class="fas fa-check" style="font-size: 3rem;"></i>
+                </div>
+            {% endif %}
+
             <div class="alert-message">
-                <p class="alert__message">{{ message }}</p>
+                <p class="alert-message">{{ message }}</p>
             </div>
             
-            <button class="alert__close">x</button> 
-
-        </div>
-    {% endfor %}
-{% endif %} -->
-<div class="container message">
-    <div class="alert alert-error">
-        <div class="alert-icon-box error">        
-            <i class="fas fa-exclamation-triangle" style="font-size: 3rem;"></i>
-        </div>
-        <div class="alert-message">
-            <p class="alert-message">Please make sure the password match</p>
-        </div>
+            <a href="#" class="alert-close"><i class="fas fa-times"></i></a> 
         
-        <a href="" class="alert-close"><i class="fas fa-times"></i></a> 
-    
+        </div>
     </div>
-</div>
+
+    {% endfor %}
+{% endif %}
