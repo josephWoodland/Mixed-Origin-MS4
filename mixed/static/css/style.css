@@ -3,12 +3,13 @@
 
 :root{
     --background-color: #f8f8f8;
-    --highlight-color: #ff0000;
+    --highlight-color: #f73f6f;
     --text-grey: #5f5f5f;
     --text-color: #1e1e1f;
-    --border-grey: #d6d8dc;
+    --border-grey: #e5e6e9;
     --message-error: #b05150;
     --message-success: #47ae74;
+    --border: 1px solid var(--border-grey)
 }
 
 
@@ -25,7 +26,7 @@ nav {
     justify-content: space-between;
     text-transform: uppercase;
     background-color: var(--background-color);
-    border-bottom: 1px solid var(--border-grey);
+    border-bottom: var(--border);
     box-shadow: none;
 }
 
@@ -44,7 +45,7 @@ nav i {
 }
 
 .nav-login{
-    border-left: 1px solid var(--border-grey);
+    border-left: var(--border);
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -54,7 +55,7 @@ nav i {
     font-size: 1.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    border-right: 1px solid var(--border-grey);
+    border-right: var(--border);
 }
 
 .nav-list {
@@ -135,6 +136,45 @@ nav i {
     .message {
         width: 40%;
     }
+}
+
+
+/* /////////////////////////// Footer ///////////////////// */
+
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 33%;
+    border: var(--border);
+    padding: 2rem 0 2rem 1rem;
+    font-size: .7rem;
+}
+
+footer a {
+    color: var(--text-color);
+}
+
+footer a:hover {
+    color: var(--highlight-color);
+}
+
+footer li {
+    text-transform: uppercase;
+    margin-bottom: .3rem;
+}
+
+.footer-bar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--text-color);
+    color: var(--background-color);
 }
 
 /* /////////////////////////// Helpers ///////////////////// */
