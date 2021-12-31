@@ -46,4 +46,4 @@ class PartnerProfile(models.Model):
     )
 
     def __str__(self):
-        return str(self.company_name)
+        return str(self.partner)
