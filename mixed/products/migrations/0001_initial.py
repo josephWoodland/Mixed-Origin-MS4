@@ -8,20 +8,31 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('name', models.CharField(max_length=15)),
-                ('description', models.TextField()),
-                ('in_stock', models.BooleanField(default=True)),
-                ('stock_numbers', models.ImageField(blank=True, default=0, null=True, upload_to='')),
-                ('image', models.ImageField(upload_to='')),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False, unique=True)),
+                ("name", models.CharField(max_length=15)),
+                ("description", models.TextField()),
+                ("in_stock", models.BooleanField(default=True)),
+                (
+                    "stock_numbers",
+                    models.ImageField(blank=True, default=0, null=True, upload_to=""),
+                ),
+                ("image", models.ImageField(upload_to="")),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                        unique=True,
+                    ),
+                ),
             ],
         ),
     ]
