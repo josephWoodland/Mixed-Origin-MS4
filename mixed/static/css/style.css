@@ -4,6 +4,7 @@
     --background-color: #f8f8f8;
     --highlight-color: #f73f6f;
     --text-grey: #5f5f5f;
+    --dark-grey: #ccc;
     --text-color: #1e1e1f;
     --border-grey: #e5e6e9;
     --message-error: #b05150;
@@ -22,6 +23,10 @@ h3 {
     font-weight: 200;
     font-size: 2rem;
     letter-spacing: .3rem;
+}
+
+h4 {
+    color: var(--highlight-color);
 }
 
 /* /////////////////////////// Navigation bar styling ///////////////////// */
@@ -243,11 +248,33 @@ footer li {
 }
 
 .info-text {
+    padding-right: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 75%;
 }
+
+/* /////////////////////////// Trending  ///////////////////// */
+
+.trending {
+    margin-bottom: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.trending-headline {
+    height: 15rem;
+    background-color: var(--border-grey);
+    background-clip: content-box;
+}
+
+.trending-highlight {
+    height: 15rem;
+    background-color: var(--dark-grey);
+    background-clip: content-box;
+}
+
 
 /* /////////////////////////// Helpers ///////////////////// */
 
@@ -269,4 +296,8 @@ footer li {
 
 .no-margin {
     margin: 0;
+}
+
+.padding-left{
+    padding-left: .5rem;
 }
