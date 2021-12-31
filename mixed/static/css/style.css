@@ -85,6 +85,14 @@ nav i {
 
 }
 
+@media only screen and (max-width: 600px) {
+
+    .nav-logo{
+        font-size: 2rem;
+    }
+
+}
+
 /* /////////////////////////// Alert Messages ///////////////////// */
 
 .message {
@@ -275,6 +283,29 @@ footer li {
     background-clip: content-box;
 }
 
+@media only screen and (max-width: 600px) {
+    .trending-headline {
+      padding-right: 0 !important;   
+      margin-bottom: 1rem;
+    }
+
+    .trending-highlight{
+
+        padding-left: 0 !important;
+    }
+}
+
+/* /////////////////////////// Card ///////////////////// */
+
+.card-image {
+    max-height: 150px;
+}
+
+.card-price {
+    margin-left: 45%;
+}
+
+
 
 /* /////////////////////////// Helpers ///////////////////// */
 
@@ -286,6 +317,10 @@ footer li {
     font-family: var(--font-header);
 }
 
+.border-bottom {
+    border-bottom: var(--border)
+}
+
 .no-left-border {
     border-left: none;
 }
@@ -294,10 +329,22 @@ footer li {
     border-right: none;
 }
 
+.margin-top {
+    margin-top: 2rem;
+}
+
 .no-margin {
     margin: 0;
 }
 
 .padding-left{
     padding-left: .5rem;
+}
+
+.padding-bottom {
+    padding-bottom: 2rem;
+}
+
+.text-center{
+    text-align: center;
 }
