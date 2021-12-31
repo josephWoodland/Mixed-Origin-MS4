@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 
     # Apps
     "home",
+    "products",
+    "profiles",
 ]
 
 
