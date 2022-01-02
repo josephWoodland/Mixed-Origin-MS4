@@ -299,8 +299,19 @@ footer li {
 /* /////////////////////////// Card ///////////////////// */
 
 .card .card-image img {
-    max-height: 150px;
+    height: 200px;
 }
+
+.card {
+    min-height: 400px;
+}
+
+.card-action {
+    height: 4rem;
+}
+
+/* /////////////////////////// Product View ///////////////////// */
+
 
 /* /////////////////////////// Helpers ///////////////////// */
 

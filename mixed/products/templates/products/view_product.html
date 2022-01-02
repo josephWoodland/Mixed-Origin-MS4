@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="product-title col m3">
+            <h1>{{ product.name }}</h1>
+            <h2>£{{ product.price }}</h2>
+        </div>
+        <div class="product-image col m6">
+            <img src="{{ product.image.url }}" alt="">
+        </div>
+    </div>
+    <div class="row">
+        <div class="product-details col m3">
+            <h2>{{ product.owner.company_name }}</h2>
+            <p>{{ product.description }}</p>
+            <a href="" class="btn">Add to basket</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
