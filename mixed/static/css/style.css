@@ -298,15 +298,9 @@ footer li {
 
 /* /////////////////////////// Card ///////////////////// */
 
-.card-image {
+.card .card-image img {
     max-height: 150px;
 }
-
-.card-price {
-    margin-left: 45%;
-}
-
-
 
 /* /////////////////////////// Helpers ///////////////////// */
 
@@ -348,4 +342,8 @@ footer li {
 
 .text-center{
     text-align: center;
+}
+
+.active {
+    color: var(--highlight-color);
 }

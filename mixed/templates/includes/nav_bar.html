@@ -2,16 +2,16 @@
 
 <nav>
     <a href="" data-target="mobile-nav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-    <a href="" class="nav-logo">Mixed Origin</a>
+    <a href="{% url 'home' %}" class="nav-logo">Mixed Origin</a>
     <!-- Hidden div so I can center the logo and left align the nav bars -->
     <a href="" class="sidenav-trigger"><i class="fas fa-bars hidden"></i></a>
     <ul class="hide-on-med-and-down">
-        <li><a href="#">home</a></li>
-        <li><a href="#">products</a></li>
-        <li><a href="#">search</a></li>
-        <li><a href="#">blog</a></li>
-        <li><a href="#">orders</a></li>
-        <li><a href="#">contact us</a></li>
+        <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
+        <li><a {% if '/product/' in request.path %}class="active"{% endif %} href="{% url 'add-product' %}">products</a></li>
+        <li><a {% if '/search/' in request.path %}class="active"{% endif %} href="#">search</a></li>
+        <li><a {% if '/blog/' in request.path %}class="active"{% endif %} href="#">blog</a></li>
+        <li><a {% if '/orders/' in request.path %}class="active"{% endif %} href="#">orders</a></li>
+        <li><a {% if '/contact/' in request.path %}class="active"{% endif %} href="#">contact us</a></li>
     </ul>
     <a href="" class="hide-on-med-and-down nav-login"><i class="fas fa-sign-in-alt"></i>Login/Register
     </a>
@@ -19,12 +19,12 @@
 
 <ul class="nav-list sidenav" id="mobile-nav">
     <li><a href=""><i class="fas fa-chevron-left"></i></a></li>
-    <li><a href="#">home</a></li>
-    <li><a href="#">products</a></li>
-    <li><a href="#">search</a></li>
-    <li><a href="#">blog</a></li>
-    <li><a href="#">orders</a></li>
-    <li><a href="#">contact us</a></li>
+    <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
+    <li><a {% if '/product/' in request.path %}class="active"{% endif %} href="{% url 'add-product' %}">products</a></li>
+    <li><a {% if '/search/' in request.path %}class="active"{% endif %} href="#">search</a></li>
+    <li><a {% if '/blog/' in request.path %}class="active"{% endif %} href="#">blog</a></li>
+    <li><a {% if '/orders/' in request.path %}class="active"{% endif %} href="#">orders</a></li>
+    <li><a {% if '/contact/' in request.path %}class="active"{% endif %} href="#">contact us</a></li>
     <li>
         <a href="" class="nav-login"><i class="fas fa-sign-in-alt"></i>Login/Register
         </a>
