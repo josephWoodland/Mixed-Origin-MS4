@@ -2,21 +2,69 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="product-title col m3">
-            <h1>{{ product.name }}</h1>
-            <h2>£{{ product.price }}</h2>
+    <div class="row product-view">
+        <div class=" col m2 flex-wrapper column">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <h4>£{{ product.price }}</h4>
         </div>
-        <div class="product-image col m6">
-            <img src="{{ product.image.url }}" alt="">
+        <div class="col m6 flex-wrapper">
+            <img class="product-image" src="{{ product.image.url }}" alt="">
         </div>
-    </div>
-    <div class="row">
-        <div class="product-details col m3">
-            <h2>{{ product.owner.company_name }}</h2>
+            <div class="col m4 flex-wrapper column">
+            <h3 class="heading" >{{ product.owner.company_name }}</h3>
             <p>{{ product.description }}</p>
-            <a href="" class="btn">Add to basket</a>
+            <div class="row product-number">
+                <form action="#" method="POST" class="flex-wrapper column full-width">
+                    {% csrf_token %}
+                    <div class="row">
+                        <button class="btn product-quantity" id="btn-minus"><i class="fas fa-minus"></i></button>
+                        <input class="number-input" id="number-amount" type="number" value="1" min="1" max="{{ product.stock_numbers }}" style="width: 3rem;">
+                        <button class="btn product-quantity" id="btn-plus"><i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <p id="amount-alert" class="hidden active">Only {{ product.stock_numbers }} in stock</p>
+                    <button type="submit" class="btn">Add to cart</button>
+                </form>
+            </div>
         </div>
     </div>
+    <h3>You may also like</h3>
+    <div class="row product-sugestion hide-on-med-and-down">
+        <div class="card col m3 l2 product-suggestion">
+            <div class="card-image">
+                <img src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
+            </div>
+            <div class="card-action">
+                <a href="">View me</a>
+            </div>
+        </div>
+        <div class="card col m3 l2 product-suggestion">
+            <div class="card-image">
+                <img src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
+            </div>
+            <div class="card-action">
+                <a href="">View me</a>
+            </div>
+        </div>
+        <div class="card col m3 l2 product-suggestion">
+            <div class="card-image">
+                <img src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
+            </div>
+            <div class="card-action">
+                <a href="">View me</a>
+            </div>
+        </div>
+        <div class="card col m3 l2 product-suggestion">
+            <div class="card-image">
+                <img src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
+            </div>
+            <div class="card-action">
+                <a href="">View me</a>
+            </div>
+        </div>
+        <a href="#">View more...</a>
+    </div>
+    <a href="#" class="hide-on-med-and-up">View more...</a>
+
 </div>
 {% endblock %}

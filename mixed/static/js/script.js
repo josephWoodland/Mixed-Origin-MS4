@@ -28,3 +28,23 @@ function  fadeOut() {
 if (message){
     messageClose.addEventListener('click', fadeOut);
 }
+
+// Updating the quantity on the product view page //
+
+const upBtn = document.getElementById('btn-plus')
+const downBtn = document.getElementById('btn-minus')
+const numberInputBox = document.getElementById('number-amount')
+const stockNumberAlert = document.getElementById('amount-alert')
+let currNumber = numberInputBox.value
+let maxNumber = numberInputBox.max
+
+upBtn.addEventListener('click', function(e){
+    e.preventDefault()
+    if (currNumber < maxNumber) {
+        currNumber ++
+        numberInputBox.value = currNumber
+    } else {
+        stockNumberAlert.classList.remove('hidden')
+    }
+
+})

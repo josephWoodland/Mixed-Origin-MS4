@@ -312,6 +312,58 @@ footer li {
 
 /* /////////////////////////// Product View ///////////////////// */
 
+.product-view {
+    height: 70vh;
+}
+
+
+.product-image {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 50%;
+    width: auto;
+    height: auto;
+}
+
+.product-number {
+    display: flex;
+    width: 100%;
+}
+
+.product-quantity{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.product-suggestion {
+    margin-right: 2rem;
+    max-height: 250px;
+}
+
+.suggestion-image {
+    max-height: 150px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .product-view {
+        height: auto;
+    }
+
+    .product-name {
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+}
+
+
+/* /////////////////////////// Buttons ///////////////////// */
+
+.btn {
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+}
 
 /* /////////////////////////// Helpers ///////////////////// */
 
@@ -339,6 +391,10 @@ footer li {
     margin-top: 2rem;
 }
 
+.margin-right{
+    margin-right: 2rem;
+}
+
 .no-margin {
     margin: 0;
 }
@@ -358,3 +414,19 @@ footer li {
 .active {
     color: var(--highlight-color);
 }
+
+.column {
+    flex-direction: column;
+}
+
+.flex-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
