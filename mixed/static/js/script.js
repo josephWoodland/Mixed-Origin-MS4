@@ -40,11 +40,27 @@ let maxNumber = numberInputBox.max
 
 upBtn.addEventListener('click', function(e){
     e.preventDefault()
+
     if (currNumber < maxNumber) {
         currNumber ++
         numberInputBox.value = currNumber
-    } else {
+    }
+
+    if (currNumber == maxNumber) {
         stockNumberAlert.classList.remove('hidden')
     }
+})
+
+downBtn.addEventListener('click', function(e){
+    e.preventDefault()
+    
+    if (currNumber >= 1){
+        currNumber --
+        numberInputBox.value = currNumber
+    }
+
+    if (currNumber < maxNumber) {
+        stockNumberAlert.classList.add('hidden')
+    } 
 
 })

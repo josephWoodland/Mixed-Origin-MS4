@@ -18,7 +18,7 @@
                     {% csrf_token %}
                     <div class="row">
                         <button class="btn product-quantity" id="btn-minus"><i class="fas fa-minus"></i></button>
-                        <input class="number-input" id="number-amount" type="number" value="1" min="1" max="{{ product.stock_numbers }}" style="width: 3rem;">
+                        <input class="number-input" id="number-amount" type="number" value="1" min="1" max="{{ product.stock_numbers }}">
                         <button class="btn product-quantity" id="btn-plus"><i class="fas fa-plus"></i>
                         </button>
                     </div>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <h3>You may also like</h3>
+    <h3>You may also like...</h3>
     <div class="row product-sugestion hide-on-med-and-down">
         <div class="card col m3 l2 product-suggestion">
             <div class="card-image">

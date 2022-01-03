@@ -323,6 +323,7 @@ footer li {
     max-height: 50%;
     width: auto;
     height: auto;
+    box-shadow: 3px 5px var(--border-grey);
 }
 
 .product-number {
@@ -342,6 +343,16 @@ footer li {
 
 .suggestion-image {
     max-height: 150px;
+}
+
+#number-amount{
+    color: var(--text-color);
+    border: var(--border);
+    font-size: 1.5rem;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+    font-family: var(--font-main);
 }
 
 
