@@ -35,32 +35,35 @@ const upBtn = document.getElementById('btn-plus')
 const downBtn = document.getElementById('btn-minus')
 const numberInputBox = document.getElementById('number-amount')
 const stockNumberAlert = document.getElementById('amount-alert')
-let currNumber = numberInputBox.value
-let maxNumber = numberInputBox.max
 
-upBtn.addEventListener('click', function(e){
-    e.preventDefault()
+if (numberInputBox){
 
-    if (currNumber < maxNumber) {
-        currNumber ++
-        numberInputBox.value = currNumber
-    }
-
-    if (currNumber == maxNumber) {
-        stockNumberAlert.classList.remove('hidden')
-    }
-})
-
-downBtn.addEventListener('click', function(e){
-    e.preventDefault()
+    let currNumber = numberInputBox.value
+    let maxNumber = numberInputBox.max
+    upBtn.addEventListener('click', function(e){
+        e.preventDefault()
     
-    if (currNumber >= 1){
-        currNumber --
-        numberInputBox.value = currNumber
-    }
-
-    if (currNumber < maxNumber) {
-        stockNumberAlert.classList.add('hidden')
-    } 
-
-})
+        if (currNumber < maxNumber) {
+            currNumber ++
+            numberInputBox.value = currNumber
+        }
+    
+        if (currNumber == maxNumber) {
+            stockNumberAlert.classList.remove('hidden')
+        }
+    })
+    
+    downBtn.addEventListener('click', function(e){
+        e.preventDefault()
+        
+        if (currNumber >= 1){
+            currNumber --
+            numberInputBox.value = currNumber
+        }
+    
+        if (currNumber < maxNumber) {
+            stockNumberAlert.classList.add('hidden')
+        } 
+    
+    })
+}
