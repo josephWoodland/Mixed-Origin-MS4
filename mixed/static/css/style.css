@@ -12,6 +12,8 @@
     --border: 1px solid var(--border-grey);
     --font-main: 'Poppins', sans-serif;
     --font-header:'Abril Fatface', cursive;
+    --font-size-form: 1.2rem;
+    --font-size-header: 3rem;
 }
 
 body {
@@ -376,16 +378,75 @@ footer li {
     color: var(--text-color);
 }
 
-/* /////////////////////////// Form ///////////////////// */
+/* /////////////////////////// Forms ///////////////////// */
 
 .form {
-    
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    background-color: var(--background-color);
+    border: var(--border);
+    padding: 3rem;
+    margin: -15vh auto 10vh auto;
 }
+
+.input-wrapper {
+    display: flex;
+}
+
+.input {
+
+}
+
+.form-input{
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color) !important;
+    font-family: var(--font-main) !important;
+    font-size: var(--font-size-form);
+}
+
+#id_tags {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 2rem;
+}
+
+#id_description {
+    margin-top: 2rem;
+    height: 200px;
+    border: var(--border);
+}
+
+input[type="checkbox"]{
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+input[type="checkbox"]:not(:checked) {
+    opacity: 1;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    opacity: 1;
+    position: relative;
+}
+
 
 /* /////////////////////////// Helpers ///////////////////// */
 
 .hidden {
     display: none;
+}
+
+.banner {
+    padding-top: 10vh;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    background-color: var(--border-grey);
 }
 
 .heading {

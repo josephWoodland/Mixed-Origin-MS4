@@ -2,18 +2,18 @@
 {% load static %}
 {% block content %}
 <header class="products-header">
-    <div class="container hero">
+    <div class="container banner">
         <h3 class="hero-text">50 shades of brown</h3>
         <h1 class="hero-text">Add Product</h1>
         <p class="hero-text">Add products to your store</p>
     </div>
 </header>
-<div class="container row">
+<div class="container">
     <form action="" method="POST" class="form col s10 m8">
     {% csrf_token %}
     {% for field in form %}
-    <div class="form-input">
-        <label for="form-input">{{ field.label }}</label>
+    <div class="input-wrapper">
+        <label for="form-input" class="form-input">{{ field.label }}</label>
         {{ field }}
     </div>
     {% endfor %}
