@@ -27,6 +27,7 @@ function  fadeOut() {
 
 if (message){
     messageClose.addEventListener('click', fadeOut);
+    
 }
 
 // Updating the quantity on the product view page //

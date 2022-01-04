@@ -99,8 +99,10 @@ nav i {
 /* /////////////////////////// Alert Messages ///////////////////// */
 
 .message {
+    position: absolute;
     margin-top: 3rem;
     opacity: 1;
+    z-index: 9;
 }
 
 .alert {
@@ -394,10 +396,6 @@ footer li {
     display: flex;
 }
 
-.input {
-
-}
-
 .form-input{
     margin-right: 2rem;
     margin-bottom: 2rem;
@@ -433,6 +431,17 @@ input[type="checkbox"]:checked {
     position: relative;
 }
 
+/* /////////////////////////// Allauth ///////////////////// */
+
+.allauth {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    background-color: var(--border-grey);
+    
+}
 
 /* /////////////////////////// Helpers ///////////////////// */
 
