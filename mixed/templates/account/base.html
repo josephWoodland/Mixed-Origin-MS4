@@ -1,6 +1,21 @@
 {% extends "base.html" %}
-<div class="container banner">
-    {% block content %}
 
-    {% endblock%}
-</div>
+{% block content %}
+<header class="products-header">
+
+</header>
+    <div class="container banner">
+    
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m8 offset2 allauth">
+                {% block inner_content %}
+        
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

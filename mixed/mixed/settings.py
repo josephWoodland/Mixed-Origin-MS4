@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     "home.apps.HomeConfig",
     "products.apps.ProductsConfig",
     "profiles.apps.ProfilesConfig",
+    # Modules
+    "crispy_forms",
+    "crispy_forms_materialize",
 ]
 
 
@@ -61,6 +64,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "mixed.urls"
 
+CRISPY_TEMPLATE_PACK = "materialize_css_forms"
 
 TEMPLATES = [
     {
@@ -75,6 +79,10 @@ TEMPLATES = [
                 "django.template.context_processors.request",  # `allauth` needs this from django
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+            ],
+            "builtins": [
+                "crispy_forms.templatetags.crispy_forms_tags",
+                "crispy_forms.templatetags.crispy_forms_field",
             ],
         },
     },

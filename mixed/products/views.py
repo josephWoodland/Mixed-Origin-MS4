@@ -7,17 +7,15 @@ from .forms import ProductForm
 def addProduct(request):
     template = "products/add_product.html"
     form = ProductForm()
-    context = {
-        'form': form
-    }
+    context = {"form": form}
     return render(request, template, context)
 
 
 def viewProduct(request, pk):
-    template = 'products/view_product.html'
+    template = "products/view_product.html"
     product = Product.objects.get(id=pk)
     context = {
-        'product': product,
+        "product": product,
     }
 
     return render(request, template, context)

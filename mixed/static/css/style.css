@@ -434,13 +434,12 @@ input[type="checkbox"]:checked {
 /* /////////////////////////// Allauth ///////////////////// */
 
 .allauth {
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-    background-color: var(--border-grey);
-    
+    margin-top: -25vh;
+    color: var(--text-color) !important;
+}
+
+.signup {
+
 }
 
 /* /////////////////////////// Helpers ///////////////////// */

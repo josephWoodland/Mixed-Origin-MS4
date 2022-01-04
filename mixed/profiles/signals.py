@@ -18,9 +18,7 @@ def createPartner(sender, instance, created, **kwargs):
     profile = instance
 
     if profile.is_partner:
-        partner = PartnerProfile.objects.create(
-            partner=profile
-        )
+        partner = PartnerProfile.objects.create(partner=profile)
 
 
 post_save.connect(createPartner, sender=Profile)

@@ -3,6 +3,7 @@ from django import forms
 
 from .models import Product
 
+
 class ProductForm(ModelForm):
     class Meta:
         model = Product
@@ -18,7 +19,6 @@ class ProductForm(ModelForm):
         widgets = {
             "tags": forms.CheckboxSelectMultiple(),
         }
-
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
