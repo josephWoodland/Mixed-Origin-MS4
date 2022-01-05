@@ -1,1 +1,8 @@
-<h1>This is the Profile html template</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container banner">
+    <h3>{{ profile.username|title }}</h3>
+    <h2>Profile</h2>
+</div>
+{% endblock %}

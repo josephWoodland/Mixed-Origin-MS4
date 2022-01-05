@@ -1,6 +1,9 @@
+from django.contrib.admin.options import BaseModelAdmin
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+
+from django_countries.fields import CountryField
 
 # Create your models here.
 
@@ -16,6 +19,7 @@ class Profile(models.Model):
         blank=False,
         upload_to="profiles/",
     )
+    partner_application = models.BooleanField(default=False, blank=True, null=True)
     is_partner = models.BooleanField(default=False, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(
@@ -45,3 +49,17 @@ class PartnerProfile(models.Model):
 
     def __str__(self):
         return str(self.partner)
+
+
+class Wallet(models.Model):
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=200, blank=False, null=True)
+    street_address1 = models.CharField(max_length=80, null=False, blank=False)
+    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    town_or_city = models.CharField(max_length=40, null=True, blank=True)
+    county = models.CharField(max_length=80, null=True, blank=True)
+    postcode = models.CharField(max_length=20, null=True, blank=True)
+    country = CountryField(blank_label="Country", null=True, blank=True)
+
+    def __str__(self):
+        return str(self.owner.username)
