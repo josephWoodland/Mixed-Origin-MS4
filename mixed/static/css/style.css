@@ -237,6 +237,11 @@ footer li {
     display: flex;
 }
 
+.about-btn {
+    background-color: var(--text-color) !important;
+    color: var(--border-grey) !important;
+}
+
 .info-link{
     border: var(--border);
     border-bottom: none;
