@@ -4,5 +4,9 @@ from django.shortcuts import render
 # Create your views here.
 
 
-def login(request):
-    template = "profiles/"
+def userProfile(request):
+    template = "profiles/profile.html"
+    context ={
+
+    }
+    return render(request, template, context)
