@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="container banner">
+        <h1 class="no-margin">{{ partner.company_name }}</h1>
+        <P>Edit your profile</P>
+</header>
+<div class="container">
+    <form action="" method="POST" class="form col s10 m8"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <img src="{{ profile.profile_image.url }}" alt="" class="form-image">
+      <div class="input-wrapper margin-top">
+          <label for="form-input" class="form-input">Profile image</label>
+          <input type="file" name="profile_image" accept="image/*" id="id_profile_image">
+      </div>  
+    {% for field in partner_form %}
+            <div class="input-wrapper">
+                <label for="form-input" class="form-input">{{ field.label }}</label>
+                {{ field }}
+            </div>
+    {% endfor %}
+    <div class="flex-wrapper">
+        <button type="submit" class="btn btn-sm">Edit</button>
+    </div>
+    </form>
+</div>
+{% endblock %}

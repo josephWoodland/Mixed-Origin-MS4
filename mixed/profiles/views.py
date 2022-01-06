@@ -38,42 +38,40 @@ def editProfile(request, pk):
 
 
     profile_form = ProfileForm(instance=profile)
-    # profile_partner_form = PartnerProfileForm(instance=partner_profile)
-
 
     context = {
         "profile": profile,
         "partner": partner_profile,
         "profile_form": profile_form,
-        # "profile_partner_form": profile_partner_form,
     }
 
-    # if request.method == "POST":
-    #     profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-    #     if profile_form.is_valid():
-    #         profile_form.save()
-        
-    #     if profile.is_partner == True:
-    #         profile_partner_form = PartnerProfileForm(request.POST, request.FILES, instance=partner_profile)
-    #         if profile_partner_form.is_valid():
-    #             profile_partner_form.save()
-            
-    #         messages.success(request, 'You have updated your account')
-    #         return redirect("profile")
-
-    #     messages.success(request, 'You have updated your account')
-    #     return redirect("profile")
+    if request.method == "POST":
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if profile_form.is_valid():
+            profile_form.save()
+        messages.success(request, 'You have updated your account')
+        return redirect("profile")
 
     return render(request, template, context)
 
+
 def editPartner(request, pk):
     template = 'profiles/edit_partner.html'
-    partner_profile = PartnerProfile.objects.get(partner_id=pk)
-    profile_partner_form = PartnerProfileForm(instance=partner_profile)
-    
+    partner_profile = PartnerProfile.objects.get(id=pk)
+    partner_form = PartnerProfileForm(instance=partner_profile)
+
     context = {
         'partner_profile': partner_profile,
+        "partner_form": partner_form,
     }
+
+    if request.method == "POST":
+        partner_form = PartnerProfileForm(request.POST, request.FILES, instance=partner_profile)
+        if partner_form.is_valid():
+            partner_form.save()
+        
+        messages.success(request, 'You have updated your account')
+        return redirect("profile")
     return render(request, template, context)
 
 
@@ -83,5 +81,6 @@ def deleteProfile(request, pk):
     return render(request, template, context)
 
 
-# def userWallet(request, pk):
-#     template = 'profiles/wallet.html'
+def userWallet(request, pk):
+    template = 'profiles/wallet.html'
+    return render(request, template)
