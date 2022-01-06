@@ -23,11 +23,9 @@ def userProfile(request):
     
     id = profile.id
     partner_profile = PartnerProfile.objects.get(partner_id=id)
-    profile_wallet = Wallet.objects.get(owner_id=id)
     context = {
         "profile": profile,
         "partner": partner_profile,
-        "wallet": profile_wallet,
     }
     
     return render(request, template, context)
