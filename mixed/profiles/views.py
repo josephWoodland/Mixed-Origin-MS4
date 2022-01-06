@@ -38,14 +38,14 @@ def editProfile(request, pk):
 
 
     profile_form = ProfileForm(instance=profile)
-    profile_partner_form = PartnerProfileForm(instance=partner_profile)
+    # profile_partner_form = PartnerProfileForm(instance=partner_profile)
 
 
     context = {
         "profile": profile,
         "partner": partner_profile,
         "profile_form": profile_form,
-        "profile_partner_form": profile_partner_form,
+        # "profile_partner_form": profile_partner_form,
     }
 
     # if request.method == "POST":
@@ -66,6 +66,16 @@ def editProfile(request, pk):
 
     return render(request, template, context)
 
+def editPartner(request, pk):
+    template = 'profiles/edit_partner.html'
+    partner_profile = PartnerProfile.objects.get(partner_id=pk)
+    profile_partner_form = PartnerProfileForm(instance=partner_profile)
+    
+    context = {
+        'partner_profile': partner_profile,
+    }
+    return render(request, template, context)
+
 
 def deleteProfile(request, pk):
     template = "profiles/delete_profile.html"
@@ -73,5 +83,5 @@ def deleteProfile(request, pk):
     return render(request, template, context)
 
 
-def userWallet(request, pk):
-    template = 'profiles/wallet.html'
+# def userWallet(request, pk):
+#     template = 'profiles/wallet.html'

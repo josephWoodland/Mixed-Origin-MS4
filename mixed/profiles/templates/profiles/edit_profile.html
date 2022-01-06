@@ -4,6 +4,7 @@
     {% if profile.is_partner == True %}
         <h1 class="no-margin">{{ partner.company_name }}</h1>
         <P>Edit your profile</P>
+        <a href="{% url 'edit_partner' partner.id %}"></a>
     {% else %}
         <h1 class="no-margin">{{ profile.username }}</h1>
         <P>Edit your profile</P>
