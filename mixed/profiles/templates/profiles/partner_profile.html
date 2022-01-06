@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container banner">
+<header class="container banner">
     <h1 class="no-margin">{{ partner.company_name }}</h1>
     <P>{{ partner.company_short_bio }}</P>
-</div>
+</header>
 <div class="container">
     <div class="row">
         <div class="center col s12 m10 offset-m1">
@@ -50,8 +50,8 @@
     {% if request.user %}
         {% if request.user.profile.id == partner.partner_id %}
             <div class="flex-wrapper">
-                <a href="{% url 'edit_profile' partner.partner_id %}" class="btn profile-btn">Edit</a>
-                <a href="{% url 'delete_profile' partner.partner_id %}" class="btn profile-btn">Delete</a>
+                <a href="{% url 'edit_profile' partner.partner_id %}" class="btn btn-sm">Edit</a>
+                <a href="{% url 'delete_profile' partner.partner_id %}" class="btn btn-sm">Delete</a>
             </div>
         {% endif %}
     {% endif %}

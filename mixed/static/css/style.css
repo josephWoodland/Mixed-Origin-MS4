@@ -387,6 +387,12 @@ footer li {
     color: var(--text-color);
 }
 
+.btn-sm {
+    width: 5rem;
+    margin-right: 3rem;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+}
 /* /////////////////////////// Forms ///////////////////// */
 
 .form {
@@ -458,13 +464,6 @@ input[type="checkbox"]:checked {
 
 .profile-partner {
     border-top: var(--border);
-}
-
-.profile-btn {
-    width: 5rem;
-    margin-right: 3rem;
-    margin-left: 3rem;
-    margin-bottom: 2rem;
 }
 
 /* /////////////////////////// Partner ///////////////////// */
