@@ -9,13 +9,11 @@ from .forms import ProfileForm, PartnerProfileForm, WalletForm
 def userProfile(request):
     profile = request.user.profile
 
-    # if profile.is_partner == False:
-    #     template = "profiles/profile.html"
-    # else:
-    #     template = "profiles/partner_profile.html"
+    if profile.is_partner == False:
+        template = "profiles/profile.html"
+    else:
+        template = "profiles/partner_profile.html"
     
-    template = "profiles/profile.html"
-
     if request.method == "POST":
         profile.partner_application == True
         messages.success(request, "Your application request has been sent")
