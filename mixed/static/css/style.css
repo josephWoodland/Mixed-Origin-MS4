@@ -101,10 +101,9 @@ nav i {
 .message {
     position: absolute;
     margin-top: 3rem;
-    margin-right: auto;
-    margin-left: auto;
     opacity: 1;
     z-index: 9;
+    width: inherit !important;
 }
 
 .alert {
@@ -135,6 +134,7 @@ nav i {
 
 .alert-message {
     font-size: 1.5rem;
+    border: none;
 }
 
 .alert-close {
