@@ -1,5 +1,3 @@
-from django.db import models
-from django.forms import ModelForm
 from django import forms
 
 from .models import Profile, PartnerProfile, Wallet
@@ -12,7 +10,8 @@ class ProfileForm(forms.ModelForm):
             "first_name",
             "second_name",
             "email",
-            "profile_image" "partner_application",
+            "profile_image",
+            "partner_application",
         ]
 
         def __init__(self, *args, **kwargs):

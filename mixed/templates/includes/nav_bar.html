@@ -15,10 +15,10 @@
         {% endif %}    
         </ul>
         {% if request.user %}
-            <a href="{% url 'account_logout' %}" class="nav-login"><i class="fas fa-sign-in-alt"></i>Logout
+            <a href="{% url 'account_logout' %}" class="nav-login">Logout
             </a>
         {% else %}
-            <a href="{% url 'account_login' %}" class="nav-login"><i class="fas fa-sign-in-alt"></i>Login/Register
+            <a href="{% url 'account_login' %}" class="nav-login">Login/Register
             </a>
         {% endif %}
 </nav>
@@ -35,10 +35,10 @@
     {% endif %}
     <li>
         {% if request.user %}
-            <a href="{% url 'account_logout' %}" class="nav-login"><i class="fas fa-sign-in-alt"></i>Logout
+            <a href="{% url 'account_logout' %}" class="nav-login">Logout
             </a>
         {% else %}
-            <a href="{% url 'account_login' %}" class="nav-login"><i class="fas fa-sign-in-alt"></i>Login/Register
+            <a href="{% url 'account_login' %}" class="nav-login">Login/Register
             </a>
         {% endif %}
     </li>

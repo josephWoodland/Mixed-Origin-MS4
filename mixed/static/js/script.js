@@ -2,6 +2,7 @@
 $(document).ready(function(){
     $(".dropdown-trigger").dropdown();
     $('.sidenav').sidenav();
+    $('.tooltipped').tooltip();
 })
 
 // Message container JS //

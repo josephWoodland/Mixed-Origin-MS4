@@ -1,8 +1,60 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container banner">
+<header class="container banner">
     <h3>{{ profile.username|title }}</h3>
-    <h2>Profile</h2>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m8 offset-m2 form profile">
+            <div>
+                {% if profile.profile_image %}
+                    <img  class="profile-image" src="{{ profile.profile_image.url }}" alt="">
+                {% else %}
+                    <i class="fas fa-user"></i>
+                {% endif %}
+            </div>
+            <div class="flex-wrapper">
+                <p class="active margin-right">{{ profile.first_name }} {{ profile.second_name }}</p>
+                <a class="tooltipped" data-position="top" data-tooltip="View you payment details" href="{% url 'wallet' profile.id %}"><i class="fas fa-wallet"></i></a>
+            </div>
+            <div class="profile-details col s12 m8">
+                <div class="flex-wrapper">
+                    <p class="margin-right">Email:</p>
+                    <p class="no-margin">{{ profile.email }}</p>
+                </div>
+                <div class="flex-wrapper">
+                    <p class="margin-right">Username:</p>
+                    <p class="no-margin">{{ profile.username }}</p>
+                </div>
+                <div class="flex-wrapper">
+                    <p class="margin-right">First Name:</p>
+                    <p class="no-margin">{{ profile.first_name }}</p>
+                </div>
+                <div class="flex-wrapper">
+                    <p class="margin-right">Second Name:</p>
+                    <p class="no-margin">{{ profile.second_name }}</p>
+                </div>
+                <div class="flex-wrapper">
+                    <a href="{% url 'edit_profile' %}" class="btn profile-btn">Edit</a>
+                    <a href="{% url 'delete_profile' %}" class="btn profile-btn">Delete</a>
+                </div>
+            </div>
+            <div class="profile-partner">                
+                <h3>Do you want to become a partner?</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum veritatis alias quos. Officia illum temporibus necessitatibus aspernatur possimus cum veritatis provident nostrum sit, dolorem libero, architecto nulla velit aperiam qui.</p>
+                <form action="" method="POST" class="flex-wrapper">
+                    <p>
+                        <label>
+                          <input name="group1" type="radio"/>
+                          <span class="margin-right">Become a Partner</span>
+                        </label>
+                    </p>
+                    <button type="submit" class="btn">request</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

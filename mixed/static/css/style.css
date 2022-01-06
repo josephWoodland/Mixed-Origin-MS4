@@ -439,6 +439,35 @@ input[type="checkbox"]:checked {
     position: relative;
 }
 
+
+/* /////////////////////////// Profile ///////////////////// */
+
+.profile{
+    align-items: center;
+    width: 100%;
+}
+
+.profile-image {
+    margin-top: 3rem;
+    width: 250px;
+    border-radius: 50%;
+}
+
+.profile-details {
+    margin-right: auto;
+}
+
+.profile-partner {
+    border-top: var(--border);
+}
+
+.profile-btn {
+    width: 5rem;
+    margin-right: 3rem;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+}
+
 /* /////////////////////////// Allauth ///////////////////// */
 
 .allauth {
@@ -509,6 +538,10 @@ input[type="checkbox"]:checked {
     text-align: center;
 }
 
+.left-align{
+    text-align: left !important;
+}
+
 .active {
     color: var(--highlight-color);
 }
@@ -526,5 +559,9 @@ input[type="checkbox"]:checked {
 
 .full-width {
     width: 100%;
+}
+
+.flex{
+    display: flex;
 }
 

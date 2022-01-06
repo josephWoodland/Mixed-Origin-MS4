@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # Modules
     "crispy_forms",
     "crispy_forms_materialize",
+    "django_countries",
 ]
 
 

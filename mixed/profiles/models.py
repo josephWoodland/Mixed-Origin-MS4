@@ -1,4 +1,3 @@
-from django.contrib.admin.options import BaseModelAdmin
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
@@ -31,7 +30,7 @@ class Profile(models.Model):
 
 
 class PartnerProfile(models.Model):
-    partner = models.OneToOneField(
+    partner = models.ForeignKey(
         Profile, on_delete=models.CASCADE, null=True, blank=True
     )
     company_name = models.CharField(max_length=50, blank=True, null=False)
