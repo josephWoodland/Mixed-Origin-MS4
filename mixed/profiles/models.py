@@ -33,6 +33,12 @@ class PartnerProfile(models.Model):
     partner = models.ForeignKey(
         Profile, on_delete=models.CASCADE, null=True, blank=True
     )
+    company_image = models.ImageField(
+        null=False,
+        blank=False,
+        default="default.png",
+        upload_to="companies/",
+    )
     company_name = models.CharField(max_length=50, blank=True, null=False)
     company_website = models.CharField(max_length=200, null=True, blank=False)
     company_short_bio = models.TextField(max_length=300, null=True, blank=True)
