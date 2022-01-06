@@ -439,7 +439,6 @@ input[type="checkbox"]:checked {
     position: relative;
 }
 
-
 /* /////////////////////////// Profile ///////////////////// */
 
 .profile{
@@ -468,6 +467,19 @@ input[type="checkbox"]:checked {
     margin-bottom: 2rem;
 }
 
+/* /////////////////////////// Partner ///////////////////// */
+
+.partner-social {
+    display: flex;
+    justify-content: space-around;
+}
+
+.partner-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* /////////////////////////// Allauth ///////////////////// */
 
 .allauth {
@@ -480,6 +492,15 @@ input[type="checkbox"]:checked {
 
 
 /* /////////////////////////// Helpers ///////////////////// */
+
+.center{
+    display: flex;
+    width: 100%;
+    background-color: var(--background-color);
+    border: var(--border);
+    padding: 3rem;
+    margin: -15vh auto 10vh auto;
+}
 
 .hidden {
     display: none;
@@ -508,6 +529,10 @@ input[type="checkbox"]:checked {
 
 .no-right-border {
     border-right: none;
+}
+
+.margin-{
+    margin-top: -10vh;
 }
 
 .margin-top {
@@ -563,5 +588,17 @@ input[type="checkbox"]:checked {
 
 .flex{
     display: flex;
+}
+
+.fa-twitter {
+    color: #1DA1F2;
+}
+
+.fa-linkedin {
+    color: #0077b5;
+}
+
+.fa-youtube {
+    color: #FF0000;
 }
 
