@@ -36,8 +36,10 @@ def editProfile(request, pk):
     if profile.is_partner == True:
         partner_profile = PartnerProfile.objects.get(partner_id=pk)
 
+
     profile_form = ProfileForm(instance=profile)
     profile_partner_form = PartnerProfileForm(instance=partner_profile)
+
 
     context = {
         "profile": profile,
@@ -45,7 +47,23 @@ def editProfile(request, pk):
         "profile_form": profile_form,
         "profile_partner_form": profile_partner_form,
     }
-    
+
+    # if request.method == "POST":
+    #     profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+    #     if profile_form.is_valid():
+    #         profile_form.save()
+        
+    #     if profile.is_partner == True:
+    #         profile_partner_form = PartnerProfileForm(request.POST, request.FILES, instance=partner_profile)
+    #         if profile_partner_form.is_valid():
+    #             profile_partner_form.save()
+            
+    #         messages.success(request, 'You have updated your account')
+    #         return redirect("profile")
+
+    #     messages.success(request, 'You have updated your account')
+    #     return redirect("profile")
+
     return render(request, template, context)
 
 

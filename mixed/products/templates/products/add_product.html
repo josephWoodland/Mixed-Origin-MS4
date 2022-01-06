@@ -8,7 +8,7 @@
     </div>
 </header>
 <div class="container">
-    <form action="" method="POST" class="form col s10 m8">
+    <form action="" method="POST" class="form col s10 m8"  enctype="multipart/form-data">
     {% csrf_token %}
     {% for field in form %}
     <div class="input-wrapper">

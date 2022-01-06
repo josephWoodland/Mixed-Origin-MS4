@@ -393,6 +393,7 @@ footer li {
     margin-left: 3rem;
     margin-bottom: 2rem;
 }
+
 /* /////////////////////////// Forms ///////////////////// */
 
 .form {
@@ -410,11 +411,18 @@ footer li {
 }
 
 .form-input{
+    width: 5rem;
     margin-right: 2rem;
     margin-bottom: 2rem;
     color: var(--text-color) !important;
     font-family: var(--font-main) !important;
     font-size: var(--font-size-form);
+}
+
+.form-image {
+    object-fit: cover;
+    max-height: 150px;
+    max-width: 150px;
 }
 
 #id_tags {
@@ -443,6 +451,22 @@ input[type="checkbox"]:not(:checked) {
 input[type="checkbox"]:checked {
     opacity: 1;
     position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+    .input-wrapper{
+        flex-direction: column;
+    }
+
+    .form {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .form {
+        width: 80%;
+    }
 }
 
 /* /////////////////////////// Profile ///////////////////// */
