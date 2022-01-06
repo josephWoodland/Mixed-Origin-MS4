@@ -1,34 +1,27 @@
 {% if messages %}
     {% for message in messages %}
-
-    <div class="container" id="message">
-        <div class="row message">
-            <div class="alert alert-{{ message.tags}} col s10 offset-s1 m8 offset-m2 no-padding">
-    
-                {% if message.tags == 'error' %}
-                    <div class="alert-icon-box error">        
-                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem;"></i>
-                    </div>
-                    <div class="alert-message alert-error">
-                        <p class="alert-message">{{ message }}</p>
-                    </div>
-                    
-                    <a href="#" class="alert-close"><i class="fas fa-times"></i></a> 
-                {% else %}
-                    <div class="alert-icon-box success">        
-                        <i class="fas fa-check" style="font-size: 3rem;"></i>
-                    </div>
-                    <div class="alert-message alert-success">
-                        <p class="alert-message">{{ message }}</p>
-                    </div>
-                    
-                    <a href="#" class="alert-close"><i class="fas fa-times"></i></a> 
-                {% endif %}
-    
-            
+        <div class="container" id="message">
+            <div class="row message">
+                <div class="alert alert-{{ message.tags}} col s10 offset-s1 m8 offset-m2 no-padding">   
+                    {% if message.tags == 'error' %}
+                        <div class="alert-icon-box error">        
+                            <i class="fas fa-exclamation-triangle" style="font-size: 3rem;"></i>
+                        </div>
+                        <div class="alert-message alert-error">
+                            <p class="alert-message">{{ message }}</p>
+                        </div>
+                        <a href="#" class="alert-close"><i class="fas fa-times"></i></a> 
+                    {% else %}
+                        <div class="alert-icon-box success">        
+                            <i class="fas fa-check" style="font-size: 3rem;"></i>
+                        </div>
+                        <div class="alert-message alert-success">
+                            <p class="alert-message">{{ message }}</p>
+                        </div>
+                        <a href="#" class="alert-close"><i class="fas fa-times"></i></a> 
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-
     {% endfor %}
 {% endif %}
