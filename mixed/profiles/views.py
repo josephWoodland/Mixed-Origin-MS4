@@ -29,26 +29,26 @@ def userProfile(request):
     return render(request, template, context)
 
 
-def editProfile(request):
+def editProfile(request, pk):
     template = 'profiles/edit_profile.html'
     profile = request.user.profile
-    partner_profile = PartnerProfile.objects.get(partner_id=id)
-    profile_wallet = Wallet.objects.get(owner_id=id)
-    profile_form = ProfileForm
-    profile_partner_form = PartnerProfileForm
-    wallet_form = WalletForm
+    # partner_profile = PartnerProfile.objects.get(partner_id=id)
+    # profile_wallet = Wallet.objects.get(owner_id=id)
+    # profile_form = ProfileForm
+    # profile_partner_form = PartnerProfileForm
+    # wallet_form = WalletForm
     context = {
         "profile": profile,
-        "partner": partner_profile,
-        "wallet": profile_wallet,
-        "profile_form": profile_form,
-        "profile_partner_form": profile_partner_form,
-        "wallet_form": wallet_form,
+        # "partner": partner_profile,
+        # "wallet": profile_wallet,
+        # "profile_form": profile_form,
+        # "profile_partner_form": profile_partner_form,
+        # "wallet_form": wallet_form,
     }
     return render(request, template, context)
 
 
-def deleteProfile(request):
+def deleteProfile(request, pk):
     template = "profiles/delete_profile.html"
     context = {}
     return render(request, template, context)
