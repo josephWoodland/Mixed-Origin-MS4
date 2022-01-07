@@ -514,6 +514,12 @@ input[type="checkbox"]:checked {
 }
 
 
+/* /////////////////////////// Product List ///////////////////// */
+
+.blank-table {
+    height: 100%;
+}
+
 /* /////////////////////////// Helpers ///////////////////// */
 
 .center{
