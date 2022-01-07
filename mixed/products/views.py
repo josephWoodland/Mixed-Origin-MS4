@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from profiles.models import Profile, PartnerProfile
 from .models import Product
 from .forms import ProductForm
 
@@ -19,3 +20,26 @@ def viewProduct(request, pk):
     }
 
     return render(request, template, context)
+
+
+def productList(request, pk):
+    template = "products/product_list.html"
+    partner = PartnerProfile.objects.get(id=pk)
+    products = partner.product_set.all()
+
+    context = {
+        'partner': partner,
+        'products': products,
+    }
+
+    return render(request, template, context)
+
+
+def editProduct(request, pk):
+    template = 'products/edit_product'
+    return render(request, template)
+
+
+def deleteProduct(request, pk):
+    template = 'products/edit_product'
+    return render(request, template)
