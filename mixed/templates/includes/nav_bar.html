@@ -6,7 +6,7 @@
     <a href="" class="sidenav-trigger"><i class="fas fa-bars hidden"></i></a>
     <ul class="hide-on-med-and-down">
         <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
-        <li><a {% if '/product/' in request.path %} class="active"{% endif %} href="{% url 'add-product' %}">products</a></li>
+        <li><a {% if '/product/' in request.path %} class="active"{% endif %} href="">products</a></li>
         <li><a {% if '/partners/' in request.path %} class="active"{% endif %} href="">partners</a></li>
         <li><a {% if '/search/' in request.path %} class="active"{% endif %} href="#">search</a></li>
         <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="#">blog</a></li>
@@ -27,7 +27,7 @@
 <ul class="nav-list sidenav" id="mobile-nav">
     <li><a href=""><i class="fas fa-chevron-left"></i></a></li>
     <li><a {% if '/' == request.path %} class="active"{% endif %} href="{% url 'home' %}">home</a></li>
-    <li><a {% if '/product/' in request.path %} class="active"{% endif %} href="{% url 'add-product' %}">products</a></li>
+    <li><a {% if '/product/' in request.path %} class="active"{% endif %} href="">products</a></li>
     <li><a {% if '/partners/' in request.path %} class="active"{% endif %} href="">partners</a></li>
     <li><a {% if '/search/' in request.path %} class="active"{% endif %} href="#">search</a></li>
     <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="#">blog</a></li>

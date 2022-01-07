@@ -1,14 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.contrib import messages
 
 from profiles.models import Profile, PartnerProfile
 from .models import Product
 from .forms import ProductForm
 
 # Create your views here.
-def addProduct(request):
+def addProduct(request, pk):
     template = "products/add_product.html"
+    partner = PartnerProfile.objects.get(id=pk)
     form = ProductForm()
-    context = {"form": form}
+    context = {"form": form, "partner":partner}
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save(commit=False)
+            product.owner = partner
+            product.save()
+            messages.success(request, 'You have added a new product to your store!')
+            return redirect("product-list", pk=pk)
+
     return render(request, template, context)
 
 

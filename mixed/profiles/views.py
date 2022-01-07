@@ -45,10 +45,10 @@ def editProfile(request, pk):
     }
 
     if request.method == "POST":
-        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if profile_form.is_valid():
-            profile_form.save()
-        messages.success(request, "You have updated your account")
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        messages.success(request, "You have added a product to your store")
         return redirect("profile")
 
     return render(request, template, context)
