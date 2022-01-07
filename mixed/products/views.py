@@ -1,3 +1,4 @@
+from django.contrib.messages.api import error
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
@@ -48,10 +49,29 @@ def productList(request, pk):
 
 
 def editProduct(request, pk):
-    template = 'products/edit_product'
-    return render(request, template)
+    template = 'products/edit_product.html'
+    product = Product.objects.get(id=pk)
+    partner = product.owner
+    partner_id = partner.id
+    form = ProductForm(instance=product)
+    context = {
+        'form': form,
+        'product': product,
+    }
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Updated product details.')
+            return redirect("product-list", pk=partner_id)
+        
+        errors = form.errors
+        messages.error(request, errors)
+    
+    return render(request, template, context)
 
 
 def deleteProduct(request, pk):
-    template = 'products/edit_product'
+    template = 'products/delete_product.html'
     return render(request, template)

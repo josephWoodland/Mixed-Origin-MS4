@@ -48,8 +48,8 @@ def editProfile(request, pk):
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-        messages.success(request, "You have added a product to your store")
-        return redirect("profile")
+            messages.success(request, "You have edited your product!")
+            return redirect("profile")
 
     return render(request, template, context)
 
@@ -71,8 +71,12 @@ def editPartner(request, pk):
         if partner_form.is_valid():
             partner_form.save()
 
-        messages.success(request, "You have updated your account")
-        return redirect("profile")
+            messages.success(request, "You have updated your account")
+            return redirect("profile")
+
+        errors = partner_form.errors
+        messages.error(request, errors)
+
     return render(request, template, context)
 
 
