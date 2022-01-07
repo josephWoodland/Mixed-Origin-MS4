@@ -324,7 +324,7 @@ footer li {
 /* /////////////////////////// Product View ///////////////////// */
 
 .product-view {
-    height: 70vh;
+    height: 50vh;
 }
 
 
@@ -529,6 +529,7 @@ input[type="checkbox"]:checked {
     display: none;
 }
 
+.product-banner,
 .banner {
     padding-top: 10vh;
     height: 40vh;
@@ -536,6 +537,14 @@ input[type="checkbox"]:checked {
     flex-direction: column;
     text-align: right;
     background-color: var(--border-grey);
+}
+
+.banner{
+    height: 40vh;
+}
+
+.product-banner{
+    height: 30vh;
 }
 
 .heading {

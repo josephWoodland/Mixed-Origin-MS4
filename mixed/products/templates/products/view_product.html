@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div class="container product-banner">
+    <h3 class="heading" >{{ product.owner.company_name }}</h3>
+    <h3 class="product-name">{{ product.name }}</h3>
+</div>
 <div class="container">
     <div class="row product-view">
-        <div class=" col m2 flex-wrapper column">
-            <h3 class="product-name">{{ product.name }}</h3>
-            <h4>£{{ product.price }}</h4>
-        </div>
-        <div class="col m6 flex-wrapper">
+        <div class="col m7 flex-wrapper">
             <img class="product-image" src="{{ product.image.url }}" alt="">
         </div>
-            <div class="col m4 flex-wrapper column">
-            <h3 class="heading" >{{ product.owner.company_name }}</h3>
+        <div class="col m5 flex-wrapper column">
+                <h4>£{{ product.price }}</h4>
             <p>{{ product.description }}</p>
             <div class="row product-number">
                 <form action="#" method="POST" class="flex-wrapper column full-width">

@@ -3,32 +3,39 @@
 <div class="container banner">
     <h3>{{ partner.company_name }}</h3>
 </div>
-<table class="center">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Stock
-        </th>
-        <th>
-            Product
-        </th>
-    </tr>
-    {% for product in products %}
-        <td>
-            {{ product.name }}
-        </td>
-        <td>
-            {{ product.stock_numbers }}
-        </td>
-        <td>
-            <a href="{% url 'view-product' product.id %}" class="btn btn-sm">View</a>
-            <a href="{% url 'edit-product' product.id %}" class="btn btn-sm">Edit</a>
-            <a href="{% url 'delete-product' product.id %}" class="btn btn-sm">Delete</a>
-        </td>
-    {% endfor %}
-</table>
+<div class="container">
+    <div class="row"> 
+        <table class="center col s12 m8 offset-m2">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Stock
+                </th>
+                <th>
+                    Product
+                </th>
+            </tr>
+            
+            {% for product in products %}
+            <tr>
+                <td>
+                    <a href="{% url 'view-product' product.id %}">{{ product.name }}</a>
+                </td>
+                <td>
+                    {{ product.stock_numbers }}
+                </td>
+                <td>
+                    <a href="{% url 'edit-product' product.id %}" class="btn btn-sm no-margin">Edit</a>
+                    <a href="{% url 'delete-product' product.id %}" class="btn btn-sm no-margin">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
 <div class="container">
     <div class="row">
         <div class="col s6 offset-s3 m8 offset-m2">
