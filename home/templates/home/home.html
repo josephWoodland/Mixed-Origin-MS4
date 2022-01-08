@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<header class="home-header">
+    <div class="container hero">
+        <h3 class="hero-text">Started in 2022</h3>
+        <h1 class="hero-text">Mixed Origin</h1>
+        <p class="hero-text">Strap-line</p>
+    </div>
+</header>
+<div class="container">
+<div class="about-card">
+    <div class="about-text">
+        <h2 class="heading" >About Us</h2>
+        <h5>Mixed Origin</h5>
+        <p>This is where some user content can be about the product</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem consequatur hic a eos illum quos? Maiores dolore hic ducimus iste nobis dolores incidunt laborum quo, ullam alias deleniti esse.</p>
+        <a href="" class="btn waves-effect about-btn">Read More</a>
+    </div>
+    <div class="about-links hide-on-med-and-down">
+        <div class="info-link no-left-border">
+            <div class="info-icon">
+                <i class="fas fa-info fa-border"></i>
+            </div>
+            <div class="info-text">
+                <h5 class="no-margin">
+                    Free Shipping
+                </h5>
+                <p class="no-margin">
+                    Free shipping for orders over £100
+                </p>
+            </div>
+        </div>
+        <div class="info-link">
+            <div class="info-icon">
+                <i class="fas fa-info fa-border"></i>
+            </div>
+            <div class="info-text">
+                <h5 class="no-margin">
+                    Gift Cards
+                </h5>
+                <p class="no-margin">
+                    The perfect gift.
+                </p>
+            </div>
+        </div>
+        <div class="info-link no-right-border">
+            <div class="info-icon">
+                <i class="fas fa-info fa-border"></i>
+            </div>
+            <div class="info-text">
+                <h5 class="no-margin">
+                    Friendly Support
+                </h5>
+                <p class="no-margin">
+                    All support is given in house
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="container">
+    <div class="trending row">
+        <div class="trending-headline col s12 m5" style="padding-left: 0;">
+            <h3 class="padding-left">Trending</h3>
+            <h4 class="padding-left">Kids Fashion</h4>
+        </div>
+        <div class="trending-highlight col s12 m7" style="padding-right: 0;">
+            <div class="trending-brand">
+                <h1 class="padding-left">Brand Name</h1>
+            </div>
+            <div class="trending-item">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col s8 offset-s2 m6 offset-m3 text-center">
+            <h3 class="heading">Featured Products</h3>
+            <h3 class="border-bottom padding-bottom">Most Wanted</h3>
+        </div>
+    </div>
+    <div class="row margin-top">
+        {% for product in products %}
+            <div class="col s12 m6 l4 xl3">
+                <a href="{% url 'view-product' product.id %}">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ product.image.url }}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">{{ product.name|truncatechars:17 }}</span>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Order</a>
+                            <span class="card-price">£{{ product.price }}</span>
+                    </div>
+                </a>
+            </div> 
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

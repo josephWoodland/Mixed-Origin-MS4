@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="container banner">
+    {% if profile.is_partner == True %}
+        <h1 class="no-margin">{{ partner.company_name }}</h1>
+        <P>Edit your profile</P>
+        <p>
+            Edit your company details - 
+            <a href="{% url 'edit_partner' partner.id %}" class="btn btn-sm">Edit</a>
+        </p>
+    {% else %}
+        <h1 class="no-margin">{{ profile.username }}</h1>
+        <P>Edit your profile</P>
+    {% endif %}
+</header>
+<div class="container">
+    <form action="" method="POST" class="form col s10 m8"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <img src="{{ profile.profile_image.url }}" alt="" class="form-image">
+      <div class="input-wrapper margin-top">
+          <label for="form-input" class="form-input">Profile image</label>
+          <input type="file" name="profile_image" accept="image/*" id="id_profile_image">
+      </div>  
+    {% for field in profile_form %}
+        {% if field.label == "Partner application" or field.label == "Profile image" %}
+        {% else %}
+            <div class="input-wrapper">
+                <label for="form-input" class="form-input">{{ field.label }}</label>
+                {{ field }}
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="flex-wrapper">
+        <button type="submit" class="btn btn-sm">Edit</button>
+        <a href="{% url 'delete-profile' profile.id %}" class="btn btn-sm">delete</a>
+    </div>
+    </form>
+</div>
+{% endblock %}

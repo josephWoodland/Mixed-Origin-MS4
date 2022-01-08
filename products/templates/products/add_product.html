@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<header class="products-header">
+    <div class="container banner">
+        <h3 class="hero-text">{{ partner.company_name }}</h3>
+        <p class="hero-text">Add products to your store</p>
+    </div>
+</header>
+<div class="container">
+    <form action="" method="POST" class="form col s10 m8"  enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="input-wrapper">
+        <label for="form-input" class="form-input">{{ field.label }}</label>
+        {{ field }}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn">Add Product</button>
+    </form>
+</div>
+{% endblock %}

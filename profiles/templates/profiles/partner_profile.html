@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="container banner">
+    <h1 class="no-margin">{{ partner.company_name }}</h1>
+    <P>{{ partner.company_short_bio }}</P>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="center col s12 m10 offset-m1">
+            <div class="partner-image col s12 m5">
+                <img src="{{ partner.company_image.url }}" alt="">
+            </div>
+            <div class="col s12 m7">
+                <div class="flex-wrapper column left-align">
+                    <h3>About</h3>
+                    <P>{{ partner.company_description }}
+                    </P>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6 offset-s3 text-center margin-">            
+                <h3>Website</h3>
+                <P>{{ partner.company_website }}</P>
+                <ul class="partner-social">
+                    {% if partner.social_twitter %}
+                    <li>
+                        <a title="Twitter" href="{{partner.social_twitter}}" target="_blank"><i
+                                class="fab fa-twitter"></i></a>
+                    </li>
+                    {% endif %}
+        
+                    {% if partner.social_linkedin %}
+                    <li>
+                        <a title="LinkedIn" href="{{partner.social_linkedin}}" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
+                    </li>
+                    {% endif %}
+        
+                    {% if partner.social_youtube %}
+                    <li>
+                        <a title="LinkedIn" href="{{partner.social_youtube}}" target="_blank"><i
+                                class="fab fa-youtube"></i></a>
+                    </li>
+                    {% endif %}
+                </ul>
+        </div>
+    </div>
+    {% if request.user %}
+        {% if request.user.profile.id == partner.partner_id %}
+            <div class="flex-wrapper">
+                <a href="{% url 'edit-profile' partner.partner_id %}" class="btn">Edit</a>
+            </div>
+            <div class="flex-wrapper">
+                <p class="margin-right">You can view all of your products here</p>
+                <a href="{% url 'product-list' partner.id %}">Product List</a>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+{% endblock %}
