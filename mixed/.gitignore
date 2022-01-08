@@ -5,3 +5,4 @@ venvmixed/
 __pycache__
 media/
 staticfiles/
+db.json
