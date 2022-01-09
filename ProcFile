@@ -1,1 +1,1 @@
-web: gunicorn mixed.wsgi
+web: gunicorn mixed.wsgi:application
