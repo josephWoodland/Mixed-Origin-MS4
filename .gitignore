@@ -4,4 +4,4 @@ venvmixed/
 *.pyc
 __pycache__
 db.json
-env.py
+mixed/env.py
