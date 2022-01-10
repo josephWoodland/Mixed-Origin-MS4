@@ -22,7 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# MY_SECRET_KEY = config('MY_SECRET_KEY')
 
 SECRET_KEY = os.environ.get('SECRET_KEY', config('MY_SECRET_KEY', default=''))
 
@@ -177,6 +176,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 if "USE_AWS" in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = "mixed-origin-ms4"
     AWS_S3_REGION_NAME = "eu-west-2"
