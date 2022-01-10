@@ -3,6 +3,4 @@ venvmixed/
 *.sqlite3
 *.pyc
 __pycache__
-media/
-staticfiles/
 db.json
