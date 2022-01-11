@@ -11,6 +11,7 @@ from .forms import ProfileForm, PartnerProfileForm, WalletForm
 @login_required()
 def userProfile(request):
     profile = request.user.profile
+    id = profile.id
 
     if profile.is_partner == False:
         template = "profiles/profile.html"
@@ -20,11 +21,16 @@ def userProfile(request):
         partner_profile = PartnerProfile.objects.get(partner_id=id)
 
     if request.method == "POST":
-        profile.partner_application == True
-        messages.success(request, "Your application request has been sent")
-        return redirect("profile")
+        form = request.POST
+        if ('partner_application') in form:
+            profile = Profile.objects.filter(id=id).update(partner_application=True)
+            messages.success(request, "Your application request has been sent")
+            return redirect("profile")
+        else:
+            messages.error(request, "Please check the radio button to apply.")
+            return redirect("profile")
 
-    id = profile.id
+
     context = {
         "profile": profile,
         "partner": partner_profile,
@@ -53,7 +59,6 @@ def editProfile(request, pk):
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            print(form)
             form.save()
             messages.success(request, "You have edited your profile!")
             return redirect("home")
@@ -79,9 +84,9 @@ def editPartner(request, pk):
         partner_form = PartnerProfileForm(
             request.POST, request.FILES, instance=partner_profile
         )
+
         if partner_form.is_valid():
             partner_form.save()
-
             messages.success(request, "You have updated your account")
             return redirect("profile")
 
