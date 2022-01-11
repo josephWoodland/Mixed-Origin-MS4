@@ -9,6 +9,7 @@
     --border-grey: #e5e6e9;
     --message-error: #b05150;
     --message-success: #47ae74;
+    --message-info: #3286e9;
     --border: 1px solid var(--border-grey);
     --font-main: 'Poppins', sans-serif;
     --font-header:'Abril Fatface', cursive;
@@ -124,6 +125,11 @@ nav i {
     color: var(--message-success);
 }
 
+.alert-info {
+    border: 1px solid var(--message-info);
+    color: var(--message-info);
+}
+
 .alert-icon-box {
     display: flex;
     width: 10%;
@@ -150,6 +156,10 @@ nav i {
 
 .success {
     background-color: var(--message-success);
+}
+
+.info {
+    background-color: var(--message-info);
 }
 
 @media only screen and (min-width: 1333px) {
@@ -424,6 +434,10 @@ footer li {
     object-fit: cover;
     max-height: 150px;
     max-width: 150px;
+}
+
+.required {
+    content: "*"
 }
 
 #id_tags {

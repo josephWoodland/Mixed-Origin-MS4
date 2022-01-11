@@ -1,11 +1,13 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from profiles.models import PartnerProfile
 from .models import Product
 from .forms import ProductForm
 
 # Create your views here.
+@login_required()
 def addProduct(request, pk):
     template = "products/add_product.html"
     partner = PartnerProfile.objects.get(id=pk)
@@ -34,6 +36,7 @@ def viewProduct(request, pk):
     return render(request, template, context)
 
 
+@login_required()
 def productList(request, pk):
     template = "products/product_list.html"
     partner = PartnerProfile.objects.get(id=pk)
@@ -47,6 +50,7 @@ def productList(request, pk):
     return render(request, template, context)
 
 
+@login_required()
 def editProduct(request, pk):
     template = "products/edit_product.html"
     product = Product.objects.get(id=pk)
@@ -71,6 +75,7 @@ def editProduct(request, pk):
     return render(request, template, context)
 
 
+@login_required()
 def deleteProduct(request, pk):
     template = "products/delete_product.html"
     return render(request, template)

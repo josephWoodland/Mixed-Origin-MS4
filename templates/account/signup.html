@@ -7,7 +7,6 @@
 {% block inner_content %}
 <h2>Sign Up</h2>
 
-
 <form class="col s12 m8 offset-m2" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form|crispy }}
@@ -17,6 +16,5 @@
   <button type="submit" class="btn">Sign Up</button>
 </form>
 <p>Already have an account? Then please <a href="{{ login_url }}">sign in</a>.</p>
-
 
 {% endblock %}

@@ -11,11 +11,19 @@
                             <p class="alert-message">{{ message }}</p>
                         </div>
                         <a href="#" class="alert-close"><i class="fas fa-times"></i></a> 
-                    {% else %}
+                    {% elif message.tags == 'success' %}
                         <div class="alert-icon-box success">        
                             <i class="fas fa-check" style="font-size: 3rem;"></i>
                         </div>
                         <div class="alert-message alert-success">
+                            <p class="alert-message">{{ message }}</p>
+                        </div>
+                        <a href="#" class="alert-close"><i class="fas fa-times"></i></a> 
+                    {% else %}
+                        <div class="alert-icon-box info">        
+                            <i class="fas fa-info" style="font-size: 3rem;"></i>
+                        </div>
+                        <div class="alert-message alert-info">
                             <p class="alert-message">{{ message }}</p>
                         </div>
                         <a href="#" class="alert-close"><i class="fas fa-times"></i></a> 
