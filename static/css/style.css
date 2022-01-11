@@ -518,6 +518,7 @@ input[type="checkbox"]:checked {
     align-items: center;
 }
 
+
 /* /////////////////////////// Allauth ///////////////////// */
 
 .allauth {
@@ -543,7 +544,7 @@ input[type="checkbox"]:checked {
     background-color: var(--background-color);
     border: var(--border);
     padding: 3rem;
-    margin: -15vh auto 10vh auto;
+    margin: -10vh auto 10vh auto;
 }
 
 .hidden {

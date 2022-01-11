@@ -27,6 +27,7 @@ class PartnerProfileForm(forms.ModelForm):
     class Meta:
         model = PartnerProfile
         fields = [
+            "company_image",
             "company_name",
             "company_website",
             "company_short_bio",

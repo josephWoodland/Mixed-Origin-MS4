@@ -10,6 +10,15 @@ from .forms import ProfileForm, PartnerProfileForm, WalletForm
 
 @login_required()
 def userProfile(request):
+    """This is the main profile view
+
+    Args:
+        request (GET): This view takes in the user profile status
+
+    Returns:
+        [render html]: Using the profile status of the account the view renders the
+        necessary template for that user.
+    """
     profile = request.user.profile
     id = profile.id
 
@@ -17,8 +26,11 @@ def userProfile(request):
         template = "profiles/profile.html"
         partner_profile = None
     else:
-        template = "profiles/partner_profile.html"
         partner_profile = PartnerProfile.objects.get(partner_id=id)
+        if partner_profile.company_name == '':
+            return redirect('edit-partner', pk=partner_profile.id)
+        
+        template = "profiles/partner_profile.html"
 
     if request.method == "POST":
         form = request.POST
@@ -41,6 +53,9 @@ def userProfile(request):
 
 @login_required()
 def editProfile(request, pk):
+    """
+    This is the view to edit a user profile
+    """
     template = "profiles/edit_profile.html"
     profile = Profile.objects.get(id=pk)
     partner_profile = None
@@ -71,6 +86,9 @@ def editProfile(request, pk):
 
 @login_required()
 def editPartner(request, pk):
+    """
+    This view edits the partner profile
+    """
     template = "profiles/edit_partner.html"
     partner_profile = PartnerProfile.objects.get(id=pk)
     partner_form = PartnerProfileForm(instance=partner_profile)
@@ -84,11 +102,11 @@ def editPartner(request, pk):
         partner_form = PartnerProfileForm(
             request.POST, request.FILES, instance=partner_profile
         )
-
+        print(partner_form)
         if partner_form.is_valid():
             partner_form.save()
             messages.success(request, "You have updated your account")
-            return redirect("profile")
+            return redirect("home")
 
         errors = partner_form.errors
         messages.error(request, errors)
