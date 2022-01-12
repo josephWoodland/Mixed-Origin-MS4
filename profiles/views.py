@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 from .models import Profile, PartnerProfile, Wallet
 from .forms import ProfileForm, PartnerProfileForm, WalletForm
+from products.models import Product
 
 # Create your views here.
 
@@ -27,21 +29,20 @@ def userProfile(request):
         partner_profile = None
     else:
         partner_profile = PartnerProfile.objects.get(partner_id=id)
-        if partner_profile.company_name == '':
-            return redirect('edit-partner', pk=partner_profile.id)
-        
+        if partner_profile.company_name == "":
+            return redirect("edit-partner", pk=partner_profile.id)
+
         template = "profiles/partner_profile.html"
 
     if request.method == "POST":
         form = request.POST
-        if ('partner_application') in form:
+        if ("partner_application") in form:
             profile = Profile.objects.filter(id=id).update(partner_application=True)
             messages.success(request, "Your application request has been sent")
             return redirect("profile")
         else:
             messages.error(request, "Please check the radio button to apply.")
             return redirect("profile")
-
 
     context = {
         "profile": profile,
@@ -116,8 +117,28 @@ def editPartner(request, pk):
 
 @login_required()
 def deleteProfile(request, pk):
-    template = "profiles/delete_profile.html"
-    context = {}
+    template = "includes/delete_template.html"
+    profile = request.user.profile
+    id = profile.id
+
+    if request.method == "POST":
+
+        # if profile.is_partner:
+        #     partner_profile = PartnerProfile.objects.get(partner_id=id)
+        #     partner_id = partner_profile.id
+        #     products = Product.objects.get(owner=partner_id)
+        #     partner_profile.delete()
+        #     products.delete()
+
+        user = request.user
+        user.delete()
+        profile.delete()
+        messages.success(request, "Your profile has been deleted!")
+        logout(request)
+        return redirect("home")
+
+    context = {"object": profile}
+
     return render(request, template, context)
 
 

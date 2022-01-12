@@ -16,7 +16,7 @@
 </div>
 {% endif %}
 <header class="container banner">
-        <h1 class="no-margin">{{ partner.company_name }}</h1>
+        <h1 class="no-margin">{{ partner_profile.company_name }}</h1>
         <P>Edit your profile</P>
 </header>
 <section class="container">
@@ -37,7 +37,8 @@
             {% endif %}
     {% endfor %}
     <div class="flex-wrapper">
-        <button type="submit" class="btn btn-sm">Update</button>
+        <button type="submit" class="btn margin-right">confirm</button>
+        <a href="{% url 'delete-profile' partner_profile.id %}" class="btn">delete</a>
     </div>
     </form>
 </section>

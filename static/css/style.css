@@ -214,7 +214,7 @@ footer li {
 /* /////////////////////////// Home ///////////////////// */
 
 .home-header {
-    height: 80vh;
+    height: 60vh;
     width: 100vw;
     background-color: var(--border-grey);
 }
@@ -405,6 +405,10 @@ footer li {
     margin-bottom: 2rem;
 }
 
+.btn-md{
+    width: fit-content;
+    align-self: center;
+}
 /* /////////////////////////// Forms ///////////////////// */
 
 .form {

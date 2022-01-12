@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="container product-banner">
+<header class="container product-banner">
     <h3 class="heading" >{{ product.owner.company_name }}</h3>
     <h3 class="product-name">{{ product.name }}</h3>
-</div>
-<div class="container">
+</header>
+<section class="container">
     <div class="row product-view">
         <div class="col m7 flex-wrapper">
             <img class="product-image" src="{{ product.image.url }}" alt="">
@@ -28,7 +28,15 @@
             </div>
         </div>
     </div>
-    <h3>You may also like...</h3>
+    {% if partner_profile.id == product.owner.id %}
+    <div class="flex-wrapper">
+        <h3>Click here to edit</h3>
+        <a href="{% url 'edit-product' product.id %}" class="btn btn-md margin-left">Edit</a>
+    </div>
+    {% endif %}
+    <div class="row">
+        <h3>You may also like...</h3>
+    </div>
     <div class="row product-sugestion hide-on-med-and-down">
         <div class="card col m3 l2 product-suggestion">
             <div class="card-image">
@@ -66,5 +74,5 @@
     </div>
     <a href="#" class="hide-on-med-and-up">View more...</a>
 
-</div>
+</section>
 {% endblock %}

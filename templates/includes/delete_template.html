@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="container banner">
+    {% if object.username %}
+        <h1>{{ object.first_name }} {{ object.second_name }}</h1>
+    {% else %}
+        <h1>{{ object.name }}</h1>
+    {% endif %}
+</header>
+<section class="container row">
+        <form action="" method="POST" class="form">
+            {% csrf_token %}
+            {% if object.username %}
+                <h3 class="text-center">Are you sure you want to delete {{ object.first_name }} {{ object.second_name }}'s profile</h3>
+            {% else %}
+                <h3 class="text-center">Are you sure you want to delete {{ object.name }} product</h3>
+            {% endif %}
+            <div class="row">
+                {% if object.username %}
+                    <a href="{% url 'profile' %}" class="btn margin-right">back</a>
+                {% else %}
+                    <a href="{% url 'view-product' object.id %}" class="btn margin-right">back</a>
+                {% endif %}
+                <input type="submit" value="confirm" class="btn">
+            </div>
+        </form>
+</section>
+{% endblock %}

@@ -3,10 +3,9 @@
 <header class="container banner">
     {% if profile.is_partner == True %}
         <h1 class="no-margin">{{ partner.company_name }}</h1>
-        <P>Edit your profile</P>
         <p>
-            Edit your company details - 
-            <a href="{% url 'edit-partner' partner.id %}" class="btn btn-sm">Edit</a>
+            Edit your company details
+            <a href="{% url 'edit-partner' partner.id %}" class="btn">Edit</a>
         </p>
     {% else %}
         <h1 class="no-margin">{{ profile.username }}</h1>
@@ -33,8 +32,8 @@
         {% endif %}
     {% endfor %}
     <div class="flex-wrapper">
-        <button type="submit" class="btn btn-sm">Edit</button>
-        <a href="{% url 'delete-profile' profile.id %}" class="btn btn-sm">delete</a>
+        <button type="submit" class="btn margin-right">confirm</button>
+        <a href="{% url 'delete-profile' profile.id %}" class="btn">delete</a>
     </div>
     </form>
 </section>

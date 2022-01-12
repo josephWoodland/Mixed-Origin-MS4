@@ -35,7 +35,6 @@ class PartnerProfileForm(forms.ModelForm):
             "social_twitter",
             "social_linkedin",
             "social_youtube",
-            "social_website",
         ]
 
         def __init__(self, *args, **kwargs):

@@ -29,8 +29,17 @@ def addProduct(request, pk):
 def viewProduct(request, pk):
     template = "products/view_product.html"
     product = Product.objects.get(id=pk)
+    partner_profile = None
+
+    if request.user.profile:
+        profile = request.user.profile
+        id = profile.id
+        if profile.is_partner == True:
+            partner_profile = PartnerProfile.objects.get(partner_id=id)
+
     context = {
         "product": product,
+        "partner_profile": partner_profile,
     }
 
     return render(request, template, context)
