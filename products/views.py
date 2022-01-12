@@ -7,6 +7,16 @@ from .models import Product
 from .forms import ProductForm
 
 # Create your views here.
+
+def products(request):
+    template = "products/products.html"
+    products = Product.objects.all()
+    context = {
+        'products': products
+    }
+    return render(request, template, context)
+
+
 @login_required()
 def addProduct(request, pk):
     template = "products/add_product.html"
@@ -31,7 +41,7 @@ def viewProduct(request, pk):
     product = Product.objects.get(id=pk)
     partner_profile = None
 
-    if request.user.profile:
+    if request.user.is_authenticated:
         profile = request.user.profile
         id = profile.id
         if profile.is_partner == True:

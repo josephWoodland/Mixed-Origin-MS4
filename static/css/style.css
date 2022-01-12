@@ -523,6 +523,12 @@ input[type="checkbox"]:checked {
 }
 
 
+/* /////////////////////////// Search ///////////////////// */
+
+.search {
+    justify-content: flex-end !important;
+}
+
 /* /////////////////////////// Allauth ///////////////////// */
 
 .allauth {
@@ -557,8 +563,6 @@ input[type="checkbox"]:checked {
 
 .product-banner,
 .banner {
-    padding-top: 10vh;
-    height: 40vh;
     display: flex;
     flex-direction: column;
     text-align: right;
@@ -566,10 +570,12 @@ input[type="checkbox"]:checked {
 }
 
 .banner{
+    padding-top: 10vh;
     height: 40vh;
 }
 
 .product-banner{
+    padding-top: 5vh;
     height: 30vh;
 }
 

@@ -26,9 +26,13 @@ function  fadeOut() {
 
 }
 
+// Check if message is in the html
 if (message){
     messageClose.addEventListener('click', fadeOut);
-    
+    // Run the fadeOut function after 3 seconds
+    setTimeout(function(){
+        fadeOut()
+    }, 3000)
 }
 
 // Updating the quantity on the product view page //
