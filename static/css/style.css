@@ -5,7 +5,7 @@
     --highlight-color: #f73f6f;
     --text-grey: #5f5f5f;
     --dark-grey: #ccc;
-    --text-color: #f26657;
+    --text-color: #1a1a1a;
     --border-grey: #e5e6e9;
     --message-error: #b05150;
     --message-success: #47ae74;
@@ -405,6 +405,10 @@ footer li {
     margin-bottom: 2rem;
 }
 
+.btn-search {
+    height: 3rem
+}
+
 .btn-md{
     width: fit-content;
     align-self: center;
@@ -434,6 +438,14 @@ footer li {
     font-size: var(--font-size-form);
 }
 
+.search-tags {
+    margin-top: 2rem;
+    color: var(--highlight-color);
+    color: var(--text-color) !important;
+    font-family: var(--font-main) !important;
+    font-size: var(--font-size-form);
+}
+
 .form-image {
     object-fit: cover;
     max-height: 150px;
@@ -448,6 +460,7 @@ footer li {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 2rem;
+    text-align: left;
 }
 
 #id_description {

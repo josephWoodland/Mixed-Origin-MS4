@@ -27,15 +27,3 @@ class ProductForm(ModelForm):
             names = name.capitalize()
             fields.widget.attrs.update({"class": "input", "placeholder": names})
 
-
-class TagSearchForm(ModelForm):
-    class Meta:
-        form = Product
-        fields = ['Tags']
-
-        widgets = {
-            "tags": forms.CheckboxSelectMultiple(),
-        }
-    
-    def __init__(self, *args, **kwargs):
-        super(TagSearchForm, self).__init__(*args, **kwargs)

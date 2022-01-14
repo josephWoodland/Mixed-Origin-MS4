@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 <header class="container product-banner">
-    <h1>Products</h1>
+    <h1 class="hide-on-med-and-down">Products</h1>
+    <h3 class="hide-on-med-and-up">Products</h3>
     <div class="flex-wrapper search">
         <form id="searchForm" action="" method="GET" class="">
                 <input class="input input--text" id="search_query" type="text" name="search_query"
                 value="{{ search_query }}" placeholder="Search by Product" />
-            <input class="btn" type="submit" value="Search" />
-            <a href=""></a>
+            <a href="" id="searchOptions" class="hide-on-med-and-down">
+                Search options
+            </a>
+                <input class="btn" type="submit" value="Search" />
         </form>
     </div>
 </header>
 <section class="container">
     <div class="row">
         <div class="col s8 offset-s2 m6 offset-m3 text-center">
-            <h3 class="border-bottom padding-bottom">Most Wanted</h3>
+            <h3 class="border-bottom padding-bottom hide-on-med-and-down">Products</h3>
         </div>
     </div>
     <div class="row margin-top">

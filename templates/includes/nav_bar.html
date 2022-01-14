@@ -15,10 +15,10 @@
         {% endif %} 
         </ul>
         {% if request.user.is_authenticated %}
-            <a href="{% url 'account_logout' %}" class="nav-login">Logout
+            <a href="{% url 'account_logout' %}" class="nav-login hide-on-med-and-down">Logout
             </a>
         {% else %}
-            <a href="{% url 'account_login' %}" class="nav-login">Login/Register
+            <a href="{% url 'account_login' %}" class="nav-login hide-on-med-and-down">Login
             </a>
         {% endif %}
 </nav>
@@ -38,7 +38,7 @@
             <a href="{% url 'account_logout' %}" class="nav-login">Logout
             </a>
         {% else %}
-            <a href="{% url 'account_login' %}" class="nav-login">Login/Register
+            <a href="{% url 'account_login' %}" class="nav-login">Login
             </a>
         {% endif %}
     </li>

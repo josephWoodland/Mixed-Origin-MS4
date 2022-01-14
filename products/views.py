@@ -4,34 +4,36 @@ from django.contrib.auth.decorators import login_required
 
 from profiles.models import PartnerProfile
 from .models import Product, Tag
-from .forms import ProductForm
+from .forms import ProductForm, TagSearchForm
 from django.db.models import Q
 
 
 # Create your views here.
 
+
 def products(request):
     template = "products/products.html"
     products = Product.objects.all()
     search_query = ""
+    form = TagSearchForm()
+    tags = Tag.objects.filter(name__icontains=search_query)
 
     if request.GET.get("search_query"):
         search_query = request.GET.get("search_query")
-    
-    tag_list = Tag.objects.all()
-    tags_search = Tag.objects.filter(name__icontains=search_query)
+
     products = Product.objects.distinct().filter(
         Q(name__icontains=search_query)
         | Q(description__icontains=search_query)
         | Q(owner__company_name__icontains=search_query)
-        | Q(tags__in=tags_search)
+        | Q(tags__in=tags)
     )
 
     context = {
-        'products': products,
+        "products": products,
         "search_query": search_query,
-        
+        "form": form,
     }
+
     return render(request, template, context)
 
 
