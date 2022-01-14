@@ -26,4 +26,3 @@ class ProductForm(ModelForm):
         for name, fields in self.fields.items():
             names = name.capitalize()
             fields.widget.attrs.update({"class": "input", "placeholder": names})
-

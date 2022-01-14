@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from profiles.models import PartnerProfile
 from .models import Product, Tag
-from .forms import ProductForm, TagSearchForm
+from .forms import ProductForm
 from django.db.models import Q
 
 
@@ -15,11 +15,11 @@ def products(request):
     template = "products/products.html"
     products = Product.objects.all()
     search_query = ""
-    form = TagSearchForm()
-    tags = Tag.objects.filter(name__icontains=search_query)
 
     if request.GET.get("search_query"):
         search_query = request.GET.get("search_query")
+
+    tags = Tag.objects.filter(name__icontains=search_query)
 
     products = Product.objects.distinct().filter(
         Q(name__icontains=search_query)
@@ -27,11 +27,9 @@ def products(request):
         | Q(owner__company_name__icontains=search_query)
         | Q(tags__in=tags)
     )
-
     context = {
         "products": products,
         "search_query": search_query,
-        "form": form,
     }
 
     return render(request, template, context)

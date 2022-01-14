@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "home.apps.HomeConfig",
     "products.apps.ProductsConfig",
     "profiles.apps.ProfilesConfig",
+    "partners.apps.PartnersConfig",
     # Modules
     "crispy_forms",
     "crispy_forms_materialize",
