@@ -39,8 +39,19 @@ def partnerProfile(request, pk):
 def partnerProducts(request, pk):
     template = "partners/partner_products.html"
     partner = PartnerProfile.objects.get(id=pk)
+
     products = partner.product_set.all()
 
+    search_query = ""
+
+    if request.GET.get("search_query"):
+        search_query = request.GET.get("search_query")
+
+    products = Product.objects.distinct().filter(
+        Q(name__icontains=search_query) 
+        & Q(owner__exact=partner)
+    )
+    
     context = {
         "partner": partner,
         "products": products,
