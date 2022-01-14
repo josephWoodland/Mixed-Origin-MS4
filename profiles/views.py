@@ -32,7 +32,7 @@ def userProfile(request):
         if partner_profile.company_name == "":
             return redirect("edit-partner", pk=partner_profile.id)
 
-        template = "profiles/partner_profile.html"
+        template = "partners/partner_profile.html"
 
     if request.method == "POST":
         form = request.POST
@@ -122,14 +122,6 @@ def deleteProfile(request, pk):
     id = profile.id
 
     if request.method == "POST":
-
-        # if profile.is_partner:
-        #     partner_profile = PartnerProfile.objects.get(partner_id=id)
-        #     partner_id = partner_profile.id
-        #     products = Product.objects.get(owner=partner_id)
-        #     partner_profile.delete()
-        #     products.delete()
-
         user = request.user
         user.delete()
         profile.delete()

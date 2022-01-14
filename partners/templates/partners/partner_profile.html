@@ -6,15 +6,18 @@
 </header>
 <section class="container">
     <div class="row">
-        <div class="center col s12 m10 offset-m1">
-            <div class="partner-image-box col s12 m5">
+        <div class="center col s12 m10 offset-m1 no-padding">
+            <div class="partner-image-box col s12 m5 no-padding">
                 <img style="max-width: -webkit-fill-available;" src="{{ partner.company_image.url }}" alt="">
             </div>
             <div class="col s12 m7">
                 <div class="flex-wrapper column left-align">
                     <h3>About</h3>
-                    <P>{{ partner.company_description }}
-                    </P>
+                    <P>{{ partner.company_description }}</P>
+                    <p>
+                        See all of our products 
+                        <a href="{% url 'partner-products' partner.id %}">here</a>
+                    </p>
                 </div>
             </div>
         </div>

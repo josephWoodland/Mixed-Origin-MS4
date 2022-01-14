@@ -531,6 +531,7 @@ input[type="checkbox"]:checked {
 }
 
 .partner-image-box {
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;

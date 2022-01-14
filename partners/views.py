@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from products.models import Product
+from products.views import productList
 from profiles.models import PartnerProfile
 
 from django.db.models import Q
@@ -26,8 +28,22 @@ def partners(request):
 
 
 def partnerProfile(request, pk):
-    template = "partners/partner-profile.html"
+    template = "partners/partner_profile.html"
+    partner = PartnerProfile.objects.get(id=pk)
     context = {
-        
+        "partner": partner,
     }
+    return render(request, template, context)
+
+
+def partnerProducts(request, pk):
+    template = "partners/partner_products.html"
+    partner = PartnerProfile.objects.get(id=pk)
+    products = partner.product_set.all()
+
+    context = {
+        "partner": partner,
+        "products": products,
+    }
+
     return render(request, template, context)
