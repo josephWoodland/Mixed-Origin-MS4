@@ -4,26 +4,49 @@
     <h1 class="hide-on-med-and-down">Partners</h1>
     <h3 class="hide-on-med-and-up">Our Partners</h3>
     <div class="flex-wrapper search">
-        <form id="searchForm" action="" method="GET" class="">
+        <form id="searchForm" action="" method="GET" class="hide">
                 <input class="input input--text" id="search_query" type="text" name="search_query"
-                value="{{ search_query }}" placeholder="Search by Product" />
-            <a href="" id="searchOptions" class="hide-on-med-and-down">
-                Search options
-            </a>
+                value="{{ search_query }}" placeholder="Search by Partner Name" />
                 <input class="btn" type="submit" value="Search" />
         </form>
+        <a href="" id="searchOpen" class="">search</a>
     </div>
 </header>
 <section class="container">
     <div class="row">
-        <div class="col s8 offset-s2 m6 offset-m3 text-center">
-            <h3 class="border-bottom padding-bottom hide-on-med-and-down">Our Partners</h3>
-        </div>
-        <div class="partner-about">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus sapiente rerum cum reprehenderit perspiciatis quo magnam, iste sit accusantium architecto, blanditiis obcaecati neque magni eveniet qui mollitia nesciunt fugiat numquam. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti aspernatur quibusdam vero pariatur eveniet deserunt quas adipisci? Quasi officia unde corporis cupiditate illo odit possimus, ducimus animi nulla distinctio ab!
+        <div class="about-text">
+            <h2 class="heading" >Our Partners</h2>
+            <h5>Mixed Origin</h5>
+            <p>This is where some user content can be about the product</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem consequatur hic a eos illum quos? Maiores dolore hic ducimus iste nobis dolores incidunt laborum quo, ullam alias deleniti esse.</p>
+            <a href="" class="btn waves-effect about-btn">Become a partner</a>
         </div>
     </div>
-    <div class="row margin-top">
+    <div class="margin-top partner-display">
+        {% for partner in partners %}
+            <div class="partner-card">
+                <div class="row">
+                    <div class="col s7 no-padding">
+                        <div class="image-container">
+                            <a href="{% url 'partner-profile' partner.id %}">
+                                <img width="400" src="{{ partner.company_image.url }}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-stacked col s5">
+                        <a href="{% url 'partner-profile' partner.id %}">
+                            <h3 class="header" style="color: #5f5f5f;">{{ partner.company_name }}</h3>
+                        </a>
+                        <div class="card-content">
+                            <p>{{ partner.company_short_bio }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'partner-profile' partner.id %}">more..</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

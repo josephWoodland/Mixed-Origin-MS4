@@ -13,7 +13,7 @@ const messageClose = document.querySelector('.alert-close')
 // Fade out function
 function  fadeOut() {
 
-    const fadeEffect = setInterval(function () {
+    const fadeEffect = setInterval(() => {
         if (!message.style.opacity) {
             message.style.opacity = 1;
         }
@@ -46,7 +46,7 @@ if (numberInputBox){
 
     let currNumber = numberInputBox.value
     let maxNumber = numberInputBox.max
-    upBtn.addEventListener('click', function(e){
+    upBtn.addEventListener('click', (e) => {
         e.preventDefault()
     
         if (currNumber < maxNumber) {
@@ -59,7 +59,7 @@ if (numberInputBox){
         }
     })
     
-    downBtn.addEventListener('click', function(e){
+    downBtn.addEventListener('click', (e) => {
         e.preventDefault()
         
         if (currNumber >= 1){
@@ -71,5 +71,20 @@ if (numberInputBox){
             stockNumberAlert.classList.add('hidden')
         } 
     
+    })
+}
+
+
+// Show the search bar on partners page //
+
+const searchForm = document.getElementById("searchForm")
+const searchOpen = document.getElementById("searchOpen")
+
+if (searchOpen) {
+    searchOpen.addEventListener("click", (e) => {
+        e.preventDefault()
+        console.log("click")
+        searchOpen.classList.add("hide")
+        searchForm.classList.remove("hide")
     })
 }

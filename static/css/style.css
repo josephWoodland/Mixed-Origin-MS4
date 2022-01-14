@@ -1,5 +1,6 @@
 /* /////////////////////////// Global styles and variables ///////////////////// */
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@100;300&display=swap');
+
 :root{
     --background-color: #f8f8f8;
     --highlight-color: #f73f6f;
@@ -529,12 +530,27 @@ input[type="checkbox"]:checked {
     justify-content: space-around;
 }
 
-.partner-image {
+.partner-image-box {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
+.partner-card {
+    max-height: 250px !important;
+    border: var(--border);
+    box-shadow: 3px 5px rgb(0 0 0 / 0.2);
+    overflow: hidden;
+}
+
+.partner-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
 
 /* /////////////////////////// Search ///////////////////// */
 
@@ -592,7 +608,7 @@ input[type="checkbox"]:checked {
     height: 30vh;
 }
 
-.heading {
+a .heading {
     font-family: var(--font-header);
 }
 
@@ -626,6 +642,14 @@ input[type="checkbox"]:checked {
 
 .margin-bottom {
     margin-bottom: 2rem;
+}
+
+.no-padding {
+    padding: none !important;
+}
+
+.padding {
+    padding: 10px;
 }
 
 .padding-left{
@@ -679,3 +703,10 @@ input[type="checkbox"]:checked {
     color: #FF0000;
 }
 
+.image-container {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
