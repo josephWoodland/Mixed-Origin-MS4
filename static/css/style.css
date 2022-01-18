@@ -637,6 +637,10 @@ a .heading {
     margin-right: 2rem;
 }
 
+.margin-left {
+    margin-right: 2rem;
+}
+
 .no-margin {
     margin: 0;
 }

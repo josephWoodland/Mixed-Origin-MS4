@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "products.apps.ProductsConfig",
     "profiles.apps.ProfilesConfig",
     "partners.apps.PartnersConfig",
+    "cart.apps.CartConfig",
     # Modules
     "crispy_forms",
     "crispy_forms_materialize",

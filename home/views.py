@@ -13,4 +13,6 @@ def home(request):
     context = {
         "products": products,
     }
+
+    print(products)
     return render(request, template, context)

@@ -3,7 +3,7 @@
 <nav>
     <a href="" data-target="mobile-nav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
     <a href="{% url 'home' %}" class="nav-logo">Mixed Origin</a>
-    <a href="" class="sidenav-trigger"><i class="fas fa-bars hidden"></i></a>
+    <a href="" class="sidenav-trigger hide-on-med-and-down"><i class="fas fa-bars hidden"></i></a>
     <ul class="hide-on-med-and-down">
         <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
         <li><a {% if '/product/' in request.path %} class="active"{% endif %} href="{% url 'products' %}">products</a></li>
@@ -15,8 +15,12 @@
         {% endif %} 
         </ul>
         {% if request.user.is_authenticated %}
-            <a href="{% url 'account_logout' %}" class="nav-login hide-on-med-and-down">Logout
+        <div class="nav-login">
+            <a href="{% url 'account_logout' %}" class="margin-right hide-on-med-and-down">Logout
             </a>
+            <a href="{% url 'cart' %}" class=""><i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
         {% else %}
             <a href="{% url 'account_login' %}" class="nav-login hide-on-med-and-down">Login
             </a>
