@@ -26,7 +26,13 @@
             </a>
         {% endif %}
 </nav>
-
+{% if product_count %}
+    {% if product_count < 10 %}
+    <p class="cart-notification">{{ product_count }}</p>
+    {% else %}
+    <p class="cart-notification large">{{ product_count }}</p>
+    {% endif %}
+{% endif %}
 <ul class="nav-list sidenav" id="mobile-nav">
     <li><a href=""><i class="fas fa-chevron-left"></i></a></li>
     <li><a {% if '/' == request.path %} class="active"{% endif %} href="{% url 'home' %}">home</a></li>

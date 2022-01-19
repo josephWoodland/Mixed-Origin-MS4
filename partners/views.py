@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from products.models import Product
 from products.views import product_list
 from profiles.models import PartnerProfile
@@ -29,7 +29,7 @@ def partners(request):
 
 def partner_profile(request, pk):
     template = "partners/partner_profile.html"
-    partner = PartnerProfile.objects.get(id=pk)
+    partner = get_object_or_404(PartnerProfile, id=pk)
     context = {
         "partner": partner,
     }
@@ -38,7 +38,7 @@ def partner_profile(request, pk):
 
 def partner_products(request, pk):
     template = "partners/partner_products.html"
-    partner = PartnerProfile.objects.get(id=pk)
+    partner = get_object_or_404(PartnerProfile, id=pk)
 
     products = partner.product_set.all()
 
