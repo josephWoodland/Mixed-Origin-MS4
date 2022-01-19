@@ -2,19 +2,108 @@
 
 {% block content %}
 
-<header class="container banner">
-    <h3>Cart</h3>
-</header>
 <section class="container">
     <div class="row">
-        <div class="col m9">
-            <h3 class="cart-heading">{{ profile.first_name }}'s cart</h3>
+        <div class="col m8 card cart">
+            <h3 class="cart-heading bold">Joseph's cart</h3>
+            <hr>
+            <div class="row padding">
+                <div class="image-container col m3">
+                    <img height="150" src="../../../media/bamboo-shampoo.jpg" alt="">
+                </div>
+                <div class="col m9">
+                    <div class="item-price">
+                        <h3 class="no-margin card-title">£16.75</h3>
+                        <a href=""><i class="fas fa-times"></i></a>
+                    </div>
+                    <div class="item-details">
+                        <p class="no-margin">Shampoo that relaxes and rehydrates hair</p>
+                    </div>
+                    <div class="item-quantity">
+                        <p>QTY</p>
+                        <p>4</p>
+                    </div>
+                    <div class="item-save">
+                            <i class="far fa-heart" id="heart"></i>
+                            <input type="checkbox" class="hidden" name="saveForLater" id="saveForLater" unchecked>
+                            <!-- <i class="fas fa-heart"></i> -->
+                            <p>Save for later</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row padding">
+                <div class="image-container col m3">
+                    <img height="150" src="../../../media/bamboo-shampoo.jpg" alt="">
+                </div>
+                <div class="col m9">
+                    <div class="item-price">
+                        <h3 class="no-margin card-title">£16.75</h3>
+                        <a href=""><i class="fas fa-times"></i></a>
+                    </div>
+                    <div class="item-details">
+                        <p class="no-margin">Shampoo that relaxes and rehydrates hair</p>
+                    </div>
+                    <div class="item-quantity">
+                        <p>QTY</p>
+                        <p>4</p>
+                    </div>
+                    <div class="item-save">
+                            <i class="far fa-heart" id="heart"></i>
+                            <input type="checkbox" class="hidden" name="saveForLater" id="saveForLater" unchecked>
+                            <!-- <i class="fas fa-heart"></i> -->
+                            <p>Save for later</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row padding">
+                <div class="image-container col m3">
+                    <img height="150" src="../../../media/bamboo-shampoo.jpg" alt="">
+                </div>
+                <div class="col m9">
+                    <div class="item-price">
+                        <h3 class="no-margin card-title">£16.75</h3>
+                        <a href=""><i class="fas fa-times"></i></a>
+                    </div>
+                    <div class="item-details">
+                        <p class="no-margin">Shampoo that relaxes and rehydrates hair</p>
+                    </div>
+                    <div class="item-quantity">
+                        <p>QTY</p>
+                        <p>4</p>
+                    </div>
+                    <div class="item-save">
+                            <i class="far fa-heart" id="heart"></i>
+                            <input type="checkbox" class="hidden" name="saveForLater" id="saveForLater" unchecked>
+                            <!-- <i class="fas fa-heart"></i> -->
+                            <p>Save for later</p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="checkout-items">
+                <h3 class="bold">Sub-total</h3>
+                <h3>£145.56</h3>
+            </div>
         </div>
-        <div class="col m3">
-            
+        <div class="flex-wrapper card column checkout-card padding">
+            <h3 class="full-width no-margin bold card-title">Total</h3>
+            <hr>
+            <div class="flex-wrapper column full-width">
+                <div class="checkout-items">
+                    <h3 class="bold">Sub-total</h3>
+                    <h3 class="">£145.56</h3>
+                </div>
+                <div class="checkout-items">
+                    <h3 class="bold no-margin">Delivery</h3>
+                    <h3 class="no-margin">£10</h3>
+                </div>
+            </div>
+            <hr>
+            <a href="" class="btn">checkout</a>
         </div>
     </div>
-
 </section>
 
 {% endblock %}

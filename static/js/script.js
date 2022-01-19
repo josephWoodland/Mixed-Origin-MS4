@@ -83,8 +83,30 @@ const searchOpen = document.getElementById("searchOpen")
 if (searchOpen) {
     searchOpen.addEventListener("click", (e) => {
         e.preventDefault()
-        console.log("click")
         searchOpen.classList.add("hide")
         searchForm.classList.remove("hide")
+    })
+}
+
+
+// Save to later checkbox //
+
+const heart = document.getElementById("heart")
+const checkboxSave = document.getElementById("saveForLater")
+
+if (heart) {
+    heart.addEventListener('click', (e) => {
+        e.preventDefault()
+        
+        if (heart.classList.contains('far')){
+            heart.classList.remove('far')
+            heart.classList.add('fas')
+            checkboxSave.checked = true;
+        } else {
+            heart.classList.remove('fas')
+            heart.classList.add('far')
+            checkboxSave.checked = false;
+        }
+
     })
 }

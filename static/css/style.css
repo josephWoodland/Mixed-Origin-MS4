@@ -33,6 +33,10 @@ h4 {
     color: var(--highlight-color);
 }
 
+p {
+    color: var(--text-grey);
+}
+
 /* /////////////////////////// Navigation bar styling ///////////////////// */
 
 nav {
@@ -56,6 +60,11 @@ nav ul a:hover{
 
 nav i {
     margin-right: .5rem;
+}
+
+.hover-highlight:hover {
+    background-color: var(--background-color) !important;
+    color: var(--highlight-color);
 }
 
 .nav-login{
@@ -390,7 +399,7 @@ footer li {
 /* /////////////////////////// Buttons ///////////////////// */
 
 .btn {
-    background-color: var(--background-color);
+    background-color: transparent;
     color: var(--text-color);
     border: 2px solid var(--highlight-color);
     box-shadow: none;
@@ -578,7 +587,68 @@ input[type="checkbox"]:checked {
     height: 100%;
 }
 
+/* /////////////////////////// Cart ///////////////////// */
+
+.cart{
+    margin: 0 2rem 0 0;
+}
+
+.checkout-card {
+    justify-content: space-evenly !important;
+}
+
+.checkout-card h3 {
+    font-size: 1rem;
+}
+
+.checkout-items {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-price,
+.item-save {
+    display: flex;
+}
+
+.item-price{
+    justify-content: space-between;
+}
+
+.item-save{
+    border: var(--border);
+    align-items: center;
+    width: min-content;
+    padding: 1rem
+}
+
+.fa-heart,
+.fa-times{
+    color: var(--highlight-color);
+    margin: 0 1rem 0 0;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.item-save p {
+    width: max-content;
+    margin: 0;
+}
+
+.item-quantity {
+    display: flex;
+}
+
+
 /* /////////////////////////// Helpers ///////////////////// */
+
+hr {
+    background-color: var(--border-grey);
+    border-width: 0;
+    height: 1px;
+    width: 100%;
+}
 
 .center{
     display: flex;
@@ -716,4 +786,12 @@ a .heading {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.bold {
+    font-weight: 600 !important;
+}
+
+.text-left {
+    text-align: left;
 }
