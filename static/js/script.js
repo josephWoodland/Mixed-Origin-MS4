@@ -91,22 +91,28 @@ if (searchOpen) {
 
 // Save to later checkbox //
 
-const heart = document.getElementById("heart")
-const checkboxSave = document.getElementById("saveForLater")
+const heart = document.querySelectorAll("#heart")
+const checkboxSave = document.querySelectorAll("#saveForLater")
 
 if (heart) {
-    heart.addEventListener('click', (e) => {
-        e.preventDefault()
-        
-        if (heart.classList.contains('far')){
-            heart.classList.remove('far')
-            heart.classList.add('fas')
-            checkboxSave.checked = true;
-        } else {
-            heart.classList.remove('fas')
-            heart.classList.add('far')
-            checkboxSave.checked = false;
-        }
 
-    })
+    heart.forEach(item => {
+    // Loop through the array of elements and add an event listener //
+        item.addEventListener('click', (e) => {
+            e.preventDefault()
+            if (item.classList.contains('far')){
+                item.classList.remove('far')
+                item.classList.add('fas')
+                checkboxSave.checked = true;
+            } else {
+                item.classList.remove('fas')
+                item.classList.add('far')
+                checkboxSave.checked = false;
+            }
+    
+        })
+    }
+
+    )
+    
 }

@@ -14,5 +14,4 @@ def home(request):
         "products": products,
     }
 
-    print(products)
     return render(request, template, context)

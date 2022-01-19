@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+# import tkinter to check the state of a checkbox
 
 # Create your views here.
 def cart(request):

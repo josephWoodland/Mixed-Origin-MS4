@@ -103,7 +103,6 @@ def edit_partner(request, pk):
         partner_form = PartnerProfileForm(
             request.POST, request.FILES, instance=partner_profile
         )
-        print(partner_form)
         if partner_form.is_valid():
             partner_form.save()
             messages.success(request, "You have updated your account")

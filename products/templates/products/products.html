@@ -6,7 +6,7 @@
     <div class="flex-wrapper search">
         <form id="searchForm" action="" method="GET" class="">
                 <input class="input input--text" id="search_query" type="text" name="search_query"
-                value="{{ search_query }}" placeholder="Search by Product" />()
+                value="{{ search_query }}" placeholder="Search by Product" />
                 <input class="btn" type="submit" value="Search" />
         </form>
     </div>
@@ -19,7 +19,7 @@
     </div>
     <div class="row margin-top">
     {% for product in products %}
-        <div class="col s12 m6 l4 xl3">
+        <div class="col s10 offset-s1 m6 l4 xl3">
             <a href="{% url 'view-product' product.id %}">
                 <div class="card">
                     <div class="card-image">
