@@ -11,7 +11,7 @@ from products.models import Product
 
 
 @login_required()
-def userProfile(request):
+def user_profile(request):
     """This is the main profile view
 
     Args:
@@ -53,7 +53,7 @@ def userProfile(request):
 
 
 @login_required()
-def editProfile(request, pk):
+def edit_profile(request, pk):
     """
     This is the view to edit a user profile
     """
@@ -86,7 +86,7 @@ def editProfile(request, pk):
 
 
 @login_required()
-def editPartner(request, pk):
+def edit_partner(request, pk):
     """
     This view edits the partner profile
     """
@@ -116,7 +116,7 @@ def editPartner(request, pk):
 
 
 @login_required()
-def deleteProfile(request, pk):
+def delete_profile(request, pk):
     template = "includes/delete_template.html"
     profile = request.user.profile
     id = profile.id
@@ -135,6 +135,6 @@ def deleteProfile(request, pk):
 
 
 @login_required()
-def userWallet(request, pk):
+def user_wallet(request, pk):
     template = "profiles/wallet.html"
     return render(request, template)

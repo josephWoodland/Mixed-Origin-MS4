@@ -357,7 +357,7 @@ footer li {
     max-height: 150px;
 }
 
-#number-amount{
+#order-amount{
     color: var(--text-color);
     border: var(--border);
     font-size: 1.5rem;

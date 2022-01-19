@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from products.models import Product
-from products.views import productList
+from products.views import product_list
 from profiles.models import PartnerProfile
 
 from django.db.models import Q
@@ -27,7 +27,7 @@ def partners(request):
     return render(request, template, context)
 
 
-def partnerProfile(request, pk):
+def partner_profile(request, pk):
     template = "partners/partner_profile.html"
     partner = PartnerProfile.objects.get(id=pk)
     context = {
@@ -36,7 +36,7 @@ def partnerProfile(request, pk):
     return render(request, template, context)
 
 
-def partnerProducts(request, pk):
+def partner_products(request, pk):
     template = "partners/partner_products.html"
     partner = PartnerProfile.objects.get(id=pk)
 
@@ -48,10 +48,9 @@ def partnerProducts(request, pk):
         search_query = request.GET.get("search_query")
 
     products = Product.objects.distinct().filter(
-        Q(name__icontains=search_query) 
-        & Q(owner__exact=partner)
+        Q(name__icontains=search_query) & Q(owner__exact=partner)
     )
-    
+
     context = {
         "partner": partner,
         "products": products,

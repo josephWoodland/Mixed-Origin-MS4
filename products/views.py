@@ -36,7 +36,7 @@ def products(request):
 
 
 @login_required()
-def addProduct(request, pk):
+def add_product(request, pk):
     template = "products/add_product.html"
     partner = PartnerProfile.objects.get(id=pk)
     form = ProductForm()
@@ -54,7 +54,7 @@ def addProduct(request, pk):
     return render(request, template, context)
 
 
-def viewProduct(request, pk):
+def view_product(request, pk):
     template = "products/view_product.html"
     product = Product.objects.get(id=pk)
     partner_profile = None
@@ -74,7 +74,7 @@ def viewProduct(request, pk):
 
 
 @login_required()
-def productList(request, pk):
+def product_list(request, pk):
     template = "products/product_list.html"
     partner = PartnerProfile.objects.get(id=pk)
     products = partner.product_set.all()
@@ -88,7 +88,7 @@ def productList(request, pk):
 
 
 @login_required()
-def editProduct(request, pk):
+def edit_product(request, pk):
     template = "products/edit_product.html"
     product = Product.objects.get(id=pk)
     partner = product.owner
@@ -113,6 +113,6 @@ def editProduct(request, pk):
 
 
 @login_required()
-def deleteProduct(request, pk):
+def delete_product(request, pk):
     template = "products/delete_product.html"
     return render(request, template)

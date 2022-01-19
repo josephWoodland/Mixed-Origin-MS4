@@ -17,19 +17,17 @@ def cart_contents(request):
     else:
         delivery = 0
         free_delivery = True
-    
 
     grand_total = delivery + total
     context = {
-        'cart_items':cart_items,
-        "total":total,
-        'product_count':product_count,
-        "free_delivery":free_delivery,
-        'next_day_delivery':next_day_delivery,
-        'delivery_charge': delivery_charge,
-        'grand_total':grand_total,
-        'free_delivery_threshold':free_delivery_threshold,
-
+        "cart_items": cart_items,
+        "total": total,
+        "product_count": product_count,
+        "free_delivery": free_delivery,
+        "next_day_delivery": next_day_delivery,
+        "delivery_charge": delivery_charge,
+        "grand_total": grand_total,
+        "free_delivery_threshold": free_delivery_threshold,
     }
 
     return context

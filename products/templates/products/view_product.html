@@ -8,21 +8,23 @@
 <section class="container">
     <div class="row product-view">
         <div class="col m7 flex-wrapper">
-            <img class="product-image" src="{{ product.image.url }}" alt="">
+            <div class="image-container">
+                <img height="300" src="{{ product.image.url }}" alt="">
+            </div>
         </div>
         <div class="col m5 flex-wrapper column">
                 <h4>£{{ product.price }}</h4>
             <p>{{ product.description }}</p>
             <div class="row product-number">
-                <form action="#" method="POST" class="flex-wrapper column full-width">
+                <form action="{% url 'add-to-cart' product.id %}" method="POST" class="flex-wrapper column full-width">
                     {% csrf_token %}
                     <div class="row">
                         <button class="btn product-quantity" id="btn-minus"><i class="fas fa-minus"></i></button>
-                        <input class="number-input" id="number-amount" type="number" value="1" min="1" max="{{ product.stock_numbers }}">
-                        <button class="btn product-quantity" id="btn-plus"><i class="fas fa-plus"></i>
-                        </button>
+                        <input class="number-input" id="order-amount" name="order-amount" type="number" value="1" min="1" max="{{ product.stock_numbers }}">
+                        <button class="btn product-quantity" id="btn-plus"><i class="fas fa-plus"></i></button>
                     </div>
-                    <p id="amount-alert" class="hidden active">Only {{ product.stock_numbers }} in stock</p>
+                    <p id="amount-alert" class="hidden no-margin">Only {{ product.stock_numbers }} in stock</p>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
                     <button type="submit" class="btn">Add to cart</button>
                 </form>
             </div>
@@ -39,8 +41,8 @@
     </div>
     <div class="row product-sugestion hide-on-med-and-down">
         <div class="card col m3 l2 product-suggestion">
-            <div class="card-image">
-                <img src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
+            <div class="image-container">
+                <img height="150" src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
             </div>
             <div class="card-action">
                 <a href="">View me</a>

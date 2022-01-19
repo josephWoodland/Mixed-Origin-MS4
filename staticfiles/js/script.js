@@ -35,7 +35,7 @@ if (message){
 
 const upBtn = document.getElementById('btn-plus')
 const downBtn = document.getElementById('btn-minus')
-const numberInputBox = document.getElementById('number-amount')
+const numberInputBox = document.getElementById('order-amount')
 const stockNumberAlert = document.getElementById('amount-alert')
 
 if (numberInputBox){
