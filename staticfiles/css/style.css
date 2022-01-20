@@ -1,7 +1,7 @@
 /* /////////////////////////// Global styles and variables ///////////////////// */
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@100;300&display=swap');
 :root{
-    --background-color: #f8f8f8;
+    --background-grey: #f8f8f8;
     --highlight-color: #f73f6f;
     --text-grey: #5f5f5f;
     --dark-grey: #ccc;
@@ -37,7 +37,7 @@ nav {
     display: flex;
     justify-content: space-between;
     text-transform: uppercase;
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
     border-bottom: var(--border);
     box-shadow: none;
 }
@@ -130,7 +130,7 @@ nav i {
     height: 100%;
     align-items: center;
     justify-content: center;
-    color: var(--background-color);
+    color: var(--background-grey);
 }
 
 .alert-message {
@@ -198,7 +198,7 @@ footer li {
     display: flex;
     justify-content: center;
     background-color: var(--text-color);
-    color: var(--background-color);
+    color: var(--background-grey);
 }
 
 /* /////////////////////////// Home ///////////////////// */
@@ -226,7 +226,7 @@ footer li {
 .about-card {
     margin-top: -4rem;
     border: var(--border);
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
 }
 
 .about-text {
@@ -401,7 +401,7 @@ footer li {
     display: flex;
     flex-direction: column;
     width: 60%;
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
     border: var(--border);
     padding: 3rem;
     margin: -15vh auto 10vh auto;
@@ -510,7 +510,7 @@ input[type="checkbox"]:checked {
     margin-top: -25vh;
     text-align: right;
     color: var(--text-color) !important;
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
     border: var(--border);
 }
 
@@ -526,7 +526,7 @@ input[type="checkbox"]:checked {
 .center{
     display: flex;
     width: 100%;
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
     border: var(--border);
     padding: 3rem;
     margin: -15vh auto 10vh auto;

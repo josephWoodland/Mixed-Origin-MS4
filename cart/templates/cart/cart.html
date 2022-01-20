@@ -14,7 +14,10 @@
                 {% for item in cart_items %}
                 <div class="row padding">
                     <div class="image-container col s12 m3">
+                        <a href="{% url 'view-product' item.product.id %}">
+
                         <img height="150" src="{{ item.product.image.url }}" alt="">
+                        </a>
                     </div>
                     <div class="col s12 m9">
                         <div class="item-price">
@@ -22,15 +25,26 @@
                             <a href=""><i class="fas fa-times"></i></a>
                         </div>
                         <div class="item-details">
-                            <p class="no-margin">{{ item.product.name }}</p>
+                            <a href="{% url 'view-product' item.product.id %}">
+                                <p class="no-margin">{{ item.product.name }}</p>
+                            </a>
                         </div>
                         <div class="item-quantity">
-                            <p>Qty</p>
-                            <p>: {{ item.quantity }}</p>
+                            <form action="POST" action="">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <button class="btn-hide product-quantity" id="cart-minus"><i class="fas fa-minus small-icon"></i></button>
+                                    <input class="number-input" id="product-amount" name="cart-amount" type="number" value="{{ item.quantity }}" min="0" max="{{ item.product.stock_numbers }}">
+                                    <button class="btn-hide product-quantity" id="cart-plus"><i class="fas fa-plus small-icon"></i></button>
+                                    <button type="submit" class="btn" data-product_id="{{ item.product.id }}" id="updateBtn">Update</button>
+                                </div>
+                                <p id="amount-alert" class="hidden no-margin">Only {{ item.product.stock_numbers }} in stock</p>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+                            </form>
                         </div>
                         <div class="item-save">
                                 <i class="far fa-heart" id="heart"></i>
-                                <input type="checkbox" class="hidden" name="saveForLater" id="saveForLater" unchecked>
+                                <input type="checkbox" class="hidden" data-product_id="{{ item.product.id }}" name="saveForLater" id="saveForLater" unchecked>
                                 <p>Save for later</p>
                         </div>
                     </div>

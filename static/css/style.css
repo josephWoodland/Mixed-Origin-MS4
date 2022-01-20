@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@100;300&display=swap');
 
 :root{
-    --background-color: #efefef;
+    --background-color:#f9f9f9;
+    --background-grey: #efefef;
     --highlight-color: #f9c4ab;
     --text-grey: #5f5f5f;
     --dark-grey: #ccc;
@@ -20,7 +21,7 @@
 }
 
 body {
-    background-color: #f8f8f8;
+    background-color: var(--background-color);
     font-family: var(--font-main);
 }
 
@@ -48,7 +49,7 @@ nav {
     display: flex;
     justify-content: space-between;
     text-transform: uppercase;
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
     border-bottom: var(--border);
     box-shadow: none;
 }
@@ -56,6 +57,10 @@ nav {
 nav a,
 nav ul a {
     color: var(--text-grey);
+}
+
+a p:hover{
+    color: var(--highlight-color);
 }
 
 nav a:hover,
@@ -68,7 +73,7 @@ nav i {
 }
 
 .hover-highlight:hover {
-    background-color: var(--background-color) !important;
+    background-color: var(--background-grey) !important;
     color: var(--highlight-color);
 }
 
@@ -151,7 +156,7 @@ nav i {
     height: 100%;
     align-items: center;
     justify-content: center;
-    color: var(--background-color);
+    color: var(--background-grey);
 }
 
 .alert-message {
@@ -251,7 +256,7 @@ footer li {
 .about-card {
     margin-top: -4rem;
     border: var(--border);
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
 }
 
 .about-text {
@@ -377,14 +382,24 @@ footer li {
     max-height: 150px;
 }
 
-#order-amount{
+#product-amount,
+#order-amount {
     color: var(--text-color);
     border: var(--border);
+    text-align: center;
+    font-family: var(--font-main);
+}
+
+#order-amount{
     font-size: 1.5rem;
     height: 3rem;
     width: 3rem;
-    text-align: center;
-    font-family: var(--font-main);
+}
+
+#product-amount{
+    font-size: 1rem;
+    height: 2rem;
+    width: 2rem;
 }
 
 
@@ -423,14 +438,12 @@ footer li {
 }
 
 .btn-sm {
-    width: 5rem;
-    margin-right: 3rem;
-    margin-left: 3rem;
-    margin-bottom: 2rem;
+    height: 20px;
+    width: 20px;
 }
 
 .btn-search {
-    height: 3rem
+    height: 3rem;
 }
 
 .btn-md{
@@ -443,7 +456,7 @@ footer li {
     display: flex;
     flex-direction: column;
     width: 60%;
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
     border: var(--border);
     padding: 3rem;
     margin: -15vh auto 10vh auto;
@@ -517,6 +530,16 @@ input[type="checkbox"]:not(:checked) {
 input[type="checkbox"]:checked {
     opacity: 1;
     position: relative;
+}
+
+input[type="number"]{
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -598,7 +621,7 @@ input[type="checkbox"]:checked {
     margin-top: -25vh;
     text-align: right;
     color: var(--text-color) !important;
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
     border: var(--border);
 }
 
@@ -693,7 +716,7 @@ hr {
 .center{
     display: flex;
     width: 100%;
-    background-color: var(--background-color);
+    background-color: var(--background-grey);
     border: var(--border);
     padding: 3rem;
     margin: -10vh auto 10vh auto;
@@ -842,7 +865,7 @@ a .heading {
     right: 10px;
     background-color: var(--highlight-color);
     border-radius: 50%;
-    color: var(--background-color);
+    color: var(--background-grey);
     height: 1.2rem;
     width: 1.2rem;
     line-height: 1.25rem;
@@ -856,10 +879,25 @@ a .heading {
     line-height: 1.7rem;
 }
 
-.small-text {
+.small-text,
+.small-icon {
     font-size: 1rem !important;
+}
+
+.small-icon,
+.small-icon:focus {
+    line-height: 20px !important;
+    border: 2px solid var(--highlight-color);
+    width: 25px;
+    cursor: pointer;
 }
 
 .highlight {
     color: var(--highlight-color)
+}
+
+.btn-hide,
+.btn-hide:focus {
+    border: none;
+    background-color: transparent;
 }

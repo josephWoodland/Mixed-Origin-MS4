@@ -11,14 +11,14 @@ const messageClose = document.querySelector('.alert-close')
 
 
 // Fade out function
-function  fadeOut() {
+function  fadeOut(el) {
 
     const fadeEffect = setInterval(() => {
-        if (!message.style.opacity) {
-            message.style.opacity = 1;
+        if (!el.style.opacity) {
+            el.style.opacity = 1;
         }
-        if (message.style.opacity > 0) {
-            message.style.opacity -= 0.1;
+        if (el.style.opacity > 0) {
+            el.style.opacity -= 0.1;
         } else {
             clearInterval(fadeEffect);
         }
@@ -31,21 +31,22 @@ if (message){
     messageClose.addEventListener('click', fadeOut);
     // Run the fadeOut function after 3 seconds
     setTimeout(function(){
-        fadeOut()
+        fadeOut(message)
     }, 3000)
 }
 
-// Updating the quantity on the product view page //
+// Updating the quantity on the product view page by selecting a single element //
 
 const upBtn = document.getElementById('btn-plus')
 const downBtn = document.getElementById('btn-minus')
 const numberInputBox = document.getElementById('order-amount')
 const stockNumberAlert = document.getElementById('amount-alert')
 
-if (numberInputBox){
+if (numberInputBox) {
 
     let currNumber = numberInputBox.value
     let maxNumber = numberInputBox.max
+
     upBtn.addEventListener('click', (e) => {
         e.preventDefault()
     
@@ -115,4 +116,57 @@ if (heart) {
 
     )
     
+}
+
+// Updating the quantity of an item in the cart by looping over an array of elements and traversing the DOM
+
+const plusBtn = document.querySelectorAll('#cart-plus')
+const minusBtn = document.querySelectorAll('#cart-minus')
+
+if (plusBtn) {
+
+    plusBtn.forEach(el => {
+
+        el.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            let inputBox = el.previousElementSibling
+            let curOrderAmount = parseInt(inputBox.value)
+            let maxOrderNumber = parseInt(inputBox.max)
+            let alert = el.closest('.row').nextElementSibling
+
+            if (curOrderAmount < maxOrderNumber) {
+                curOrderAmount ++
+                inputBox.value = curOrderAmount
+            } 
+
+            if (curOrderAmount == maxOrderNumber) {
+                alert.classList.remove('hidden')
+            }
+        })
+    }
+    )
+
+    minusBtn.forEach(el => {
+        // Loop through the array of elements and add an event listener //
+            el.addEventListener('click', (e) => {
+                e.preventDefault()
+
+                let inputBox = el.nextElementSibling
+                let curOrderAmount = parseInt(inputBox.value)
+                let maxOrderNumber = parseInt(inputBox.max)
+                let alert = el.closest('.row').nextElementSibling
+
+                if (curOrderAmount >= 1 ) {
+                    curOrderAmount --
+                    inputBox.value = curOrderAmount
+                } 
+    
+                if (curOrderAmount < maxOrderNumber) {
+                    alert.classList.add('hidden')
+                }
+            })
+        }
+        )
+
 }
