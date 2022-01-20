@@ -16,8 +16,12 @@ def add_to_cart(request, item_id):
     current_stock = product.stock_numbers
     new_stock = current_stock - quantity
     product.stock_numbers = new_stock
-    product.save()
     
+    if new_stock == 0:
+        product.in_stock = False
+    
+    product.save()
+
     redirect_url = request.POST.get("redirect_url")
     cart = request.session.get("cart", {})
 
