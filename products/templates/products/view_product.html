@@ -16,6 +16,7 @@
                 <h4>£{{ product.price }}</h4>
             <p>{{ product.description }}</p>
             <div class="row product-number">
+                {% if product.in_stock %}
                 <form action="{% url 'add-to-cart' product.id %}" method="POST" class="flex-wrapper column full-width">
                     {% csrf_token %}
                     <div class="row">
@@ -27,6 +28,9 @@
                     <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
                     <button type="submit" class="btn">Add to cart</button>
                 </form>
+                {% else %}
+                <h3>This product is currently out of stock!</h3>
+                {% endif %}
             </div>
         </div>
     </div>

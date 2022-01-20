@@ -1,5 +1,4 @@
-from math import prod
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from products.models import Product
 # import tkinter to check the state of a checkbox
 
@@ -16,7 +15,7 @@ def add_to_cart(request, item_id):
     current_stock = product.stock_numbers
     new_stock = current_stock - quantity
     product.stock_numbers = new_stock
-    
+
     if new_stock == 0:
         product.in_stock = False
     
@@ -31,8 +30,24 @@ def add_to_cart(request, item_id):
     else:
         cart[item_id] = quantity
 
+    request.session["cart"] = cart
 
+    return redirect(redirect_url)
+
+
+def update_cart(request, pk):
+    product = Product.objects.get(id=pk)
+    id = pk
+    new_amount = int(request.POST.get("cart-amount"))
+    current_stock = product.stock_numbers
+    cart = request.session.get("cart", {})
+    current_amount = cart[id]
+    total_stock = current_stock + current_amount
+    current_stock = total_stock - new_amount
+    product.stock_numbers = current_stock
+    product.save()
+    cart[id] = new_amount
 
     request.session["cart"] = cart
-    print(request.session["cart"])
-    return redirect(redirect_url)
+
+    return redirect(reverse('cart'))

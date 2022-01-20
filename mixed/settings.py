@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "crispy_forms_materialize",
     "django_countries",
     "storages",
+    "mathfilters",
 ]
 
 

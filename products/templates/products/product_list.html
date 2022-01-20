@@ -24,13 +24,13 @@
                 {% else %}
                     <tr>
                         <td>
-                            <a href="{% url 'view-product' product.id %}">{{ product.name }}</a>
+                            <a href="{% url 'view-product' product.id %}" class="hover-highlight">{{ product.name }}</a>
                         </td>
                         <td>
                             {{ product.stock_numbers }}
                         </td>
                         <td>
-                            <a href="{% url 'edit-product' product.id %}" class="btn btn-sm no-margin">Edit</a>
+                            <a href="{% url 'edit-product' product.id %}" class="btn no-margin">Edit</a>
                         </td>
                     </tr>
                 {% endif %}
@@ -53,13 +53,13 @@
                 {% if forloop.counter|divisibleby:2 %}
                     <tr>
                         <td>
-                            <a href="{% url 'view-product' product.id %}">{{ product.name }}</a>
+                            <a href="{% url 'view-product' product.id %}" class="hover-highlight">{{ product.name }}</a>
                         </td>
                         <td>
                             {{ product.stock_numbers }}
                         </td>
                         <td>
-                            <a href="{% url 'edit-product' product.id %}" class="btn btn-sm no-margin">Edit</a>
+                            <a href="{% url 'edit-product' product.id %}" class="btn no-margin">Edit</a>
                         </td>
                     </tr>
                 {% endif %}

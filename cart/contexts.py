@@ -31,11 +31,8 @@ def cart_contents(request):
 
     if total < free_delivery_threshold:
         delivery = 10
-        free_delivery = False
-        amount_to_free_standard_delivery = free_delivery_threshold - total
     else:
         delivery = 0
-        free_delivery = True
 
     grand_total = delivery + total
 
@@ -43,7 +40,6 @@ def cart_contents(request):
         "cart_items": cart_items,
         "total": total,
         "product_count": product_count,
-        "free_delivery": free_delivery,
         "free_delivery_threshold": free_delivery_threshold,
         "grand_total": grand_total,
         "amount_to_free_standard_delivery": amount_to_free_standard_delivery,

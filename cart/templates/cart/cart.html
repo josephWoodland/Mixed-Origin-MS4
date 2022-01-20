@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-
+{% load mathfilters %}
 {% block content %}
 
 <section class="container">
-    <div class="row">
+    <div class="row cart-mobile">
         {% if product_count %}
-            <div class="col m8 card cart">
+            <div class="col s9 m7 xl8 card cart">
                 <div class="flex-wrapper cart-header">
                     <h3 class="cart-heading bold">Joseph's cart</h3>
                     <a href="" class="btn">checkout</a>
@@ -19,7 +19,7 @@
                         <img height="150" src="{{ item.product.image.url }}" alt="">
                         </a>
                     </div>
-                    <div class="col s12 m9">
+                    <div class="col s10 offset-s1 m9">
                         <div class="item-price">
                             <h3 class="no-margin small-text bold">£{{ item.product.price }}</h3>
                             <a href=""><i class="fas fa-times"></i></a>
@@ -30,15 +30,15 @@
                             </a>
                         </div>
                         <div class="item-quantity">
-                            <form action="POST" action="">
+                            <form method="POST" action="{% url 'update-cart' item.product.id %}">
                                 {% csrf_token %}
                                 <div class="row">
                                     <button class="btn-hide product-quantity" id="cart-minus"><i class="fas fa-minus small-icon"></i></button>
-                                    <input class="number-input" id="product-amount" name="cart-amount" type="number" value="{{ item.quantity }}" min="0" max="{{ item.product.stock_numbers }}">
+                                    <input class="number-input" id="product-amount" name="cart-amount" type="number" value="{{ item.quantity }}" min="0" max="{{ item.product.stock_numbers|add:item.quantity }}">
                                     <button class="btn-hide product-quantity" id="cart-plus"><i class="fas fa-plus small-icon"></i></button>
                                     <button type="submit" class="btn" data-product_id="{{ item.product.id }}" id="updateBtn">Update</button>
                                 </div>
-                                <p id="amount-alert" class="hidden no-margin">Only {{ item.product.stock_numbers }} in stock</p>
+                                <p id="amount-alert" class="hidden no-margin">Only {{ item.product.stock_numbers|add:item.quantity }} in stock</p>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
                             </form>
                         </div>
@@ -65,11 +65,10 @@
                         <h3 class="">£{{ total }}</h3>
                     </div>
                     <div class="checkout-items">
-                        {% if free_delivery is True %}
-                            <h3 class="bold no-margin">Delivery</h3>
+                        {% if total >= free_delivery_threshold %}
                             <h3 class="no-margin highlight bold">Free delivery</h3>
                         {% else %}
-                            <h3 class="no-margin">Spend £{{ amount_to_free_standard_delivery }} more and get free delivery</h3>
+                            <h3 class="no-margin">Spend <strong>£{{ free_delivery_threshold|sub:total }}</strong> more and get free delivery</h3>
                         {% endif %}
                     </div>
                 </div>
