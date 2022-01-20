@@ -18,7 +18,7 @@
                     </div>
                     <div class="col s12 m9">
                         <div class="item-price">
-                            <h3 class="no-margin card-title">£{{ item.product.price }}</h3>
+                            <h3 class="no-margin small-text bold">£{{ item.product.price }}</h3>
                             <a href=""><i class="fas fa-times"></i></a>
                         </div>
                         <div class="item-details">
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="flex-wrapper card column checkout-card padding">
-                <h3 class="full-width no-margin bold card-title">Total</h3>
+                <h3 class="full-width no-margin bold">Total</h3>
                 <hr>
                 <div class="flex-wrapper column full-width">
                     <div class="checkout-items">
@@ -51,8 +51,12 @@
                         <h3 class="">£{{ total }}</h3>
                     </div>
                     <div class="checkout-items">
-                        <h3 class="bold no-margin">Delivery</h3>
-                        <h3 class="no-margin">£10</h3>
+                        {% if free_delivery is True %}
+                            <h3 class="bold no-margin">Delivery</h3>
+                            <h3 class="no-margin highlight bold">Free delivery</h3>
+                        {% else %}
+                            <h3 class="no-margin">Spend £{{ amount_to_free_standard_delivery }} more and get free delivery</h3>
+                        {% endif %}
                     </div>
                 </div>
                 <hr>
