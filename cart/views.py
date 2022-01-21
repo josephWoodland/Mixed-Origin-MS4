@@ -55,7 +55,7 @@ def update_cart(request, pk):
 def delete_cart_item(request, pk):
     id = pk
     cart = request.session.get("cart", {})
-    cart[id] = 0
+    del cart[id]
     request.session["cart"] = cart
 
     return redirect(reverse('cart'))
