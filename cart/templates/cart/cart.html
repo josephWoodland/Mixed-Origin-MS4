@@ -2,7 +2,7 @@
 {% load mathfilters %}
 {% block content %}
 
-<section class="container">
+<section class="container message-margin">
     <div class="row cart-mobile">
         {% if product_count %}
             <div class="col s9 m7 xl8 card cart">
@@ -12,43 +12,47 @@
                 </div>
                 <hr>
                 {% for item in cart_items %}
-                <div class="row padding">
-                    <div class="image-container col s12 m3">
-                        <a href="{% url 'view-product' item.product.id %}">
-                        <img height="150" src="{{ item.product.image.url }}" alt="">
-                        </a>
-                    </div>
-                    <div class="col s10 offset-s1 m9">
-                        <div class="item-price">
-                            <h3 class="no-margin small-text bold">£{{ item.product.price }}</h3>
-                            <a href="{% url 'delete-cart-item' item.product.id %}"><i class="fas fa-times"></i></a>
-                        </div>
-                        <div class="item-details">
-                            <a href="{% url 'view-product' item.product.id %}">
-                                <p class="no-margin">{{ item.product.name }}</p>
-                            </a>
-                        </div>
-                        <div class="item-quantity">
-                            <form method="POST" action="{% url 'update-cart' item.product.id %}">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <button class="btn-hide product-quantity" id="cart-minus"><i class="fas fa-minus small-icon"></i></button>
-                                    <input class="number-input" id="product-amount" name="cart-amount" type="number" value="{{ item.quantity }}" min="0" max="{{ item.product.stock_numbers|add:item.quantity }}">
-                                    <button class="btn-hide product-quantity" id="cart-plus"><i class="fas fa-plus small-icon"></i></button>
-                                    <button type="submit" class="btn" data-product_id="{{ item.product.id }}" id="updateBtn">Update</button>
+                    {% if item.quantity > 0 %}
+                        <div class="row padding">
+                            <div class="image-container col s12 m3">
+                                <a href="{% url 'view-product' item.product.id %}">
+                                <img height="150" src="{{ item.product.image.url }}" alt="">
+                                </a>
+                            </div>
+                            <div class="col s10 offset-s1 m9">
+                                <div class="item-price">
+                                    <h3 class="no-margin small-text bold">£{{ item.product.price }}</h3>
+                                    <a href="{% url 'delete-cart-item' item.product.id %}"><i class="fas fa-times "></i></a>
                                 </div>
-                                <p id="amount-alert" class="hidden no-margin">Only {{ item.product.stock_numbers|add:item.quantity }} in stock</p>
-                                <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
-                            </form>
+                                <div class="item-details">
+                                    <p class="no-margin">
+                                            <a href="{% url 'view-product' item.product.id %}">
+                                            {{ item.product.name }}
+                                        </a>
+                                        </p>
+                                </div>
+                                <div class="item-quantity">
+                                    <form method="POST" action="{% url 'update-cart' item.product.id %}">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <button class="btn-hide product-quantity" id="cart-minus"><i class="fas fa-minus small-icon"></i></button>
+                                            <input class="number-input" id="product-amount" name="cart-amount" type="number" value="{{ item.quantity }}" min="0" max="{{ item.product.stock_numbers|add:item.quantity }}">
+                                            <button class="btn-hide product-quantity" id="cart-plus"><i class="fas fa-plus small-icon"></i></button>
+                                            <button type="submit" class="btn" data-product_id="{{ item.product.id }}" id="updateBtn">Update</button>
+                                        </div>
+                                        <p id="amount-alert" class="hidden no-margin">Only {{ item.product.stock_numbers|add:item.quantity }} in stock</p>
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+                                    </form>
+                                </div>
+                                <div class="item-save">
+                                        <i class="far fa-heart" id="heart"></i>
+                                        <input type="checkbox" class="hidden" data-product_id="{{ item.product.id }}" name="saveForLater" id="saveForLater" unchecked>
+                                        <p>Save for later</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="item-save">
-                                <i class="far fa-heart" id="heart"></i>
-                                <input type="checkbox" class="hidden" data-product_id="{{ item.product.id }}" name="saveForLater" id="saveForLater" unchecked>
-                                <p>Save for later</p>
-                        </div>
-                    </div>
-                </div>
-                <hr>
+                        <hr>
+                    {% endif %}
                 {% endfor %}
                 <div class="checkout-items hide-on-small-only">
                     <h3 class="bold">Sub-total</h3>

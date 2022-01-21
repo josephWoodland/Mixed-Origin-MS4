@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect, reverse
 from products.models import Product
+from django.contrib import messages
+
+
 # import tkinter to check the state of a checkbox
 
 # Create your views here.
@@ -18,7 +21,7 @@ def add_to_cart(request, item_id):
 
     if new_stock == 0:
         product.in_stock = False
-    
+
     product.save()
 
     redirect_url = request.POST.get("redirect_url")
@@ -46,16 +49,23 @@ def update_cart(request, pk):
     product.stock_numbers = current_stock
     product.save()
     cart[id] = new_amount
+    messages.success(request, f'You have updated { product.name } in your cart!')
 
     request.session["cart"] = cart
 
-    return redirect(reverse('cart'))
+    return redirect(reverse("cart"))
 
 
 def delete_cart_item(request, pk):
-    id = pk
+    product = Product.objects.get(id=pk)
     cart = request.session.get("cart", {})
+    id = pk
+    current_stock = product.stock_numbers
+    order_number = cart[id]
+    product.stock_numbers = current_stock + order_number
+    product.save()
     del cart[id]
+    messages.success(request, f'You have deleted { product.name } from your cart!')
     request.session["cart"] = cart
 
-    return redirect(reverse('cart'))
+    return redirect(reverse("cart"))

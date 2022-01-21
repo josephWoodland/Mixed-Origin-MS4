@@ -16,8 +16,8 @@
                 <h4>£{{ product.price }}</h4>
             <p>{{ product.description }}</p>
             <div class="row product-number">
-                {% if product.in_stock %}
-                <form action="{% url 'add-to-cart' product.id %}" method="POST" class="flex-wrapper column full-width">
+                {% if product.stock_numbers > 0 %}
+                <form id="form" action="{% url 'add-to-cart' product.id %}" method="POST" class="flex-wrapper column full-width">
                     {% csrf_token %}
                     <div class="row">
                         <button class="btn product-quantity" id="btn-minus"><i class="fas fa-minus"></i></button>
@@ -26,7 +26,7 @@
                     </div>
                     <p id="amount-alert" class="hidden no-margin">Only {{ product.stock_numbers }} in stock</p>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
-                    <button type="submit" class="btn">Add to cart</button>
+                    <button id="addToCart" type="submit" class="btn">Add to cart</button>
                 </form>
                 {% else %}
                 <h3>This product is currently out of stock!</h3>

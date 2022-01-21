@@ -26,13 +26,25 @@ function  fadeOut(el) {
 
 }
 
+
+function  fadeIn(el) {
+
+    const fadeEffect = setInterval(() => {
+        if (!el.style.opacity) {
+            el.style.opacity = 1;
+        }
+        clearInterval(fadeEffect);
+    }, 50);
+
+}
+
 // Check if message is in the html
 if (message){
     messageClose.addEventListener('click', fadeOut);
     // Run the fadeOut function after 3 seconds
-    setTimeout(function(){
-        fadeOut(message)
-    }, 3000)
+    // setTimeout(() => {
+    //     fadeOut(message)
+    // }, 3000)
 }
 
 // Updating the quantity on the product view page by selecting a single element //
@@ -168,5 +180,40 @@ if (plusBtn) {
             })
         }
         )
+}
 
+
+// Popup card for adding items to the cart
+
+const popupCart = document.getElementById("popup")
+const itemQuantity = document.getElementById('itemQuantity')
+const addToCart = document.getElementById('addToCart')
+const form = document.getElementById("form")
+const cartNotification = document.getElementById('cartNotification')
+
+if (addToCart) {
+
+    function submitForm(form){
+        form.submit()
+    }
+
+    addToCart.addEventListener('click', (e) => {
+        e.preventDefault()
+        curCartAmount = cartNotification.innerText
+        itemQty = numberInputBox.value
+        itemQuantity.innerText = itemQty
+        console.log(itemQty)
+        console.log(curCartAmount)
+        newCartAmount = parseInt(curCartAmount) + parseInt(itemQty)
+        console.log(newCartAmount)
+        cartNotification.innerText = newCartAmount
+
+        fadeIn(popupCart)
+        
+        setTimeout(() => {
+            fadeOut(popupCart)
+            submitForm(form)
+        }, 3000)
+
+    })
 }

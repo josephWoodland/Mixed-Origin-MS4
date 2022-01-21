@@ -1,0 +1,39 @@
+<div id="popup" class="row cart-popup">
+    <div class="col m12">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Added to Cart</span>
+          <div class="popup-item">
+              <div class="image-container">
+                  <img width="100px" src="../../media/bamboo-shampoo.jpg" alt="">
+              </div>
+              <div class="popup-details">
+                  <h3 class="small-text">
+                      {{ product.name }}
+                  </h3>
+                  <h3 class="small-text">
+                      Qty: <h3 id="itemQuantity" class="small-text">
+                        3
+                      </h3> 
+                  </h3>
+                  <h3 class="small-text bold">
+                      £{{ product.price }}
+                  </h3>
+              </div>
+              <div class="sub-total">
+                <h3 class="small-text">
+                    Cart Total: 
+                </h3>
+                <h3 class="small-text bold">
+                    £{{ total }}
+                </h3>
+              </div>
+          </div>
+        </div>
+        <div class="card-action flex-wrapper">
+          <a href="{% url 'cart' %}" class="btn margin-right">cart</a>
+          <a href="/" class="btn">checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>

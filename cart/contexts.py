@@ -27,8 +27,6 @@ def cart_contents(request):
             }
         )
 
-    # Show how much to spend to get free standard delivery 
-
     if total < free_delivery_threshold:
         delivery = 10
     else:

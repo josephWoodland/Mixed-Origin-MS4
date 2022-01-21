@@ -41,6 +41,7 @@ h4 {
     color: var(--highlight-color);
 }
 
+p a,
 p {
     color: var(--text-grey);
 }
@@ -61,6 +62,7 @@ nav ul a {
     color: var(--text-grey);
 }
 
+p a:hover,
 a p:hover{
     color: var(--highlight-color);
 }
@@ -689,10 +691,18 @@ input::-webkit-inner-spin-button {
 
 .fa-heart,
 .fa-times{
-    color: var(--highlight-color);
     margin: 0 1rem 0 0;
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+.fa-times:hover,
+.fa-heart {
+    color: var(--highlight-color);
+}
+
+.fa-times {
+    color: var(--text-logo);
 }
 
 .item-save p {
@@ -741,6 +751,27 @@ input::-webkit-inner-spin-button {
         text-align : center;
         flex-direction: column;
     }
+}
+
+/* /////////////////////////// Popup ///////////////////// */
+
+.cart-popup {
+    position: absolute;
+    opacity: 0;
+    right: 1px;
+    z-index: 10000;
+    width: 300px;
+}
+
+.card-title{
+    text-align: center;
+}
+
+.popup-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* /////////////////////////// Helpers ///////////////////// */
@@ -939,4 +970,8 @@ a .heading {
 .btn-hide:focus {
     border: none;
     background-color: transparent;
+}
+
+.message-margin {
+    margin-top: 80px;
 }
