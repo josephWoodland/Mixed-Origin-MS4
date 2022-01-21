@@ -137,11 +137,11 @@ def delete_profile(request, pk):
 def user_wallet(request, pk):
     template = "profiles/wallet.html"
     profile = Profile.objects.get(id=pk)
-    form = WalletForm
+    form = WalletForm()
 
     context = {
         "form": form,
         "profile": profile,
     }
 
-    return render(request, context, template)
+    return render(request, template, context)

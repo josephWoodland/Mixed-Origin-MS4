@@ -49,7 +49,7 @@ def update_cart(request, pk):
     product.stock_numbers = current_stock
     product.save()
     cart[id] = new_amount
-    messages.success(request, f'You have updated { product.name } in your cart!')
+    messages.success(request, f"You have updated { product.name } in your cart!")
 
     request.session["cart"] = cart
 
@@ -65,7 +65,7 @@ def delete_cart_item(request, pk):
     product.stock_numbers = current_stock + order_number
     product.save()
     del cart[id]
-    messages.success(request, f'You have deleted { product.name } from your cart!')
+    messages.success(request, f"You have deleted { product.name } from your cart!")
     request.session["cart"] = cart
 
     return redirect(reverse("cart"))

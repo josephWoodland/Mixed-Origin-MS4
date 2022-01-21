@@ -76,6 +76,10 @@ nav i {
     margin-right: .5rem;
 }
 
+label{
+    border: none !important;
+}
+
 .hover-highlight:hover {
     background-color: var(--background-grey) !important;
     color: var(--highlight-color);
@@ -462,6 +466,7 @@ footer li {
     width: fit-content;
     align-self: center;
 }
+
 /* /////////////////////////// Forms ///////////////////// */
 
 .form {
@@ -524,6 +529,7 @@ input[type=text]{
     box-shadow: 0 1px 0 0 var(--border-grey) !important;
 }
 
+input:focus,
 input[type=number]:focus,
 input[type=text]:focus{
     border-bottom: 1px solid var(--highlight-color) !important;
