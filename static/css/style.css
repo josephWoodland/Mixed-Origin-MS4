@@ -759,7 +759,7 @@ input::-webkit-inner-spin-button {
     position: absolute;
     opacity: 0;
     right: 1px;
-    z-index: 10000;
+    z-index: -100;
     width: 300px;
 }
 
@@ -974,4 +974,8 @@ a .heading {
 
 .message-margin {
     margin-top: 80px;
+}
+
+.black-on-hover:hover{
+    color: var(--text-color) !important;
 }

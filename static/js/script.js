@@ -42,9 +42,9 @@ function  fadeIn(el) {
 if (message){
     messageClose.addEventListener('click', fadeOut);
     // Run the fadeOut function after 3 seconds
-    // setTimeout(() => {
-    //     fadeOut(message)
-    // }, 3000)
+    setTimeout(() => {
+        fadeOut(message)
+    }, 3000)
 }
 
 // Updating the quantity on the product view page by selecting a single element //
@@ -191,28 +191,38 @@ const addToCart = document.getElementById('addToCart')
 const form = document.getElementById("form")
 const cartNotification = document.getElementById('cartNotification')
 
-if (addToCart) {
+// function to trigger the submit event on a form 
+function submitForm(form){
+    form.submit()
+}
 
-    function submitForm(form){
-        form.submit()
+// set the z index of an element
+function setZIndex(el) {
+    if (el.style.zIndex < 0 ){
+        el.style.zIndex = "-1000"
+    } else {
+        el.style.zIndex = "1000"
     }
+}
+
+if (addToCart) {
 
     addToCart.addEventListener('click', (e) => {
         e.preventDefault()
+        
         curCartAmount = cartNotification.innerText
         itemQty = numberInputBox.value
         itemQuantity.innerText = itemQty
-        console.log(itemQty)
-        console.log(curCartAmount)
         newCartAmount = parseInt(curCartAmount) + parseInt(itemQty)
-        console.log(newCartAmount)
         cartNotification.innerText = newCartAmount
-
+        
+        setZIndex(popupCart)
         fadeIn(popupCart)
         
         setTimeout(() => {
             fadeOut(popupCart)
             submitForm(form)
+            setZIndex(popupCart)
         }, 3000)
 
     })

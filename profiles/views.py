@@ -136,4 +136,12 @@ def delete_profile(request, pk):
 @login_required()
 def user_wallet(request, pk):
     template = "profiles/wallet.html"
-    return render(request, template)
+    profile = Profile.objects.get(id=pk)
+    form = WalletForm
+
+    context = {
+        "form": form,
+        "profile": profile,
+    }
+
+    return render(request, context, template)
