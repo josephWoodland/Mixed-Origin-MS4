@@ -15,14 +15,13 @@
                 <div class="row padding">
                     <div class="image-container col s12 m3">
                         <a href="{% url 'view-product' item.product.id %}">
-
                         <img height="150" src="{{ item.product.image.url }}" alt="">
                         </a>
                     </div>
                     <div class="col s10 offset-s1 m9">
                         <div class="item-price">
                             <h3 class="no-margin small-text bold">£{{ item.product.price }}</h3>
-                            <a href=""><i class="fas fa-times"></i></a>
+                            <a href="{% url 'delete-cart-item' item.product.id %}"><i class="fas fa-times"></i></a>
                         </div>
                         <div class="item-details">
                             <a href="{% url 'view-product' item.product.id %}">

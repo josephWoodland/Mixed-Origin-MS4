@@ -2,10 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@100;300&display=swap');
 
 :root{
-    --background-color:#f9f9f9;
+    --background-color:#f8f9fa;
     --background-grey: #efefef;
+    --background-gold: #f59c3d;
     --highlight-color: #f9c4ab;
     --text-grey: #5f5f5f;
+    --text-logo: #f26657;
     --dark-grey: #ccc;
     --text-color: #494846;
     --border-grey: #e5e6e9;
@@ -63,6 +65,7 @@ a p:hover{
     color: var(--highlight-color);
 }
 
+a:hover,
 nav a:hover,
 nav ul a:hover{
     background-color: var(--highlight-color);
@@ -84,11 +87,19 @@ nav i {
 }
 
 .nav-logo {
-    text-transform: capitalize;
     font-size: 1.5rem;
     padding-left: 1rem;
     padding-right: 1rem;
     border-right: var(--border);
+}
+
+.logo {
+    text-transform: capitalize;
+    font-family: var(--font-header);
+}
+
+.logo{
+    color: var(--text-logo);
 }
 
 .nav-list {
@@ -256,7 +267,7 @@ footer li {
 .about-card {
     margin-top: -4rem;
     border: var(--border);
-    background-color: var(--background-grey);
+    background-color: var(--background-gold);
 }
 
 .about-text {

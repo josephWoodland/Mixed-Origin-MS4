@@ -2,7 +2,7 @@
 
 <nav>
     <a href="" data-target="mobile-nav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-    <a href="{% url 'home' %}" class="nav-logo hover-highlight">Mixed Origin</a>
+    <a href="{% url 'home' %}" class="nav-logo hover-highlight logo">Mixed Origin</a>
     <a href="" class="sidenav-trigger hide-on-med-and-down"><i class="fas fa-bars hidden"></i></a>
     <ul class="hide-on-med-and-down">
         <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
