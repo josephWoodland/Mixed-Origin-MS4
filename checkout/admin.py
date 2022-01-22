@@ -3,17 +3,12 @@ from .models import Order, OrderItem
 
 # Register your models here.
 
+
 class OrderItemAdmin(admin.TabularInline):
     model = OrderItem
-    list_display = (
-        "product",
-        "order"
-    )
+    list_display = ("product", "order")
 
-    list_display_link = (
-        "product",
-        "order"
-    )
+    list_display_link = ("product", "order")
 
 
 class OrderAdmin(admin.ModelAdmin):
