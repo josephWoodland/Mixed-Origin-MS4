@@ -16,7 +16,7 @@ class Order(models.Model):
     order_number = models.CharField(max_length=20, default=order_number_generator)
     full_name = models.CharField(max_length=200, null=False, blank=False)
     email = models.EmailField(max_length=200, null=False, blank=False)
-    phone_number = models.IntegerField(null=False, blank=False)
+    phone_number = models.IntegerField(null=True, blank=False)
     country = models.CharField(max_length=40, null=False, blank=False)
     postcode = models.CharField(max_length=20, null=False, blank=False)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
@@ -47,12 +47,12 @@ class Order(models.Model):
 
     def total(self):
         self.sub_total = self.OrderItem.aggregate(sum("item_total"))["item_total__sum"]
-        if self.total < settings.FREE_STANDARD_DELIVERY_THRESHOLD:
+        if self.sub_total < settings.FREE_STANDARD_DELIVERY_THRESHOLD:
             self.delivery_costs = settings.STANDARD_DELIVERY_CHARGE
         else:
             self.delivery_costs = 0
 
-        self.total = self.sub_total + self.delivery_costs
+        self.grand_total = self.sub_total + self.delivery_costs
         self.save()
 
     def __str__(self):
@@ -78,4 +78,4 @@ class OrderItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'ID { self.product.id } in order { self.tracking_number }'
+        return f"ID { self.product.id } in order { self.tracking_number }"
