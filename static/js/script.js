@@ -218,7 +218,6 @@ if (addToCart) {
         if (cartNotificationFirst){
             cartNotificationFirst.classList.remove('transparent')
         }
-        
 
         if (hiddenCartNumber.innerText){
             curCartAmount = parseInt(hiddenCartNumber.innerText)
