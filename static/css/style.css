@@ -67,7 +67,6 @@ a p:hover{
     color: var(--highlight-color);
 }
 
-nav a:hover,
 nav ul a:hover{
     background-color: var(--highlight-color);
 }
@@ -110,6 +109,7 @@ label{
 .nav-list {
     text-transform: uppercase;
 }
+
 
 @media only screen and (max-width: 992px) {
     

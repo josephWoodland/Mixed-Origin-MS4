@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
+from .forms import OrderForm
 import random
 
 # Create your views here.
@@ -10,5 +12,13 @@ def order_number_generator():
 
 def checkout(request):
     template = "checkout/checkout.html"
-    context = {}
+    cart = request.session.get("cart", {})
+
+    if not cart:
+        messages.error(request, "You have nothing in your cart!")
+        return redirect("home")
+
+    form = OrderForm()
+
+    context = {"cart": cart, "form": form}
     return render(request, template, context)

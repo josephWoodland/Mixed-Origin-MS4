@@ -1,10 +1,9 @@
 from django.db import models
-from .views import order_number_generator
-import uuid
+from django.conf import settings
 from profiles.views import Profile
 from products.views import Product
-from django.conf import settings
-from django.db.models import Sum
+from .views import order_number_generator
+import uuid
 
 # Create your models here.
 

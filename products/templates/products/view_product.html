@@ -13,7 +13,8 @@
             </div>
         </div>
         <div class="col s12 m5 flex-wrapper column">
-                <h4>£{{ product.price }}</h4>
+                <h4>£<strong id="productPrice">
+                    {{ product.price }}</strong></h4>
             <p>{{ product.description }}</p>
             <div class="row product-number">
                 {% if product.stock_numbers > 0 %}
