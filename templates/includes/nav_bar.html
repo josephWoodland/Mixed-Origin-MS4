@@ -26,10 +26,10 @@
             </a>
         </div>
 </nav>
-    <p id="cartNotification" class="cart-notification transparent">{{ product_count }}</p>
+    <p id="hiddenCartNumber" class="cart-notification transparent">{{ product_count }}</p>
 
     {% if product_count == 0 %}
-    <p id="cartNotification" class="cart-notification transparent">0</p>
+    <p id="cartNotificationFirst" class="cart-notification transparent">0</p>
     {% elif product_count < 10 %}
         <p id="cartNotificationSeen" class="cart-notification">{{ product_count }}</p>
     {% else %}

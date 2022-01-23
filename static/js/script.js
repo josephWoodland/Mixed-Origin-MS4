@@ -189,7 +189,8 @@ const popupCart = document.getElementById("popup")
 const itemQuantity = document.getElementById('itemQuantity')
 const addToCart = document.getElementById('addToCart')
 const form = document.getElementById("form")
-const cartNotification = document.getElementById('cartNotification')
+const hiddenCartNumber = document.getElementById('hiddenCartNumber')
+const cartNotificationFirst = document.getElementById('cartNotificationFirst')
 const cartNotificationSeen = document.getElementById('cartNotificationSeen')
 const productTotal = document.getElementById('productTotal')
 const cartTotal = document.getElementById('cartTotal')
@@ -214,13 +215,13 @@ if (addToCart) {
     addToCart.addEventListener('click', (e) => {
         e.preventDefault()
 
-        if (cartNotification.classList.contains('transparent')){
-            cartNotification.classList.remove('transparent')
+        if (cartNotificationFirst){
+            cartNotificationFirst.classList.remove('transparent')
         }
         
 
-        if (cartNotification.innerText){
-            curCartAmount = parseInt(cartNotification.innerText)
+        if (hiddenCartNumber.innerText){
+            curCartAmount = parseInt(hiddenCartNumber.innerText)
         } else {
             curCartAmount = 0
         }
@@ -241,10 +242,12 @@ if (addToCart) {
 
         itemQuantity.innerText = itemQty
         newCartAmount = curCartAmount + itemQty
-        console.log(curCartAmount)
-        console.log(itemQty)
-        console.log(newCartAmount)
-        cartNotificationSeen.innerText = newCartAmount
+
+        if (cartNotificationSeen) {
+            cartNotificationSeen.innerText = newCartAmount
+        } else {
+            cartNotificationFirst.innerText = newCartAmount
+        }
         
         setZIndex(popupCart)
         fadeIn(popupCart)
