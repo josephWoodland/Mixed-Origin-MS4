@@ -190,6 +190,7 @@ const itemQuantity = document.getElementById('itemQuantity')
 const addToCart = document.getElementById('addToCart')
 const form = document.getElementById("form")
 const cartNotification = document.getElementById('cartNotification')
+const cartNotificationSeen = document.getElementById('cartNotificationSeen')
 const productTotal = document.getElementById('productTotal')
 const cartTotal = document.getElementById('cartTotal')
 const productPriceElement = document.getElementById('productPrice')
@@ -217,17 +218,15 @@ if (addToCart) {
             cartNotification.classList.remove('transparent')
         }
         
-        if (cartNotification.innerText){
 
-            curCartAmount = cartNotification.innerText
+        if (cartNotification.innerText){
+            curCartAmount = parseInt(cartNotification.innerText)
         } else {
             curCartAmount = 0
         }
 
         itemQty = parseInt(numberInputBox.value)
         productPrice = parseFloat(productPriceElement.innerText) 
-
-        
         productTotalPrice = itemQty * productPrice
         
         if (productTotal) {
@@ -237,24 +236,24 @@ if (addToCart) {
         if (cartTotal) {
             curCartTotal = parseFloat(cartTotal.innerText)
             newTotal = curCartTotal + parseFloat(productTotalPrice)
-            console.log(curCartTotal)
-            console.log(newTotal)
-            
             cartTotal.innerText = newTotal
         }
 
         itemQuantity.innerText = itemQty
-        newCartAmount = parseInt(curCartAmount) + itemQty
-        cartNotification.innerText = newCartAmount
+        newCartAmount = curCartAmount + itemQty
+        console.log(curCartAmount)
+        console.log(itemQty)
+        console.log(newCartAmount)
+        cartNotificationSeen.innerText = newCartAmount
         
         setZIndex(popupCart)
         fadeIn(popupCart)
         
-        // setTimeout(() => {
-        //     fadeOut(popupCart)
-        //     submitForm(form)
-        //     setZIndex(popupCart)
-        // }, 3000)
+        setTimeout(() => {
+            fadeOut(popupCart)
+            submitForm(form)
+            setZIndex(popupCart)
+        }, 3000)
 
     })
 }
