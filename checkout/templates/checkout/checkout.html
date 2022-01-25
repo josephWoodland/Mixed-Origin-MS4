@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
 <header class="container product-banner">
@@ -36,9 +37,9 @@
                                 Payment Details
                             </h3>
                         </div>
-                        <div class="checkout-items">
-                            <div class="payment-card" id="card-element"></div>
-                            <div class="payment-errors" id="card-errors"></div>
+                        <div class="checkout-items column margin-bottom">
+                                <div class="payment-card col s12" id="card-element"></div>
+                                <div class="payment-errors col s12" id="card-errors"></div>
                         </div>
                         <div class="checkout-items">
                             <input type="submit" class="btn" value="Order">
@@ -81,4 +82,6 @@
 {% block stripe %}
 {{ stripe_public_key|json_script:"id_stripe_public_key"}}
 {{ client_secret|json_script:"id_client_secret"}}
+<script type="text/javascript" src="{% static 'js/stripe_element.js' %}"></script>
+
 {% endblock %}
