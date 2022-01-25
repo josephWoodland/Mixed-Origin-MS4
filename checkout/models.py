@@ -7,6 +7,7 @@ import uuid
 
 # Create your models here.
 
+
 class Order(models.Model):
     profile = models.ForeignKey(
         Profile, null=True, blank=True, on_delete=models.DO_NOTHING

@@ -13,12 +13,42 @@
                 <div class="row">
                     <form action="" method="POST"  class="col s10 offset-s1">
                         {% csrf_token %}
+                        <div class="checkout-items">
+                            <h3>
+                                Your Details
+                            </h3>
+                        </div>
                         {{ form|crispy }}
+                        <div class="checkout-items">
+                            {% if user.is_authenticated %}
+                                <label for="id_walletDetails">Save this information to your wallet.
+
+                                    <input type="checkbox" name="walletDetails" id="id_walletDetails" checked>
+                                </label>
+                            {% else %}
+                                <a href="{% url 'account_logout' %}" class="nav-login">Logout</a>
+                                <a href="{% url 'account_login' %}" class="nav-login">Login</a>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        <div class="checkout-items">
+                            <h3>
+                                Payment Details
+                            </h3>
+                        </div>
+                        <div class="checkout-items">
+                            <div class="payment-card" id="card-element"></div>
+                            <div class="payment-errors" id="card-errors"></div>
+                        </div>
+                        <div class="checkout-items">
+                            <input type="submit" class="btn" value="Order">
+                        </div>
+                        <div class="checkout-item">
+                            <h3 class="small-text">Your card will be debited <span class="bold">£{{ grand_total|floatformat:2 }}</span></h3>
+                        </div>
                     </form>
                 </div>
             <hr>
-            <div class="checkout-items hide-on-small-only">
-            </div>
         </div>
     </div>
     <div class="flex-wrapper card column checkout-card padding">
@@ -46,5 +76,9 @@
     </div>
 </section>
 
+{% endblock %}
 
-{% endblock %}   §  
+{% block stripe %}
+{{ stripe_public_key|json_script:"id_stripe_public_key"}}
+{{ client_secret|json_script:"id_client_secret"}}
+{% endblock %}
