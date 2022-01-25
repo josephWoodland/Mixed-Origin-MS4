@@ -9,7 +9,6 @@ $(document).ready(function(){
 const message = document.getElementById('message')
 const messageClose = document.querySelector('.alert-close')
 
-
 // Fade out function
 function  fadeOut(el) {
 
@@ -25,7 +24,6 @@ function  fadeOut(el) {
     }, 20);
 
 }
-
 
 function  fadeIn(el) {
 
@@ -87,7 +85,6 @@ if (numberInputBox) {
     })
 }
 
-
 // Show the search bar on partners page //
 
 const searchForm = document.getElementById("searchForm")
@@ -100,7 +97,6 @@ if (searchOpen) {
         searchForm.classList.remove("hide")
     })
 }
-
 
 // Save to later checkbox //
 
@@ -182,7 +178,6 @@ if (plusBtn) {
         )
 }
 
-
 // Popup card for adding items to the cart
 
 const popupCart = document.getElementById("popup")
@@ -210,6 +205,11 @@ function setZIndex(el) {
     }
 }
 
+// function to round to 2 decimal places
+function round(num, decimal) {
+    return Number(Math.round(num +'e'+ decimal) +'e-'+ decimal).toFixed(decimal);
+}
+
 if (addToCart) {
 
     addToCart.addEventListener('click', (e) => {
@@ -226,7 +226,7 @@ if (addToCart) {
         }
 
         itemQty = parseInt(numberInputBox.value)
-        productPrice = parseFloat(productPriceElement.innerText) 
+        productPrice = parseFloat(productPriceElement.innerText)
         productTotalPrice = itemQty * productPrice
         
         if (productTotal) {
@@ -236,7 +236,7 @@ if (addToCart) {
         if (cartTotal) {
             curCartTotal = parseFloat(cartTotal.innerText)
             newTotal = curCartTotal + parseFloat(productTotalPrice)
-            cartTotal.innerText = newTotal
+            cartTotal.innerText = round(newTotal, 2)
         }
 
         itemQuantity.innerText = itemQty

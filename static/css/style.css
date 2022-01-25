@@ -57,11 +57,13 @@ nav {
     box-shadow: none;
 }
 
+h3 a,
 nav a,
 nav ul a {
     color: var(--text-grey);
 }
 
+h3 a:hover,
 p a:hover,
 a p:hover{
     color: var(--highlight-color);
@@ -473,6 +475,7 @@ footer li {
     display: flex;
     flex-direction: column;
     width: 60%;
+    max-width: 1175px;
     background-color: var(--background-color);
     border: var(--border);
     padding: 3rem;
@@ -653,14 +656,10 @@ input::-webkit-inner-spin-button {
     height: 100%;
 }
 
-/* /////////////////////////// Cart ///////////////////// */
+/* /////////////////////////// Checkout ///////////////////// */
+#checkoutForm,
+.checkout-form{
 
-.cart{
-    margin: 0 2rem 0 0;
-}
-
-.cart-header {
-    justify-content: space-between !important;
 }
 
 .checkout-card {
@@ -673,10 +672,30 @@ input::-webkit-inner-spin-button {
     font-size: 1rem;
 }
 
+.cart-items,
 .checkout-items {
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.item-amount {
+    width: 3rem;
+    text-align: end;
+}
+
+/* /////////////////////////// Cart ///////////////////// */
+
+.cart{
+    margin: 0 2rem 0 0;
+}
+
+.cart-item-margin {
+    margin: 0 0 1rem 0;
+}
+
+.cart-header {
+    justify-content: space-between !important;
 }
 
 .item-price,
@@ -849,7 +868,7 @@ a .heading {
 }
 
 .margin-left {
-    margin-right: 2rem;
+    margin-left: 2rem;
 }
 
 .no-margin {

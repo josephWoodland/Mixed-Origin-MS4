@@ -1,14 +1,11 @@
 from django import forms
-
+from checkout.models import Order
 
 class OrderForm(forms.ModelForm):
+    
     class Meta:
 
-        # This is to stop a circular import error
-        def order_import():
-            from .models import Order
-
-            model = Order
+        model = Order
 
         fields = (
             "full_name",
@@ -36,7 +33,7 @@ class OrderForm(forms.ModelForm):
             "county": "County",
         }
 
-        self.fields["full-name"].widget.attrs["autofocus"] = True
+        self.fields["full_name"].widget.attrs["autofocus"] = True
         for field in self.fields:
             if self.fields[field].required:
                 placeholder = f"{placeholders[field]} *"

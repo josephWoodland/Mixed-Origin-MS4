@@ -1,11 +1,50 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="container message-margin banner">
+<header class="container product-banner">
     <h3>Checkout</h3>
-    <form action="checkout" method="post" id="checkoutForm">
-        {% csrf_token %}
-        {{ form|crispy }}
-    </form>
-</div>
-{% endblock %}
+</header>
+<section class="container form">
+    <div class="row no-margin">
+        <div class="col s9 m7 xl8 card margin-right">
+            <div class="flex-wrapper cart-header">
+                <h3 class="cart-heading bold">Checkout</h3>
+            </div>
+                <div class="row">
+                    <form action="" method="POST"  class="col s10 offset-s1">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                    </form>
+                </div>
+            <hr>
+            <div class="checkout-items hide-on-small-only">
+            </div>
+        </div>
+    </div>
+    <div class="flex-wrapper card column checkout-card padding">
+        <h3 class="full-width bold">Cart</h3>
+        <hr>
+        <div class="flex-wrapper column full-width">
+            <div class="cart-items column">
+                {% for item in cart_items %}
+                    <div class="cart-items full-width">
+                        <h3 class="bold cart-item-margin"><a href="{% url 'view-product' item.product.id %}">
+                            {{ item.product.name }}
+                        </a>
+                        </h3>
+                        <h3 class="item-amount cart-item-margin">X {{ item.quantity }}</h3>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="checkout-items">
+                <h3 class="bold">Sub-total</h3>
+                <h3 class="">£{{ total }}</h3>
+            </div>
+        </div>
+        <hr>
+        <a href="{% url 'cart' %}" class="btn">cart</a>
+    </div>
+</section>
+
+
+{% endblock %}   §  

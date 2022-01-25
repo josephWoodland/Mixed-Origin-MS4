@@ -1,13 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from .forms import OrderForm
-import random
-
-# Create your views here.
-
-
-def order_number_generator():
-    return str(random.randint(10000000, 99999999))
 
 
 def checkout(request):

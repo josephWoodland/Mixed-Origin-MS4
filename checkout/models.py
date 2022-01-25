@@ -2,11 +2,10 @@ from django.db import models
 from django.conf import settings
 from profiles.views import Profile
 from products.views import Product
-from .views import order_number_generator
+from .helper import order_number_generator
 import uuid
 
 # Create your models here.
-
 
 class Order(models.Model):
     profile = models.ForeignKey(

@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 (
                     "order_number",
                     models.CharField(
-                        default=checkout.views.order_number_generator, max_length=20
+                        default=checkout.helper.order_number_generator, max_length=20
                     ),
                 ),
                 ("full_name", models.CharField(max_length=200)),

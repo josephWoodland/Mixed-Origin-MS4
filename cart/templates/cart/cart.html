@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% load mathfilters %}
 {% block content %}
+<header class="container product-banner">
+    <h3>Cart</h3>
 
-<section class="container message-margin">
+</header>
+<section class="container form">
     <div class="row cart-mobile">
         {% if product_count %}
             <div class="col s9 m7 xl8 card cart">
                 <div class="flex-wrapper cart-header">
                     <h3 class="cart-heading bold">Joseph's cart</h3>
-                    <a href="" class="btn">checkout</a>
+                    <a href="{% url 'checkout' %}" class="btn">checkout</a>
                 </div>
                 <hr>
                 {% for item in cart_items %}
@@ -76,7 +79,7 @@
                     </div>
                 </div>
                 <hr>
-                <a href="" class="btn">checkout</a>
+                <a href="{% url 'checkout' %}" class="btn">checkout</a>
             </div>
         {% else %}
             <h1>Cart</h1>
