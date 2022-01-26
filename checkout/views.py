@@ -23,7 +23,6 @@ def checkout(request):
 
     client_secret = intent.client_secret
 
-    print(intent)
     if not cart:
         messages.error(request, "You have nothing in your cart!")
         return redirect("home")

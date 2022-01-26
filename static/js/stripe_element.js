@@ -29,33 +29,60 @@ const card = elements.create("card", { style: style });
 card.mount("#card-element");
 
 // Handle realtime validation errors on the card element
-card.addEventListener("change", (e) => {
-  const errorDiv = document.getElementById("card-errors");
-  if (e.error) {
+const errorDiv = document.getElementById("card-errors");
+
+card.addEventListener("change", (er) => {
+  if (er.error) {
     const html = `
             <span class="error-alert" role="alert">
                 <i class="fas fa-times"></i>
             </span>
-            <span class="error-alert" >${e.error.message}</span>
+            <span class="error-alert" >${er.error.message}</span>
         `;
     $(errorDiv).html(html);
-  } else {
-    errorDiv.textContent = "";
   }
 });
 
 // Handle form submit
 
-const form = document.getElementById("payment-form");
+const paymentForm = document.getElementById("payment-form");
 
-form.addEventListener("submit", (e) => {
+paymentForm.addEventListener("submit", (e) => {
   e.preventDefault();
   card.update({ disabled: true });
+  $("#submit-button").attr("disabled", true);
 
-  stripe.confirmCardPayment(clientSecret, {
-    payment_method: {
-      card: card,
-      billing,
-    },
-  });
+  stripe
+    .confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: card,
+      },
+    })
+    .then((response) => {
+      if (response.error) {
+        const html = `
+            <span class="error-alert" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span class="error-alert" >${response.error.message}</span>
+        `;
+        $(errorDiv).html(html);
+        card.update({ disabled: false });
+        $("#submit-button").attr("disabled", false);
+      } else {
+        if (response.paymentIntent.status === "succeeded") {
+          console.log("You are in the succeeded block");
+        } else if (
+          response.paymentIntent.status === "requires_payment_method"
+        ) {
+          console.log("You are in the requires payment method");
+        } else {
+          console.log(
+            "You are in the last block",
+            response.paymentIntent.status
+          );
+          console.log(response);
+        }
+      }
+    });
 });
