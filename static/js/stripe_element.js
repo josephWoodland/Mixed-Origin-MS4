@@ -71,17 +71,7 @@ paymentForm.addEventListener("submit", (e) => {
         $("#submit-button").attr("disabled", false);
       } else {
         if (response.paymentIntent.status === "succeeded") {
-          console.log("You are in the succeeded block");
-        } else if (
-          response.paymentIntent.status === "requires_payment_method"
-        ) {
-          console.log("You are in the requires payment method");
-        } else {
-          console.log(
-            "You are in the last block",
-            response.paymentIntent.status
-          );
-          console.log(response);
+          paymentForm.submit();
         }
       }
     });

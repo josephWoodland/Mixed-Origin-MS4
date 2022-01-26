@@ -7,8 +7,8 @@ from .models import Order, OrderItem
 class OrderItemAdmin(admin.TabularInline):
     model = OrderItem
     list_display = ("product", "order")
-
     list_display_link = ("product", "order")
+    readonly_fields = ("item_total",)
 
 
 class OrderAdmin(admin.ModelAdmin):
@@ -49,4 +49,3 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Order, OrderAdmin)
-admin.site.register(OrderItem)

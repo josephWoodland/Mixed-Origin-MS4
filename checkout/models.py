@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 from profiles.views import Profile
 from products.views import Product
+from django_countries.fields import CountryField
+from django.db.models import Sum
 from .helper import order_number_generator
 import uuid
 
@@ -45,7 +47,12 @@ class Order(models.Model):
         super().save(*args, **kwargs)
 
     def total(self):
-        self.sub_total = self.OrderItem.aggregate(sum("item_total"))["item_total__sum"]
+
+        self.sub_total = self.items.aggregate(Sum("item_total"))["item_total__sum"]
+
+        if self.sub_total is None:
+            return self
+
         if self.sub_total < settings.FREE_STANDARD_DELIVERY_THRESHOLD:
             self.delivery_costs = settings.STANDARD_DELIVERY_CHARGE
         else:
@@ -55,7 +62,7 @@ class Order(models.Model):
         self.save()
 
     def __str__(self):
-        return self.tracking_number
+        return str(self.order_number)
 
 
 class OrderItem(models.Model):
@@ -73,8 +80,8 @@ class OrderItem(models.Model):
     )
 
     def total(self, *args, **kwargs):
-        self.item_total = self.product.price * self.quantity
+        self.item_total = int(self.product.price * self.quantity)
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"ID { self.product.id } in order { self.tracking_number }"
+        return str(f"ID { self.product.id } : { self.product.name }")
