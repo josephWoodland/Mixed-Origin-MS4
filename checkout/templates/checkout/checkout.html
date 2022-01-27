@@ -43,7 +43,7 @@
                                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
                         </div>
                         <div class="checkout-items">
-                            <input type="submit" class="btn" value="Order">
+                            <input  id="submit-button" type="submit" class="btn" value="Order">
                         </div>
                         <div class="checkout-item">
                             <h3 class="small-text">Your card will be debited <span class="bold">£{{ grand_total|floatformat:2 }}</span></h3>
@@ -77,7 +77,49 @@
         <a href="{% url 'cart' %}" class="btn">cart</a>
     </div>
 </section>
-
+<div class="" id="loading-overlay">
+    <div class="preloader-wrapper big active no-border">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+  
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+  
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+  
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block stripe %}

@@ -242,6 +242,6 @@ if (addToCart) {
       fadeOut(popupCart);
       submitForm(form);
       setZIndex(popupCart);
-    }, 3000);
+    }, 2000);
   });
 }

@@ -1036,3 +1036,26 @@ a .heading {
 	color: var(--message-error);
 	font-size: var(--font-size-form);
 }
+
+.no-border {
+	border: none !important;
+}
+
+#loading-overlay {
+	display: none;
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0, 0, .60);
+    z-index: 9999;
+}
+
+.preloader-wrapper {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 48vh 48vw;
+    height: 100%;
+}
