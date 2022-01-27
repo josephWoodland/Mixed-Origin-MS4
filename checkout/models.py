@@ -50,7 +50,9 @@ class Order(models.Model):
 
         self.sub_total = self.items.aggregate(Sum("item_total"))["item_total__sum"]
 
+        # Fixes a bug when deleting orders from the Admin
         if self.sub_total is None:
+            # If the sub_total has been deleted and now None return
             return self
 
         if self.sub_total < settings.FREE_STANDARD_DELIVERY_THRESHOLD:

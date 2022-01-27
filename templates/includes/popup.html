@@ -7,7 +7,7 @@
           <span class="card-title">Added to Cart</span>
           <div class="popup-item">
               <div class="image-container">
-                  <img width="100px" src="../../media/bamboo-shampoo.jpg" alt="">
+                  <img width="100px" src="{{ product.image.url }}" alt="Image for {{ product.name }}">
               </div>
               <div class="popup-details">
                   <h3 class="small-text">
@@ -45,8 +45,10 @@
           </div>
         </div>
         <div class="card-action flex-wrapper">
-          <a href="{% url 'cart' %}" class="btn margin-right">cart</a>
-          <a href="" class="btn">checkout</a>
+          {% if '/cart/' in request.path %}
+          {% else %}
+          <a href="{% url 'add-to-cart' product.id %}" id="btnCart" class="btn margin-right">cart</a>
+          {% endif %}
         </div>
       </div>
     </div>

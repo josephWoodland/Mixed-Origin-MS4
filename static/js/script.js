@@ -175,6 +175,7 @@ const cartNotificationSeen = document.getElementById("cartNotificationSeen");
 const productTotal = document.getElementById("productTotal");
 const cartTotal = document.getElementById("cartTotal");
 const productPriceElement = document.getElementById("productPrice");
+const btnCart = document.getElementById("btnCart");
 
 // function to trigger the submit event on a form
 function submitForm(form) {
@@ -244,5 +245,3 @@ if (addToCart) {
     }, 3000);
   });
 }
-
-// Stripe Js

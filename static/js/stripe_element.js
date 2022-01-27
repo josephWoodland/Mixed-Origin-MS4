@@ -39,6 +39,7 @@ card.addEventListener("change", (er) => {
             </span>
             <span class="error-alert" >${er.error.message}</span>
         `;
+
     $(errorDiv).html(html);
   }
 });

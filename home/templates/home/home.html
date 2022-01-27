@@ -90,7 +90,7 @@
                 <a href="{% url 'view-product' product.id %}">
                     <div class="card">
                         <div class="card-image">
-                            <img src="{{ product.image.url }}">
+                            <img src="{{ product.image.url }}" alt="Thumbnail image for {{ product.name }}">
                         </div>
                         <div class="card-content">
                             <span class="card-title">{{ product.name|truncatechars:17 }}</span>

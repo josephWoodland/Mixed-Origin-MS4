@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% include 'includes/popup.html' %}
 <header class="container product-banner">
     <h3 class="heading" >{{ product.owner.company_name }}</h3>
     <h3 class="product-name">{{ product.name }}</h3>
@@ -9,7 +10,7 @@
     <div class="row product-view">
         <div class="col s12 m7 flex-wrapper">
             <div class="image-container">
-                <img height="300" src="{{ product.image.url }}" alt="">
+                <img height="300" src="{{ product.image.url }}" alt="Image for {{ product.name }}">
             </div>
         </div>
         <div class="col s12 m5 flex-wrapper column">

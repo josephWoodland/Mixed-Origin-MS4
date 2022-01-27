@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<header class="container banner">
+    <h3>Thank you for your purchase</h3>
+    <p>Your order information has been sent to <strong>{{ order.email }}</strong>.</p>
+</header>
+<section class="container about-order">
+    <p></p>
+</section>
+<section class="container">
+    <div class="row">
+        <h3>You may also like...</h3>
+    </div>
+    <div class="row product-sugestion hide-on-med-and-down">
+        <div class="card col m3 l2 product-suggestion">
+            <div class="image-container">
+                <img height="150" src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
+            </div>
+            <div class="card-action">
+                <a href="">View me</a>
+            </div>
+        </div>
+        <div class="card col m3 l2 product-suggestion">
+            <div class="card-image">
+                <img src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
+            </div>
+            <div class="card-action">
+                <a href="">View me</a>
+            </div>
+        </div>
+        <div class="card col m3 l2 product-suggestion">
+            <div class="card-image">
+                <img src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
+            </div>
+            <div class="card-action">
+                <a href="">View me</a>
+            </div>
+        </div>
+        <div class="card col m3 l2 product-suggestion">
+            <div class="card-image">
+                <img src="../../../media/bamboo-shampoo.jpg" alt="" class=" suggestion-image">
+            </div>
+            <div class="card-action">
+                <a href="">View me</a>
+            </div>
+        </div>
+        <a href="#">View more...</a>
+    </div>
+</section>
+{% endblock %}

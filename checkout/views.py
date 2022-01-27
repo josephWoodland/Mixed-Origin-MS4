@@ -1,3 +1,5 @@
+from email import message
+from tempfile import template
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.conf import settings
 from django.contrib import messages
@@ -60,7 +62,14 @@ def checkout(request):
                 )
 
                 order_item.save()
-
+            request.session["walletDetails"] = "walletDetails" in request.POST
+            return redirect(reverse("checkout_success", args=[order.order_number]))
+        else:
+            messages.error(
+                request,
+                "There was an error with your form. \
+                Please check your information again.",
+            )
     else:
 
         cur_cart = cart_contents(request)
@@ -85,6 +94,25 @@ def checkout(request):
         "form": form,
         "stripe_public_key": stripe_public_key,
         "client_secret": client_secret,
+    }
+
+    return render(request, template, context)
+
+
+def checkout_success(request, pk):
+    template = "checkout/checkout_success.html"
+    wallet = request.session.get("walletDetails")
+    order = get_object_or_404(Order, order_number=pk)
+    profile = order.profile
+    messages.success(request, "Your order has been processed")
+
+    if "cart" in request.session:
+        del request.session["cart"]
+
+    context = {
+        "profile": profile,
+        "wallet": wallet,
+        "order": order,
     }
 
     return render(request, template, context)

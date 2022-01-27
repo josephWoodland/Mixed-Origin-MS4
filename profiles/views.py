@@ -10,7 +10,7 @@ from products.models import Product
 # Create your views here.
 
 
-@login_required()
+@login_required(login_url="/accounts/login/")
 def user_profile(request):
     """This is the main profile view
 
