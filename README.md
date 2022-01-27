@@ -8,3 +8,5 @@ Resize and format images on upload
 https://auth0.com/blog/image-processing-in-python-with-pillow/#Changing-Image-Type
 
 https://stackoverflow.com/questions/67712512/django-save-image-in-different-formats-using-pillow
+
+Look at the cart link in the popupbox

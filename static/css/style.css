@@ -655,7 +655,8 @@ input::-webkit-inner-spin-button {
 }
 
 .cart-items,
-.checkout-items {
+.checkout-items,
+.order-items {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -809,6 +810,17 @@ input::-webkit-inner-spin-button {
 	color: #aab7c4;
 }
 
+/* /////////////////////////// Checkout Success ///////////////////// */
+
+.order-item-details {
+	width: max-content;
+}
+
+.order-total {
+	font-weight: 600;
+	text-align: end;
+}
+
 /* /////////////////////////// Helpers ///////////////////// */
 
 hr {
@@ -855,6 +867,10 @@ a .heading {
 
 .border-bottom {
 	border-bottom: var(--border);
+}
+
+.border-top {
+	border-top: var(--border);
 }
 
 .no-left-border {

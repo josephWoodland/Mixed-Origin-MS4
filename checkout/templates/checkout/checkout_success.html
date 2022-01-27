@@ -5,8 +5,117 @@
     <h3>Thank you for your purchase</h3>
     <p>Your order information has been sent to <strong>{{ order.email }}</strong>.</p>
 </header>
-<section class="container about-order">
-    <p></p>
+<section class="container form row">
+<div class="col s12 m10 offset-m1">
+    <div class="row">
+        <h3 class="no-margin">Order Info:</h3>
+    </div>
+    <div class="row">
+        <div class="col s8">
+            <p class="bold">Order Number:</p>
+        </div>
+        <div class="col s4 order-total">
+            <p>{{ order.order_number }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <h3 class="no-margin">Order Details:</h3>
+    </div>
+    <div class="row">
+        {% for item in order.items.all %}
+            <div class="order-items">
+                <h3 class="small-text bold"><a href="{% url 'view-product' item.product.id %}">
+                    {{ item.product.name }}
+                </a>
+                </h3>
+                <h3 class="order-item-details small-text bold">X {{ item.quantity }} &#64; {{ item.product.price }}</h3>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row no-margin">
+        {% if order.total >= free_delivery_threshold %}
+            <h3 class="order-total highlight text-small">Free delivery</h3>
+        {% else %}
+            <h3 class="order-total text-small">Delivery:
+                £{{ order.delivery_costs }}
+        </h3>
+        {% endif %}
+    </div>
+    <div class="row no-margin border-top">
+        <h3 class="order-total">Total £{{ order.grand_total|floatformat:2 }}</h3>
+    </div>
+    <div class="row">
+        <h3 class="no-margin">Delivering To:</h3>
+    </div>
+    <div class="row no-margin">
+    <div class="col s8">
+        <p class="bold">Full Name:</p>
+    </div>
+    <div class="col s4 order-total">
+        <p>{{ order.full_name }}</p>
+    </div>
+    </div>
+    <div class="row no-margin">
+        <div class="col s8">
+            <p class="bold">Address 1:</p>
+        </div>
+        <div class="col s4 order-total">
+            <p>{{ order.street_address1 }}</p>
+        </div>
+    </div>
+    {% if order.street_address2 %}
+    <div class="row no-margin">
+        <div class="col s8">
+            <p class="bold">Address 2:</p>
+        </div>
+        <div class="col s4 order-total">
+            <p>{{ order.street_address2 }}</p>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row no-margin">
+        <div class="col s8">
+            <p class="bold">Town or City:</p>
+        </div>
+        <div class="col s4 order-total">
+            <p>{{ order.town_or_city }}</p>
+        </div>
+    </div>
+    {% if order.county %}
+    <div class="row no-margin">
+        <div class="col s8">
+            <p class="bold">County:</p>
+        </div>
+        <div class="col s4 order-total">
+            <p>{{ order.county }}</p>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row no-margin">
+        <div class="col s8">
+            <p class="bold">Postcode:</p>
+        </div>
+        <div class="col s4 order-total">
+            <p>{{ order.postcode }}</p>
+        </div>
+    </div>
+    <div class="row no-margin">
+        <div class="col s8">
+            <p class="bold">Country:</p>
+        </div>
+        <div class="col s4 order-total">
+            <p>{{ order.country }}</p>
+        </div>
+    </div>
+    <div class="row no-margin">
+        <div class="col s8">
+            <p class="bold">Phone Number:</p>
+        </div>
+        <div class="col s4 order-total">
+            <p>{{ order.phone_number }}</p>
+        </div>
+    </div>
+</div>
 </section>
 <section class="container">
     <div class="row">
