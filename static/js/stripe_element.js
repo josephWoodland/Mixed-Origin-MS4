@@ -10,6 +10,7 @@ const stripePublicKey = $("#id_stripe_public_key").text().slice(1, -1);
 const clientSecret = $("#id_client_secret").text().slice(1, -1);
 const stripe = Stripe(stripePublicKey);
 const elements = stripe.elements();
+
 const style = {
   base: {
     color: "#000",
@@ -44,6 +45,29 @@ card.addEventListener("change", (er) => {
   }
 });
 
+// Function to get the country code
+async function getCountryCode(country) {
+  try {
+    const res = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+    if (!res.ok) throw new Error(`${country} not found please check spelling`);
+    let data = await res.json();
+    let countryObject = data;
+    console.log(countryObject);
+    countryCode = countryObject[0].altSpellings[0];
+    console.log(countryCode);
+    return countryCode;
+  } catch (err) {
+    const html = `
+            <span class="error-alert" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span class="error-alert" >${err.error.message}</span>
+        `;
+
+    $(errorDiv).html(html);
+  }
+}
+
 // Handle form submit
 
 const paymentForm = document.getElementById("payment-form");
@@ -63,6 +87,8 @@ paymentForm.addEventListener("submit", (e) => {
     wallet_details: walletDetails,
   };
   const url = "/checkout/cache_checkout_data/";
+  const countryName = $.trim(paymentForm.country.value);
+  let countryCode = getCountryCode(countryName);
 
   $.post(url, postData)
     .done(() => {
@@ -71,28 +97,28 @@ paymentForm.addEventListener("submit", (e) => {
           payment_method: {
             card: card,
             billing_details: {
-              name: $.trim(form.full_name.value),
-              phone: $.trim(form.phone_number.value),
-              email: $.trim(form.email.value),
+              name: $.trim(paymentForm.id_full_name.value),
+              phone: $.trim(paymentForm.phone_number.value),
+              email: $.trim(paymentForm.email.value),
               address: {
-                line1: $.trim(form.street_address1.value),
-                line2: $.trim(form.street_address2.value),
-                city: $.trim(form.town_or_city.value),
-                country: $.trim(form.country.value),
-                state: $.trim(form.county.value),
+                line1: $.trim(paymentForm.street_address1.value),
+                line2: $.trim(paymentForm.street_address2.value),
+                city: $.trim(paymentForm.town_or_city.value),
+                country: countryCode,
+                state: $.trim(paymentForm.county.value),
               },
-              shipping: {
-                name: $.trim(form.full_name.value),
-                phone: $.trim(form.phone_number.value),
-                address: {
-                  line1: $.trim(form.street_address1.value),
-                  line2: $.trim(form.street_address2.value),
-                  city: $.trim(form.town_or_city.value),
-                  country: $.trim(form.country.value),
-                  postal_code: $.trim(form.postcode.value),
-                  state: $.trim(form.county.value),
-                },
-              },
+            },
+          },
+          shipping: {
+            name: $.trim(paymentForm.full_name.value),
+            phone: $.trim(paymentForm.phone_number.value),
+            address: {
+              line1: $.trim(paymentForm.street_address1.value),
+              line2: $.trim(paymentForm.street_address2.value),
+              city: $.trim(paymentForm.town_or_city.value),
+              country: $.trim(paymentForm.country.value),
+              postal_code: $.trim(paymentForm.postcode.value),
+              state: $.trim(paymentForm.county.value),
             },
           },
         })
@@ -116,6 +142,9 @@ paymentForm.addEventListener("submit", (e) => {
         });
     })
     .fail(() => {
-      location.reload();
+      console.log(
+        "Payment intent is failing in the js and no submitting the form"
+      );
+      // location.reload();
     });
 });
