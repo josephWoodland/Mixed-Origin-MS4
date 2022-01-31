@@ -35,6 +35,7 @@ class Order(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     tracking_number = models.CharField(max_length=40, null=True, blank=True)
+    stripe_pid = models.CharField(max_length=200, null=True, blank=True)
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )

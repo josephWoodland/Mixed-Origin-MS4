@@ -18,11 +18,14 @@ def cache_checkout_data(request):
         client_secret = request.POST.get("client_secret")
         pid = client_secret.split("_secret")[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        walletDetails = request.POST.get("walletDetails")
+
+        print("----- Wallet Save ----- : ", walletDetails)
         stripe.PaymentIntent.modify(
             pid,
             metadata={
                 "cart": json.dumps(request.session.get("cart", {})),
-                "wallet_save": request.POST.get("walletDetails"),
+                "walletDetails": walletDetails,
                 "username": request.user,
             },
         )
@@ -76,18 +79,32 @@ def checkout(request):
             order.save()
 
             for item_id, quantity in cart.items():
-                product = get_object_or_404(Product, pk=item_id)
-                item_total = product.price * quantity
+                try:
+                    product = get_object_or_404(Product, pk=item_id)
+                    item_total = product.price * quantity
 
-                order_item = OrderItem(
-                    order=order,
-                    product=product,
-                    quantity=quantity,
-                    item_total=item_total,
-                )
+                    order_item = OrderItem(
+                        order=order,
+                        product=product,
+                        quantity=quantity,
+                        item_total=item_total,
+                    )
 
-                order_item.save()
+                    order_item.save()
+
+                except Product.DoesNotExist:
+                    messages.error(
+                        request,
+                        (
+                            "One of the products in your bag wasn't found in our database. "
+                            "Please call us for assistance!"
+                        ),
+                    )
+                    order.delete()
+                    return redirect(reverse("cart"))
+
             request.session["walletDetails"] = "walletDetails" in request.POST
+
             return redirect(reverse("checkout_success", args=[order.order_number]))
         else:
             messages.error(
@@ -98,6 +115,12 @@ def checkout(request):
     else:
 
         cur_cart = cart_contents(request)
+
+        if not cart:
+
+            messages.error(request, "You have nothing in your cart!")
+            return redirect("home")
+
         cart_total = cur_cart["grand_total"]
         stripe_total = round(cart_total * 100)
         stripe.api_key = stripe_secret_key
@@ -107,12 +130,7 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        client_secret = intent.client_secret
-
-        if not cart:
-
-            messages.error(request, "You have nothing in your cart!")
-            return redirect("home")
+    client_secret = intent.client_secret
 
     context = {
         "cart": cart,
@@ -126,7 +144,7 @@ def checkout(request):
 
 def checkout_success(request, pk):
     template = "checkout/checkout_success.html"
-    wallet = request.session.get("walletDetails")
+    walletDetails = request.session.get("walletDetails")
     order = get_object_or_404(Order, order_number=pk)
     profile = order.profile
     messages.success(request, "Your order has been processed")
@@ -136,7 +154,6 @@ def checkout_success(request, pk):
 
     context = {
         "profile": profile,
-        "wallet": wallet,
         "order": order,
     }
 

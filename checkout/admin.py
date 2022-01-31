@@ -21,6 +21,8 @@ class OrderAdmin(admin.ModelAdmin):
         "delivery_costs",
         "sub_total",
         "grand_total",
+        "created",
+        "id",
     )
 
     list_display = (
@@ -29,6 +31,8 @@ class OrderAdmin(admin.ModelAdmin):
         "created",
         "postcode",
         "full_name",
+        "created",
+        "id",
     )
 
     list_display_links = (

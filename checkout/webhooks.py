@@ -12,7 +12,6 @@ import stripe
 @csrf_exempt
 def webhook(request):
 
-    print(request)
     wh_secret = settings.STRIPE_WH_SECRET
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -40,7 +39,6 @@ def webhook(request):
     }
 
     event_type = event["type"]
-    print(event_type)
 
     event_handler = event_map.get(event_type, handler.handle_event)
 

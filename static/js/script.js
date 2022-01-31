@@ -217,12 +217,12 @@ if (addToCart) {
     productTotalPrice = itemQty * productPrice;
 
     if (productTotal) {
-      productTotal.innerText = productTotalPrice;
+      productTotal.innerText = round(productTotalPrice, 2);
     }
 
     if (cartTotal) {
-      curCartTotal = parseFloat(cartTotal.innerText);
-      newTotal = curCartTotal + parseFloat(productTotalPrice);
+      curCartTotal = parseFloat(round(cartTotal.innerText, 2));
+      newTotal = curCartTotal + parseFloat(round(productTotalPrice, 2));
       cartTotal.innerText = round(newTotal, 2);
     }
 

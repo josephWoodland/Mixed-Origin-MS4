@@ -52,9 +52,7 @@ async function getCountryCode(country) {
     if (!res.ok) throw new Error(`${country} not found please check spelling`);
     let data = await res.json();
     let countryObject = data;
-    console.log(countryObject);
     countryCode = countryObject[0].altSpellings[0];
-    console.log(countryCode);
     return countryCode;
   } catch (err) {
     const html = `
@@ -80,11 +78,12 @@ paymentForm.addEventListener("submit", (e) => {
   $("#loading-overlay").fadeToggle(100);
 
   const walletDetails = walletCheckbox.checked;
+  console.log(walletDetails);
   const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
   const postData = {
     csrfmiddlewaretoken: csrfToken,
     client_secret: clientSecret,
-    wallet_details: walletDetails,
+    walletDetails: walletDetails,
   };
   const url = "/checkout/cache_checkout_data/";
   const countryName = $.trim(paymentForm.country.value);
@@ -142,9 +141,6 @@ paymentForm.addEventListener("submit", (e) => {
         });
     })
     .fail(() => {
-      console.log(
-        "Payment intent is failing in the js and no submitting the form"
-      );
-      // location.reload();
+      location.reload();
     });
 });
