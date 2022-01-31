@@ -45,27 +45,6 @@ card.addEventListener("change", (er) => {
   }
 });
 
-// Function to get the country code
-async function getCountryCode(country) {
-  try {
-    const res = await fetch(`https://restcountries.com/v3.1/name/${country}`);
-    if (!res.ok) throw new Error(`${country} not found please check spelling`);
-    let data = await res.json();
-    let countryObject = data;
-    countryCode = countryObject[0].altSpellings[0];
-    return countryCode;
-  } catch (err) {
-    const html = `
-            <span class="error-alert" role="alert">
-                <i class="fas fa-times"></i>
-            </span>
-            <span class="error-alert" >${err.error.message}</span>
-        `;
-
-    $(errorDiv).html(html);
-  }
-}
-
 // Handle form submit
 
 const paymentForm = document.getElementById("payment-form");
@@ -87,7 +66,7 @@ paymentForm.addEventListener("submit", (e) => {
   };
   const url = "/checkout/cache_checkout_data/";
   const countryName = $.trim(paymentForm.country.value);
-  let countryCode = getCountryCode(countryName);
+  let countryCode = countryName;
 
   $.post(url, postData)
     .done(() => {

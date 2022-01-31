@@ -513,16 +513,23 @@ footer li {
 	border: var(--border);
 }
 
+select,
+input[type=email],
+input[type=number],
 input[type=text] {
 	border-bottom: 1px solid var(--border-grey) !important;
 	box-shadow: 0 1px 0 0 var(--border-grey) !important;
 }
 
+select:focus,
+select:visited,
 input:focus,
+input[type=email]:focus,
 input[type=number]:focus,
 input[type=text]:focus {
 	border-bottom: 1px solid var(--highlight-color) !important;
 	box-shadow: 0 1px 0 0 var(--highlight-color) !important;
+	color: var(--text-color);
 }
 
 input[type="checkbox"] {
@@ -547,6 +554,25 @@ input[type="number"] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
+	margin: 0;
+}
+
+select,
+select option,
+select:focus {
+	display: flex !important;
+	outline: none;
+	border: none;
+	padding: 0;
+	font-family: var(--font-main);
+}
+
+select,
+select option { 
+	color: var(--dark-grey);
+}
+
+form .row {
 	margin: 0;
 }
 
