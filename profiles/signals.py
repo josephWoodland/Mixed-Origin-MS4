@@ -1,6 +1,6 @@
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from .models import Profile, PartnerProfile
+from .models import Profile, PartnerProfile, Wallet
 
 
 def createProfile(sender, instance, created, **kwargs):
@@ -21,5 +21,13 @@ def createPartner(sender, instance, created, **kwargs):
         partner = PartnerProfile.objects.create(partner=profile)
 
 
+def createWallet(sender, instance, created, **kwargs):
+
+    profile = instance
+    name = profile.first_name
+    wallet = Wallet.objects.create(owner=profile, name=name)
+
+
 post_save.connect(createPartner, sender=Profile)
+post_save.connect(createWallet, sender=Profile)
 post_save.connect(createProfile, sender=User)

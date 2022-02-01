@@ -500,6 +500,10 @@ footer li {
 	content: "*";
 }
 
+#div_id_country > label {
+	display: none;
+}
+
 #id_tags {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -574,6 +578,10 @@ select option {
 
 form .row {
 	margin: 0;
+}
+
+form div .error {
+	background-color: transparent !important;
 }
 
 @media only screen and (max-width: 600px) {

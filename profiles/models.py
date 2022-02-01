@@ -1,5 +1,8 @@
+from re import U
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 import uuid
 
 from django_countries.fields import CountryField
@@ -8,7 +11,8 @@ from django_countries.fields import CountryField
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=200, blank=True, null=True)
     second_name = models.CharField(max_length=200, blank=True, null=True)
     username = models.CharField(max_length=200, blank=True, null=True)
@@ -18,7 +22,8 @@ class Profile(models.Model):
         blank=False,
         upload_to="profiles/",
     )
-    partner_application = models.BooleanField(default=False, blank=True, null=True)
+    partner_application = models.BooleanField(
+        default=False, blank=True, null=True)
     is_partner = models.BooleanField(default=False, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(
@@ -42,7 +47,8 @@ class PartnerProfile(models.Model):
     company_name = models.CharField(max_length=50, blank=True, null=False)
     company_website = models.CharField(max_length=200, null=True, blank=False)
     company_short_bio = models.TextField(max_length=200, null=True, blank=True)
-    company_description = models.TextField(max_length=400, null=True, blank=False)
+    company_description = models.TextField(
+        max_length=400, null=True, blank=False)
     social_twitter = models.CharField(max_length=200, blank=True, null=True)
     social_linkedin = models.CharField(max_length=200, blank=True, null=True)
     social_youtube = models.CharField(max_length=200, blank=True, null=True)
@@ -57,7 +63,9 @@ class PartnerProfile(models.Model):
 
 
 class Wallet(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+
+    owner = models.OneToOneField(
+        Profile, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, blank=False, null=True)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)

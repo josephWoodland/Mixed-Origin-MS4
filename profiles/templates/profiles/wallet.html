@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 <header class="container banner">
 <h1>{{ profile.name }} Wallet</h1>
 </header>
-<section class="container center">
+<section class="container form">
     <form action="" method="POST">
         {% csrf_token %}
-        {% for field in form %}
-            
-        {% endfor %}
+            {{ form|crispy }}
+            <input type="submit" value="Save" class="btn">
+            <a href="{% url 'profile' %}" class="btn">Back</a>
     </form>
 </section>
 {% endblock %}

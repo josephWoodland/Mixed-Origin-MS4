@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -37,7 +37,8 @@ def user_profile(request):
     if request.method == "POST":
         form = request.POST
         if ("partner_application") in form:
-            profile = Profile.objects.filter(id=id).update(partner_application=True)
+            profile = Profile.objects.filter(
+                id=id).update(partner_application=True)
             messages.success(request, "Your application request has been sent")
             return redirect("profile")
         else:
@@ -135,13 +136,31 @@ def delete_profile(request, pk):
 
 @login_required()
 def user_wallet(request, pk):
+
     template = "profiles/wallet.html"
     profile = Profile.objects.get(id=pk)
-    form = WalletForm()
+    wallet = Wallet.objects.get(owner=profile)
+
+    print("This is the wallet: ", wallet)
+
+    if wallet:
+        form = WalletForm(instance=wallet)
+    else:
+        form = WalletForm()
+
+    if request.method == "POST":
+        profile = profile
+        form = WalletForm(request.POST, instance=wallet)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "You have saved your wallet data.")
+
+        return redirect('profile')
 
     context = {
         "form": form,
         "profile": profile,
+        "wallet": wallet
     }
 
     return render(request, template, context)
