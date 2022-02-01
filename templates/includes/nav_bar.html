@@ -8,8 +8,8 @@
         <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
         <li><a {% if '/product/' in request.path %} class="active"{% endif %} href="{% url 'products' %}">products</a></li>
         <li><a {% if '/partners/' in request.path %} class="active"{% endif %} href="{% url 'partners' %}">partners</a></li>
-        <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="#">blog</a></li>
-        <li><a {% if '/contact/' in request.path %} class="active"{% endif %} href="#">about us</a></li>
+        <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="{% url 'blog' %}">blog</a></li>
+        <li><a {% if '/contact/' in request.path %} class="active"{% endif %} href="{% url 'about' %}">about us</a></li>
         {% if request.user.is_authenticated %}
             <li><a {% if '/profile/' in request.path %} class="active"{% endif %} href="{% url 'profile' %}">profile</a></li>
         {% endif %} 
@@ -40,8 +40,8 @@
     <li><a {% if '/' == request.path %} class="active"{% endif %} href="{% url 'home' %}">home</a></li>
     <li><a {% if '/product/' in request.path %} class="active"{% endif %} href="{% url 'products' %}">products</a></li>
     <li><a {% if '/partners/' in request.path %} class="active"{% endif %} href="{% url 'partners' %}">partners</a></li>
-    <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="#">blog</a></li>
-    <li><a {% if '/contact/' in request.path %} class="active"{% endif %} href="#">contact us</a></li>
+    <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="{% url 'blog' %}">blog</a></li>
+    <li><a {% if '/contact/' in request.path %} class="active"{% endif %} href="{% url 'about' %}">contact us</a></li>
     {% if request.user.is_authenticated %}
         <li><a {% if '/profile/' in request.path %}class="active"{% endif %} href="{% url 'profile' %}">profile</a></li>
     {% endif %}
