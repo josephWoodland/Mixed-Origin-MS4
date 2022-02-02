@@ -359,6 +359,7 @@ footer li {
 
 .card {
 	min-height: 400px;
+	margin: 0;
 }
 
 .card-action {
@@ -872,6 +873,13 @@ form div .error {
 .stripe-style-input::placeholder {
 	color: #aab7c4;
 }
+
+/* /////////////////////////// Order History ///////////////////// */
+
+.order-history-item {
+	justify-content: space-between !important;
+}
+
 
 /* /////////////////////////// Checkout Success ///////////////////// */
 

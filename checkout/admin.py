@@ -16,33 +16,28 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderItemAdmin,)
 
     readonly_fields = (
-        "tracking_number",
-        "order_number",
+        "id",
         "delivery_costs",
         "sub_total",
         "grand_total",
         "created",
-        "id",
     )
 
     list_display = (
-        "tracking_number",
-        "email",
-        "created",
-        "postcode",
+        "id",
         "full_name",
         "created",
-        "id",
+        "email",
+        "postcode",
     )
 
     list_display_links = (
-        "tracking_number",
+        "id",
         "email",
         "created",
     )
 
     search_fields = (
-        "tracking_number",
         "full_name",
         "email",
         "postcode",

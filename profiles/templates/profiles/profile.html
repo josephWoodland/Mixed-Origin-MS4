@@ -18,6 +18,7 @@
 {% endif %}
 <header class="container banner">
     <h3>{{ profile.username|title }}</h3>
+    {{ orders }}
 </header>
 <section class="container">
     <div class="row">
@@ -32,6 +33,7 @@
             <div class="flex-wrapper">
                 <p class="active margin-right">{{ profile.first_name }} {{ profile.second_name }}</p>
                 <a class="tooltipped" data-position="top" data-tooltip="View you payment details" href="{% url 'wallet' profile.id %}"><i class="fas fa-wallet"></i></a>
+                <a class="tooltipped" data-position="top" data-tooltip="View you previous orders" href="{% url 'orders' profile.id %}"><i class="fas fa-archive"></i></a>
             </div>
             <div class="profile-details col s12 m8">
                 <div class="flex-wrapper">

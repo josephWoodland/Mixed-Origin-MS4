@@ -4,7 +4,7 @@ from profiles.views import Profile
 from products.views import Product
 from django_countries.fields import CountryField
 from django.db.models import Sum
-from .helper import order_number_generator
+
 import uuid
 
 # Create your models here.
@@ -14,7 +14,6 @@ class Order(models.Model):
     profile = models.ForeignKey(
         Profile, null=True, blank=True, on_delete=models.SET_NULL, related_name="orders"
     )
-    order_number = models.CharField(max_length=20, default=order_number_generator)
     full_name = models.CharField(max_length=200, null=False, blank=False)
     email = models.EmailField(max_length=200, null=False, blank=False)
     phone_number = models.IntegerField(null=True, blank=False)
@@ -34,22 +33,15 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, null=False, default=0
     )
     created = models.DateTimeField(auto_now_add=True)
-    tracking_number = models.CharField(max_length=40, null=True, blank=True)
     stripe_pid = models.CharField(max_length=200, null=True, blank=True)
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
 
-    def tracking_number(self, *args, **kwargs):
-        name_id = self.full_name[:2]
-        postcode_id = self.postcode[:2]
-        order_number = str(self.order_number)
-        self.tracking_number = name_id + postcode_id + order_number
-        super().save(*args, **kwargs)
-
     def total(self):
 
-        self.sub_total = self.items.aggregate(Sum("item_total"))["item_total__sum"]
+        self.sub_total = self.items.aggregate(Sum("item_total"))[
+            "item_total__sum"]
 
         # Fixes a bug when deleting orders from the Admin
         if self.sub_total is None:
@@ -65,7 +57,7 @@ class Order(models.Model):
         self.save()
 
     def __str__(self):
-        return str(self.order_number)
+        return str(self.id)
 
 
 class OrderItem(models.Model):

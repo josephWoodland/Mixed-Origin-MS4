@@ -21,7 +21,6 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         walletDetails = request.POST.get("walletDetails")
 
-        print("----- Wallet Save ----- : ", walletDetails)
         stripe.PaymentIntent.modify(
             pid,
             metadata={
@@ -113,7 +112,7 @@ def checkout(request):
 
             request.session["walletDetails"] = "walletDetails" in request.POST
 
-            return redirect(reverse("checkout_success", args=[order.order_number]))
+            return redirect(reverse("checkout_success", args=[order.id]))
 
         else:
             messages.error(
@@ -154,7 +153,7 @@ def checkout(request):
 def checkout_success(request, pk):
     template = "checkout/checkout_success.html"
     walletDetails = request.session.get("walletDetails")
-    order = get_object_or_404(Order, order_number=pk)
+    order = get_object_or_404(Order, id=pk)
     profile = order.profile
     messages.success(request, "Your order has been processed")
 

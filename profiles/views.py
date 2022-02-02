@@ -162,3 +162,16 @@ def user_wallet(request, pk):
     }
 
     return render(request, template, context)
+
+
+def orders(request, pk):
+    template = 'profiles/orders.html'
+    profile = Profile.objects.get(id=pk)
+    orders = profile.orders.all()
+
+    context = {
+        "profile": profile,
+        "orders": orders,
+    }
+
+    return render(request, template, context)

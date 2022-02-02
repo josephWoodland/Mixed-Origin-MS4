@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="container banner">
+    <h3>Order History</h3>
+</header>
+<section class="container form">
+    <div class="row no-margin">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tracking Number</th>
+                    <th>Date</th>
+                    <th>Items</th>
+                    <th>Order Total</th>
+                </tr>        
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>
+                        <a href="/" title="{{ order.id }}">
+                            {{ order.id|truncatechars:8 }}
+                        </a>
+                    </td>
+                    <td>
+                        {{ order.created }}
+                    </td>
+                    <td>
+                        {% for item in order.items.all %}
+                            <div class="flex-wrapper order-history-item">
+                                <p class="bold small-text"><a href="{% url 'view-product' item.product.id %}">
+                                    {{ item.product.name|truncatechars:8 }}
+                                </a>
+                                </p>
+                                <p class="item-amount small-text">X {{ item.quantity }}</p>
+                            </div>
+
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ order.grand_total }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
