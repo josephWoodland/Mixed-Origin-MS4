@@ -7,8 +7,6 @@ from django.db.models import Sum
 
 import uuid
 
-# Create your models here.
-
 
 class Order(models.Model):
     profile = models.ForeignKey(

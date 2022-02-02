@@ -36,8 +36,7 @@ def user_profile(request):
     if request.method == "POST":
         form = request.POST
         if ("partner_application") in form:
-            profile = Profile.objects.filter(
-                id=id).update(partner_application=True)
+            profile = Profile.objects.filter(id=id).update(partner_application=True)
             messages.success(request, "Your application request has been sent")
             return redirect("profile")
         else:

@@ -32,7 +32,7 @@
             </div>
             <div class="flex-wrapper">
                 <p class="active margin-right">{{ profile.first_name }} {{ profile.second_name }}</p>
-                <a class="tooltipped" data-position="top" data-tooltip="View you payment details" href="{% url 'wallet' profile.id %}"><i class="fas fa-wallet"></i></a>
+                <a class="tooltipped" data-position="top" data-tooltip="View you payment details" href="{% url 'wallet' profile.id %}"><i class="fas fa-wallet margin-right"></i></a>
                 <a class="tooltipped" data-position="top" data-tooltip="View you previous orders" href="{% url 'orders' profile.id %}"><i class="fas fa-archive"></i></a>
             </div>
             <div class="profile-details col s12 m8">

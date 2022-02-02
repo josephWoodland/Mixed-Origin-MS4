@@ -5,7 +5,9 @@ from .models import Profile, PartnerProfile, Wallet
 
 class ProfileForm(forms.ModelForm):
     class Meta:
+
         model = Profile
+
         fields = [
             "first_name",
             "second_name",
@@ -66,6 +68,7 @@ class WalletForm(forms.ModelForm):
     class Meta:
         model = Wallet
         fields = [
+            "phone_number",
             "street_address1",
             "street_address2",
             "town_or_city",

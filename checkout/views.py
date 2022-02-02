@@ -48,10 +48,7 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     cart = request.session.get("cart", {})
-    form = OrderForm()
     user = request.user
-    profile = None
-    wallet = None
 
     if user:
 
@@ -142,6 +139,32 @@ def checkout(request):
 
     client_secret = intent.client_secret
 
+    if request.user.is_authenticated:
+        try:
+            profile = Profile.objects.get(user=request.user)
+            wallet = Wallet.objects.get(owner=profile)
+            full_name = profile.first_name + " " + profile.second_name
+
+            form = OrderForm(
+                instance={
+                    "full_name": full_name,
+                    "email": profile.email,
+                    "phone_number": wallet.phone_number,
+                    "country": wallet.country,
+                    "postcode": wallet.postcode,
+                    "town_or_city": wallet.town_or_city,
+                    "street_address1": wallet.street_address1,
+                    "street_address2": wallet.street_address2,
+                    "county": wallet.county,
+                }
+            )
+
+        except Profile.DoesNotExist:
+            form = OrderForm()
+
+    else:
+        form = OrderForm()
+
     context = {
         "cart": cart,
         "form": form,
@@ -164,12 +187,12 @@ def checkout_success(request, pk):
     if walletDetails:
 
         wallet_data = {
-            'country': order.country,
-            'postcode': order.postcode,
-            'town_or_city': order.town_or_city,
-            'street_address1': order.street_address1,
-            'street_address2': order.street_address2,
-            'county': order.county,
+            "country": order.country,
+            "postcode": order.postcode,
+            "town_or_city": order.town_or_city,
+            "street_address1": order.street_address1,
+            "street_address2": order.street_address2,
+            "county": order.county,
         }
 
         profile_wallet_form = WalletForm(wallet_data, instance=wallet)
@@ -193,12 +216,16 @@ def checkout_success(request, pk):
 def previous_order(request, pk):
     order = get_object_or_404(Order, id=pk)
     profile = order.profile
-    template = 'checkout/checkout_success.html'
+    template = "checkout/checkout_success.html"
     date = order.created.strftime("%Y-%m-%d")
-    messages.info(request, (
-        f'This is a previous order, \
-            conformation email was sent on { date }.'
-    ))
+
+    messages.info(
+        request,
+        (
+            f"This is a previous order, \
+            conformation email was sent on { date }."
+        ),
+    )
 
     context = {
         "order": order,
