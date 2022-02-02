@@ -90,5 +90,16 @@
         {% endif %}
     </div>
 </section>
+<script>
+    // Function to catch any late update to the cart due to slow internet connection 
+    window.onload = () => {
+        if(!window.location.hash) {
+          window.location = window.location + '#cart';
+          setTimeout(() => {
+              window.location.reload();
+          }, 2000);
+        }
+      }
 
+</script>
 {% endblock %}
