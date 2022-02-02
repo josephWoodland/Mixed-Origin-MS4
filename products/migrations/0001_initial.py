@@ -8,29 +8,52 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('name', models.CharField(max_length=200)),
-                ('description', models.TextField()),
-                ('in_stock', models.BooleanField(default=True)),
-                ('stock_numbers', models.IntegerField(blank=True, default=0, null=True)),
-                ('price', models.DecimalField(decimal_places=2, default=0, max_digits=7)),
-                ('image', models.ImageField(upload_to='')),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False, unique=True)),
+                ("name", models.CharField(max_length=200)),
+                ("description", models.TextField()),
+                ("in_stock", models.BooleanField(default=True)),
+                (
+                    "stock_numbers",
+                    models.IntegerField(blank=True, default=0, null=True),
+                ),
+                (
+                    "price",
+                    models.DecimalField(decimal_places=2, default=0, max_digits=7),
+                ),
+                ("image", models.ImageField(upload_to="")),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                        unique=True,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('name', models.CharField(max_length=200)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False, unique=True)),
+                ("name", models.CharField(max_length=200)),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                        unique=True,
+                    ),
+                ),
             ],
         ),
     ]

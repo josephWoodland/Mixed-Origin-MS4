@@ -1,8 +1,6 @@
 from re import U
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 import uuid
 
 from django_countries.fields import CountryField
@@ -65,7 +63,8 @@ class PartnerProfile(models.Model):
 class Wallet(models.Model):
 
     owner = models.OneToOneField(
-        Profile, on_delete=models.CASCADE, null=True, blank=True)
+        Profile, on_delete=models.CASCADE, null=True, blank=True
+    )
     name = models.CharField(max_length=200, blank=False, null=True)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)

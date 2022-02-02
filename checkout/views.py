@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
+from .forms import OrderForm
+from .models import Order, OrderItem
 from django.conf import settings
 from django.contrib import messages
 from products.models import Product
-from profiles.models import Profile
-from .forms import OrderForm
-from .models import Order, OrderItem
+from profiles.forms import WalletForm
+from profiles.models import Profile, Wallet
 from cart.contexts import cart_contents
 
 import json
@@ -153,8 +155,27 @@ def checkout(request):
 def checkout_success(request, pk):
     template = "checkout/checkout_success.html"
     walletDetails = request.session.get("walletDetails")
+    profile = Profile.objects.get(user=request.user)
+    wallet = Wallet.objects.get(owner=profile)
     order = get_object_or_404(Order, id=pk)
-    profile = order.profile
+    order.profile = profile
+    order.save()
+
+    if walletDetails:
+
+        wallet_data = {
+            'country': order.country,
+            'postcode': order.postcode,
+            'town_or_city': order.town_or_city,
+            'street_address1': order.street_address1,
+            'street_address2': order.street_address2,
+            'county': order.county,
+        }
+
+        profile_wallet_form = WalletForm(wallet_data, instance=wallet)
+        if profile_wallet_form.is_valid():
+            profile_wallet_form.save()
+
     messages.success(request, "Your order has been processed")
 
     if "cart" in request.session:
@@ -163,6 +184,26 @@ def checkout_success(request, pk):
     context = {
         "profile": profile,
         "order": order,
+    }
+
+    return render(request, template, context)
+
+
+@login_required()
+def previous_order(request, pk):
+    order = get_object_or_404(Order, id=pk)
+    profile = order.profile
+    template = 'checkout/checkout_success.html'
+    date = order.created.strftime("%Y-%m-%d")
+    messages.info(request, (
+        f'This is a previous order, \
+            conformation email was sent on { date }.'
+    ))
+
+    context = {
+        "order": order,
+        "previous_order": True,
+        "profile": profile,
     }
 
     return render(request, template, context)

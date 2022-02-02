@@ -19,7 +19,7 @@
                 {% for order in orders %}
                 <tr>
                     <td>
-                        <a href="/" title="{{ order.id }}">
+                        <a href="{% url 'previous_order' order.id %}" title="{{ order.id }}">
                             {{ order.id|truncatechars:8 }}
                         </a>
                     </td>
@@ -39,7 +39,7 @@
                         {% endfor %}
                     </td>
                     <td>
-                        {{ order.grand_total }}
+                        £{{ order.grand_total }}
                     </td>
                 </tr>
                 {% endfor %}

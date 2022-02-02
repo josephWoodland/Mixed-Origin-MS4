@@ -2,8 +2,12 @@
 {% block content %}
 
 <header class="container banner">
-    <h3>Thank you for your purchase</h3>
-    <p>Your order information has been sent to <strong>{{ order.email }}</strong>.</p>
+    {% if previous_order %}
+        <a href="{% url 'orders' profile.id %}" class="btn" style="width: 10rem;">Go Back</a>
+    {% else %}
+        <h3>Thank you for your purchase</h3>
+        <p>Your order information has been sent to <strong>{{ order.email }}</strong>.</p>
+    {% endif %}
 </header>
 <section class="container form row">
 <div class="col s12 m10 offset-m1">
@@ -28,7 +32,7 @@
                     {{ item.product.name }}
                 </a>
                 </h3>
-                <h3 class="order-item-details small-text bold">X {{ item.quantity }} &#64; {{ item.product.price }}</h3>
+                <h3 class="order-item-details small-text bold">X {{ item.quantity }} &#64; £{{ item.product.price }}</h3>
             </div>
         {% endfor %}
     </div>

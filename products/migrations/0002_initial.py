@@ -9,24 +9,34 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('products', '0001_initial'),
-        ('profiles', '0001_initial'),
+        ("products", "0001_initial"),
+        ("profiles", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='owner',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='profiles.partnerprofile'),
+            model_name="product",
+            name="owner",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="profiles.partnerprofile",
+            ),
         ),
         migrations.AddField(
-            model_name='product',
-            name='owner_profile',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='profiles.profile'),
+            model_name="product",
+            name="owner_profile",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="profiles.profile",
+            ),
         ),
         migrations.AddField(
-            model_name='product',
-            name='tags',
-            field=models.ManyToManyField(blank=True, to='products.Tag'),
+            model_name="product",
+            name="tags",
+            field=models.ManyToManyField(blank=True, to="products.Tag"),
         ),
     ]

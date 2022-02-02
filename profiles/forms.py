@@ -25,7 +25,8 @@ class ProfileForm(forms.ModelForm):
             for fields in self.fields.items():
 
                 fields.widget.attrs.update(
-                    {"class": "input", "placeholder": placeholders})
+                    {"class": "input", "placeholder": placeholders}
+                )
 
 
 class PartnerProfileForm(forms.ModelForm):
@@ -57,7 +58,8 @@ class PartnerProfileForm(forms.ModelForm):
             for fields in self.fields.items():
 
                 fields.widget.attrs.update(
-                    {"class": "input", "placeholder": placeholders})
+                    {"class": "input", "placeholder": placeholders}
+                )
 
 
 class WalletForm(forms.ModelForm):

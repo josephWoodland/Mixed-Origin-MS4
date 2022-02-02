@@ -40,8 +40,7 @@ class Order(models.Model):
 
     def total(self):
 
-        self.sub_total = self.items.aggregate(Sum("item_total"))[
-            "item_total__sum"]
+        self.sub_total = self.items.aggregate(Sum("item_total"))["item_total__sum"]
 
         # Fixes a bug when deleting orders from the Admin
         if self.sub_total is None:

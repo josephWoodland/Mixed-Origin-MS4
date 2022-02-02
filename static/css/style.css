@@ -359,11 +359,14 @@ footer li {
 
 .card {
 	min-height: 400px;
-	margin: 0;
 }
 
 .card-action {
 	height: 4rem;
+}
+
+.card-margin {
+	margin: 0 2rem 0 0;
 }
 
 /* /////////////////////////// Product View ///////////////////// */

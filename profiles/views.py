@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 from .models import Profile, PartnerProfile, Wallet
 from .forms import ProfileForm, PartnerProfileForm, WalletForm
-from products.models import Product
 
 # Create your views here.
 
@@ -153,19 +152,16 @@ def user_wallet(request, pk):
             form.save()
             messages.success(request, "You have saved your wallet data.")
 
-        return redirect('profile')
+        return redirect("profile")
 
-    context = {
-        "form": form,
-        "profile": profile,
-        "wallet": wallet
-    }
+    context = {"form": form, "profile": profile, "wallet": wallet}
 
     return render(request, template, context)
 
 
+@login_required()
 def orders(request, pk):
-    template = 'profiles/orders.html'
+    template = "profiles/orders.html"
     profile = Profile.objects.get(id=pk)
     orders = profile.orders.all()
 
