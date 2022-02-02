@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, reverse
 from products.models import Product
 from django.contrib import messages
 
+import time
+
 
 # import tkinter to check the state of a checkbox
 
@@ -14,9 +16,9 @@ def cart(request):
 
 def add_to_cart(request, item_id):
     product = Product.objects.get(id=item_id)
-    quantity = int(request.POST.get("order-amount"))
+    quantity = request.POST.get("order-amount")
     current_stock = product.stock_numbers
-    new_stock = current_stock - quantity
+    new_stock = current_stock - int(quantity)
     product.stock_numbers = new_stock
 
     if new_stock == 0:
@@ -25,14 +27,17 @@ def add_to_cart(request, item_id):
     product.save()
 
     redirect_url = request.POST.get("redirect_url")
+
     cart = request.session.get("cart", {})
 
     if item_id in list(cart.keys()):
-        cart[item_id] += quantity
+        cart[item_id] += int(quantity)
     else:
-        cart[item_id] = quantity
+        cart[item_id] = int(quantity)
 
     request.session["cart"] = cart
+
+    time.sleep(3)
 
     return redirect(redirect_url)
 
@@ -49,7 +54,8 @@ def update_cart(request, pk):
     product.stock_numbers = current_stock
     product.save()
     cart[id] = new_amount
-    messages.success(request, f"You have updated { product.name } in your cart!")
+    messages.success(
+        request, f"You have updated { product.name } in your cart!")
 
     request.session["cart"] = cart
 
@@ -65,7 +71,8 @@ def delete_cart_item(request, pk):
     product.stock_numbers = current_stock + order_number
     product.save()
     del cart[id]
-    messages.success(request, f"You have deleted { product.name } from your cart!")
+    messages.success(
+        request, f"You have deleted { product.name } from your cart!")
     request.session["cart"] = cart
 
     return redirect(reverse("cart"))

@@ -4,6 +4,7 @@ from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.contrib import messages
 from products.models import Product
+from profiles.models import Profile
 from .forms import OrderForm
 from .models import Order, OrderItem
 from cart.contexts import cart_contents
@@ -47,6 +48,13 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     cart = request.session.get("cart", {})
     form = OrderForm()
+    user = request.user
+    profile = None
+    wallet = None
+
+    if user:
+
+        profile = Profile.objects.get(user=user)
 
     if not cart:
 
@@ -106,6 +114,7 @@ def checkout(request):
             request.session["walletDetails"] = "walletDetails" in request.POST
 
             return redirect(reverse("checkout_success", args=[order.order_number]))
+
         else:
             messages.error(
                 request,

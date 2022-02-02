@@ -40,6 +40,8 @@ h4 {
 	color: var(--highlight-color);
 }
 
+#btnCart:hover,
+nav > ul > li > a:hover,
 p a,
 p {
 	color: var(--text-grey);
@@ -56,12 +58,17 @@ nav {
 	box-shadow: none;
 }
 
+a {
+	color: var(--background-gold);
+}
+
 h3 a,
 nav a,
 nav ul a {
 	color: var(--text-grey);
 }
 
+a:hover,
 h3 a:hover,
 p a:hover,
 a p:hover {
@@ -98,11 +105,13 @@ label {
 	border-right: var(--border);
 }
 
+a .logo,
 .logo {
 	text-transform: capitalize;
 	font-family: var(--font-header);
 }
 
+a .logo,
 .logo {
 	color: var(--text-logo);
 }
@@ -436,6 +445,7 @@ footer li {
 	height: 40px;
 }
 
+
 .btn:hover {
 	background-color: var(--highlight-color);
 	box-shadow: none !important;
@@ -682,6 +692,7 @@ form div .error {
 	justify-content: space-evenly !important;
 	min-width: 220px;
 	max-width: 330px;
+	margin-top: 0;
 }
 
 .checkout-card h3 {
@@ -813,6 +824,24 @@ form div .error {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.popup-details{
+	display: flex;
+	width: 200px;
+	height: 150px; 
+}
+
+.popup-product {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 1rem;
+}
+
+.popup-qty {
+	height: 30px !important;
+	margin: 0 !important;
 }
 
 /* /////////////////////////// Stripe ///////////////////// */

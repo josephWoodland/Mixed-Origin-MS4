@@ -45,7 +45,7 @@
                                             <button type="submit" class="btn" data-product_id="{{ item.product.id }}" id="updateBtn">Update</button>
                                         </div>
                                         <p id="amount-alert" class="hidden no-margin">Only {{ item.product.stock_numbers|add:item.quantity }} in stock</p>
-                                        <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}" id="hiddenUrl" class="hidden">
                                     </form>
                                 </div>
                                 <div class="item-save">

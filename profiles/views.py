@@ -141,8 +141,6 @@ def user_wallet(request, pk):
     profile = Profile.objects.get(id=pk)
     wallet = Wallet.objects.get(owner=profile)
 
-    print("This is the wallet: ", wallet)
-
     if wallet:
         form = WalletForm(instance=wallet)
     else:

@@ -175,7 +175,8 @@ const cartNotificationSeen = document.getElementById("cartNotificationSeen");
 const productTotal = document.getElementById("productTotal");
 const cartTotal = document.getElementById("cartTotal");
 const productPriceElement = document.getElementById("productPrice");
-const btnCart = document.getElementById("btnCart");
+const popupBtnCart = document.getElementById("btnCart");
+const hiddenTotal = document.getElementById("hiddenTotal");
 
 // function to trigger the submit event on a form
 function submitForm(form) {
@@ -192,55 +193,62 @@ function setZIndex(el) {
 }
 
 // function to round to 2 decimal places
-function round(num, decimal) {
-  return Number(Math.round(num + "e" + decimal) + "e-" + decimal).toFixed(
-    decimal
-  );
+function round(num) {
+  const price = Number(Math.round(num + "e" + 2) + "e-" + 2).toFixed(2);
+  console.log(price);
+  return Number(price);
 }
 
+// update the cart notification in the nav bar
+function upDateCartNotification(itemQty) {
+  if (cartNotificationFirst) {
+    cartNotificationFirst.classList.remove("transparent");
+  }
+
+  if (hiddenCartNumber.innerText) {
+    curCartAmount = hiddenCartNumber.innerText;
+  } else {
+    curCartAmount = 0;
+  }
+
+  itemQuantity.innerText = itemQty;
+  let newCartAmount = Number(curCartAmount) + Number(itemQty);
+
+  if (cartNotificationSeen) {
+    cartNotificationSeen.innerText = newCartAmount;
+  } else {
+    cartNotificationFirst.innerText = newCartAmount;
+  }
+}
+
+// Update the cart information in the popup
 if (addToCart) {
   addToCart.addEventListener("click", (e) => {
     e.preventDefault();
+    // Get the order Item total and the product price and work out the total
+    let itemQty = numberInputBox.value;
+    let productPrice = parseFloat(productPriceElement.innerText);
+    let productTotalPrice = itemQty * productPrice;
 
-    if (cartNotificationFirst) {
-      cartNotificationFirst.classList.remove("transparent");
-    }
+    // Get the current cart total
+    let curCartTotal = Number(hiddenTotal.innerText);
+    // Update the cart notification number
+    upDateCartNotification(itemQty);
 
-    if (hiddenCartNumber.innerText) {
-      curCartAmount = parseInt(hiddenCartNumber.innerText);
-    } else {
-      curCartAmount = 0;
-    }
+    // Work out the new total
+    let newTotal = curCartTotal + productTotalPrice;
 
-    itemQty = parseInt(numberInputBox.value);
-    productPrice = parseFloat(productPriceElement.innerText);
-    productTotalPrice = itemQty * productPrice;
-
-    if (productTotal) {
-      productTotal.innerText = round(productTotalPrice, 2);
-    }
-
-    if (cartTotal) {
-      curCartTotal = parseFloat(round(cartTotal.innerText, 2));
-      newTotal = curCartTotal + parseFloat(round(productTotalPrice, 2));
-      cartTotal.innerText = round(newTotal, 2);
-    }
-
-    itemQuantity.innerText = itemQty;
-    newCartAmount = curCartAmount + itemQty;
-
-    if (cartNotificationSeen) {
-      cartNotificationSeen.innerText = newCartAmount;
-    } else {
-      cartNotificationFirst.innerText = newCartAmount;
-    }
+    // Update the HTML
+    cartTotal.innerText = round(newTotal);
+    console.log(newTotal);
+    productTotal.innerText = round(productTotalPrice);
 
     setZIndex(popupCart);
     fadeIn(popupCart);
+    submitForm(form);
 
     setTimeout(() => {
       fadeOut(popupCart);
-      submitForm(form);
       setZIndex(popupCart);
     }, 2000);
   });

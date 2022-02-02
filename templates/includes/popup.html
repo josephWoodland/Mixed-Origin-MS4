@@ -1,51 +1,46 @@
 {% load mathfilters %}
 
 <div id="popup" class="row cart-popup">
+  <div id="hiddenTotal" class="hidden">{{ grand_total }}</div>
     <div class="col m12">
-      <div class="card">
+      <div class="card no-margin">
         <div class="card-content">
           <span class="card-title">Added to Cart</span>
           <div class="popup-item">
+            <h3 class="small-text no-margin">
+                {{ product.name }}
+            </h3>
+            <div class="popup-details">
               <div class="image-container">
-                  <img width="100px" src="{{ product.image.url }}" alt="Image for {{ product.name }}">
+                  <img width="150px" src="{{ product.image.url }}" alt="Image for {{ product.name }}">
               </div>
-              <div class="popup-details">
-                  <h3 class="small-text">
-                      {{ product.name }}
-                  </h3>
-                  <h3 class="small-text">
-                      Qty: <h3 id="itemQuantity" class="small-text">
-                        
-                      </h3> 
-                  </h3>
-                  <h3 class="small-text bold">
-                      £{{ product.price }}
-                  </h3>
-              </div>
-              <div class="sub-total">
-                <h3 class="small-text">
-                    Cart Total: 
+              <div class="popup-product">
+                <h3 class="small-text flex-wrapper popup-qty">
+                    Qty: <span id="itemQuantity" class="small-text margin-left bold"></span> 
                 </h3>
-                {% if not total %}
                 <h3 class="small-text bold">
-                    £
-                    <strong id="productTotal"></strong>
-                  </h3>
+                    £{{ product.price }}
                 </h3>
-                {% else %}
-                <h3 class="small-text bold">
-                  £<strong  id="cartTotal">
-                  </strong>
-                  
-                </h3>
-                {% endif %}
               </div>
+            </div>
+            <div class="flex-wrapper column">
+              <h3 class="small-text">
+                  Adding £
+                  <strong id="productTotal"></strong>
+                  to the cart.
+              </h3>
+              </h3>
+              <h3 class="small-text">
+                Cart Total: 
+                £<strong  id="cartTotal"></strong>
+              </h3>
+            </div>
           </div>
         </div>
         <div class="card-action flex-wrapper">
           {% if '/cart/' in request.path %}
           {% else %}
-          <a href="{% url 'add-to-cart' product.id %}" id="btnCart" class="btn margin-right">cart</a>
+          <a href="{% url 'cart'  %}" id="btnCart" class="btn margin-right">cart</a>
           {% endif %}
         </div>
       </div>

@@ -78,7 +78,6 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-
 ROOT_URLCONF = "mixed.urls"
 
 CRISPY_TEMPLATE_PACK = "materialize_css_forms"

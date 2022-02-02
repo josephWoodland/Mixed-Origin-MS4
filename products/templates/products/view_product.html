@@ -27,7 +27,7 @@
                         <button class="btn product-quantity" id="btn-plus"><i class="fas fa-plus"></i></button>
                     </div>
                     <p id="amount-alert" class="hidden no-margin">Only {{ product.stock_numbers }} in stock</p>
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
+                    <input id="hiddenUrl" type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
                     <button id="addToCart" type="submit" class="btn">Add to cart</button>
                 </form>
                 {% else %}
