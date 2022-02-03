@@ -1,0 +1,26 @@
+Hi {{ partner.name }}, 
+
+We have taken payment for an order of:
+
+{% for item in order.items %}
+    Product: {{ item.name }} Quantity: {{ item.amount }}
+{% endfor }
+
+To be shipped to:
+
+{{ order.full_name }}
+{{ order.street_address1 }}
+{{ order.town_or_city }}
+{{ order.country }}
+{{ order.postcode }}
+
+The customer contact details are 
+Phone: {{ order.phone_number }}
+Email: {{ profile.email }}
+
+Any problems please contact us on {{ contact.email }}
+Using the order ID in the subject header
+
+Thank you for all your hard work. 
+
+Mixed Origin

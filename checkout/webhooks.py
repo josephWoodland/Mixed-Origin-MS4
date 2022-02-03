@@ -16,13 +16,12 @@ def webhook(request):
     wh_secret = settings.STRIPE_WH_SECRET
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
-    payload = request.body.decode('utf-8')
+    payload = request.body.decode("utf-8")
     sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
     event = None
 
     try:
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, secret=wh_secret)
+        event = stripe.Webhook.construct_event(payload, sig_header, secret=wh_secret)
 
     except ValueError as e:
         # Invalid payload
