@@ -9,4 +9,5 @@ https://auth0.com/blog/image-processing-in-python-with-pillow/#Changing-Image-Ty
 
 https://stackoverflow.com/questions/67712512/django-save-image-in-different-formats-using-pillow
 
-Look at the cart link in the popupbox
+# Test
+Tested the payment process if the internet cuts out

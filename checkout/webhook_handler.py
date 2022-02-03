@@ -1,6 +1,8 @@
+from cProfile import Profile
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from products.models import Product
+from profiles.models import Profile, Wallet
 from .models import Order, OrderItem
 
 import json
@@ -8,6 +10,7 @@ import time
 
 
 class StripeWH_Handler:
+
     def __init__(self, request):
         self.request = request
 
@@ -32,7 +35,27 @@ class StripeWH_Handler:
             if value == "":
                 shipping_details.address[field] = None
 
+        profile = None
+        username = intent.metadata.username
+
+        if username != 'AnonymousUser':
+            profile = Profile.objects.get(username=username)
+            wallet = Wallet.objects.get(owner=profile)
+            full_name = profile.first_name + " " + profile.second_name
+
+            if walletDetails:
+                wallet.name = full_name
+                wallet.phone_number = shipping_details.phone
+                wallet.country = shipping_details.address.country
+                wallet.postcode = shipping_details.address.postal_code
+                wallet.town_or_city = shipping_details.address.city
+                wallet.street_address1 = shipping_details.address.line1
+                wallet.street_address2 = shipping_details.address.line2
+                wallet.county = shipping_details.address.state
+                wallet.save()
+
         order_exists = False
+
         attempt = 1
         while attempt <= 5:
 
@@ -71,6 +94,7 @@ class StripeWH_Handler:
 
                 Order.objects.create(
                     full_name__iexact=shipping_details.name,
+                    user_profile=profile,
                     email__iexact=billing_details.email,
                     phone_number__iexact=shipping_details.phone,
                     country=shipping_details.address.country,
@@ -95,7 +119,9 @@ class StripeWH_Handler:
                     )
 
                     order_item.save()
+
             except Exception as e:
+                print(e)
                 if order:
                     order.delete()
                 return HttpResponse(

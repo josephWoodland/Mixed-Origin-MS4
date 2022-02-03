@@ -146,7 +146,7 @@ def checkout(request):
             full_name = profile.first_name + " " + profile.second_name
 
             form = OrderForm(
-                instance={
+                initial={
                     "full_name": full_name,
                     "email": profile.email,
                     "phone_number": wallet.phone_number,
