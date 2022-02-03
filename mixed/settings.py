@@ -226,14 +226,14 @@ STRIPE_CURRENCY = "gbp"
 
 # Email set up
 
-
-if 'DEVELOPMENT' in os.environ:
-    EMAIL_BACKEND = 'django.core.mail.beckends.console.EmailBackend'
+print(os.environ)
+if 'VIRTUAL_ENV' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = "order@mixed-origin.com"
 
 
 else:
-    EMAIL_BACKEND = 'django.core.mail.beckends.smtp.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
     EMAIL_HOST = 'smtp.gmail.com'
