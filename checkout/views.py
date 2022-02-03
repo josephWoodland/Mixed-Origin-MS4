@@ -1,3 +1,4 @@
+from black import nullcontext
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
@@ -50,12 +51,10 @@ def checkout(request):
     cart = request.session.get("cart", {})
     user = request.user
 
-    if user:
-
-        profile = Profile.objects.get(user=user)
+    if user.is_authenticated:
+        profile = get_object_or_404(Profile, user=user)
 
     if not cart:
-
         messages.error(request, "You have nothing in your cart!")
         return redirect("home")
 
@@ -178,11 +177,21 @@ def checkout(request):
 def checkout_success(request, pk):
     template = "checkout/checkout_success.html"
     walletDetails = request.session.get("walletDetails")
-    profile = Profile.objects.get(user=request.user)
-    wallet = Wallet.objects.get(owner=profile)
-    order = get_object_or_404(Order, id=pk)
-    order.profile = profile
-    order.save()
+    user = request.user
+
+    if user.is_authenticated:
+
+        profile = Profile.objects.get(user=request.user)
+        wallet = Wallet.objects.get(owner=profile)
+        order = get_object_or_404(Order, id=pk)
+        order.profile = profile
+        order.save()
+
+    else:
+
+        profile = user
+        order = get_object_or_404(Order, id=pk)
+        order.save()
 
     if walletDetails:
 

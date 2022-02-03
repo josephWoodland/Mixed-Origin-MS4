@@ -7,7 +7,7 @@ from profiles.models import Profile, Wallet
 from .models import Order, OrderItem
 from django.conf import settings
 
-
+import uuid
 import json
 import time
 
@@ -106,13 +106,16 @@ class StripeWH_Handler:
 
         else:
             order = None
+
             try:
+                id_number = uuid.uuid4()
+                id = str(id_number)
 
                 Order.objects.create(
-                    full_name__iexact=shipping_details.name,
-                    user_profile=profile,
-                    email__iexact=billing_details.email,
-                    phone_number__iexact=shipping_details.phone,
+                    full_name=shipping_details.name,
+                    profile=profile,
+                    email=billing_details.email,
+                    phone_number=shipping_details.phone,
                     country=shipping_details.address.country,
                     postcode=shipping_details.address.postal_code,
                     town_or_city=shipping_details.address.city,
@@ -121,6 +124,7 @@ class StripeWH_Handler:
                     county=shipping_details.address.state,
                     grand_total=grand_total,
                     stripe_pid=pid,
+                    id=id,
                 )
 
                 for item_id, quantity in json.loads(cart).items():
@@ -137,7 +141,7 @@ class StripeWH_Handler:
                     order_item.save()
 
             except Exception as e:
-                print(e)
+                print("This is the error", e)
                 if order:
                     order.delete()
                 return HttpResponse(

@@ -26,8 +26,9 @@
                                     <input type="checkbox" name="walletDetails" id="id_walletDetails" checked>
                                 </label>
                             {% else %}
-                                <a href="{% url 'account_logout' %}" class="nav-login">Logout</a>
-                                <a href="{% url 'account_login' %}" class="nav-login">Login</a>
+                            <p>Already have an account
+                              <a href="{% url 'account_login' %}"> Login</a>
+                            </p>
                             {% endif %}
                         </div>
                         <hr>

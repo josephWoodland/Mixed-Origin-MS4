@@ -56,8 +56,14 @@ paymentForm.addEventListener("submit", (e) => {
   $("#submit-button").attr("disabled", true);
   $("#loading-overlay").fadeToggle(100);
 
-  const walletDetails = walletCheckbox.checked;
-  console.log(walletDetails);
+  let walletDetails;
+
+  if (walletCheckbox) {
+    walletDetails = walletCheckbox.checked;
+  } else {
+    walletDetails = false;
+  }
+
   const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
   const postData = {
     csrfmiddlewaretoken: csrfToken,
