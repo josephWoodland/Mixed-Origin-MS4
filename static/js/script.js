@@ -253,3 +253,25 @@ if (addToCart) {
     }, 2000);
   });
 }
+
+// Dropdown menu
+
+const products = document.getElementById("products");
+const dropdown = document.getElementById("dropdown");
+
+products.addEventListener("mouseenter", () => {
+  dropdown.style.display = "grid";
+});
+
+products.addEventListener("mouseleave", () => {
+  dropdown.style.display = "none";
+});
+
+if (dropdown) {
+  dropdown.addEventListener("mouseenter", () => {
+    dropdown.style.display = "grid";
+  });
+  dropdown.addEventListener("mouseleave", () => {
+    dropdown.style.display = "none";
+  });
+}

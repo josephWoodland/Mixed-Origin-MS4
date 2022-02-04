@@ -120,6 +120,21 @@ a .logo,
 	text-transform: uppercase;
 }
 
+#dropdown {
+	position: absolute;
+	display: none;
+	grid-template-columns: 1fr 1fr 1fr;
+	text-align: left;
+	background-color: var(--background-grey);
+	padding: 1rem;
+}
+
+.dropdown-link{
+	height: 3rem;
+	background-color: var(--background-grey) !important;
+	padding: 0;
+}
+
 @media only screen and (max-width: 992px) {
 	nav {
 		justify-content: space-between;

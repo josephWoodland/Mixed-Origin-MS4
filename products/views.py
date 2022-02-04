@@ -35,6 +35,24 @@ def products(request):
     return render(request, template, context)
 
 
+def product_tags(request, tag):
+    template = "products/products.html"
+    products = Product.objects.all()
+    search_query = ""
+    tags = Tag.objects.filter(name__icontains=tag)
+
+    products = Product.objects.distinct().filter(
+        Q(tags__in=tags)
+    )
+
+    context = {
+        "products": products,
+        "search_query": search_query,
+    }
+
+    return render(request, template, context)
+
+
 @login_required()
 def add_product(request, pk):
     template = "products/add_product.html"
@@ -48,7 +66,8 @@ def add_product(request, pk):
             product = form.save(commit=False)
             product.owner = partner
             product.save()
-            messages.success(request, "You have added a new product to your store!")
+            messages.success(
+                request, "You have added a new product to your store!")
             return redirect("product-list", pk=pk)
 
     return render(request, template, context)

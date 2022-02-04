@@ -6,7 +6,14 @@
     <a href="" class="sidenav-trigger hide-on-med-and-down"><i class="fas fa-bars hidden"></i></a>
     <ul class="hide-on-med-and-down">
         <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
-        <li><a {% if '/product/' in request.path %} class="active"{% endif %} href="{% url 'products' %}">products</a></li>
+        <li><a {% if '/product/' in request.path %} class="active"{% endif %} id="products" href="{% url 'products' %}">products</a>
+            <ul id='dropdown' class="hide-on-med-and-down">
+                {% for tag in tags %}
+                <li><a href="{% url 'product_tags' tag %}" class="dropdown-link">{{ tag }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
         <li><a {% if '/partners/' in request.path %} class="active"{% endif %} href="{% url 'partners' %}">partners</a></li>
         <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="{% url 'blog' %}">blog</a></li>
         <li><a {% if '/contact/' in request.path %} class="active"{% endif %} href="{% url 'about' %}">about us</a></li>
@@ -55,5 +62,7 @@
         {% endif %}
     </li>
 </ul>
+
+<!-- Dropdown Structure -->
 
   
