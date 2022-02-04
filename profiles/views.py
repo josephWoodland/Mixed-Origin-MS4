@@ -36,7 +36,8 @@ def user_profile(request):
     if request.method == "POST":
         form = request.POST
         if ("partner_application") in form:
-            profile = Profile.objects.filter(id=id).update(partner_application=True)
+            profile = Profile.objects.filter(
+                id=id).update(partner_application=True)
             messages.success(request, "Your application request has been sent")
             return redirect("profile")
         else:
@@ -117,7 +118,6 @@ def edit_partner(request, pk):
 def delete_profile(request, pk):
     template = "includes/delete_template.html"
     profile = request.user.profile
-    id = profile.id
 
     if request.method == "POST":
         user = request.user

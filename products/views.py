@@ -1,6 +1,7 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.template import context
 
 from profiles.models import PartnerProfile
 from .models import Product, Tag
@@ -81,11 +82,15 @@ def view_product(request, pk):
     product = Product.objects.get(id=pk)
     partner_profile = None
     products = Product.objects.all()
-    tag = product.tags.all()[0]
-    tags = Tag.objects.filter(name__icontains=tag)
-    products = Product.objects.distinct().filter(Q(tags__in=tags))
 
-    print(products)
+    # Check to see if product has tags
+    if len(product.tags.all()) > 0:
+        tag = product.tags.all()[0]
+        tags = Tag.objects.filter(name__icontains=tag)
+        products = Product.objects.distinct().filter(Q(tags__in=tags))
+
+    custom_range, products, paginator = paginateProdcuts(request, products, 4)
+
     if request.user.is_authenticated:
         profile = request.user.profile
         id = profile.id
@@ -96,6 +101,8 @@ def view_product(request, pk):
         "product": product,
         "partner_profile": partner_profile,
         "products": products,
+        "paginator": paginator,
+        "custom_range": custom_range,
     }
 
     return render(request, template, context)
@@ -142,5 +149,16 @@ def edit_product(request, pk):
 
 @login_required()
 def delete_product(request, pk):
-    template = "products/delete_product.html"
-    return render(request, template)
+    template = "includes/delete_template.html"
+    product = get_object_or_404(Product, id=pk)
+
+    if request.method == "POST":
+        product.delete()
+        messages.success(request, "Product has been deleted!")
+        return redirect("profile")
+
+    context = {
+        'object': product
+    }
+
+    return render(request, template, context)

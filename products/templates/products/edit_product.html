@@ -15,7 +15,10 @@
         {{ field }}
     </div>
     {% endfor %}
-    <button type="submit" class="btn">Edit</button>
+    <div class="flex-wrapper">
+        <button type="submit" class="btn margin-right">confirm</button>
+        <a href="{% url 'delete-product' product.id %}" class="btn">Delete</a>
+    </div>
     </form>
 </section>
 {% endblock %}
