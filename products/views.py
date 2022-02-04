@@ -41,9 +41,7 @@ def product_tags(request, tag):
     search_query = ""
     tags = Tag.objects.filter(name__icontains=tag)
 
-    products = Product.objects.distinct().filter(
-        Q(tags__in=tags)
-    )
+    products = Product.objects.distinct().filter(Q(tags__in=tags))
 
     context = {
         "products": products,
@@ -66,8 +64,7 @@ def add_product(request, pk):
             product = form.save(commit=False)
             product.owner = partner
             product.save()
-            messages.success(
-                request, "You have added a new product to your store!")
+            messages.success(request, "You have added a new product to your store!")
             return redirect("product-list", pk=pk)
 
     return render(request, template, context)

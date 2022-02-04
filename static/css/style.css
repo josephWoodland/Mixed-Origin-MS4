@@ -692,7 +692,7 @@ form div .error {
 	margin-top: -25vh;
 	text-align: right;
 	color: var(--text-color) !important;
-	background-color: var(--background-grey);
+	background-color: var(--background-color);
 	border: var(--border);
 }
 
