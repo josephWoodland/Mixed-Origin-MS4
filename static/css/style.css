@@ -380,6 +380,10 @@ footer li {
 	height: 4rem;
 }
 
+.card-image{
+	object-fit: cover !important;
+	object-position: top center !important;
+}
 .card-margin {
 	margin: 0 2rem 0 0;
 }
@@ -1157,4 +1161,14 @@ a .heading {
     justify-content: center;
     margin: 48vh 48vw;
     height: 100%;
+}
+
+.page-numbers {
+	display: flex;
+	justify-content: center;
+}
+
+.cur-page {
+	border-bottom: 2px solid var(--highlight-color);
+	color: var(--highlight-color) !important;
 }

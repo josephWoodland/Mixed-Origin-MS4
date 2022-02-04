@@ -36,5 +36,6 @@
         </div> 
     </div>
     {% endfor %}
+    {% include 'includes/pagination.html' with queryset=products custom_range=custom_range %}
 </section>
 {% endblock %}

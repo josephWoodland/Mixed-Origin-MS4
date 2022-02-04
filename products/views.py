@@ -6,6 +6,7 @@ from profiles.models import PartnerProfile
 from .models import Product, Tag
 from .forms import ProductForm
 from django.db.models import Q
+from home.helper import paginateProdcuts
 
 
 # Create your views here.
@@ -14,8 +15,8 @@ from django.db.models import Q
 def products(request):
     template = "products/products.html"
     products = Product.objects.all()
-    search_query = ""
 
+    search_query = ""
     if request.GET.get("search_query"):
         search_query = request.GET.get("search_query")
 
@@ -27,9 +28,14 @@ def products(request):
         | Q(owner__company_name__icontains=search_query)
         | Q(tags__in=tags)
     )
+
+    custom_range, products, paginator = paginateProdcuts(request, products, 8)
+
     context = {
         "products": products,
         "search_query": search_query,
+        "custom_range": custom_range,
+        "paginator": paginator
     }
 
     return render(request, template, context)
@@ -40,7 +46,6 @@ def product_tags(request, tag):
     products = Product.objects.all()
     search_query = ""
     tags = Tag.objects.filter(name__icontains=tag)
-
     products = Product.objects.distinct().filter(Q(tags__in=tags))
 
     context = {

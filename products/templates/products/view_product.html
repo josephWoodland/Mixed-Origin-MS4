@@ -9,7 +9,7 @@
 <section class="container">
     <div class="row product-view">
         <div class="col s12 m7 flex-wrapper">
-            <div class="image-container">
+            <div class="card-image">
                 <img height="300" src="{{ product.image.url }}" alt="Image for {{ product.name }}">
             </div>
         </div>
@@ -50,8 +50,8 @@
             <div class="col s10 offset-s1 m6 l4 xl3">
                 <a href="{% url 'view-product' product.id %}">
                     <div class="card">
-                        <div class="image-container">
-                            <img src="{{ product.image.url }}" alt="Thumbnail image for {{ product.name }}" height="200px">
+                        <div class="card-image">
+                            <img src="{{ product.image.url }}" alt="Thumbnail image for {{ product.name }}" >
                         </div>
                         <div class="card-content">
                             <span class="card-title">{{ product.name|truncatechars:17 }}</span>

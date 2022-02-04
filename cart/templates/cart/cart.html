@@ -18,7 +18,7 @@
                 {% for item in cart_items %}
                     {% if item.quantity > 0 %}
                         <div class="row padding">
-                            <div class="image-container col s12 m3">
+                            <div class="card-image col s12 m3">
                                 <a href="{% url 'view-product' item.product.id %}">
                                 <img height="150" src="{{ item.product.image.url }}" alt="">
                                 </a>
