@@ -38,7 +38,7 @@ def partnerRequest(sender, instance, created, **kwargs):
     is_partner = profile.is_partner
 
     if partner_request == True and is_partner == False:
-        customer_email = profile.email
+        email = settings.DEFAULT_FROM_EMAIL
 
         subject = render_to_string(
             "profiles/email_request/email_request_subject.txt",
@@ -46,10 +46,10 @@ def partnerRequest(sender, instance, created, **kwargs):
         )
         body = render_to_string(
             "profiles/email_request/email_request_body.txt",
-            {"profile": profile, "contact_email": settings.DEFAULT_FROM_EMAIL},
+            {"profile": profile},
         )
 
-        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [customer_email])
+        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email])
 
 
 post_save.connect(createPartner, sender=Profile)
