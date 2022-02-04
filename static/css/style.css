@@ -687,10 +687,20 @@ form div .error {
 	height: 100%;
 }
 
-/* /////////////////////////// Checkout ///////////////////// */
-#checkoutForm,
-.checkout-form {
+/* /////////////////////////// About ///////////////////// */
+
+.about-content-block{
+	display:flex;
+	justify-content: center;
+	align-items: center;
 }
+
+.about-header{
+	font-weight: 300;
+	font-size: 1.7rem;
+}
+
+/* /////////////////////////// Checkout ///////////////////// */
 
 .checkout-card {
 	justify-content: space-evenly !important;

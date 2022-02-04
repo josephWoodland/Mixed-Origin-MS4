@@ -3,11 +3,11 @@ Hello {{ order.full_name }}
 This is a conformation of your order through Mixed Origins.
 
 Order Number: {{ order.id }}
-Order Date: {{ order.created }}
+Order Date: {{ order.created| }}
 
-Order Total: ${{ order.sub_total }}
+Order Total: ${{ order.sub_total|floatformat:2 }}
 Delivery: ${{ order.delivery_cost }}
-Grand Total: ${{ order.grand_total }}
+Grand Total: ${{ order.grand_total|floatformat:2 }}
 
 Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.
 

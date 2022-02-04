@@ -111,7 +111,7 @@ class StripeWH_Handler:
                 id_number = uuid.uuid4()
                 id = str(id_number)
 
-                Order.objects.create(
+                order = Order.objects.create(
                     full_name=shipping_details.name,
                     profile=profile,
                     email=billing_details.email,
@@ -126,6 +126,8 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                     id=id,
                 )
+
+                order.save()
 
                 for item_id, quantity in json.loads(cart).items():
                     product = get_object_or_404(Product, pk=item_id)
