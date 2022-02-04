@@ -377,7 +377,11 @@ footer li {
 }
 
 .card-action {
-	height: 4rem;
+	max-height: 4rem !important;
+}
+
+.card-content {
+	height: 120px;
 }
 
 .card-image{
@@ -472,6 +476,7 @@ footer li {
 .btn:hover {
 	background-color: var(--highlight-color);
 	box-shadow: none !important;
+	color: var(--text-color);
 }
 
 .btn-sm {
@@ -682,12 +687,6 @@ form div .error {
 	gap: 2rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
-}
-
-/* /////////////////////////// Search ///////////////////// */
-
-.search {
-	justify-content: flex-end !important;
 }
 
 /* /////////////////////////// Allauth ///////////////////// */
@@ -1053,6 +1052,7 @@ a .heading {
 
 .flex {
 	display: flex;
+	align-items: center;
 }
 
 .fa-twitter {
@@ -1171,4 +1171,8 @@ a .heading {
 .cur-page {
 	border-bottom: 2px solid var(--highlight-color);
 	color: var(--highlight-color) !important;
+}
+
+.flex-end {
+	justify-content: flex-end !important;
 }

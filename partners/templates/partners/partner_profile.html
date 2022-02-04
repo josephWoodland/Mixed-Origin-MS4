@@ -3,6 +3,14 @@
 <header class="container banner">
     <h1 class="no-margin">{{ partner.company_name }}</h1>
     <P>{{ partner.company_short_bio }}</P>
+    {% if request.user %}
+        {% if request.user.profile.id == partner.partner_id %}
+            <div class="flex flex-end">
+                <a href="{% url 'product-list' partner.id %}" class="btn margin-right">Product List</a>
+                <a href="{% url 'edit-profile' partner.partner_id %}" class="btn">Edit profile</a>
+            </div>
+        {% endif %}
+    {% endif %}
 </header>
 <section class="container">
     <div class="row">
@@ -25,7 +33,9 @@
     <div class="row">
         <div class="col s6 offset-s3 text-center margin-">            
                 <h3>Website</h3>
-                <P>{{ partner.company_website }}</P>
+                <a href="{{ partner.company_website }}">
+                    <P>{{ partner.company_website }}</P>
+                </a>
                 <ul class="partner-social">
                     {% if partner.social_twitter %}
                     <li>
@@ -50,17 +60,7 @@
                 </ul>
         </div>
     </div>
-    {% if request.user %}
-        {% if request.user.profile.id == partner.partner_id %}
-            <div class="flex-wrapper">
-                <a href="{% url 'edit-profile' partner.partner_id %}" class="btn">Edit</a>
-            </div>
-            <div class="flex-wrapper">
-                <p class="margin-right">You can view all of your products here</p>
-                <a href="{% url 'product-list' partner.id %}">Product List</a>
-            </div>
-        {% endif %}
-    {% endif %}
+
 </section>
 
 {% endblock %}
