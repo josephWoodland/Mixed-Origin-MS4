@@ -257,7 +257,7 @@ if (addToCart) {
 // Dropdown menu
 
 const products = document.getElementById("products");
-const dropdown = document.getElementById("dropdown");
+const dropdown = document.getElementById("dropdown-wrapper");
 
 products.addEventListener("mouseenter", () => {
   dropdown.style.display = "grid";

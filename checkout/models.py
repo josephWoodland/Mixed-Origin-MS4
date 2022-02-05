@@ -41,7 +41,8 @@ class Order(models.Model):
 
     def total(self):
 
-        self.sub_total = self.items.aggregate(Sum("item_total"))["item_total__sum"]
+        self.sub_total = self.items.aggregate(Sum("item_total"))[
+            "item_total__sum"]
 
         # Fixes a bug when deleting orders from the Admin
         if self.sub_total is None:
@@ -68,11 +69,13 @@ class OrderItem(models.Model):
     product = models.ForeignKey(
         Product, null=False, blank=True, on_delete=models.CASCADE
     )
+
     quantity = models.IntegerField(null=False, blank=False, default=0)
 
     item_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, default=0, editable=False
     )
+    # ad a space for the product owner
 
     def total(self, *args, **kwargs):
         self.item_total = int(self.product.price * self.quantity)

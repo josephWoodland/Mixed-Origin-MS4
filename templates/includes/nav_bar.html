@@ -1,26 +1,11 @@
 {% load static %}
 
 <nav>
-    <a href="" data-target="mobile-nav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-    <a href="{% url 'home' %}" class="nav-logo hover-highlight logo">Mixed Origin</a>
-    <a href="" class="sidenav-trigger hide-on-med-and-down"><i class="fas fa-bars hidden"></i></a>
-    <ul class="hide-on-med-and-down">
-        <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
-        <li><a {% if '/product/' in request.path %} class="active"{% endif %} id="products" href="{% url 'products' %}">products</a>
-            <ul id='dropdown' class="hide-on-med-and-down">
-                {% for tag in tags %}
-                <li><a href="{% url 'product_tags' tag %}" class="dropdown-link">{{ tag }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </li>
-        <li><a {% if '/partners/' in request.path %} class="active"{% endif %} href="{% url 'partners' %}">partners</a></li>
-        <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="{% url 'blog' %}">blog</a></li>
-        <li><a {% if '/contact/' in request.path %} class="active"{% endif %} href="{% url 'about' %}">about us</a></li>
-        {% if request.user.is_authenticated %}
-            <li><a {% if '/profile/' in request.path %} class="active"{% endif %} href="{% url 'profile' %}">profile</a></li>
-        {% endif %} 
-        </ul>
+    <div class="flex nav-bar">
+        <a href="" data-target="mobile-nav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+        <div class="nav-spacer hide-on-med-and-down">
+        </div>
+        <a href="{% url 'home' %}" class="nav-logo logo">Mixed Origin</a>
         <div class="nav-login">
             {% if request.user.is_authenticated %}
             <a href="{% url 'account_logout' %}" class="margin-right hide-on-med-and-down hover-highlight">Logout
@@ -32,11 +17,25 @@
             <a href="{% url 'cart' %}" class="hover-highlight"><i class="fas fa-shopping-cart"></i>
             </a>
         </div>
+    </div>
+    <div class="flex nav-bar hide-on-med-and-down">
+        <a href="" class="sidenav-trigger hide-on-med-and-down"><i class="fas fa-bars hidden"></i></a>
+        <ul class="hide-on-med-and-down">
+            <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
+            <li><a {% if '/product/' in request.path %} class="active"{% endif %} id="products" href="{% url 'products' %}">products</a>
+            </li>
+            <li><a {% if '/partners/' in request.path %} class="active"{% endif %} href="{% url 'partners' %}">partners</a></li>
+            <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="{% url 'blog' %}">blog</a></li>
+            <li><a {% if '/contact/' in request.path %} class="active"{% endif %} href="{% url 'about' %}">about us</a></li>
+            {% if request.user.is_authenticated %}
+                <li><a {% if '/profile/' in request.path %} class="active"{% endif %} href="{% url 'profile' %}">profile</a></li>
+            {% endif %} 
+            </ul>
+    </div>
 </nav>
     <p id="hiddenCartNumber" class="cart-notification transparent">{{ product_count }}</p>
-
     {% if product_count == 0 %}
-    <p id="cartNotificationFirst" class="cart-notification transparent">0</p>
+    <p id="cartNotificationFirst" class="cart-notification transparent hide">0</p>
     {% elif product_count < 10 %}
         <p id="cartNotificationSeen" class="cart-notification">{{ product_count }}</p>
     {% else %}
@@ -62,7 +61,23 @@
         {% endif %}
     </li>
 </ul>
+<div class="dropdown-wrapper" id="dropdown-wrapper">
+    <ul id='dropdown' class="hide-on-med-and-down">
+        {% for tag, product in tag_products %}
+        <li>
+            <a href="{% url 'product_tags' tag %}" class="dropdown-link"><h3 class="logo small-text no-margin">{{ tag }}</h3></a>
+            <div class="nav-dropdown" height="100px">
+                <div class="tag-item">
+                    <div class="image-container">
+                        <img height="130px" src="{{ product.image.url }}" alt="Image for {{ product.name }}">
+                    </div>
+                    <a href="{% url 'view-product' product.id %}">
+                        <div class="dropdown-link">{{ product.name }}</div>
+                    </a>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 
-<!-- Dropdown Structure -->
-
-  

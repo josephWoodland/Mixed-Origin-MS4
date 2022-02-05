@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.template import context
 
 from profiles.models import PartnerProfile
 from .models import Product, Tag
@@ -45,13 +44,11 @@ def products(request):
 def product_tags(request, tag):
     template = "products/products.html"
     products = Product.objects.all()
-    search_query = ""
     tags = Tag.objects.filter(name__icontains=tag)
     products = Product.objects.distinct().filter(Q(tags__in=tags))
 
     context = {
         "products": products,
-        "search_query": search_query,
     }
 
     return render(request, template, context)
