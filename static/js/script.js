@@ -175,8 +175,7 @@ const cartNotificationSeen = document.getElementById("cartNotificationSeen");
 const productTotal = document.getElementById("productTotal");
 const cartTotal = document.getElementById("cartTotal");
 const productPriceElement = document.getElementById("productPrice");
-const popupBtnCart = document.getElementById("btnCart");
-const hiddenTotal = document.getElementById("hiddenTotal");
+const orderItem = document.getElementById("orderItem");
 
 // function to trigger the submit event on a form
 function submitForm(form) {
@@ -221,36 +220,49 @@ function upDateCartNotification(itemQty) {
   }
 }
 
+// Function to add product to cart
+function addProductToCart(itemQty) {
+  // Get the order Item total and the product price and work out the total
+  let productPrice = parseFloat(productPriceElement.innerText);
+  let productTotalPrice = itemQty * productPrice;
+
+  // Get the current cart total
+  let curCartTotal = Number(hiddenTotal.innerText);
+  // Update the cart notification number
+  upDateCartNotification(itemQty);
+
+  // Work out the new total
+  let newTotal = curCartTotal + productTotalPrice;
+
+  // Update the HTML
+  cartTotal.innerText = round(newTotal);
+  console.log(newTotal);
+  productTotal.innerText = round(productTotalPrice);
+
+  setZIndex(popupCart);
+  fadeIn(popupCart);
+  submitForm(form);
+
+  setTimeout(() => {
+    fadeOut(popupCart);
+    setZIndex(popupCart);
+  }, 2000);
+}
+
 // Update the cart information in the popup
 if (addToCart) {
   addToCart.addEventListener("click", (e) => {
     e.preventDefault();
-    // Get the order Item total and the product price and work out the total
     let itemQty = numberInputBox.value;
-    let productPrice = parseFloat(productPriceElement.innerText);
-    let productTotalPrice = itemQty * productPrice;
+    addProductToCart(itemQty);
+  });
+}
 
-    // Get the current cart total
-    let curCartTotal = Number(hiddenTotal.innerText);
-    // Update the cart notification number
-    upDateCartNotification(itemQty);
-
-    // Work out the new total
-    let newTotal = curCartTotal + productTotalPrice;
-
-    // Update the HTML
-    cartTotal.innerText = round(newTotal);
-    console.log(newTotal);
-    productTotal.innerText = round(productTotalPrice);
-
-    setZIndex(popupCart);
-    fadeIn(popupCart);
-    submitForm(form);
-
-    setTimeout(() => {
-      fadeOut(popupCart);
-      setZIndex(popupCart);
-    }, 2000);
+if (orderItem) {
+  orderItem.addEventListener("click", (e) => {
+    e.preventDefault();
+    let itemQty = 1;
+    addProductToCart(itemQty);
   });
 }
 

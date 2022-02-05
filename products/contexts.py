@@ -19,15 +19,9 @@ def tag_products(request):
         products = Product.objects.distinct().filter(Q(tags__in=tag_name))
 
         if len(products) > 0:
-            print(products[0])
             tag_list.append(products[0])
 
     tag_products = list(zip(tags, tag_list))
-
-    print(tag_products)
-
-    for name, product in tag_products:
-        print(name, ":", product.image.url)
 
     context = {
         "tag_products": tag_products,

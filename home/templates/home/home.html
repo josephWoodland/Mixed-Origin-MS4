@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<header class="home-header">
-    <div class="container hero">
-        <h3 class="hero-text">Started in 2022</h3>
-        <h1 class="hero-text logo">Mixed Origin</h1>
-        <p class="hero-text">Strap-line</p>
-    </div>
+{% include 'includes/popup.html' %}
+<header class="container hero">
 </header>
-<div class="container">
+<section class="container">
 <div class="about-card">
     <div class="about-text">
         <h5 class="logo">Mixed Origin</h5>
@@ -59,23 +54,42 @@
         </div>
     </div>
 </div>
-</div>
-<div class="container">
+</section>
+<section class="container">
     <div class="trending row">
         <div class="trending-headline col s12 m5" style="padding-left: 0;">
-            <h3 class="padding-left">Trending</h3>
-            <h4 class="padding-left">Kids Fashion</h4>
+            <h3 class="padding-left">Trending this week</h3>
+            <h4 class="padding-left">Literature</h4>
+            <p>Check out the most popular books on black culture</p>
+            <a href="{% url 'product_tags' 'literature' %}">see the hottest collection</a>
         </div>
         <div class="trending-highlight col s12 m7" style="padding-right: 0;">
-            <div class="trending-brand">
-                <h1 class="padding-left">Brand Name</h1>
-            </div>
-            <div class="trending-item">
-
+            <div class="promoted-card">
+                <div class="row">
+                    <div class="col s6 no-padding">
+                        <div class="image-container">
+                            <a href="{% url 'partner-profile' promoted_partner.id %}">
+                                <img width="300" src="{{ promoted_partner.company_image.url }}">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-stacked col s6">
+                        <a href="{% url 'partner-profile' promoted_partner.id %}">
+                            <h3 class="header" style="color: #5f5f5f;">{{ promoted_partner.company_name }}</h3>
+                        </a>
+                        <div class="card-content">
+                            <p>{{ promoted_partner.company_short_bio }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'partner-profile' promoted_partner.id %}">more..</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+<section class="featured-products">
     <div class="container">
         <div class="row">
             <div class="col s8 offset-s2 m6 offset-m3 text-center">
@@ -87,7 +101,7 @@
         {% for product in products %}
             <div class="col s10 offset-s1 m6 l4 xl3">
                 <a href="{% url 'view-product' product.id %}">
-                    <div class="card">
+                    <div class="card no-shadow">
                         <div class="card-image">
                             <img src="{{ product.image.url }}" alt="Thumbnail image for {{ product.name }}">
                         </div>
@@ -95,14 +109,21 @@
                             <span class="card-title">{{ product.name|truncatechars:17 }}</span>
                         </div>
                         <div class="card-action">
-                            <a href="#">Order</a>
-                            <span class="card-price">£{{ product.price }}</span>
+                            <span class="card-price bold">£ <span id="productPrice">
+                                {{ product.price }}
+                            </span>
+                            </span>
+                            <a href="/" class="btn" id="orderItem">add to cart</a>
+                            <form id="form" action="{% url 'add-to-cart' product.id %}" method="POST" class="flex-wrapper column full-width">
+                                {% csrf_token %}
+                            </form>    
+                        </div>
                     </div>
                 </a>
             </div> 
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-    {% include 'includes/pagination.html' %}
-</div>
+{% include 'includes/pagination.html' %}
+</section>
 {% endblock %}

@@ -143,7 +143,6 @@ class StripeWH_Handler:
                     order_item.save()
 
             except Exception as e:
-                print("This is the error", e)
                 if order:
                     order.delete()
                 return HttpResponse(

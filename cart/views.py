@@ -17,6 +17,10 @@ def cart(request):
 def add_to_cart(request, item_id):
     product = Product.objects.get(id=item_id)
     quantity = request.POST.get("order-amount")
+    # If order does not come from the product view order set to 1
+    if quantity is None:
+        quantity = 1
+
     current_stock = product.stock_numbers
     new_stock = current_stock - int(quantity)
     product.stock_numbers = new_stock
@@ -27,6 +31,9 @@ def add_to_cart(request, item_id):
     product.save()
 
     redirect_url = request.POST.get("redirect_url")
+
+    if redirect_url is None:
+        redirect_url = "home"
 
     cart = request.session.get("cart", {})
 
@@ -54,7 +61,8 @@ def update_cart(request, pk):
     product.stock_numbers = current_stock
     product.save()
     cart[id] = new_amount
-    messages.success(request, f"You have updated { product.name } in your cart!")
+    messages.success(
+        request, f"You have updated { product.name } in your cart!")
 
     request.session["cart"] = cart
 
@@ -70,7 +78,8 @@ def delete_cart_item(request, pk):
     product.stock_numbers = current_stock + order_number
     product.save()
     del cart[id]
-    messages.success(request, f"You have deleted { product.name } from your cart!")
+    messages.success(
+        request, f"You have deleted { product.name } from your cart!")
     request.session["cart"] = cart
 
     return redirect(reverse("cart"))

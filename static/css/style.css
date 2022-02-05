@@ -26,6 +26,12 @@ body::-webkit-scrollbar {
 	display: none;
 }
 
+h2{
+	font-family: var(--font-header);
+	font-size: 2rem;
+	text-transform: uppercase;
+}
+
 h3 {
 	font-weight: 200;
 	font-size: 2rem;
@@ -34,6 +40,12 @@ h3 {
 
 h4 {
 	color: var(--highlight-color);
+}
+
+h5 {
+	color: var(--text-color);
+	font-family: var(--font-header);
+	text-transform: uppercase;
 }
 
 #btnCart:hover,
@@ -150,7 +162,6 @@ a .logo,
 	grid-auto-flow: column;
 	grid-column-gap: 4rem;
 	text-align: center;
-	padding: 1rem;
 }
 
 .dropdown-link:hover{
@@ -191,7 +202,8 @@ a .logo,
 
 @media only screen and (max-width: 600px) {
 	.nav-logo {
-		font-size: 2rem;
+		font-size: 1.5rem;
+		letter-spacing: .3rem;
 	}
 } 
 
@@ -204,6 +216,7 @@ a .logo,
 	z-index: 9;
 	width: inherit !important;
 	max-width: 1270px !important;
+	background-color: var(--background-color);
 }
 
 .alert {
@@ -310,21 +323,20 @@ footer li {
 
 /* /////////////////////////// Home ///////////////////// */
 
-.home-header {
-	height: 60vh;
-	width: 100vw;
-	background-color: var(--border-grey);
-}
-
 .hero {
-	padding-top: 20vh;
-	display: flex;
-	flex-direction: column;
-	text-align: right;
+	background-image: url(../img/banner_img.png);
+	background-position: bottom center;
+	background-size: cover;
+	height: 40vh;
 }
 
 .hero-text {
 	margin: .5rem 0 0 0;
+}
+
+.featured-products {
+	width: 100%;
+	background-color: var(--highlight-color);
 }
 
 /* /////////////////////////// About Us  ///////////////////// */
@@ -387,14 +399,17 @@ footer li {
 
 .trending-headline {
 	height: 15rem;
-	background-color: var(--border-grey);
-	background-clip: content-box;
+	border: var(--border);
 }
 
 .trending-highlight {
 	height: 15rem;
-	background-color: var(--dark-grey);
-	background-clip: content-box;
+}
+
+.promoted-card {
+	max-height: 15rem !important;
+	overflow: hidden;
+	border: var(--border);
 }
 
 @media only screen and (max-width: 600px) {
@@ -419,6 +434,9 @@ footer li {
 }
 
 .card-action {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
 	max-height: 4rem !important;
 }
 
@@ -428,6 +446,11 @@ footer li {
 }
 .card-margin {
 	margin: 0 2rem 0 0;
+}
+
+.card-title,
+.card-price{
+	color: var(--text-color);
 }
 
 /* /////////////////////////// Product View ///////////////////// */
@@ -819,6 +842,7 @@ form div .error {
 	cursor: pointer;
 }
 
+.card-title:hover,
 .fa-times:hover,
 .fa-heart {
 	color: var(--highlight-color);
@@ -1207,10 +1231,18 @@ a .heading {
 }
 
 .cur-page {
-	border-bottom: 2px solid var(--highlight-color);
-	color: var(--highlight-color) !important;
+	border-bottom: 2px solid var(--text-logo);
+	color: var(--text-logo) !important;
 }
 
 .flex-end {
 	justify-content: flex-end !important;
+}
+
+.header {
+	margin: 1rem auto 0 auto
+}
+
+.no-shadow {
+	box-shadow: none;
 }

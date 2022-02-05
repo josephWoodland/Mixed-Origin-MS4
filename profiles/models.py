@@ -9,7 +9,8 @@ from django_countries.fields import CountryField
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=200, blank=True, null=True)
     second_name = models.CharField(max_length=200, blank=True, null=True)
     username = models.CharField(max_length=200, blank=True, null=True)
@@ -19,7 +20,8 @@ class Profile(models.Model):
         blank=False,
         upload_to="profiles/",
     )
-    partner_application = models.BooleanField(default=False, blank=True, null=True)
+    partner_application = models.BooleanField(
+        default=False, blank=True, null=True)
     is_partner = models.BooleanField(default=False, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(
@@ -43,18 +45,20 @@ class PartnerProfile(models.Model):
     company_name = models.CharField(max_length=50, blank=True, null=False)
     company_website = models.CharField(max_length=200, null=True, blank=False)
     company_short_bio = models.TextField(max_length=200, null=True, blank=True)
-    company_description = models.TextField(max_length=400, null=True, blank=False)
+    company_description = models.TextField(
+        max_length=400, null=True, blank=False)
     social_twitter = models.CharField(max_length=200, blank=True, null=True)
     social_linkedin = models.CharField(max_length=200, blank=True, null=True)
     social_youtube = models.CharField(max_length=200, blank=True, null=True)
     social_website = models.CharField(max_length=200, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+    promoted = models.BooleanField(default=False, blank=True, null=True)
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
 
     def __str__(self):
-        return str(self.partner)
+        return str(self.company_name)
 
 
 class Wallet(models.Model):
