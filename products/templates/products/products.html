@@ -3,39 +3,48 @@
 <header class="container product-banner">
     <h1 class="hide-on-med-and-down">Products</h1>
     <h3 class="hide-on-med-and-up">Products</h3>
-    <div class="flex-wrapper search">
-        <form id="searchForm" action="" method="GET" class="">
+    <div class="flex">
+        <form id="searchForm" action="" method="GET" class="flex">
+            <input class="btn margin-right" type="submit" value="Search" />
                 <input class="input input--text" id="search_query" type="text" name="search_query"
-                value="{{ search_query }}" placeholder="Search by Product" />
-                <input class="btn" type="submit" value="Search" />
+                value="{{ search_query }}" placeholder="Word search" />
         </form>
     </div>
 </header>
-<section class="container">
+<div class="container">
     <div class="row">
         <div class="col s8 offset-s2 m6 offset-m3 text-center">
-            <h3 class="border-bottom padding-bottom hide-on-med-and-down">Products</h3>
+            <h3 class="heading margin-bottom">Browse Our Amazing Products</h3>
+            <hr class="margin-bottom">
         </div>
     </div>
-    <div class="row margin-top">
-    {% for product in products %}
-        <div class="col s10 offset-s1 m6 l4 xl3">
-            <a href="{% url 'view-product' product.id %}">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{ product.image.url }}">
+</div>
+<section class="featured-products padding-top">
+    <div class="container  margin-top">
+        <div class="row">
+        {% for product in products %}
+            <div class="col s10 offset-s1 m6 l4 xl3">
+                <a href="{% url 'view-product' product.id %}">
+                    <div class="card no-shadow">
+                        <div class="card-image">
+                            <img src="{{ product.image.url }}" alt="Thumbnail image for {{ product.name }}">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">{{ product.name|truncatechars:17 }}</span>
+                        </div>
+                        <div class="card-action">
+                            <span class="card-price bold">£ <span id="productPrice">
+                                {{ product.price }}
+                            </span>
+                            </span>
+                            <a href="{% url 'view-product' product.id %}" class="btn" id="orderItem">View Product</a>    
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <span class="card-title">{{ product.name|truncatechars:17 }}</span>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">Order</a>
-                        <span class="card-price">£{{ product.price }}</span>
-                </div>
-            </a>
-        </div> 
+                </a>
+            </div> 
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
-    {% include 'includes/pagination.html' with queryset=products custom_range=custom_range %}
+{% include 'includes/pagination.html' %}
 </section>
 {% endblock %}

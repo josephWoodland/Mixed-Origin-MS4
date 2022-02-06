@@ -3,50 +3,61 @@
 <header class="container product-banner">
     <h1 class="hide-on-med-and-down">Partners</h1>
     <h3 class="hide-on-med-and-up">Our Partners</h3>
-    <div class="flex flex-end">
-        <form id="searchForm" action="" method="GET" class="hide">
+    <div class="flex">
+        <form id="searchForm" action="" method="GET" class="flex">
+            <input class="btn margin-right" type="submit" value="Search" />
                 <input class="input input--text" id="search_query" type="text" name="search_query"
                 value="{{ search_query }}" placeholder="Search by Partner Name" />
-                <input class="btn" type="submit" value="Search" />
         </form>
-        <a href="" id="searchOpen" class="">search</a>
     </div>
 </header>
 <section class="container">
     <div class="row">
         <div class="about-text">
             <h2 class="heading" >Our Partners</h2>
-            <h5>Mixed Origin</h5>
             <p>This is where some user content can be about the product</p>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem consequatur hic a eos illum quos? Maiores dolore hic ducimus iste nobis dolores incidunt laborum quo, ullam alias deleniti esse.</p>
-            <a href="" class="btn waves-effect about-btn">Become a partner</a>
+            {% if request.user.is_authenticated %}
+                {% if partner_profile.id %}
+                {% else %}
+                <a href="{% url 'profile' %}" class="btn waves-effect about-btn">Become a partner</a>
+                {% endif %}
+            
+            {% else %}
+                <a href="{% url 'account_login' %}" class="btn waves-effect about-btn">Sign In to apply</a>
+            {% endif %}
         </div>
     </div>
-    <div class="margin-top partner-display">
-        {% for partner in partners %}
-            <div class="partner-card">
-                <div class="row">
-                    <div class="col s7 no-padding">
-                        <div class="image-container">
+</section>
+<section class="featured-partners padding-top padding-bottom">
+    <div class="container">
+        <div class="margin-top partner-display">
+            {% for partner in partners %}
+                <div class="partner-card">
+                    <div class="row">
+                        <div class="col s7 no-padding">
+                            <div class="image-container">
+                                <a href="{% url 'partner-profile' partner.id %}">
+                                    <img width="400" src="{{ partner.company_image.url }}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-stacked col s5">
                             <a href="{% url 'partner-profile' partner.id %}">
-                                <img width="400" src="{{ partner.company_image.url }}">
+                                <h3 class="header" style="color: #5f5f5f;">{{ partner.company_name }}</h3>
                             </a>
-                        </div>
-                    </div>
-                    <div class="card-stacked col s5">
-                        <a href="{% url 'partner-profile' partner.id %}">
-                            <h3 class="header" style="color: #5f5f5f;">{{ partner.company_name }}</h3>
-                        </a>
-                        <div class="card-content">
-                            <p>{{ partner.company_short_bio }}</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="{% url 'partner-profile' partner.id %}">more..</a>
+                            <div class="card-content">
+                                <p>{{ partner.company_short_bio }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{% url 'partner-profile' partner.id %}">more..</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+</div>
+{% include 'includes/pagination.html' %}
 </section>
 {% endblock %}

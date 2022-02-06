@@ -27,7 +27,7 @@ body::-webkit-scrollbar {
 }
 
 h2{
-	font-family: var(--font-header);
+	font-family: var(--font-main);
 	font-size: 2rem;
 	text-transform: uppercase;
 }
@@ -44,7 +44,7 @@ h4 {
 
 h5 {
 	color: var(--text-color);
-	font-family: var(--font-header);
+	font-family: var(--font-main);
 	text-transform: uppercase;
 }
 
@@ -218,7 +218,6 @@ a .logo,
 	z-index: 9;
 	width: inherit !important;
 	max-width: 1270px !important;
-	background-color: var(--background-color);
 }
 
 .alert {
@@ -226,6 +225,7 @@ a .logo,
 	justify-content: space-between;
 	align-items: center;
 	height: 4rem;
+	background-color: var(--background-color);
 }
 
 .alert-error {
@@ -446,14 +446,30 @@ footer li {
 	object-fit: cover !important;
 	object-position: top center !important;
 }
+
+.card-content {
+	max-height: 88px;
+}
+
 .card-margin {
 	margin: 0 2rem 0 0;
+}
+
+.card-title {
+	font-size: 1.5rem;
 }
 
 .card-title,
 .card-price{
 	color: var(--text-color);
 }
+
+/* /////////////////////////// Product Page ///////////////////// */
+
+input #search_query::placeholder {
+	background-color: transparent !important
+}
+
 
 /* /////////////////////////// Product View ///////////////////// */
 
@@ -469,6 +485,7 @@ footer li {
 	height: auto;
 	box-shadow: 3px 5px var(--border-grey);
 }
+
 
 .product-number {
 	display: flex;
@@ -628,14 +645,14 @@ input[type=number],
 input[type=text] {
 	border-bottom: 1px solid var(--text-color) !important;
 	box-shadow: 0 1px 0 0 var(--text-color) !important;
-	background-color: var(--background-color) !important;
+	background-color: transparent !important;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px var(--background-color) inset !important;
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
 }
 
 select:focus,
@@ -646,7 +663,7 @@ input[type=number]:focus,
 input[type=text]:focus {
 	border-bottom: 1px solid var(--highlight-color) !important;
 	box-shadow: 0 1px 0 0 var(--highlight-color) !important;
-	background-color: var(--background-color) !important;
+	background-color: rgba(242, 242, 242, 0.4) !important;
 	color: var(--text-color);
 }
 
@@ -741,6 +758,11 @@ label {
 
 /* /////////////////////////// Partner ///////////////////// */
 
+.featured-partners {
+	width: 100%;
+	background-color: var(--background-gold);
+}
+
 .partner-social {
 	display: flex;
 	justify-content: space-around;
@@ -757,7 +779,7 @@ label {
 .partner-card {
 	max-height: 250px !important;
 	border: var(--border);
-	box-shadow: 3px 5px rgb(0 0 0 / 0.2);
+	background-color: var(--background-color);
 	overflow: hidden;
 }
 
@@ -1056,7 +1078,7 @@ label {
 /* /////////////////////////// Helpers ///////////////////// */
 
 hr {
-	background-color: var(--border-grey);
+	background-color: var(--text-color);
 	border-width: 0;
 	height: 1px;
 	width: 100%;
@@ -1091,6 +1113,9 @@ hr {
 .product-banner {
 	padding-top: 5vh;
 	height: 30vh;
+	background-image: url(../img/product-banner.jpg);
+	background-position: 50% 20%;
+ 	background-size: cover;
 }
 
 a .heading {
@@ -1150,7 +1175,11 @@ a .heading {
 }
 
 .padding-bottom {
-	padding-bottom: 2rem;
+	padding-bottom: 4rem;
+}
+
+.padding-top {
+	padding-top: 4rem !important;
 }
 
 .text-center {
@@ -1322,3 +1351,4 @@ a .heading {
 .color {
 color: var(--text-color);
 }
+
