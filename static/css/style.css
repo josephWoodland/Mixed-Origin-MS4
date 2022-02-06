@@ -23,7 +23,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-	display: none;
+	display: none !important;
 }
 
 h2{
@@ -154,6 +154,7 @@ a .logo,
 	justify-content: center;
 	background-color: var(--highlight-color);
 	border-bottom: var(--border);
+	z-index: 1000;
 }
 
 #dropdown {
@@ -162,6 +163,7 @@ a .logo,
 	grid-auto-flow: column;
 	grid-column-gap: 4rem;
 	text-align: center;
+	z-index: 1001;
 }
 
 .dropdown-link:hover{
@@ -571,6 +573,10 @@ footer li {
 	display: flex;
 }
 
+.input-field {
+	background-color: transparent!;
+}
+
 .form-input {
 	width: 5rem;
 	margin-right: 2rem;
@@ -620,8 +626,16 @@ select,
 input[type=email],
 input[type=number],
 input[type=text] {
-	border-bottom: 1px solid var(--border-grey) !important;
-	box-shadow: 0 1px 0 0 var(--border-grey) !important;
+	border-bottom: 1px solid var(--text-color) !important;
+	box-shadow: 0 1px 0 0 var(--text-color) !important;
+	background-color: var(--background-color) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--background-color) inset !important;
 }
 
 select:focus,
@@ -632,6 +646,7 @@ input[type=number]:focus,
 input[type=text]:focus {
 	border-bottom: 1px solid var(--highlight-color) !important;
 	box-shadow: 0 1px 0 0 var(--highlight-color) !important;
+	background-color: var(--background-color) !important;
 	color: var(--text-color);
 }
 
@@ -681,6 +696,10 @@ form .row {
 
 form div .error {
 	background-color: transparent !important;
+}
+
+label {
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -753,11 +772,60 @@ form div .error {
 /* /////////////////////////// Allauth ///////////////////// */
 
 .allauth {
-	margin-top: -25vh;
-	text-align: right;
-	color: var(--text-color) !important;
-	background-color: var(--background-color);
-	border: var(--border);
+	height: calc(96vh - 8rem);
+	width: 100%;
+	margin-bottom: 200px;
+	border-bottom: var(--border);
+}
+
+.allauth-wrapper {
+	display: flex;
+	flex-direction: column;
+	height: calc(96vh - 8rem);
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 5rem;
+}
+
+.allauth-form {
+	margin: auto;
+}
+
+.allauth-header {
+	font-weight: 300;
+	margin-bottom: 10rem;
+	margin-left: -11.25px;
+}
+
+.login {
+	background-image: url(../img/login.png);
+	height: 100%;
+}
+
+.signup {
+	background-image: url(../img/signup.png);
+	height: 100%;
+}
+
+/* Page user is redirected to when pressed confirmation link */
+.email-confirm{
+	background-image: url(../img/signup.png);
+	height: 100%;
+}
+
+/* Page user is redirected to when signing up */
+.verification-sent{
+	background-image: url(../img/verification.png);
+	height: 100%;
+}
+
+#div_id_remember {
+	display: none;
+}
+
+#passwordReset {
+	margin-bottom: 3rem;
 }
 
 /* /////////////////////////// Product List ///////////////////// */
@@ -1245,4 +1313,12 @@ a .heading {
 
 .no-shadow {
 	box-shadow: none;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.color {
+color: var(--text-color);
 }

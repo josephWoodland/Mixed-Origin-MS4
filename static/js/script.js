@@ -194,7 +194,6 @@ function setZIndex(el) {
 // function to round to 2 decimal places
 function round(num) {
   const price = Number(Math.round(num + "e" + 2) + "e-" + 2).toFixed(2);
-  console.log(price);
   return Number(price);
 }
 
@@ -236,7 +235,6 @@ function addProductToCart(itemQty) {
 
   // Update the HTML
   cartTotal.innerText = round(newTotal);
-  console.log(newTotal);
   productTotal.innerText = round(productTotalPrice);
 
   setZIndex(popupCart);
@@ -258,13 +256,13 @@ if (addToCart) {
   });
 }
 
-if (orderItem) {
-  orderItem.addEventListener("click", (e) => {
-    e.preventDefault();
-    let itemQty = 1;
-    addProductToCart(itemQty);
-  });
-}
+// if (orderItem) {
+//   orderItem.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     let itemQty = 1;
+//     addProductToCart(itemQty);
+//   });
+// }
 
 // Dropdown menu
 

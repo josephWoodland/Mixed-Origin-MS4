@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'includes/popup.html' %}
 <header class="container hero">
 </header>
 <section class="container">
@@ -113,10 +112,7 @@
                                 {{ product.price }}
                             </span>
                             </span>
-                            <a href="/" class="btn" id="orderItem">add to cart</a>
-                            <form id="form" action="{% url 'add-to-cart' product.id %}" method="POST" class="flex-wrapper column full-width">
-                                {% csrf_token %}
-                            </form>    
+                            <a href="{% url 'view-product' product.id %}" class="btn" id="orderItem">View Product</a>    
                         </div>
                     </div>
                 </a>
