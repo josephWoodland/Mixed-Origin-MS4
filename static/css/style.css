@@ -856,12 +856,35 @@ label {
 	height: 100%;
 }
 
+/* /////////////////////////// Blog ///////////////////// */
+
+.blog-banner{
+	padding-top: 5vh;
+	height: 30vh;
+	background-image: url(../img/blog-banner.jpg);
+	background-size: cover;
+	background-position: center;
+}
 /* /////////////////////////// About ///////////////////// */
+
+.highlight {
+	width: 100%;
+	background-color: var(--highlight-color);
+	border: var(--border);
+	z-index: -100;
+}
+
+.gold {
+	border: var(--border);
+	width: 100%;
+	background-color: var(--background-gold);
+}
 
 .about-content-block{
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	color: var(--text-color);
 }
 
 .about-header{
