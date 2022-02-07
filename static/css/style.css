@@ -3,7 +3,7 @@
 
 :root {
 	--background-color: #f8f9fa;
-	--background-gold: #f59c3d;
+	--background-gold: #f2cb88;
 	--highlight-color: #f9c4ab;
 	--text-logo: #f26657;
 	--text-color: #494846;
@@ -511,6 +511,7 @@ input #search_query::placeholder {
 .product-quantity:active {
 	border: none !important;
 	background-color: transparent !important;
+	cursor: pointer;
 }
 
 .product-suggestion {
@@ -666,7 +667,7 @@ input[type=email],
 input[type=number],
 input[type=text] {
 	border-bottom: 1px solid var(--text-color) !important;
-	box-shadow: 0 1px 0 0 var(--text-color) !important;
+	box-shadow: none !important;
 	background-color: transparent !important;
 }
 
@@ -684,8 +685,8 @@ input[type=email]:focus,
 input[type=number]:focus,
 input[type=text]:focus {
 	border-bottom: 1px solid var(--highlight-color) !important;
-	box-shadow: 0 1px 0 0 var(--highlight-color) !important;
-	background-color: rgba(242, 242, 242, 0.4) !important;
+	box-shadow: none !important;
+	background-color: rgba(247, 247, 247, 0.4) !important;
 	color: var(--text-color);
 }
 
@@ -759,6 +760,12 @@ label {
 
 /* /////////////////////////// Profile ///////////////////// */
 
+.profile-banner {
+	background-image: url(../img/profile-banner.jpg);
+	background-size: cover;
+	background-position: left center;
+}
+
 .profile {
 	align-items: center;
 	width: 100%;
@@ -779,6 +786,12 @@ label {
 }
 
 /* /////////////////////////// Partner ///////////////////// */
+
+.partner-banner {
+	background-image: url(../img/partner-banner.jpg);
+	background-size: cover;
+	background-position: center right;
+}
 
 .featured-partners {
 	width: 100%;
@@ -933,11 +946,33 @@ label {
 
 /* /////////////////////////// Checkout ///////////////////// */
 
+.checkout-banner{
+	padding-top: 5vh;
+	height: 30vh;
+	background-image: url(../img/checkout-banner.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+.checkout-success-banner {
+	background-color: var(--highlight-color);
+	border-bottom: var(--border);
+}
+
 .checkout-card {
 	justify-content: space-evenly !important;
 	min-width: 220px;
 	max-width: 330px;
 	margin-top: 0;
+}
+
+.checkout-color {
+	margin-top: -100vh;
+	margin-bottom: 50vh;
+	width: 100%;
+	height: 50vh;
+	z-index: -10;
+	border: none;
 }
 
 .checkout-card h3 {
@@ -957,10 +992,19 @@ label {
 	text-align: end;
 }
 
+
+
 /* /////////////////////////// Cart ///////////////////// */
+.cart-banner{
+	background-image: url(../img/cart-banner.jpg);
+	background-size: cover;
+	background-position: center;
+}
 
 .cart {
 	margin: 0 2rem 0 0;
+	box-shadow: none;
+	border: var(--border);
 }
 
 .cart-item-margin {
@@ -969,6 +1013,16 @@ label {
 
 .cart-header {
 	justify-content: space-between !important;
+}
+
+.cart-container {
+	background-color: transparent;
+	border: none;
+}
+
+.delivery-cost {
+	color: var(--text-logo);
+	font-weight: 300;
 }
 
 .item-price,
@@ -981,10 +1035,8 @@ label {
 }
 
 .item-save {
-	border: var(--border);
 	align-items: center;
 	width: min-content;
-	padding: 1rem;
 }
 
 .fa-heart,
@@ -1011,6 +1063,22 @@ label {
 
 .item-quantity {
 	display: flex;
+}
+
+#cart-minus {
+	padding-left: 11px;
+}
+
+.checkout-card {
+	box-shadow: none;
+	border: var(--border);
+}
+
+.checkout-card-total {
+	height: 46px;
+	width: 100%;
+	margin: 0;
+	border-bottom: var(--border);
 }
 
 @media only screen and (max-width: 600px) {
@@ -1324,17 +1392,8 @@ a .heading {
 	line-height: 1.7rem;
 }
 
-.small-text,
-.small-icon {
+.small-text {
 	font-size: 1rem !important;
-}
-
-.small-icon,
-.small-icon:focus {
-	line-height: 20px !important;
-	border: 2px solid var(--highlight-color);
-	width: 25px;
-	cursor: pointer;
 }
 
 .highlight {

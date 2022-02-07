@@ -2,11 +2,10 @@
 {% load mathfilters %}
 {% block content %}
 {% include 'includes/popup.html' %}
-<header class="container product-banner">
-    <h3>Cart</h3>
-
+<header class="container banner cart-banner">
+    <h1 class="heading color-white">Cart</h1>
 </header>
-<section class="container form">
+<section class="container form cart-container">
     <div class="row cart-mobile no-margin">
         {% if product_count %}
             <div class="col s9 m7 xl8 card cart">
@@ -18,12 +17,12 @@
                 {% for item in cart_items %}
                     {% if item.quantity > 0 %}
                         <div class="row padding">
-                            <div class="card-image col s12 m3">
+                            <div class="image-container col s12 m4">
                                 <a href="{% url 'view-product' item.product.id %}">
-                                <img height="150" src="{{ item.product.image.url }}" alt="">
+                                <img width="250px" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}">
                                 </a>
                             </div>
-                            <div class="col s10 offset-s1 m9">
+                            <div class="col s10 offset-s1 m8">
                                 <div class="item-price">
                                     <h3 class="no-margin small-text bold">£{{ item.product.price }}</h3>
                                     <a href="{% url 'delete-cart-item' item.product.id %}"><i class="fas fa-times "></i></a>
@@ -39,19 +38,19 @@
                                     <form method="POST" action="{% url 'update-cart' item.product.id %}">
                                         {% csrf_token %}
                                         <div class="row">
-                                            <button class="btn-hide product-quantity" id="cart-minus"><i class="fas fa-minus small-icon"></i></button>
+                                            <button class="product-quantity" id="cart-minus"><i class="fas fa-minus small-icon"></i></button>
                                             <input class="number-input" id="product-amount" name="cart-amount" type="number" value="{{ item.quantity }}" min="0" max="{{ item.product.stock_numbers|add:item.quantity }}">
-                                            <button class="btn-hide product-quantity" id="cart-plus"><i class="fas fa-plus small-icon"></i></button>
-                                            <button type="submit" class="btn" data-product_id="{{ item.product.id }}" id="updateBtn">Update</button>
+                                            <button class="product-quantity" id="cart-plus"><i class="fas fa-plus small-icon"></i></button>
                                         </div>
+                                        <button type="submit" class="btn margin-bottom" data-product_id="{{ item.product.id }}" id="updateBtn">Update</button>
                                         <p id="amount-alert" class="hidden no-margin">Only {{ item.product.stock_numbers|add:item.quantity }} in stock</p>
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}" id="hiddenUrl" class="hidden">
                                     </form>
                                 </div>
                                 <div class="item-save">
-                                        <i class="far fa-heart" id="heart"></i>
-                                        <input type="checkbox" class="hidden" data-product_id="{{ item.product.id }}" name="saveForLater" id="saveForLater" unchecked>
-                                        <p>Save for later</p>
+                                    <p>Save for later</p>
+                                    <i class="far fa-heart margin-left" id="heart"></i>
+                                    <input type="checkbox" class="hidden" data-product_id="{{ item.product.id }}" name="saveForLater" id="saveForLater" unchecked>
                                 </div>
                             </div>
                         </div>
@@ -64,19 +63,23 @@
                 </div>
             </div>
             <div class="flex-wrapper card column checkout-card padding">
-                <h3 class="full-width no-margin bold">Total</h3>
-                <hr>
+                <h3 class="checkout-card-total bold">Total</h3>
                 <div class="flex-wrapper column full-width">
                     <div class="checkout-items">
                         <h3 class="bold">Sub-total</h3>
                         <h3 class="">£{{ total }}</h3>
                     </div>
                     <div class="checkout-items">
+                        <h3 class="bold">Delivery</h3>
                         {% if total >= free_delivery_threshold %}
-                            <h3 class="no-margin highlight bold">Free delivery</h3>
+                            <h3 class="delivery-cost">Free</h3>
                         {% else %}
-                            <h3 class="no-margin">Spend <strong>£{{ free_delivery_threshold|sub:total }}</strong> more and get free delivery</h3>
+                            <h3 class="no-margin">Spend <strong>£{{ free_delivery_threshold|sub:total }}</strong>, and get free delivery</h3>
                         {% endif %}
+                    </div>
+                    <div class="checkout-items">
+                        <h3 class="bold">Grand Total</h3>
+                        <h3 class="">£{{ grand_total }}</h3>
                     </div>
                 </div>
                 <hr>

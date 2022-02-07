@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if not partner_profile.company_name %}
-<div class="container" id="message">
+<div class="container partner-banner" id="message">
     <div class="row message">
         <div class="alert alert-info col s10 offset-s1 m8 offset-m2 no-padding">
             <div class="alert-icon-box info">        
@@ -15,7 +15,7 @@
     </div>
 </div>
 {% endif %}
-<header class="container banner">
+<header class="container banner partner-banner">
         <h1 class="no-margin">{{ partner_profile.company_name }}</h1>
         <P>Edit your profile</P>
 </header>

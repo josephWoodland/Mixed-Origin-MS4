@@ -2,60 +2,59 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<header class="container product-banner">
-    <h3>Checkout</h3>
+<header class="container banner checkout-banner">
+    <h1 class="heading color-white">Checkout</h1>
 </header>
-<section class="container form">
+<section class="container form cart-container">
     <div class="row no-margin">
-        <div class="col s9 m7 xl8 card card-margin">
+        <div class="col s9 m7 xl8 card card-margin cart">
             <div class="flex-wrapper cart-header">
                 <h3 class="cart-heading bold">Checkout</h3>
             </div>
-                <div class="row">
-                    <form action="" method="POST"  class="col s10 offset-s1" id="payment-form">
-                        {% csrf_token %}
-                        <div class="checkout-items">
-                            <h3>
-                                Your Details
-                            </h3>
-                        </div>
-                        {{ form|crispy }}
-                        <div class="checkout-items">
-                            {% if user.is_authenticated %}
-                                <label for="id_walletDetails">Save this information to your wallet.
-                                    <input type="checkbox" name="walletDetails" id="id_walletDetails" checked>
-                                </label>
-                            {% else %}
-                            <p>Already have an account
-                              <a href="{% url 'account_login' %}"> Login</a>
-                            </p>
-                            {% endif %}
-                        </div>
-                        <hr>
-                        <div class="checkout-items">
-                            <h3>
-                                Payment Details
-                            </h3>
-                        </div>
-                        <div class="checkout-items column margin-bottom">
-                                <div class="payment-card col s12" id="card-element"></div>
-                                <div class="payment-errors col s12" id="card-errors"></div>
-                                <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                        </div>
-                        <div class="checkout-items">
-                            <input  id="submit-button" type="submit" class="btn" value="Order">
-                        </div>
-                        <div class="checkout-item">
-                            <h3 class="small-text">Your card will be debited <span class="bold">£{{ grand_total|floatformat:2 }}</span></h3>
-                        </div>
-                    </form>
-                </div>
             <hr>
+            <div class="row">
+                <form action="" method="POST"  class="col s10 offset-s1" id="payment-form">
+                    {% csrf_token %}
+                    <div class="checkout-items">
+                        <h3>
+                            Your Details
+                        </h3>
+                    </div>
+                    {{ form|crispy }}
+                    <div class="checkout-items">
+                        {% if user.is_authenticated %}
+                            <label for="id_walletDetails">Save this information to your wallet.
+                                <input type="checkbox" name="walletDetails" id="id_walletDetails" checked>
+                            </label>
+                        {% else %}
+                        <p>Already have an account?
+                          <a class="underline hover-highlight margin-left" href="{% url 'account_login' %}"> Login</a>
+                        </p>
+                        {% endif %}
+                    </div>
+                    <hr>
+                    <div class="checkout-items">
+                        <h3>
+                            Payment Details
+                        </h3>
+                    </div>
+                    <div class="checkout-items column margin-bottom">
+                            <div class="payment-card col s12" id="card-element"></div>
+                            <div class="payment-errors col s12" id="card-errors"></div>
+                            <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                    </div>
+                    <div class="checkout-items">
+                        <input  id="submit-button" type="submit" class="btn" value="Order">
+                    </div>
+                    <div class="checkout-item">
+                        <h3 class="small-text">Your card will be debited <span class="bold">£{{ grand_total|floatformat:2 }}</span></h3>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div class="flex-wrapper card column checkout-card padding">
-        <h3 class="full-width bold">Cart</h3>
-        <hr>
+        <h3 class="checkout-card-total bold">Cart</h3>
         <div class="flex-wrapper column full-width">
             <div class="cart-items column">
                 {% for item in cart_items %}
@@ -77,6 +76,9 @@
         <a href="{% url 'cart' %}" class="btn">cart</a>
     </div>
 </section>
+<div class="highlight checkout-color">
+
+</div>
 <div class="" id="loading-overlay">
     <div class="preloader-wrapper big active no-border">
         <div class="spinner-layer spinner-blue">

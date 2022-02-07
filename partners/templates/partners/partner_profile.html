@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<header class="container banner">
+<header class="container banner partner-banner">
     <h1 class="no-margin">{{ partner.company_name }}</h1>
     <P>{{ partner.company_short_bio }}</P>
     {% if request.user %}
@@ -24,7 +24,7 @@
                     <P>{{ partner.company_description }}</P>
                     <p>
                         See all of our products 
-                        <a href="{% url 'partner-products' partner.id %}">here</a>
+                        <a href="{% url 'partner-products' partner.id %}" class="underline hover-highlight">here</a>
                     </p>
                 </div>
             </div>
