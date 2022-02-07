@@ -54,5 +54,4 @@ def partnerRequest(sender, instance, created, **kwargs):
 
 post_save.connect(createPartner, sender=Profile)
 post_save.connect(createWallet, sender=Profile)
-post_save.connect(partnerRequest, sender=Profile)
 post_save.connect(createProfile, sender=User)

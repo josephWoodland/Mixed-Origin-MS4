@@ -3,6 +3,9 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
+from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from .models import Profile, PartnerProfile, Wallet
 from .forms import ProfileForm, PartnerProfileForm, WalletForm
 
@@ -37,7 +40,23 @@ def user_profile(request):
         form = request.POST
         if ("partner_application") in form:
             profile = Profile.objects.filter(
-                id=id).update(partner_application=True)
+                id=id)
+            profile.update(partner_application=True)
+
+            user = request.user.profile
+            email = settings.DEFAULT_FROM_EMAIL
+
+            subject = render_to_string(
+                "profiles/email_request/email_request_subject.txt",
+                {"profile": user},
+            )
+            body = render_to_string(
+                "profiles/email_request/email_request_body.txt",
+                {"profile": user},
+            )
+
+            send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email])
+
             messages.success(request, "Your application request has been sent")
             return redirect("profile")
         else:
