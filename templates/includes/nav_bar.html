@@ -14,6 +14,7 @@
             <a href="{% url 'account_login' %}" class="nav-login hide-on-med-and-down hover-highlight">Login
             </a>
             {% endif %}
+            <a class="hover-highlight" href="{% url 'profile' %}"><i class="fas fa-user"></i></a>
             <a href="{% url 'cart' %}" class="hover-highlight"><i class="fas fa-shopping-cart"></i>
             </a>
         </div>
@@ -22,15 +23,11 @@
         <a href="" class="sidenav-trigger hide-on-med-and-down"><i class="fas fa-bars hidden"></i></a>
         <ul class="hide-on-med-and-down">
             <li><a {% if '/' == request.path %}class="active"{% endif %} href="{% url 'home' %}">home</a></li>
-            <li><a {% if '/product/' in request.path %} class="active"{% endif %} id="products" href="{% url 'products' %}">products</a>
-            </li>
+            <li><a {% if '/product/' in request.path %} class="active"{% endif %} id="products" href="{% url 'products' %}">products</a></li>
             <li><a {% if '/partners/' in request.path %} class="active"{% endif %} href="{% url 'partners' %}">partners</a></li>
             <li><a {% if '/blog/' in request.path %} class="active"{% endif %} href="{% url 'blog' %}">blog</a></li>
             <li><a {% if '/contact/' in request.path %} class="active"{% endif %} href="{% url 'about' %}">about us</a></li>
-            {% if request.user.is_authenticated %}
-                <li><a {% if '/profile/' in request.path %} class="active"{% endif %} href="{% url 'profile' %}">profile</a></li>
-            {% endif %} 
-            </ul>
+        </ul>
     </div>
 </nav>
     <p id="hiddenCartNumber" class="cart-notification transparent">{{ product_count }}</p>
