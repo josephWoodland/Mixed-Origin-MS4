@@ -19,7 +19,7 @@
                         <div class="row padding">
                             <div class="image-container col s12 m4">
                                 <a href="{% url 'view-product' item.product.id %}">
-                                <img width="250px" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}">
+                                <img width="250px" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}" height="200px">
                                 </a>
                             </div>
                             <div class="col s10 offset-s1 m8">
@@ -74,9 +74,10 @@
                         {% if total >= free_delivery_threshold %}
                             <h3 class="delivery-cost">Free</h3>
                         {% else %}
-                            <h3 class="no-margin">Spend <strong>£{{ free_delivery_threshold|sub:total }}</strong>, and get free delivery</h3>
-                        {% endif %}
+                            <h3>£ 10</h3>
                     </div>
+                    <h3><strong>£{{ free_delivery_threshold|sub:total }} </strong>to get free delivery</h3>
+                    {% endif %}
                     <div class="checkout-items">
                         <h3 class="bold">Grand Total</h3>
                         <h3 class="">£{{ grand_total }}</h3>

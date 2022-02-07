@@ -25,10 +25,10 @@ def createPartner(sender, instance, created, **kwargs):
 
 
 def createWallet(sender, instance, created, **kwargs):
-
-    profile = instance
-    name = profile.first_name
-    wallet = Wallet.objects.create(owner=profile, name=name)
+    if created:
+        profile = instance
+        name = profile.first_name
+        wallet = Wallet.objects.create(owner=profile, name=name)
 
 
 def partnerRequest(sender, instance, created, **kwargs):

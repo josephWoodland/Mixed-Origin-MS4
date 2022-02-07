@@ -16,22 +16,23 @@
     </div>
 </div>
 {% endif %}
-<header class="container banner">
+<header class="container banner profile-banner">
     <h3>{{ profile.username|title }}</h3>
-    {{ orders }}
 </header>
 <section class="container">
     <div class="row">
         <div class="col s12 m8 offset-m2 form profile">
             <div>
                 {% if profile.profile_image %}
-                    <img  class="profile-image" src="{{ profile.profile_image.url }}" alt="">
+                    <img  class="profile-image" src="{{ profile.profile_image.url }}" alt="Image for {{ profile.first_name }}.">
                 {% else %}
                     <i class="fas fa-user"></i>
                 {% endif %}
             </div>
             <div class="flex-wrapper">
+                {% if profile.first_name %}
                 <p class="active margin-right">{{ profile.first_name }} {{ profile.second_name }}</p>
+                {% endif %}
                 <a class="tooltipped" data-position="top" data-tooltip="View you payment details" href="{% url 'wallet' profile.id %}"><i class="fas fa-wallet margin-right"></i></a>
                 <a class="tooltipped" data-position="top" data-tooltip="View you previous orders" href="{% url 'orders' profile.id %}"><i class="fas fa-archive"></i></a>
             </div>
@@ -78,6 +79,6 @@
             </div>
         </div>
         </div>
-    </section>
+</section>
 </div>
 {% endblock %}

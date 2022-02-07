@@ -3,7 +3,7 @@ Hello {{ order.full_name }}
 This is a conformation of your order through Mixed Origins.
 
 Order Number: {{ order.id }}
-Order Date: {{ order.created| }}
+Order Date: {{ order.created }}
 
 Order Total: ${{ order.sub_total|floatformat:2 }}
 Delivery: ${{ order.delivery_cost }}

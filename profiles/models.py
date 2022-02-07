@@ -24,6 +24,7 @@ class Profile(models.Model):
         default=False, blank=True, null=True)
     is_partner = models.BooleanField(default=False, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )

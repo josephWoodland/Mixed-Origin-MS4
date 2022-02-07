@@ -766,6 +766,16 @@ label {
 	background-position: left center;
 }
 
+.order-banner {
+	background-image: url(../img/order-banner.jpg);
+	background-size: cover;
+}
+
+.wallet-banner {
+	background-image: url(../img/wallet-banner.jpg);
+	background-size: cover;
+}
+
 .profile {
 	align-items: center;
 	width: 100%;
@@ -784,6 +794,7 @@ label {
 .profile-partner {
 	border-top: var(--border);
 }
+
 
 /* /////////////////////////// Partner ///////////////////// */
 

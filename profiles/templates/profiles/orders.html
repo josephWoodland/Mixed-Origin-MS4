@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<header class="container banner">
-    <h3>Order History</h3>
+<header class="container banner order-banner">
+    <h1>Order History</h1>
 </header>
 <section class="container form">
+    {% if not orders %}
+    <h3>You have no orders yet</h3>
+    <hr>
+    <a href="{% url 'products' %}" class="btn">Search our product list</a>
+    {% else %}
     <div class="row no-margin">
-
         <table>
             <thead>
                 <tr>
@@ -33,5 +37,6 @@
             </tbody>
         </table>
     </div>
+    {% endif %}
 </section>
 {% endblock %}

@@ -239,12 +239,12 @@ function addProductToCart(itemQty) {
 
   setZIndex(popupCart);
   fadeIn(popupCart);
-  // submitForm(form);
+  submitForm(form);
 
-  // setTimeout(() => {
-  //   fadeOut(popupCart);
-  //   setZIndex(popupCart);
-  // }, 2000);
+  setTimeout(() => {
+    fadeOut(popupCart);
+    setZIndex(popupCart);
+  }, 2000);
 }
 
 // Update the cart information in the popup

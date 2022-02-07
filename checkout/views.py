@@ -142,21 +142,35 @@ def checkout(request):
         try:
             profile = Profile.objects.get(user=request.user)
             wallet = Wallet.objects.get(owner=profile)
-            full_name = profile.first_name + " " + profile.second_name
 
-            form = OrderForm(
-                initial={
-                    "full_name": full_name,
-                    "email": profile.email,
-                    "phone_number": wallet.phone_number,
-                    "country": wallet.country,
-                    "postcode": wallet.postcode,
-                    "town_or_city": wallet.town_or_city,
-                    "street_address1": wallet.street_address1,
-                    "street_address2": wallet.street_address2,
-                    "county": wallet.county,
-                }
-            )
+            if profile.first_name:
+                full_name = profile.first_name + " " + profile.second_name
+                email = profile.email
+
+                form = OrderForm(
+                    initial={
+                        "full_name": full_name,
+                        "email": email,
+                        "phone_number": wallet.phone_number,
+                        "country": wallet.country,
+                        "postcode": wallet.postcode,
+                        "town_or_city": wallet.town_or_city,
+                        "street_address1": wallet.street_address1,
+                        "street_address2": wallet.street_address2,
+                        "county": wallet.county,
+                    }
+                )
+            else:
+
+                full_name = request.user.username
+                email = request.user.email
+
+                form = OrderForm(
+                    initial={
+                        "full_name": full_name,
+                        "email": email,
+                    }
+                )
 
         except Profile.DoesNotExist:
             form = OrderForm()
