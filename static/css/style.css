@@ -790,6 +790,13 @@ label {
 .partner-banner {
 	background-image: url(../img/partner-banner.jpg);
 	background-size: cover;
+
+}
+
+.edit-product-banner,
+.list-banner{
+	background-image: url(../img/list-banner.jpg);
+	background-size: cover;
 	background-position: center right;
 }
 
@@ -863,6 +870,13 @@ label {
 .signup {
 	background-image: url(../img/signup.png);
 	height: 100%;
+}
+
+.logout {
+	background-image: url(../img/logout.jpg);
+	height: 100%;
+	background-position: center;
+	background-size: cover;
 }
 
 /* Page user is redirected to when pressed confirmation link */
