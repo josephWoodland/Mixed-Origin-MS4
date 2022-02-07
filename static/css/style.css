@@ -497,15 +497,20 @@ input #search_query::placeholder {
 	box-shadow: 3px 5px var(--border-grey);
 }
 
+.product-name {
+	text-transform: capitalize;
+}
 
 .product-number {
 	display: flex;
 	width: 100%;
+	padding-left: 11px;
 }
 
-.product-quantity {
-	margin-left: 1rem;
-	margin-right: 1rem;
+.product-quantity, 
+.product-quantity:active {
+	border: none !important;
+	background-color: transparent !important;
 }
 
 .product-suggestion {
@@ -519,11 +524,16 @@ input #search_query::placeholder {
 }
 
 #product-amount,
-#order-amount {
+#order-amount,
+#order-amount:active,
+#order-amount:focus,
+#order-amount:visited,
+#order-amount::placeholder{
 	color: var(--text-color);
-	border: var(--border);
+	border: none !important;
 	text-align: center;
 	font-family: var(--font-main);
+	box-shadow: none !important;
 }
 
 #order-amount {
@@ -871,6 +881,14 @@ label {
 	/* background-position: center; */
 }
 
+.product-order {
+	display: flex;
+	flex-direction: column;
+	align-items: first baseline;
+	justify-content: space-between;
+	padding: 0!important;
+	height: 100%;
+}
 /* /////////////////////////// Product List ///////////////////// */
 
 .blank-table {
@@ -1203,7 +1221,7 @@ a .heading {
 }
 
 .margin-bottom {
-	margin-bottom: 2rem;
+	margin-bottom: 2rem !important;
 }
 
 .no-padding {
@@ -1396,3 +1414,6 @@ a .heading {
 color: var(--text-color);
 }
 
+.color-white {
+	color: #fff;
+}

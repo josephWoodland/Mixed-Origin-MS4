@@ -3,8 +3,8 @@
 {% block content %}
 {% include 'includes/popup.html' %}
 <header class="container product-view-banner banner">
-    <h1 class="heading" >{{ product.owner.company_name }}</h1>
-    <h3 class="product-name">{{ product.name }}</h3>
+    <h1 class="heading color-white" >{{ product.owner.company_name }}</h1>
+
 </header>
 <section class="container">
     <div class="row product-view">
@@ -13,27 +13,29 @@
                 <img height="300" src="{{ product.image.url }}" alt="Image for {{ product.name }}">
             </div>
         </div>
-        <div class="col s12 m5 flex-wrapper column">
-                <h4>£<strong id="productPrice">
-                    {{ product.price }}</strong></h4>
-            <p>{{ product.description }}</p>
+        <div class="col s12 m5 product-order">
+            <h3 class="product-name">{{ product.name }}</h3>
+            <h4>£<strong id="productPrice">{{ product.price }}</strong></h4>
+            
             <div class="row product-number">
                 {% if product.stock_numbers > 0 %}
                 <form id="form" action="{% url 'add-to-cart' product.id %}" method="POST" class="flex-wrapper column full-width">
                     {% csrf_token %}
-                    <div class="row">
-                        <button class="btn product-quantity" id="btn-minus"><i class="fas fa-minus"></i></button>
+                    <div class="row full-width margin-bottom">
+                        <button class="product-quantity" id="btn-minus"><i class="fas fa-minus"></i></button>
                         <input class="number-input" id="order-amount" name="order-amount" type="number" value="1" min="1" max="{{ product.stock_numbers }}">
-                        <button class="btn product-quantity" id="btn-plus"><i class="fas fa-plus"></i></button>
+                        <button class="product-quantity" id="btn-plus"><i class="fas fa-plus"></i></button>
                     </div>
-                    <p id="amount-alert" class="hidden no-margin">Only {{ product.stock_numbers }} in stock</p>
+                    <p id="amount-alert" class="hidden no-margin margin-top">Only {{ product.stock_numbers }} in stock</p>
                     <input id="hiddenUrl" type="hidden" name="redirect_url" value="{{ request.path }}" class="hidden">
-                    <button id="addToCart" type="submit" class="btn">Add to cart</button>
+                    <button id="addToCart" type="submit" class="btn full-width margin-top">Add to cart</button>
                 </form>
                 {% else %}
                 <h3>This product is currently out of stock!</h3>
                 {% endif %}
             </div>
+            <h3 class="small-text bold">DETAILS</h3>
+            <p>{{ product.description }}</p>
         </div>
     </div>
     {% if partner_profile.id == product.owner.id %}
@@ -46,7 +48,8 @@
         <h3>You may also like...</h3>
     </div>
 </section>
-    <div class="row margin-top hide-on-med-and-down product-suggestion">
+<section class="product-suggestion">
+    <div class="row margin-top hide-on-med-and-down">
         <div class="container">
             {% for product in products %}
                 <div class="col s10 offset-s1 m6 l4 xl3">
@@ -71,5 +74,6 @@
             {% endfor %}
         </div>
     </div>
+</section>
 
 {% endblock %}
