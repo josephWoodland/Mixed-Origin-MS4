@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 {% include 'includes/popup.html' %}
-<header class="container product-banner">
-    <h3 class="heading" >{{ product.owner.company_name }}</h3>
+<header class="container product-view-banner banner">
+    <h1 class="heading" >{{ product.owner.company_name }}</h1>
     <h3 class="product-name">{{ product.name }}</h3>
 </header>
 <section class="container">
@@ -45,26 +45,31 @@
     <div class="row">
         <h3>You may also like...</h3>
     </div>
-    <div class="row product-sugestion hide-on-med-and-down">
-        {% for product in products %}
-            <div class="col s10 offset-s1 m6 l4 xl3">
-                <a href="{% url 'view-product' product.id %}">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{ product.image.url }}" alt="Thumbnail image for {{ product.name }}" >
+</section>
+    <div class="row margin-top hide-on-med-and-down product-suggestion">
+        <div class="container">
+            {% for product in products %}
+                <div class="col s10 offset-s1 m6 l4 xl3">
+                    <a href="{% url 'view-product' product.id %}">
+                        <div class="card no-shadow">
+                            <div class="card-image">
+                                <img src="{{ product.image.url }}" alt="Thumbnail image for {{ product.name }}">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">{{ product.name|truncatechars:17 }}</span>
+                            </div>
+                            <div class="card-action">
+                                <span class="card-price bold">£ <span id="productPrice">
+                                    {{ product.price }}
+                                </span>
+                                </span>
+                                <a href="{% url 'view-product' product.id %}" class="btn" id="orderItem">View Product</a>    
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <span class="card-title">{{ product.name|truncatechars:17 }}</span>
-                        </div>
-                        <div class="card-action">
-                            <a href="#">Order</a>
-                            <span class="card-price">£{{ product.price }}</span>
-                    </div>
-                </a>
-            </div> 
+                    </a>
+                </div> 
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 
-</section>
 {% endblock %}

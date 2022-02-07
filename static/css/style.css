@@ -394,9 +394,10 @@ footer li {
 /* /////////////////////////// Trending  ///////////////////// */
 
 .trending {
+	display: flex;
+	justify-content: space-between;
 	margin-bottom: 0;
-	padding-top: 2rem;
-	padding-bottom: 2rem;
+	padding: 2rem;
 }
 
 .trending-headline {
@@ -406,12 +407,22 @@ footer li {
 
 .trending-highlight {
 	height: 15rem;
+	max-width: 550px;
+
 }
 
 .promoted-card {
-	max-height: 15rem !important;
+	height: 15rem !important;
+	width: 550px;
 	overflow: hidden;
 	border: var(--border);
+}
+
+.promoted-image {
+	background-image: url(../img/books.jpg);
+	height: 15rem;
+	background-size: cover;
+	background-position: center;
 }
 
 @media only screen and (max-width: 600px) {
@@ -498,8 +509,9 @@ input #search_query::placeholder {
 }
 
 .product-suggestion {
-	margin-right: 2rem;
-	max-height: 250px;
+	width: 100%;
+	padding: 4rem 0 4rem 0;
+	background-color: var(--highlight-color);
 }
 
 .suggestion-image {
@@ -848,6 +860,15 @@ label {
 
 #passwordReset {
 	margin-bottom: 3rem;
+}
+
+/* /////////////////////////// Product View ///////////////////// */
+
+.product-view-banner {
+	background-image: url(../img/product-view-banner.jpg);
+	background-size: cover;
+	color: var(--text-logo);
+	/* background-position: center; */
 }
 
 /* /////////////////////////// Product List ///////////////////// */
