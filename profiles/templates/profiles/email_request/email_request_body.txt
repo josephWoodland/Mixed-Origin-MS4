@@ -3,7 +3,7 @@ Hello,
 {{ profile }}
 We have received a request to sell products on our site from {{ profile.first_name }} {{ profile.second_name }}.
 
-Email to contact them on is {{ profile.email }}
+Please email them on {{ profile.email }}.
 
 They are awaiting a response. 
 

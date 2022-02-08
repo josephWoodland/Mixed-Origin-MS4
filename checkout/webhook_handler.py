@@ -73,7 +73,7 @@ class StripeWH_Handler:
         order_exists = False
 
         attempt = 1
-        while attempt <= 5:
+        while attempt <= 10:
 
             try:
                 order = Order.objects.get(
@@ -108,9 +108,6 @@ class StripeWH_Handler:
             order = None
 
             try:
-                id_number = uuid.uuid4()
-                id = str(id_number)
-
                 order = Order.objects.create(
                     full_name=shipping_details.name,
                     profile=profile,
@@ -124,7 +121,6 @@ class StripeWH_Handler:
                     county=shipping_details.address.state,
                     grand_total=grand_total,
                     stripe_pid=pid,
-                    id=id,
                 )
 
                 order.save()

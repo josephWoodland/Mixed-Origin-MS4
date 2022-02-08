@@ -575,6 +575,12 @@ input #search_query::placeholder {
 	height: 40px;
 }
 
+.btn-back {
+	width: 30rem;
+	background-color: var(--background-color);
+	height: 40px;
+	color: var(--text-color);
+}
 
 .btn:hover {
 	background-color: var(--highlight-color);
@@ -984,7 +990,7 @@ label {
 }
 
 .checkout-success-banner {
-	background-color: var(--highlight-color);
+	background-color: var(--background-gold);
 	border-bottom: var(--border);
 }
 
@@ -1509,4 +1515,8 @@ color: var(--text-color);
 
 .color-white {
 	color: #fff;
+}
+
+.text-color {
+	color: var(--text-color);
 }
