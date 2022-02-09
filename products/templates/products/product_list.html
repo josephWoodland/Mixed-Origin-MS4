@@ -24,7 +24,7 @@
                 {% else %}
                     <tr>
                         <td>
-                            <a href="{% url 'view-product' product.id %}" class="hover-highlight">{{ product.name }}</a>
+                            <a href="{% url 'view-product' product.slug %}" class="hover-highlight">{{ product.name }}</a>
                         </td>
                         <td>
                             {{ product.stock_numbers }}
@@ -53,7 +53,7 @@
                 {% if forloop.counter|divisibleby:2 %}
                     <tr>
                         <td>
-                            <a href="{% url 'view-product' product.id %}" class="hover-highlight">{{ product.name }}</a>
+                            <a href="{% url 'view-product' product.slug %}" class="hover-highlight">{{ product.name }}</a>
                         </td>
                         <td>
                             {{ product.stock_numbers }}

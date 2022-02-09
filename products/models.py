@@ -9,9 +9,6 @@ class Product(models.Model):
     owner = models.ForeignKey(
         PartnerProfile, null=True, blank=True, on_delete=models.CASCADE
     )
-    owner_profile = models.ForeignKey(
-        Profile, null=True, blank=True, on_delete=models.CASCADE
-    )
     name = models.CharField(max_length=200)
     description = models.TextField(null=False, blank=False)
     in_stock = models.BooleanField(default=True)
@@ -26,6 +23,8 @@ class Product(models.Model):
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
+
+    slug = models.CharField(max_length=200, null=True, unique=True)
 
     def __str__(self):
         return self.name

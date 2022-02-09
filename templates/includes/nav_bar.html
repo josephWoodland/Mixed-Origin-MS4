@@ -69,7 +69,7 @@
                     <div class="image-container">
                         <img height="130px" src="{{ product.image.url }}" alt="Image for {{ product.name }}">
                     </div>
-                    <a href="{% url 'view-product' product.id %}">
+                    <a href="{% url 'view-product' product.slug %}">
                         <div class="dropdown-link">{{ product.name }}</div>
                     </a>
                 </div>

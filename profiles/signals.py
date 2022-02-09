@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils.text import slugify
 
 
-def createProfile(sender, instance, created, **kwargs):
+def create_profile(sender, instance, created, **kwargs):
     if created:
         user = instance
         profile = Profile.objects.create(
@@ -19,21 +19,21 @@ def createProfile(sender, instance, created, **kwargs):
         )
 
 
-def createPartner(sender, instance, created, **kwargs):
+def create_partner(sender, instance, created, **kwargs):
     profile = instance
 
     if profile.is_partner:
         partner = PartnerProfile.objects.create(partner=profile)
 
 
-def createWallet(sender, instance, created, **kwargs):
+def create_wallet(sender, instance, created, **kwargs):
     if created:
         profile = instance
         name = profile.first_name
         wallet = Wallet.objects.create(owner=profile, name=name)
 
 
-def partnerRequest(sender, instance, created, **kwargs):
+def partner_request(sender, instance, created, **kwargs):
 
     profile = instance
     partner_request = profile.partner_application
@@ -54,7 +54,7 @@ def partnerRequest(sender, instance, created, **kwargs):
         send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email])
 
 
-def createPartnerSlug(sender, instance, created, **kwargs):
+def create_partner_slug(sender, instance, created, **kwargs):
 
     partner = get_object_or_404(PartnerProfile, id=instance.id)
     slug = partner.slug
@@ -69,7 +69,7 @@ def createPartnerSlug(sender, instance, created, **kwargs):
             PartnerProfile.objects.filter(id=instance.id).update(slug=slug_str)
 
 
-post_save.connect(createPartnerSlug, sender=PartnerProfile)
-post_save.connect(createPartner, sender=Profile)
-post_save.connect(createWallet, sender=Profile)
-post_save.connect(createProfile, sender=User)
+post_save.connect(create_partner_slug, sender=PartnerProfile)
+post_save.connect(create_partner, sender=Profile)
+post_save.connect(create_wallet, sender=Profile)
+post_save.connect(create_profile, sender=User)

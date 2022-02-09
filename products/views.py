@@ -67,15 +67,16 @@ def add_product(request, pk):
             product = form.save(commit=False)
             product.owner = partner
             product.save()
-            messages.success(request, "You have added a new product to your store!")
+            messages.success(
+                request, "You have added a new product to your store!")
             return redirect("product-list", pk=pk)
 
     return render(request, template, context)
 
 
-def view_product(request, pk):
+def view_product(request, slug):
     template = "products/view_product.html"
-    product = Product.objects.get(id=pk)
+    product = get_object_or_404(Product, slug=slug)
     partner_profile = None
     products = Product.objects.all()
 

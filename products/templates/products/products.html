@@ -24,7 +24,7 @@
         <div class="row">
         {% for product in products %}
             <div class="col s10 offset-s1 m6 l4 xl3">
-                <a href="{% url 'view-product' product.id %}">
+                <a href="{% url 'view-product' product.slug %}">
                     <div class="card no-shadow">
                         <div class="card-image">
                             <img src="{{ product.image.url }}" alt="Thumbnail image for {{ product.name }}">
@@ -37,7 +37,7 @@
                                 {{ product.price }}
                             </span>
                             </span>
-                            <a href="{% url 'view-product' product.id %}" class="btn" id="orderItem">View Product</a>    
+                            <a href="{% url 'view-product' product.slug %}" class="btn" id="orderItem">View Product</a>    
                         </div>
                     </div>
                 </a>
