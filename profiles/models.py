@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 import uuid
 
 from django_countries.fields import CountryField
-from django.shortcuts import reverse
-from django.template.defaultfilters import slugify
 # Create your models here.
 
 
@@ -24,7 +22,6 @@ class Profile(models.Model):
         default=False, blank=True, null=True)
     is_partner = models.BooleanField(default=False, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(null=True, default='profile')
 
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
@@ -32,9 +29,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.username)
-
-    def get_absolute_url(self):
-        return reverse('profile', kwargs={'slug': self.slug})
 
 
 class PartnerProfile(models.Model):
