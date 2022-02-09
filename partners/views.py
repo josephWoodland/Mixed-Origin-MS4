@@ -1,3 +1,4 @@
+from webbrowser import get
 from django.shortcuts import render, get_object_or_404
 from products.models import Product
 from products.views import product_list
@@ -27,9 +28,10 @@ def partners(request):
     return render(request, template, context)
 
 
-def partner_profile(request, pk):
+def partner_profile(request, slug):
     template = "partners/partner_profile.html"
-    partner = get_object_or_404(PartnerProfile, id=pk)
+    partner = get_object_or_404(PartnerProfile, slug=slug)
+
     context = {
         "partner": partner,
     }

@@ -37,20 +37,20 @@
                     <div class="row">
                         <div class="col s7 no-padding">
                             <div class="image-container">
-                                <a href="{% url 'partner-profile' partner.id %}">
+                                <a href="{% url 'partner-profile' partner.slug %}">
                                     <img width="400" src="{{ partner.company_image.url }}">
                                 </a>
                             </div>
                         </div>
                         <div class="card-stacked col s5">
-                            <a href="{% url 'partner-profile' partner.id %}">
+                            <a href="{% url 'partner-profile' partner.slug %}">
                                 <h3 class="header" style="color: #5f5f5f;">{{ partner.company_name }}</h3>
                             </a>
                             <div class="card-content">
                                 <p>{{ partner.company_short_bio }}</p>
                             </div>
                             <div class="card-action">
-                                <a href="{% url 'partner-profile' partner.id %}">more..</a>
+                                <a href="{% url 'partner-profile' partner.slug %}">more..</a>
                             </div>
                         </div>
                     </div>

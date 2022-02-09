@@ -9,12 +9,24 @@ import time
 
 # Create your views here.
 def cart(request):
+    """
+    View calls renders the cart template
+    """
     template = "cart/cart.html"
     context = {}
     return render(request, template, context)
 
 
 def add_to_cart(request, item_id):
+    """This view adds a product to the current session cart
+
+    Args:
+        request ([type]): [description]
+        item_id (id): This is the product id
+
+    Returns:
+        [type]: [description]
+    """
     product = Product.objects.get(id=item_id)
     quantity = request.POST.get("order-amount")
     # If order does not come from the product view order set to 1
@@ -44,7 +56,7 @@ def add_to_cart(request, item_id):
 
     request.session["cart"] = cart
 
-    time.sleep(3)
+    time.sleep(2)
 
     return redirect(redirect_url)
 
@@ -61,7 +73,8 @@ def update_cart(request, pk):
     product.stock_numbers = current_stock
     product.save()
     cart[id] = new_amount
-    messages.success(request, f"You have updated { product.name } in your cart!")
+    messages.success(
+        request, f"You have updated { product.name } in your cart!")
 
     request.session["cart"] = cart
 
@@ -77,7 +90,8 @@ def delete_cart_item(request, pk):
     product.stock_numbers = current_stock + order_number
     product.save()
     del cart[id]
-    messages.success(request, f"You have deleted { product.name } from your cart!")
+    messages.success(
+        request, f"You have deleted { product.name } from your cart!")
     request.session["cart"] = cart
 
     return redirect(reverse("cart"))

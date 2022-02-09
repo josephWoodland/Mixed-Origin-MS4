@@ -3,15 +3,16 @@ from django.contrib.auth.models import User
 import uuid
 
 from django_countries.fields import CountryField
-
+from django.shortcuts import reverse
+from django.template.defaultfilters import slugify
 # Create your models here.
 
 
 class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, null=True, blank=True)
-    first_name = models.CharField(max_length=200, blank=False, null=False)
-    second_name = models.CharField(max_length=200, blank=False, null=False)
+    first_name = models.CharField(max_length=200, blank=True, null=True)
+    second_name = models.CharField(max_length=200, blank=True, null=True)
     username = models.CharField(max_length=200, blank=False, null=False)
     email = models.EmailField(max_length=500, blank=True, null=True)
     profile_image = models.ImageField(
@@ -23,6 +24,7 @@ class Profile(models.Model):
         default=False, blank=True, null=True)
     is_partner = models.BooleanField(default=False, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(null=True, default='profile')
 
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
@@ -30,6 +32,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.username)
+
+    def get_absolute_url(self):
+        return reverse('profile', kwargs={'slug': self.slug})
 
 
 class PartnerProfile(models.Model):
@@ -54,6 +59,9 @@ class PartnerProfile(models.Model):
     social_website = models.CharField(max_length=200, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     promoted = models.BooleanField(default=False, blank=True, null=True)
+
+    slug = models.CharField(max_length=200, null=True, unique=True)
+
     id = models.UUIDField(
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
@@ -68,8 +76,8 @@ class Wallet(models.Model):
         Profile, on_delete=models.CASCADE, null=True, blank=True
     )
     name = models.CharField(max_length=200, blank=False, null=True)
-    phone_number = models.IntegerField(null=False, blank=False)
-    street_address1 = models.CharField(max_length=80, null=False, blank=False)
+    phone_number = models.IntegerField(null=True, blank=True)
+    street_address1 = models.CharField(max_length=80, null=True, blank=True)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)

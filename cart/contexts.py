@@ -4,7 +4,14 @@ from products.models import Product, Tag
 
 
 def cart_contents(request):
+    """ Function to give access to the current cart object
+        accross the site
+    Args:
+        request (request):
 
+    Returns:
+        [object]: The cart object saved in the user session
+    """
     cart_items = []
     total = 0
     product_count = 0
