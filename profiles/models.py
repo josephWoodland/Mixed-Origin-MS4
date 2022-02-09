@@ -1,4 +1,3 @@
-from re import U
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
@@ -11,9 +10,9 @@ from django_countries.fields import CountryField
 class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, null=True, blank=True)
-    first_name = models.CharField(max_length=200, blank=True, null=True)
-    second_name = models.CharField(max_length=200, blank=True, null=True)
-    username = models.CharField(max_length=200, blank=True, null=True)
+    first_name = models.CharField(max_length=200, blank=False, null=False)
+    second_name = models.CharField(max_length=200, blank=False, null=False)
+    username = models.CharField(max_length=200, blank=False, null=False)
     email = models.EmailField(max_length=500, blank=True, null=True)
     profile_image = models.ImageField(
         null=False,
@@ -43,11 +42,12 @@ class PartnerProfile(models.Model):
         default="default.png",
         upload_to="companies/",
     )
-    company_name = models.CharField(max_length=50, blank=True, null=False)
+    company_name = models.CharField(max_length=50, blank=False, null=False)
     company_website = models.CharField(max_length=200, null=True, blank=False)
-    company_short_bio = models.TextField(max_length=200, null=True, blank=True)
+    company_short_bio = models.TextField(
+        max_length=200, null=False, blank=False)
     company_description = models.TextField(
-        max_length=400, null=True, blank=False)
+        max_length=400, null=False, blank=False)
     social_twitter = models.CharField(max_length=200, blank=True, null=True)
     social_linkedin = models.CharField(max_length=200, blank=True, null=True)
     social_youtube = models.CharField(max_length=200, blank=True, null=True)
@@ -68,7 +68,7 @@ class Wallet(models.Model):
         Profile, on_delete=models.CASCADE, null=True, blank=True
     )
     name = models.CharField(max_length=200, blank=False, null=True)
-    phone_number = models.IntegerField(null=True, blank=False)
+    phone_number = models.IntegerField(null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=True, blank=True)

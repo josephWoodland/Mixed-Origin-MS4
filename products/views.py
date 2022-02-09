@@ -35,7 +35,7 @@ def products(request):
         "products": products,
         "search_query": search_query,
         "custom_range": custom_range,
-        "paginator": paginator
+        "paginator": paginator,
     }
 
     return render(request, template, context)
@@ -67,8 +67,7 @@ def add_product(request, pk):
             product = form.save(commit=False)
             product.owner = partner
             product.save()
-            messages.success(
-                request, "You have added a new product to your store!")
+            messages.success(request, "You have added a new product to your store!")
             return redirect("product-list", pk=pk)
 
     return render(request, template, context)
@@ -154,8 +153,6 @@ def delete_product(request, pk):
         messages.success(request, "Product has been deleted!")
         return redirect("profile")
 
-    context = {
-        'object': product
-    }
+    context = {"object": product}
 
     return render(request, template, context)

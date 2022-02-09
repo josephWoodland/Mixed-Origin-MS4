@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-
+from PIL import Image
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from .models import Profile, PartnerProfile, Wallet
 from .forms import ProfileForm, PartnerProfileForm, WalletForm
+import os
 
 # Create your views here.
 
@@ -39,8 +40,7 @@ def user_profile(request):
     if request.method == "POST":
         form = request.POST
         if ("partner_application") in form:
-            profile = Profile.objects.filter(
-                id=id)
+            profile = Profile.objects.filter(id=id)
             profile.update(partner_application=True)
 
             user = request.user.profile

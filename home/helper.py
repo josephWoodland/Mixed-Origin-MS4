@@ -3,7 +3,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def paginateProdcuts(request, products, results):
 
-    page = request.GET.get('page')
+    page = request.GET.get("page")
     paginator = Paginator(products, results)
 
     try:
@@ -17,8 +17,8 @@ def paginateProdcuts(request, products, results):
         page = paginator.num_pages
         products = paginator.page(page)
 
-    leftIndex = (int(page) - 4)
-    rightIndex = (int(page) + 5)
+    leftIndex = int(page) - 4
+    rightIndex = int(page) + 5
 
     if leftIndex < 1:
         leftIndex = 1

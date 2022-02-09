@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('checkout', '0003_initial'),
+        ("checkout", "0003_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='order',
-            options={'ordering': ['-created']},
+            name="order",
+            options={"ordering": ["-created"]},
         ),
     ]
