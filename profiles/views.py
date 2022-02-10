@@ -2,13 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from PIL import Image
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from .models import Profile, PartnerProfile, Wallet
 from .forms import ProfileForm, PartnerProfileForm, WalletForm
-import os
 
 # Create your views here.
 
@@ -27,6 +25,7 @@ def user_profile(request):
     profile = request.user.profile
     id = profile.id
 
+    # Checks the status of the user profile to return the correct template
     if profile.is_partner == False:
         template = "profiles/profile.html"
         partner_profile = None
@@ -42,7 +41,7 @@ def user_profile(request):
         if ("partner_application") in form:
             profile = Profile.objects.filter(id=id)
             profile.update(partner_application=True)
-
+            # Sends admin a email on the partner request
             user = request.user.profile
             email = settings.DEFAULT_FROM_EMAIL
 
@@ -81,6 +80,7 @@ def edit_profile(request, pk):
     partner_profile = None
 
     if profile.is_partner == True:
+        # checks if the profile is a partner
         partner_profile = PartnerProfile.objects.get(partner_id=pk)
 
     profile_form = ProfileForm(instance=profile)
@@ -135,6 +135,9 @@ def edit_partner(request, pk):
 
 @login_required()
 def delete_profile(request, pk):
+    """
+    Deletes the profile object
+    """
     template = "includes/delete_template.html"
     profile = request.user.profile
 
@@ -153,7 +156,9 @@ def delete_profile(request, pk):
 
 @login_required()
 def user_wallet(request, pk):
-
+    """
+    Displays the user wallet data
+    """
     template = "profiles/wallet.html"
     profile = Profile.objects.get(id=pk)
     wallet = Wallet.objects.get(owner=profile)
@@ -179,6 +184,9 @@ def user_wallet(request, pk):
 
 @login_required()
 def orders(request, pk):
+    """
+    Displays the user previous orders
+    """
     template = "profiles/orders.html"
     profile = Profile.objects.get(id=pk)
     orders = profile.orders.all()
