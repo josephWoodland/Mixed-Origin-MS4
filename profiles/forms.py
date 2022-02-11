@@ -4,6 +4,10 @@ from .models import Profile, PartnerProfile, Wallet
 
 
 class ProfileForm(forms.ModelForm):
+    """
+    Form Class for the profile model
+    """
+
     class Meta:
 
         model = Profile
@@ -32,6 +36,10 @@ class ProfileForm(forms.ModelForm):
 
 
 class PartnerProfileForm(forms.ModelForm):
+    """
+    Form Class for the PartnerProfile model
+    """
+
     class Meta:
         model = PartnerProfile
         fields = [
@@ -65,6 +73,10 @@ class PartnerProfileForm(forms.ModelForm):
 
 
 class WalletForm(forms.ModelForm):
+    """
+    Form class for the Wallet model
+    """
+
     class Meta:
         model = Wallet
         fields = [

@@ -6,4 +6,5 @@ class ProductsConfig(AppConfig):
     name = "products"
 
     def ready(self):
+        # Connect the signals to the app
         import products.signals

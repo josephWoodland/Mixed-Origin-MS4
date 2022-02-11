@@ -10,6 +10,10 @@ from django.db.models import Q
 
 
 def partners(request):
+    """
+    View to get a all the instances of of PartnerProfiles
+    Can take in a search query to filter the instances
+    """
     template = "partners/partners.html"
     partners = PartnerProfile.objects.all()
     search_query = ""

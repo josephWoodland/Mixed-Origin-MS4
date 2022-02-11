@@ -12,7 +12,6 @@ def is_valid_uuid(id):
 
 
 class ProfileModelTest(TestCase):
-
     def setUp(self):
         self.profile = Profile()
         self.profile.first_name = "Test"

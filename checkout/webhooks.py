@@ -6,13 +6,14 @@ from django.views.decorators.csrf import csrf_exempt
 from checkout.webhook_handler import StripeWH_Handler
 
 import stripe
-import json
 
 
 @require_POST
 @csrf_exempt
 def webhook(request):
-
+    """
+    Function to handle the webhooks to help catch errors
+    """
     wh_secret = settings.STRIPE_WH_SECRET
     stripe.api_key = settings.STRIPE_SECRET_KEY
 

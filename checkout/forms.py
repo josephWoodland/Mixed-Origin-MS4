@@ -3,6 +3,9 @@ from checkout.models import Order
 
 
 class OrderForm(forms.ModelForm):
+    """
+    Form to create an instance of a Order from user input
+    """
     class Meta:
         model = Order
         fields = (

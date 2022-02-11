@@ -3,6 +3,9 @@ from django.db.models import Q
 
 
 def tag_products(request):
+    """
+    Function to allow access to the current tags
+    """
     products = Product.objects.all()
     tags_obj = Tag.objects.values("name")
 
@@ -19,8 +22,10 @@ def tag_products(request):
         products = Product.objects.distinct().filter(Q(tags__in=tag_name))
 
         if len(products) > 0:
+            # Push the first product instance to the list
             tag_list.append(products[0])
 
+    # Add the lists together
     tag_products = list(zip(tags, tag_list))
 
     context = {

@@ -5,6 +5,10 @@ from .models import Product
 
 
 class ProductForm(ModelForm):
+    """
+    Form for the Product model to allow user input to create instance
+    """
+
     class Meta:
         model = Product
         fields = [

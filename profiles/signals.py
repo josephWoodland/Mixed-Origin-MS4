@@ -9,6 +9,9 @@ from django.utils.text import slugify
 
 
 def create_profile(sender, instance, created, **kwargs):
+    """
+    Signal to create a profile on the creation of User
+    """
     if created:
         user = instance
         profile = Profile.objects.create(
@@ -20,6 +23,10 @@ def create_profile(sender, instance, created, **kwargs):
 
 
 def create_partner(sender, instance, created, **kwargs):
+    """
+    Creates a PartnerProfile when the admin accepts
+    the Profile application to sell items on the site
+    """
     profile = instance
 
     if profile.is_partner:
@@ -27,6 +34,9 @@ def create_partner(sender, instance, created, **kwargs):
 
 
 def create_wallet(sender, instance, created, **kwargs):
+    """
+    Creates a wallet instance on the creation of a profile model
+    """
     if created:
         profile = instance
         name = profile.first_name
@@ -34,6 +44,11 @@ def create_wallet(sender, instance, created, **kwargs):
 
 
 def partner_request(sender, instance, created, **kwargs):
+    """
+    Sends a email instance triggered Profile on request
+    of the profile by selecting True for the partner application
+    attr in the profile class
+    """
 
     profile = instance
     partner_request = profile.partner_application
@@ -55,7 +70,10 @@ def partner_request(sender, instance, created, **kwargs):
 
 
 def create_partner_slug(sender, instance, created, **kwargs):
-
+    """
+    Creates a Slug for a Partner profile on creation
+    which is used as the url for partner profile page
+    """
     partner = get_object_or_404(PartnerProfile, id=instance.id)
     slug = partner.slug
 
@@ -64,7 +82,7 @@ def create_partner_slug(sender, instance, created, **kwargs):
             id = partner.id.hex
             id_splice = id[0:8]
             name = slugify(partner.company_name)
-            slug_str = f'{id_splice}-{name}'
+            slug_str = f"{id_splice}-{name}"
 
             PartnerProfile.objects.filter(id=instance.id).update(slug=slug_str)
 

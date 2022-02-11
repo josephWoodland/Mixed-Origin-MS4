@@ -13,10 +13,14 @@ from home.helper import paginateProdcuts
 
 
 def products(request):
+    """
+    Product view which handels data from the products query set
+    takes in a search query in request to fillter through the Products Objects
+    """
     template = "products/products.html"
     products = Product.objects.all()
-
     search_query = ""
+
     if request.GET.get("search_query"):
         search_query = request.GET.get("search_query")
 
@@ -42,6 +46,9 @@ def products(request):
 
 
 def product_tags(request, tag):
+    """
+    View to filter products by product tags
+    """
     template = "products/products.html"
     products = Product.objects.all()
     tags = Tag.objects.filter(name__icontains=tag)
@@ -56,6 +63,9 @@ def product_tags(request, tag):
 
 @login_required()
 def add_product(request, pk):
+    """
+    View to add products to the database, can only ba accessed by Partners
+    """
     template = "products/add_product.html"
     partner = PartnerProfile.objects.get(id=pk)
     form = ProductForm()
@@ -67,14 +77,18 @@ def add_product(request, pk):
             product = form.save(commit=False)
             product.owner = partner
             product.save()
-            messages.success(
-                request, "You have added a new product to your store!")
+            messages.success(request, "You have added a new product to your store!")
             return redirect("product-list", pk=pk)
 
     return render(request, template, context)
 
 
 def view_product(request, slug):
+    """
+    View to grab a specific product from the database
+    and pass it into the view. Takes in a slug to search the database
+    via passing it through the url
+    """
     template = "products/view_product.html"
     product = get_object_or_404(Product, slug=slug)
     partner_profile = None
@@ -107,6 +121,10 @@ def view_product(request, slug):
 
 @login_required()
 def product_list(request, pk):
+    """
+    View which filters the database for products
+    by partner. Item found by the pk which is the product id
+    """
     template = "products/product_list.html"
     partner = PartnerProfile.objects.get(id=pk)
     products = partner.product_set.all()
@@ -121,6 +139,9 @@ def product_list(request, pk):
 
 @login_required()
 def edit_product(request, pk):
+    """
+    View to edit specific product, search by product id
+    """
     template = "products/edit_product.html"
     product = Product.objects.get(id=pk)
     partner = product.owner
@@ -146,6 +167,9 @@ def edit_product(request, pk):
 
 @login_required()
 def delete_product(request, pk):
+    """
+    View to delete product from the database, view searches the product by id
+    """
     template = "includes/delete_template.html"
     product = get_object_or_404(Product, id=pk)
 

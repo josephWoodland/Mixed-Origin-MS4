@@ -26,10 +26,16 @@ def home(request):
 
 
 def blog(request):
+    """
+    View to return the Blog pages
+    """
     template = "home/blog.html"
     return render(request, template)
 
 
 def about(request):
+    """
+    View to return the About page
+    """
     template = "home/about_us.html"
     return render(request, template)

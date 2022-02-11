@@ -9,6 +9,9 @@ import uuid
 
 
 class Order(models.Model):
+    """
+    Model to create an instance of the Order item
+    """
     profile = models.ForeignKey(
         Profile, null=True, blank=True, on_delete=models.SET_NULL, related_name="orders"
     )
@@ -37,11 +40,13 @@ class Order(models.Model):
     )
 
     class Meta:
+        # Ordering the order instances by the date created
         ordering = ["-created"]
 
     def total(self):
 
-        self.sub_total = self.items.aggregate(Sum("item_total"))["item_total__sum"]
+        self.sub_total = self.items.aggregate(Sum("item_total"))[
+            "item_total__sum"]
 
         # Fixes a bug when deleting orders from the Admin
         if self.sub_total is None:
@@ -61,7 +66,9 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-
+    """
+    Model to create an instance of an OrderItem
+    """
     order = models.ForeignKey(
         Order, null=False, blank=True, on_delete=models.CASCADE, related_name="items"
     )
@@ -74,7 +81,12 @@ class OrderItem(models.Model):
     item_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, default=0, editable=False
     )
-    # ad a space for the product owner
+    # Uses the individual product owner slug to store owner details
+    product_owner = models.CharField(max_length=200, null=True, unique=True)
+
+    id = models.UUIDField(
+        default=uuid.uuid4, unique=True, primary_key=True, editable=False
+    )
 
     def total(self, *args, **kwargs):
         self.item_total = int(self.product.price * self.quantity)

@@ -1,4 +1,3 @@
-from black import nullcontext
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
@@ -18,6 +17,9 @@ import stripe
 
 @require_POST
 def cache_checkout_data(request):
+    """
+    Cache the checkout data
+    """
     try:
         client_secret = request.POST.get("client_secret")
         pid = client_secret.split("_secret")[0]
@@ -44,7 +46,9 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
-
+    """
+    View to collect the checkout data and return the tempalate
+    """
     template = "checkout/checkout.html"
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -59,7 +63,7 @@ def checkout(request):
         return redirect("home")
 
     if request.method == "POST":
-
+        # Handle the post request from the checkout form
         form_data = {
             "full_name": request.POST["full_name"],
             "email": request.POST["email"],
@@ -75,7 +79,7 @@ def checkout(request):
         order_form = OrderForm(form_data)
 
         if order_form.is_valid():
-
+            # Create a order instance
             order = order_form.save(commit=False)
             client_secret = request.POST.get("client_secret")
             pid = client_secret.split("_secret")[0]
@@ -139,6 +143,7 @@ def checkout(request):
     client_secret = intent.client_secret
 
     if request.user.is_authenticated:
+        # Poopulate the form if there are details saved
         try:
             profile = Profile.objects.get(user=request.user)
             wallet = Wallet.objects.get(owner=profile)
@@ -189,6 +194,9 @@ def checkout(request):
 
 
 def checkout_success(request, pk):
+    """
+    View to return the checkout success page once payment is complete and order created in the admin
+    """
     template = "checkout/checkout_success.html"
     walletDetails = request.session.get("walletDetails")
     user = request.user
@@ -237,6 +245,9 @@ def checkout_success(request, pk):
 
 @login_required()
 def previous_order(request, pk):
+    """
+    View to return the details of a previous order
+    """
     order = get_object_or_404(Order, id=pk)
     profile = order.profile
     template = "checkout/checkout_success.html"

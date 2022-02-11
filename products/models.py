@@ -6,6 +6,10 @@ from profiles.models import PartnerProfile, Profile
 
 
 class Product(models.Model):
+    """
+    Product model that creates an instance of the Product Class
+    """
+
     owner = models.ForeignKey(
         PartnerProfile, null=True, blank=True, on_delete=models.CASCADE
     )

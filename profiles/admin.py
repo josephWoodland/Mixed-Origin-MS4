@@ -6,11 +6,19 @@ from .models import Profile, PartnerProfile, Wallet
 
 
 class ProfileAdmin(admin.ModelAdmin):
+    """
+    Settings for the Profile admin
+    """
+
     list_display = ("username", "email", "partner_application")
     list_display_links = ("username",)
 
 
 class PartnerProfileAdmin(admin.ModelAdmin):
+    """
+    Settings for the PartnerProfile admin
+    """
+
     list_display = ("id", "company_name", "partner")
     list_display_links = ("id", "company_name", "partner")
 

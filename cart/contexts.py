@@ -4,7 +4,7 @@ from products.models import Product, Tag
 
 
 def cart_contents(request):
-    """ Function to give access to the current cart object
+    """Function to give access to the current cart object
         accross the site
     Args:
         request (request):

@@ -6,41 +6,41 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('profiles', '0003_partnerprofile_promoted'),
+        ("profiles", "0003_partnerprofile_promoted"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='slug',
-            field=models.SlugField(default='profile', null=True),
+            model_name="profile",
+            name="slug",
+            field=models.SlugField(default="profile", null=True),
         ),
         migrations.AlterField(
-            model_name='partnerprofile',
-            name='company_description',
+            model_name="partnerprofile",
+            name="company_description",
             field=models.TextField(default=1, max_length=400),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='partnerprofile',
-            name='company_name',
+            model_name="partnerprofile",
+            name="company_name",
             field=models.CharField(max_length=50),
         ),
         migrations.AlterField(
-            model_name='partnerprofile',
-            name='company_short_bio',
+            model_name="partnerprofile",
+            name="company_short_bio",
             field=models.TextField(default=1, max_length=200),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='profile',
-            name='username',
+            model_name="profile",
+            name="username",
             field=models.CharField(default=1, max_length=200),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='wallet',
-            name='phone_number',
+            model_name="wallet",
+            name="phone_number",
             field=models.IntegerField(default=11),
             preserve_default=False,
         ),

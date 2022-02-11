@@ -2,7 +2,9 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def paginateProdcuts(request, products, results):
-
+    """
+    This function is for page pagination, can be accessed throughout the app
+    """
     page = request.GET.get("page")
     paginator = Paginator(products, results)
 
