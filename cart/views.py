@@ -21,11 +21,10 @@ def add_to_cart(request, item_id):
     """This view adds a product to the current session cart
 
     Args:
-        request ([type]): [description]
         item_id (id): This is the product id
 
     Returns:
-        [type]: [description]
+        [session object]: Returns an updated cart object to the session cookie
     """
     product = Product.objects.get(id=item_id)
     quantity = request.POST.get("order-amount")
@@ -62,6 +61,10 @@ def add_to_cart(request, item_id):
 
 
 def update_cart(request, pk):
+    """
+    Updates the cart with the items and
+    adjust the stock amount for a given product in the datebses
+    """
     product = Product.objects.get(id=pk)
     id = pk
     new_amount = int(request.POST.get("cart-amount"))
@@ -81,6 +84,10 @@ def update_cart(request, pk):
 
 
 def delete_cart_item(request, pk):
+    """
+    Updates the cart when Item is deleted,
+    alters the product stock amount in the database
+    """
     product = Product.objects.get(id=pk)
     cart = request.session.get("cart", {})
     id = pk

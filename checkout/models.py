@@ -12,6 +12,7 @@ class Order(models.Model):
     """
     Model to create an instance of the Order item
     """
+
     profile = models.ForeignKey(
         Profile, null=True, blank=True, on_delete=models.SET_NULL, related_name="orders"
     )
@@ -45,8 +46,7 @@ class Order(models.Model):
 
     def total(self):
 
-        self.sub_total = self.items.aggregate(Sum("item_total"))[
-            "item_total__sum"]
+        self.sub_total = self.items.aggregate(Sum("item_total"))["item_total__sum"]
 
         # Fixes a bug when deleting orders from the Admin
         if self.sub_total is None:
@@ -69,6 +69,7 @@ class OrderItem(models.Model):
     """
     Model to create an instance of an OrderItem
     """
+
     order = models.ForeignKey(
         Order, null=False, blank=True, on_delete=models.CASCADE, related_name="items"
     )

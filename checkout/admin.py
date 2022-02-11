@@ -5,7 +5,8 @@ from .models import Order, OrderItem
 
 
 class OrderItemAdmin(admin.TabularInline):
-    """ Admin settings for the OrderItem class"""
+    """Admin settings for the OrderItem class"""
+
     model = OrderItem
     list_display = ("product", "order")
     list_display_link = ("product", "order")
@@ -13,7 +14,8 @@ class OrderItemAdmin(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    """ Admin settings for the Order class """
+    """Admin settings for the Order class"""
+
     inlines = (OrderItemAdmin,)
 
     readonly_fields = (

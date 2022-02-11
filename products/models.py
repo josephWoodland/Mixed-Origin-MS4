@@ -21,7 +21,9 @@ class Product(models.Model):
     price = models.DecimalField(
         default=0, decimal_places=2, max_digits=7, null=False, blank=False
     )
+
     image = models.ImageField(null=False, blank=False)
+
     created = models.DateTimeField(auto_now_add=True)
 
     id = models.UUIDField(
