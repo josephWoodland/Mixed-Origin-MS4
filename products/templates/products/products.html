@@ -27,7 +27,7 @@
                 <a href="{% url 'view-product' product.slug %}">
                     <div class="card no-shadow">
                         <div class="card-image">
-                            <img src="{{ product.image.url }}" alt="Thumbnail image for {{ product.name }}">
+                            <img src="{{ product.image.url }}.webp" alt="Thumbnail image for {{ product.name }}">
                         </div>
                         <div class="card-content">
                             <span class="card-title">{{ product.name|truncatechars:17 }}</span>

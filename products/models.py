@@ -1,6 +1,10 @@
 from django.db import models
 import uuid
-from profiles.models import PartnerProfile, Profile
+from mixed.settings import MEDIA_ROOT
+from profiles.models import PartnerProfile
+from PIL import Image
+import os
+
 
 # Create your models here.
 
@@ -23,6 +27,7 @@ class Product(models.Model):
     )
 
     image = models.ImageField(null=False, blank=False)
+    webp_image = models.ImageField(null=False, blank=False)
 
     created = models.DateTimeField(auto_now_add=True)
 
@@ -31,6 +36,19 @@ class Product(models.Model):
     )
 
     slug = models.CharField(max_length=200, null=True, unique=True)
+
+    def save(self, *args, **kwargs):
+
+        super().save(*args, **kwargs)
+
+        if self.image:
+
+            image = Image.open(self.image)
+            image = image.convert('RGB')
+            name = str(self.image) + ".webp"
+            root = MEDIA_ROOT
+            image.save(f'{root}/{name}', 'webp')
+            self.image = name
 
     def __str__(self):
         return self.name

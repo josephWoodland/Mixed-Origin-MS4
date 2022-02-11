@@ -1,14 +1,13 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from PIL import Image
-from pathlib import Path
 
 from profiles.models import PartnerProfile
 from .models import Product, Tag
 from .forms import ProductForm
 from django.db.models import Q
 from home.helper import paginateProdcuts
+import os
 
 
 # Create your views here.
@@ -78,22 +77,9 @@ def add_product(request, pk):
         if form.is_valid():
             product = form.save(commit=False)
             product.owner = partner
-            # img = product.image
-            # print("This is the uploaded image", img)
-            # image = Image.open(img)
-            # new_path = img.Path.with_suffix(".webp")
-            # image.save(new_path, format="webp")
-            # img = image
-            # product.image = img
-            # image.convert("RGB")
-            # image_name = image.split(".")[0]
-            # print(image_name)
-            # # image_name = image_split[0]
-            # print("This is the image name: ", image_name)
-            # image.save(f'{image_name}.webp', "webp")
-            # print("New image: ", image)
+            path = product.image.path
+            print("This is the edit path: ", path)
             product.save()
-
             messages.success(
                 request, "You have added a new product to your store!")
             return redirect("product-list", pk=pk)
@@ -170,7 +156,13 @@ def edit_product(request, pk):
         "product": product,
     }
 
+    webp_image = f'{product.image.path}.webp'
+
     if request.method == "POST":
+
+        if os.path.exists(webp_image):
+            os.remove(webp_image)
+
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()

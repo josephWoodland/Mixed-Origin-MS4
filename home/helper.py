@@ -1,4 +1,7 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from io import BytesIO
+from django.core.files import File
+from PIL import Image
 
 
 def paginateProdcuts(request, products, results):
@@ -31,3 +34,22 @@ def paginateProdcuts(request, products, results):
     custom_range = range(leftIndex, rightIndex)
 
     return custom_range, products, paginator
+
+
+# def make_webp(image):
+#     """Converts image to webp"""
+
+#     im = Image.open(image)
+
+#     im.convert('RGB')  # convert mode
+
+#     name = str(im) + ".webp"  # create a BytesIO object
+
+#     name = BytesIO()
+
+#     im.save(name, 'webp')  # save image to BytesIO object
+
+#     # create a django friendly File object
+#     webp_image = File(im, name=name)
+
+#     return webp_image

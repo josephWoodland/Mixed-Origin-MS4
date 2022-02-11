@@ -325,7 +325,8 @@ footer li {
 /* /////////////////////////// Product View ///////////////////// */
 
 .product-view {
-    height: 50vh;
+    display: flex;
+    align-items: center;
 }
 
 
