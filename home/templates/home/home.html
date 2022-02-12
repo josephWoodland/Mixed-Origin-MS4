@@ -60,7 +60,7 @@
             <div class="promoted-card">
                 <div class="row">
                     <div class="col s6 no-padding">
-                        <a href="{% url 'product_tags' 'literature' %}">
+                        <a href="{% url 'product_tags' 'literature' %}" aria-label="Link to go to see the hottest products">
                         <div class="promoted-image">
                         </div>
                         </a>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="card-action text-left">
                             <p>Check out the most popular books on black culture</p>
-                            <a href="{% url 'product_tags' 'literature' %}">See the hottest collection.</a>
+                            <a href="{% url 'product_tags' 'literature' %}" aria-label="Link to go to see the hottest products">See the hottest collection.</a>
                         </div>
                     </div>
                 </div>
@@ -83,20 +83,20 @@
                 <div class="row">
                     <div class="col s6 no-padding">
                         <div class="image-container">
-                            <a href="{% url 'partner-profile' promoted_partner.id %}">
-                                <img width="300" src="{{ promoted_partner.company_image.url }}">
+                            <a href="{% url 'partner-profile' promoted_partner.id %}" aria-label="Link to go to the partner page">
+                                <img width="300" src="{{ promoted_partner.company_image.url }}" alt="Image for {{ promoted_partner.company_name }}">
                             </a>
                         </div>
                     </div>
                     <div class="card-stacked col s6">
-                        <a href="{% url 'partner-profile' promoted_partner.id %}">
+                        <a href="{% url 'partner-profile' promoted_partner.id %}" aria-label="Link to go to the partner page">
                             <h3 class="header" style="color: #5f5f5f;">{{ promoted_partner.company_name }}</h3>
                         </a>
                         <div class="card-content">
                             <p>{{ promoted_partner.company_short_bio }}</p>
                         </div>
                         <div class="card-action">
-                            <a href="{% url 'partner-profile' promoted_partner.id %}">more..</a>
+                            <a href="{% url 'partner-profile' promoted_partner.id %}" aria-label="Link to go to the partner page">more..</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
         <div class="row margin-top">
         {% for product in products %}
             <div class="col s10 offset-s1 m6 l4 xl3">
-                <a href="{% url 'view-product' product.slug %}">
+                <a href="{% url 'view-product' product.slug %}" aria-label="Link to go to the {{ product.name }} page">
                     <div class="card no-shadow">
                         <div class="card-image">
                             <img src="{{ product.image.url }}.webp" alt="Thumbnail image for {{ product.name }}">
@@ -128,7 +128,7 @@
                                 {{ product.price }}
                             </span>
                             </span>
-                            <a href="{% url 'view-product' product.slug %}" class="btn" id="orderItem">View Product</a>    
+                            <a href="{% url 'view-product' product.slug %}" class="btn" id="orderItem" aria-label="Button to view more details on the product">View Product</a>    
                         </div>
                     </div>
                 </a>

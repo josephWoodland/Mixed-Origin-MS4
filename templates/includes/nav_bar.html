@@ -14,8 +14,8 @@
             <a href="{% url 'account_login' %}" class="nav-login hide-on-med-and-down hover-highlight">Login
             </a>
             {% endif %}
-            <a class="hover-highlight" href="{% url 'profile' %}"><i class="fas fa-user"></i></a>
-            <a href="{% url 'cart' %}" class="hover-highlight"><i class="fas fa-shopping-cart"></i>
+            <a class="hover-highlight" href="{% url 'profile' %}"  aria-label="Profile link"><i class="fas fa-user"></i></a>
+            <a href="{% url 'cart' %}" class="hover-highlight" aria-label="Cart link"><i class="fas fa-shopping-cart"></i>
             </a>
         </div>
     </div>
@@ -50,10 +50,10 @@
     {% endif %}
     <li>
         {% if request.user.is_authenticated %}
-            <a href="{% url 'account_logout' %}" class="nav-login">Logout
+            <a href="{% url 'account_logout' %}" class="nav-login" aria-label="Log out link">Logout
             </a>
         {% else %}
-            <a href="{% url 'account_login' %}" class="nav-login">Login
+            <a href="{% url 'account_login' %}" class="nav-login" aria-label="Log in link">Login
             </a>
         {% endif %}
     </li>

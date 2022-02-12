@@ -9,7 +9,8 @@ from .models import Product, Tag
 
 class TestProductUrls(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user("username", "emal@test.com", "password")
+        self.user = User.objects.create_user(
+            "username", "emal@test.com", "password")
         self.client.login(username="username", password="password")
         self.profile = Profile.objects.get(user=self.user)
 
@@ -33,16 +34,11 @@ class TestProductUrls(TestCase):
             name="Test Product",
         )
 
+        self.products = Product.objects.all()
+
         # Add the tag to the product
         self.product.tags.create(name="Test Tag")
-
-        self.tag = Tag.objects.create(name="Test Tag")
 
     def test_products_url_resolves(self):
         url = reverse("products")
         self.assertEquals(resolve(url).func, products)
-
-    def test_product_tag_url_resolve(self):
-        tag = self.tag
-        url = reverse_lazy("products", tag)
-        self.assertEquals(resolve(url).func, product_tags)

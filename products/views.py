@@ -77,8 +77,6 @@ def add_product(request, pk):
         if form.is_valid():
             product = form.save(commit=False)
             product.owner = partner
-            path = product.image.path
-            print("This is the edit path: ", path)
             product.save()
             messages.success(
                 request, "You have added a new product to your store!")
