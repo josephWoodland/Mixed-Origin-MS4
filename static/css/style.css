@@ -55,6 +55,13 @@ p {
 	color: var(--text-color);
 }
 
+
+@media only screen and (max-width: 600px) {
+	h1{
+		font-size: 3rem;
+	}
+	
+}
 /* /////////////////////////// Navigation bar styling ///////////////////// */
 
 nav {
@@ -425,7 +432,25 @@ footer li {
 	background-position: center;
 }
 
+
+@media only screen and (max-width: 1300px) {
+	
+	.trending {
+		flex-direction: column-reverse;
+		padding: 0;
+	}
+	
+	.trending-highlight {
+		margin: 2rem auto;
+	}
+}
+
 @media only screen and (max-width: 600px) {
+	
+	/* .trending{
+		padding: 0;
+	} */
+	
 	.trending-headline {
 		padding-right: 0 !important;
 		margin-bottom: 1rem;
@@ -433,6 +458,13 @@ footer li {
 
 	.trending-highlight {
 		padding-left: 0 !important;
+	}
+
+	.promoted-card {
+		height: 15rem !important;
+		width: 350px;
+		overflow: hidden;
+		border: var(--border);
 	}
 }
 
@@ -854,6 +886,18 @@ label {
 	margin-bottom: 2rem;
 }
 
+@media only screen and (max-width: 800px) {
+	.partner-display {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media  only screen and (max-width:600px) {
+	.promoted-card{
+
+	}
+}
+
 /* /////////////////////////// Allauth ///////////////////// */
 
 .allauth {
@@ -943,6 +987,21 @@ label {
 	height: 100%;
 }
 
+
+@media only screen and (max-width: 900px) {
+	
+	.table{
+		flex-direction: column;
+	}
+
+	.hide-on-900 {
+		display: none;
+	}
+
+	td {
+		width: 100%
+	}
+}
 /* /////////////////////////// Blog ///////////////////// */
 
 .blog-banner{
@@ -1053,6 +1112,7 @@ label {
 .cart-container {
 	background-color: transparent;
 	border: none;
+	padding: 0;
 }
 
 .delivery-cost {
@@ -1098,6 +1158,7 @@ label {
 
 .item-quantity {
 	display: flex;
+	flex-direction: column;
 }
 
 #cart-minus {
@@ -1116,7 +1177,7 @@ label {
 	border-bottom: var(--border);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
 	.cart {
 		margin: 1rem 0 0 0 !important;
 	}
@@ -1131,7 +1192,7 @@ label {
 
 	.cart-mobile {
 		display: flex;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		align-items: center;
 	}
 
@@ -1151,6 +1212,12 @@ label {
 	.cart-header {
 		text-align: center;
 		flex-direction: column;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.item-quantity{
+		flex-direction: row;
 	}
 }
 
@@ -1488,6 +1555,11 @@ a .heading {
 	justify-content: center;
 }
 
+.pagination {
+	width: fit-content;
+	margin-bottom: 2rem;
+}
+
 .cur-page {
 	border-bottom: 2px solid var(--text-logo);
 	color: var(--text-logo) !important;
@@ -1520,3 +1592,4 @@ color: var(--text-color);
 .text-color {
 	color: var(--text-color);
 }
+

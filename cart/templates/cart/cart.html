@@ -8,7 +8,7 @@
 <section class="container form cart-container">
     <div class="row cart-mobile no-margin">
         {% if product_count %}
-            <div class="col s9 m7 xl8 card cart">
+            <div class="col s12 m7 xl8 card cart">
                 <div class="flex-wrapper cart-header">
                     <h3 class="cart-heading bold">Joseph's cart</h3>
                     <a href="{% url 'checkout' %}" class="btn">checkout</a>
@@ -17,7 +17,7 @@
                 {% for item in cart_items %}
                     {% if item.quantity > 0 %}
                         <div class="row padding">
-                            <div class="image-container col s12 m4">
+                            <div class="image-container col s10 offset-s1 m4">
                                 <a href="{% url 'view-product' item.product.id %}">
                                 <img width="250px" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}" height="200px">
                                 </a>
@@ -35,7 +35,7 @@
                                         </p>
                                 </div>
                                 <div class="item-quantity">
-                                    <form method="POST" action="{% url 'update-cart' item.product.id %}">
+                                    <form method="POST" action="{% url 'update-cart' item.product.id %}" class="item-quantity">
                                         {% csrf_token %}
                                         <div class="row">
                                             <button class="product-quantity" id="cart-minus"><i class="fas fa-minus small-icon"></i></button>
@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr>
+                        <hr class="hide-on-small-only">
                     {% endif %}
                 {% endfor %}
                 <div class="checkout-items hide-on-small-only">

@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from products.models import Product
 from products.views import product_list
 from profiles.models import PartnerProfile
+from home.helper import paginateProdcuts
+
 
 from django.db.models import Q
 
@@ -16,6 +18,8 @@ def partners(request):
     """
     template = "partners/partners.html"
     partners = PartnerProfile.objects.all()
+    custom_range, partners, paginator = paginateProdcuts(request, partners, 4)
+
     search_query = ""
 
     if request.GET.get("search_query"):
@@ -28,6 +32,8 @@ def partners(request):
     context = {
         "partners": partners,
         "search_query": search_query,
+        "paginator": paginator,
+        "custom_range": custom_range,
     }
     return render(request, template, context)
 
