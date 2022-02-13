@@ -46,7 +46,8 @@ class Order(models.Model):
 
     def total(self):
 
-        self.sub_total = self.items.aggregate(Sum("item_total"))["item_total__sum"]
+        self.sub_total = self.items.aggregate(Sum("item_total"))[
+            "item_total__sum"]
 
         # Fixes a bug when deleting orders from the Admin
         if self.sub_total is None:
@@ -84,10 +85,6 @@ class OrderItem(models.Model):
     )
     # Uses the individual product owner slug to store owner details
     product_owner = models.CharField(max_length=200, null=True, unique=True)
-
-    id = models.UUIDField(
-        default=uuid.uuid4, unique=True, primary_key=True, editable=False
-    )
 
     def total(self, *args, **kwargs):
         self.item_total = int(self.product.price * self.quantity)
