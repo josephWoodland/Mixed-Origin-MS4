@@ -27,8 +27,6 @@ class Product(models.Model):
     )
 
     image = models.ImageField(null=False, blank=False)
-    webp_image = models.ImageField(null=False, blank=False)
-
     created = models.DateTimeField(auto_now_add=True)
 
     id = models.UUIDField(
