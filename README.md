@@ -3,11 +3,13 @@
 ## Info
  
 Mixed-Origins.com is an e-commerce website that gives a platform for product creators who focus on creating exciting and necessary products for the Mixed Race community. They are looking to launch later this year and have asked for a styled website with dummy data to show prospective brands that align with its values. 
+
+Mixed origins is a new concept 
  
  
 ![image](static/assets/readme/moc_up.png)
  
-[live site](http://ms3-campaign-db.herokuapp.com/home)
+[live site](https://mixed-origin-ms4.herokuapp.com/)
  
 ## Index
  
@@ -28,7 +30,11 @@ Credits
  
 ## The App Brief
  
-A copy of the brief can be accessed [here](static/assets/readme/design_brief.md)
+The company concept and proposition can be accessed [here](static/assests/readme/concept.pdf)
+
+A copy of the brief can be accessed [here](static/assets/readme/design_brief.pdf)
+
+Some of the colour hue's have changes slightly on client testing and feedback.
  
 ## Summary of the brief
  
@@ -129,7 +135,7 @@ Here is the successful journey of a Partner.
 ## User Stories
  
 These user stories revolve around essential actions for each user and the desired software outcome to satisfy the user need.
-The user stories that I use to build the functionality of the app are available [here](static/assets/readme/design_brief.md)
+The user stories that I use to build the functionality of the app are available [here](static/assets/readme/user_stories.pdf)
  
 ## Sections of the Web App
  
@@ -183,8 +189,12 @@ Should be plain to allow the user to focus on nothing else but finishing the ord
  
 Here is a sample of the original wireframes for the app approved by the client.
  
-![desktop](static/assets/readme/Wireframes/Home.jpg)
- 
+![desktop](static/assets/readme/wireframes/home.png)
+
+The signed off final design for the website changed due to client feedback on the use of the site.
+
+All the initial wireframes are available in the wireframes folder in the repo. 
+
 <span
 id="design">
 </span>
@@ -205,7 +215,7 @@ The design elements were influenced and informed by the client’s brief. The un
  
 ### Main colours
  
-Brand colours are ![brand](static/assets/readme/brand_colours.jpg)
+Brand colours can be found in the design_brief.
  
 ## Features for the website
  
@@ -243,7 +253,7 @@ I used the Django framework to build the app. This framework has sped up the cod
  
 ## Styling - Materialize
  
-I have used Google Materialize to standardise the styling of this app. For example, selecting the elements I want and then copying and pasting the code into the HTML and any jQuery code needed to make the element interactive.
+I have used Google Materialize to standardize the styling of this app. For example, selecting the elements I want and then copying and pasting the code into the HTML and any jQuery code needed to make the element interactive.
  
 ## Python Libraries
  
@@ -260,7 +270,7 @@ I used modules to help me code the app faster using pre-written code to speed up
  
 ## App dependencies
  
-The full list of dependencies can be found [here](static/assets/readme/design_brief.md)
+The full list of dependencies can be found [here](requirements.txt)
  
 ## Software Used
  
@@ -324,12 +334,7 @@ One to one - I used this relationship between profiles and wallets.
 
 ## User Input Validation
  
-I used a mixture of HTML and Python code to validate user input. On HTML verification techniques I also used python code to validated, as HTML can be easily manipulated. This is to ensure that the user data is correct before being sent to the database.
- 
-### HTML
- 
- 
-### Python
+Using Django models, and is_valid to validate user input data. Ass the validation is done on the backend it make the app safer to being hacked and manipulated through the HTML.
  
  
 ## Online resources
@@ -386,9 +391,22 @@ I used the [W3C CSS validator](https://jigsaw.w3.org/css-validator/) to validate
  
 ### JavaScript Test
  
-I used [JSHint](https://jshint.com/) to validate the JavaScript:
- 
+I used [JSHint](https://jshint.com/) to validate the 
+JavaScript:
+
+I used these options for the JSHint validation.
+
+```
+/*jshint esversion: 6 */
+/*global $:false*/
+```
 - script.js - Pass
+
+Added the stripe variable for the validation for the stripe.js 
+
+`/* global Stripe:false */`
+
+- stripe_element.js
  
 ### Python Tests
  
@@ -473,14 +491,7 @@ I gave the app to three people to test and to populate the database with data.
  
 ## Testing User Stories Checklists
  
-### User stories
- 
-The checklist and notes from the user stories are here.
- 
-### Partners stories
- 
-The checklist and notes from the user stories are here.
- 
+The checklist and notes from the user stories are [here](static/assets/readme/user_stories_checklist.pdf)
  
 ### CRUD Database tests
  
@@ -501,8 +512,10 @@ Read
  
 Update
  
-- Update profile data - check
-- Update product data - check 
+- Update a profile - check
+- Update a partner - check
+- Update a product - check
+- Update a wallet - check 
  
 Delete
  
@@ -575,15 +588,21 @@ Further reading and troubleshooting on cloning a repository from GitHub can be f
  
 ### Running the code
  
-To deploy the app locally, once you have cloned the repository, you will need to create an env.py file in the directory to create the development environment.
+To deploy the app locally, once you have cloned the repository, you will need to create an `.env` file in the directory to create the development environment keys that will be needed to use the app.
+
+Sample `.env` file
+
 ```
-import os
-  os.environ.setdefault("SECRET_KEY", "<Your secret key>")
-  os.environ.setdefault(
-      "MONGO_URI", "mongodb+srv://<user>:<password>@<project>.af8bz.mongodb.net/<database>?retryWrites=true&w=majority")
-  os.environ.setdefault("MONGO_DBNAME", "<database>")
- 
+MY_SECRET_KEY="your_secret_key"
+STRIPE_PUBLIC_KEY_MO="your_stripe_pk_key"
+STRIPE_SECRET_KEY_MO="your_secret_key"
+STRIPE_WH_SECRET_MO="Your_webhook_key"
+EMAIL_HOST_USER="your_email_user"
+EMAIL_HOST_PASSWORD="your_email_host_password"
+
+DEVELOPMENT
 ```
+
  
 ### Deploying to Heroku
  
@@ -597,6 +616,23 @@ You will have to add your `Config Vars` this will be everything you have in your
 You will need to have a `Procfile`, and you will have to update a requirements.txt, so the app has all the necessary extensions to run.
  
 From there, you should be able to deploy the app.
+If you have a AWS account or are planning on using AWS S3 bucket to store the static files for the app. Please follow the steps on the website to set up your account or create a bucket for this web app. 
+
+Here are the `Config Vars` that you will need in the heroku settings for the app to work. 
+
+```
+AWS_ACCESS_KEY_ID <Your aws access key id>
+AWS_SECRET_ACCESS_KEY <Your aws secret key>
+DATABASE_URL <Your Database Url>
+EMAIL_HOST_PASSWORD <Your email host password>
+EMAIL_HOST_USER <Your Email host>
+SECRET_KEY <Your secret key>
+STRIPE_PUBLIC_KEY_MO <Your stripe public key>
+STRIPE_SECRET_KEY_MO <Your stripe secret key>
+STRIPE_WH_SECRET_MO <Your stripe webhook key>
+STRIPE_WH_SECRET_MO True
+```
+
  
 <span
 id="future">
@@ -608,7 +644,7 @@ id="future">
  
 - The save for later function will remove products from the users cart, and save it on the users profile so can be easily added to future carts.
   
-- ### Emails to Partners
+### Emails to Partners
  
 - I would like to build out the automated email function, so we can send each owner of a product ordered an email with the product and order details. 
  
@@ -622,7 +658,7 @@ id="future">
  
 ### Unit Testing
  
-I would like to further develop the unit testing in the code already.
+- I would like to further develop the unit testing in the code already.
  
 <span
 id="credits">

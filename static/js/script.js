@@ -175,7 +175,7 @@ const cartNotificationSeen = document.getElementById("cartNotificationSeen");
 const productTotal = document.getElementById("productTotal");
 const cartTotal = document.getElementById("cartTotal");
 const productPriceElement = document.getElementById("productPrice");
-const orderItem = document.getElementById("orderItem");
+const hiddenTotal = document.getElementById("hiddenTotal");
 
 // function to trigger the submit event on a form
 function submitForm(form) {
@@ -199,6 +199,8 @@ function round(num) {
 
 // update the cart notification in the nav bar
 function upDateCartNotification(itemQty) {
+  let curCartAmount;
+
   if (cartNotificationFirst) {
     cartNotificationFirst.classList.remove("transparent");
   }
