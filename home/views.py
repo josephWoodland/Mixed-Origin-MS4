@@ -12,7 +12,8 @@ def home(request):
     """
     template = "home/home.html"
     products = Product.objects.all()
-    custom_range, products, paginator = paginateProdcuts(request, products, 4)
+    custom_range, products, paginator = paginateProdcuts(
+        request, products, 4)
     promoted_partner = get_object_or_404(PartnerProfile, promoted=True)
 
     if not promoted_partner:

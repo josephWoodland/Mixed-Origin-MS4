@@ -28,10 +28,10 @@ def products(request):
     tags = Tag.objects.filter(name__icontains=search_query)
 
     products = Product.objects.distinct().filter(
-        Q(name__icontains=search_query)
-        | Q(description__icontains=search_query)
-        | Q(owner__company_name__icontains=search_query)
-        | Q(tags__in=tags)
+        Q(name__icontains=search_query) |
+        Q(description__icontains=search_query) |
+        Q(owner__company_name__icontains=search_query) |
+        Q(tags__in=tags)
     )
 
     custom_range, products, paginator = paginateProdcuts(request, products, 8)
@@ -107,7 +107,7 @@ def view_product(request, slug):
     if request.user.is_authenticated:
         profile = request.user.profile
         id = profile.id
-        if profile.is_partner == True:
+        if profile.is_partner is True:
             partner_profile = PartnerProfile.objects.get(partner_id=id)
 
     context = {
@@ -154,7 +154,7 @@ def edit_product(request, pk):
         "product": product,
     }
 
-    webp_image = f'{product.image.path}.webp'
+    webp_image = f"{product.image.path}.webp"
 
     if request.method == "POST":
 

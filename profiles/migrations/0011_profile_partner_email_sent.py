@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('profiles', '0010_merge_20220211_1537'),
+        ("profiles", "0010_merge_20220211_1537"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='partner_email_sent',
+            model_name="profile",
+            name="partner_email_sent",
             field=models.BooleanField(blank=True, default=False, null=True),
         ),
     ]

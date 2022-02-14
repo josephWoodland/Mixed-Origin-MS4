@@ -14,7 +14,11 @@ class Order(models.Model):
     """
 
     profile = models.ForeignKey(
-        Profile, null=True, blank=True, on_delete=models.SET_NULL, related_name="orders"
+        Profile,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="orders"
     )
     full_name = models.CharField(max_length=200, null=False, blank=False)
     email = models.EmailField(max_length=200, null=False, blank=False)
@@ -72,7 +76,11 @@ class OrderItem(models.Model):
     """
 
     order = models.ForeignKey(
-        Order, null=False, blank=True, on_delete=models.CASCADE, related_name="items"
+        Order,
+        null=False,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="items"
     )
     product = models.ForeignKey(
         Product, null=False, blank=True, on_delete=models.CASCADE

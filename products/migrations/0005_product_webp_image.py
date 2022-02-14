@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0004_remove_product_owner_profile'),
+        ("products", "0004_remove_product_owner_profile"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='webp_image',
-            field=models.ImageField(default=1, upload_to=''),
+            model_name="product",
+            name="webp_image",
+            field=models.ImageField(default=1, upload_to=""),
             preserve_default=False,
         ),
     ]

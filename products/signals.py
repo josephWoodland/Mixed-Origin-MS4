@@ -9,7 +9,8 @@ def create_product_slug(sender, instance, created, **kwargs):
     on tha name and adding it to 8 chars form the UUID
 
     Args:
-        instance (Class): Uses the creation of a Product instance to trigger the signal
+        instance (Class): Uses the creation of a
+        Product instance to trigger the signal
     """
     product = get_object_or_404(Product, id=instance.id)
     slug = product.slug

@@ -55,7 +55,7 @@ def partner_request(sender, instance, created, **kwargs):
     is_partner = profile.is_partner
     email_sent = profile.application_email_sent
 
-    if partner_request == True and is_partner == False and email_sent == False:
+    if partner_request is True and is_partner is False and email_sent is False:
         email = settings.DEFAULT_FROM_EMAIL
 
         subject = render_to_string(
@@ -67,7 +67,8 @@ def partner_request(sender, instance, created, **kwargs):
             {"profile": profile},
         )
 
-        Profile.objects.filter(id=instance.id).update(
+        Profile.objects.filter(
+            id=instance.id).update(
             application_email_sent=True)
 
         send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email])
@@ -83,7 +84,7 @@ def partner_acceptance(sender, instance, created, **kwargs):
     partner_email = profile.partner_email_sent
     email = profile.email
 
-    if is_partner == True and partner_email == False:
+    if is_partner is True and partner_email is False:
 
         subject = render_to_string(
             "profiles/email_request/partner_accepted_subject.txt",

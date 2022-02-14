@@ -7,7 +7,8 @@ from .views import *
 class TestProfileUrls(TestCase):
     def setUp(self):
         self.login_url = "/accounts/login/"
-        self.user = User.objects.create_user("username", "emal@test.com", "password")
+        self.user = User.objects.create_user(
+            "username", "emal@test.com", "password")
         self.client.login(username="username", password="password")
 
         self.profile = Profile.objects.get(user=self.user)

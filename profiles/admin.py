@@ -10,7 +10,8 @@ class ProfileAdmin(admin.ModelAdmin):
     Settings for the Profile admin
     """
 
-    list_display = ("username", "email", "partner_application")
+    list_display = ("username", "email",
+                    "partner_application")
     list_display_links = ("username",)
 
 

@@ -19,14 +19,14 @@ def user_profile(request):
         request (GET): This view takes in the user profile status
 
     Returns:
-        [render html]: Using the profile status of the account the view renders the
-        necessary template for that user.
+        [render html]: Using the profile status of the account
+         the view renders the necessary template for that user.
     """
     profile = request.user.profile
     id = profile.id
 
     # Checks the status of the user profile to return the correct template
-    if profile.is_partner == False:
+    if profile.is_partner is False:
         template = "profiles/profile.html"
         partner_profile = None
     else:
@@ -79,7 +79,7 @@ def edit_profile(request, pk):
     profile = Profile.objects.get(id=pk)
     partner_profile = None
 
-    if profile.is_partner == True:
+    if profile.is_partner is True:
         # checks if the profile is a partner
         partner_profile = PartnerProfile.objects.get(partner_id=pk)
 

@@ -12,7 +12,6 @@ import uuid
 
 
 class TestProfileViews(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             "username", "emal@test.com", "password")
@@ -36,7 +35,7 @@ class TestProfileViews(TestCase):
         print("This is the user id in the function: ", self.id)
         this_id = self.id
         print("This is getting passed into the url: ", this_id)
-        response = self.client.get(f'edit-profile/{this_id}')
+        response = self.client.get(f"edit-profile/{this_id}")
         print(response)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "profiles/edit_profile.html")

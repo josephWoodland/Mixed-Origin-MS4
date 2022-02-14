@@ -411,6 +411,8 @@ Added the stripe variable for the validation for the stripe.js
 ### Python Tests
  
 I used [PEP8 online](http://pep8online.com/) to validate the Python:
+
+One thing error that came up was checking boolean is equal to by using `==` instead of `is`.
  
 - app.py - Pass
  

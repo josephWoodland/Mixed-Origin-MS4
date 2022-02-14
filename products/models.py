@@ -42,10 +42,10 @@ class Product(models.Model):
         if self.image:
 
             image = Image.open(self.image)
-            image = image.convert('RGB')
+            image = image.convert("RGB")
             name = str(self.image) + ".webp"
             root = MEDIA_ROOT
-            image.save(f'{root}/{name}', 'webp')
+            image.save(f"{root}/{name}", "webp")
             self.image = name
 
     def __str__(self):

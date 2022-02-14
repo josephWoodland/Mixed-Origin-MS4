@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, reverse
+from django.shortcuts import get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
@@ -105,7 +106,8 @@ def checkout(request):
                     messages.error(
                         request,
                         (
-                            "One of the products in your bag wasn't found in our database. "
+                            "One of the products in your bag wasn't"
+                            " found in our database. "
                             "Please call us for assistance!"
                         ),
                     )
@@ -195,7 +197,8 @@ def checkout(request):
 
 def checkout_success(request, pk):
     """
-    View to return the checkout success page once payment is complete and order created in the admin
+    View to return the checkout success page once
+    payment is complete and order created in the admin
     """
     template = "checkout/checkout_success.html"
     walletDetails = request.session.get("walletDetails")

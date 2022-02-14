@@ -6,9 +6,8 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('profiles', '0005_alter_profile_first_name_alter_profile_second_name'),
-        ('profiles', '0009_remove_profile_slug'),
+        ("profiles", "0005_alter_profile_first_name_alter_profile_second_name"),
+        ("profiles", "0009_remove_profile_slug"),
     ]
 
-    operations = [
-    ]
+    operations = []
