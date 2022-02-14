@@ -25,6 +25,8 @@ class Profile(models.Model):
     )
     partner_application = models.BooleanField(
         default=False, blank=True, null=True)
+    application_email_sent = models.BooleanField(
+        default=False, blank=True, null=True)
     is_partner = models.BooleanField(default=False, blank=True, null=True)
     partner_email_sent = models.BooleanField(
         default=False, blank=True, null=True)

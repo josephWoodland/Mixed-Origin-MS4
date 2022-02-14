@@ -53,8 +53,9 @@ def partner_request(sender, instance, created, **kwargs):
     profile = instance
     partner_request = profile.partner_application
     is_partner = profile.is_partner
+    email_sent = profile.application_email_sent
 
-    if partner_request == True and is_partner == False:
+    if partner_request == True and is_partner == False and email_sent == False:
         email = settings.DEFAULT_FROM_EMAIL
 
         subject = render_to_string(
@@ -66,10 +67,13 @@ def partner_request(sender, instance, created, **kwargs):
             {"profile": profile},
         )
 
+        Profile.objects.filter(id=instance.id).update(
+            application_email_sent=True)
+
         send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email])
 
 
-def partner_request(sender, instance, created, **kwargs):
+def partner_acceptance(sender, instance, created, **kwargs):
     """
     Sends a email instance triggered by the acceptance of a partner Application
     """
@@ -90,7 +94,7 @@ def partner_request(sender, instance, created, **kwargs):
             {"profile": profile},
         )
 
-        partner_email = True
+        Profile.objects.filter(id=instance.id).update(partner_email_sent=True)
 
         send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email])
 
@@ -115,5 +119,7 @@ def create_partner_slug(sender, instance, created, **kwargs):
 
 post_save.connect(create_partner_slug, sender=PartnerProfile)
 post_save.connect(create_partner, sender=Profile)
+post_save.connect(partner_request, sender=Profile)
+post_save.connect(partner_acceptance, sender=Profile)
 post_save.connect(create_wallet, sender=Profile)
 post_save.connect(create_profile, sender=User)

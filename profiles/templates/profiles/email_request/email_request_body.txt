@@ -1,6 +1,5 @@
 Hello,
 
-{{ profile }}
 We have received a request to sell products on our site from {{ profile.first_name }} {{ profile.second_name }}.
 
 Please email them on {{ profile.email }}.
