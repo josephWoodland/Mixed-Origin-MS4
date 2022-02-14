@@ -12,7 +12,8 @@ class Profile(models.Model):
     Profile model used to create an instance of the Profile class
     """
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True, blank=True)
     first_name = models.CharField(max_length=200, blank=True, null=True)
     second_name = models.CharField(max_length=200, blank=True, null=True)
     username = models.CharField(max_length=200, blank=False, null=False)
@@ -22,8 +23,11 @@ class Profile(models.Model):
         blank=False,
         upload_to="profiles/",
     )
-    partner_application = models.BooleanField(default=False, blank=True, null=True)
+    partner_application = models.BooleanField(
+        default=False, blank=True, null=True)
     is_partner = models.BooleanField(default=False, blank=True, null=True)
+    partner_email_sent = models.BooleanField(
+        default=False, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     id = models.UUIDField(
@@ -50,8 +54,10 @@ class PartnerProfile(models.Model):
     )
     company_name = models.CharField(max_length=50, blank=False, null=False)
     company_website = models.CharField(max_length=200, null=True, blank=False)
-    company_short_bio = models.TextField(max_length=200, null=False, blank=False)
-    company_description = models.TextField(max_length=400, null=False, blank=False)
+    company_short_bio = models.TextField(
+        max_length=200, null=False, blank=False)
+    company_description = models.TextField(
+        max_length=400, null=False, blank=False)
     social_twitter = models.CharField(max_length=200, blank=True, null=True)
     social_linkedin = models.CharField(max_length=200, blank=True, null=True)
     social_youtube = models.CharField(max_length=200, blank=True, null=True)

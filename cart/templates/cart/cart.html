@@ -18,7 +18,7 @@
                     {% if item.quantity > 0 %}
                         <div class="row padding">
                             <div class="image-container col s10 offset-s1 m4">
-                                <a href="{% url 'view-product' item.product.id %}">
+                                <a href="{% url 'view-product' item.product.slug %}">
                                 <img width="250px" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}" height="200px">
                                 </a>
                             </div>
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="item-details">
                                     <p class="no-margin">
-                                            <a href="{% url 'view-product' item.product.id %}">
+                                            <a href="{% url 'view-product' item.product.slug %}">
                                             {{ item.product.name }}
                                         </a>
                                         </p>
@@ -37,7 +37,7 @@
                                 <div class="item-quantity">
                                     <form method="POST" action="{% url 'update-cart' item.product.id %}" class="item-quantity">
                                         {% csrf_token %}
-                                        <div class="row">
+                                        <div class="row cart-quantity">
                                             <button class="product-quantity" id="cart-minus"><i class="fas fa-minus small-icon"></i></button>
                                             <input class="number-input" id="product-amount" name="cart-amount" type="number" value="{{ item.quantity }}" min="0" max="{{ item.product.stock_numbers|add:item.quantity }}">
                                             <button class="product-quantity" id="cart-plus"><i class="fas fa-plus small-icon"></i></button>
@@ -48,8 +48,7 @@
                                     </form>
                                 </div>
                                 <div class="item-save">
-                                    <p>Save for later</p>
-                                    <i class="far fa-heart margin-left" id="heart"></i>
+                                    <i class="far fa-heart tooltipped" id="heart" data-position="top" data-tooltip="Save for later - Function coming at a later date"></i>
                                     <input type="checkbox" class="hidden" data-product_id="{{ item.product.id }}" name="saveForLater" id="saveForLater" unchecked>
                                 </div>
                             </div>

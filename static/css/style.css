@@ -211,10 +211,21 @@ a .logo,
 
 @media only screen and (max-width: 600px) {
 	.nav-logo {
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		letter-spacing: .3rem;
 	}
 } 
+
+@media only screen and (max-width: 400px) {
+	.sidenav-trigger {
+		margin: 0 !important;
+		padding-left: 1rem;
+	}
+	.nav-login {
+		padding: 1rem .3rem 0 0;
+
+	}
+}
 
 /* /////////////////////////// Alert Messages ///////////////////// */
 
@@ -310,7 +321,7 @@ a .logo,
 }
 
 footer a {
-	color: var(--text-color);
+	color: var(--background-color);
 }
 
 footer a:hover {
@@ -322,12 +333,16 @@ footer li {
 	margin-bottom: .3rem;
 }
 
-.footer-bar {
+footer .footer-bar {
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	background-color: var(--text-color);
-	color: var(--background-color);
+	background-color: var(--text-color) !important;
+	
+}
+
+footer .footer-bar p {
+	color: #fff;
 }
 
 /* /////////////////////////// Home ///////////////////// */
@@ -454,14 +469,16 @@ footer li {
 
 	.trending-highlight {
 		padding-left: 0 !important;
+		height: fit-content;
 	}
 
 	.promoted-card {
-		height: 15rem !important;
-		width: 350px;
+		height: fit-content !important;
+		width: 280px;
 		overflow: hidden;
 		border: var(--border);
 	}
+
 }
 
 /* /////////////////////////// Card ///////////////////// */
@@ -977,6 +994,34 @@ label {
 	padding: 0!important;
 	height: 100%;
 }
+
+@media only screen and (max-width: 600px) {
+
+	.product-view-banner {
+		background-image: none;
+	}
+
+	.verification-sent{
+		background-image: none;
+	}
+
+	.email-confirm{
+		background-image: none;
+	}
+
+	.login {
+		background-image: none;
+	}
+
+	.signup {
+		background-image: none;
+	}
+	
+	.logout {
+		background-image: none;
+	}
+
+}
 /* /////////////////////////// Product List ///////////////////// */
 
 .blank-table {
@@ -1105,6 +1150,7 @@ label {
 	justify-content: space-between !important;
 }
 
+
 .cart-container {
 	background-color: transparent;
 	border: none;
@@ -1214,6 +1260,15 @@ label {
 @media only screen and (max-width: 600px) {
 	.item-quantity{
 		flex-direction: row;
+		align-items: center;
+	}
+
+	#cart-minus {
+		margin: 0;
+	}
+
+	#updateBtn {
+		margin: 1rem 0 0 3rem !important;
 	}
 }
 
@@ -1588,4 +1643,3 @@ color: var(--text-color);
 .text-color {
 	color: var(--text-color);
 }
-

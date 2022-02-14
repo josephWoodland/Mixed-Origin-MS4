@@ -29,7 +29,6 @@
             <li><a {% if '/contact/' in request.path %} class="active"{% endif %} href="{% url 'about' %}">about us</a></li>
         </ul>
     </div>
-</nav>
     <p id="hiddenCartNumber" class="cart-notification transparent">{{ product_count }}</p>
     {% if product_count == 0 %}
     <p id="cartNotificationFirst" class="cart-notification transparent hide">0</p>
@@ -78,4 +77,5 @@
         {% endfor %}
     </ul>
 </div>
+</nav>
 

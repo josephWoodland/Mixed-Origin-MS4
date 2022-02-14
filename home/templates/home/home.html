@@ -6,9 +6,9 @@
 <section class="container">
 <div class="about-card">
     <div class="about-text">
-        <h5 class="logo">Mixed Origin</h5>
-        <h2 class="heading" >Our mission</h2>
-        <p>We want to give people and families of colour easy access to products and content created for them. From haircare and literature to podcasts and blogs, we will create a unique home for a diversity of brands and  content creators with an authentic connection to the black and mixed community.</p>
+        <h5 class="logo">Mixed Origins</h5>
+        <h2 class="heading">Who We Are</h2>
+        <p>At Mixed Origins we want to give people and families of colour easy access to products and content created for them. From haircare and literature to podcasts and blogs, we will create a unique home for a diversity of brands and  content creators with an authentic connection to the black and mixed community.</p>
         <a href="{% url 'about' %}" class="btn waves-effect about-btn">About Us</a>
     </div>
     <div class="about-links hide-on-med-and-down">
@@ -21,7 +21,7 @@
                     Free Delivery
                 </h5>
                 <p class="no-margin">
-                    Free Delivery for orders over £{{ free_delivery_threshold }} {{ tags }}
+                    Free delivery for orders over £{{ free_delivery_threshold }} {{ tags }}
                 </p>
             </div>
         </div>
@@ -47,7 +47,7 @@
                     Direct Support
                 </h5>
                 <p class="no-margin">
-                    Communicate with suppliers directly
+                    Communicate directly with suppliers
                 </p>
             </div>
         </div>
@@ -59,13 +59,13 @@
         <div class="trending-highlight col s12 m7">
             <div class="promoted-card">
                 <div class="row">
-                    <div class="col s6 no-padding">
+                    <div class="col s12 m6 no-padding">
                         <a href="{% url 'product_tags' 'literature' %}" aria-label="Link to go to see the hottest products">
                         <div class="promoted-image">
                         </div>
                         </a>
                     </div>
-                    <div class="card-stacked col s6">
+                    <div class="card-stacked col s12 m6">
                         <h3 class="header" style="color: #5f5f5f;">Trending this week</h3>
                         <div class="card-content">
                             <h4 class="no-margin">Literature</h4>
@@ -81,14 +81,14 @@
         <div class="trending-highlight col s12 m7">
             <div class="promoted-card">
                 <div class="row">
-                    <div class="col s6 no-padding">
+                    <div class="col s12 m6 no-padding">
                         <div class="image-container">
                             <a href="{% url 'partner-profile' promoted_partner.id %}" aria-label="Link to go to the partner page">
                                 <img width="300" src="{{ promoted_partner.company_image.url }}" alt="Image for {{ promoted_partner.company_name }}">
                             </a>
                         </div>
                     </div>
-                    <div class="card-stacked col s6">
+                    <div class="card-stacked col s12 m6">
                         <a href="{% url 'partner-profile' promoted_partner.id %}" aria-label="Link to go to the partner page">
                             <h3 class="header" style="color: #5f5f5f;">{{ promoted_partner.company_name }}</h3>
                         </a>
@@ -108,8 +108,7 @@
     <div class="container">
         <div class="row">
             <div class="col s8 offset-s2 m6 offset-m3 text-center">
-                <h3 class="heading">Featured Products</h3>
-                <h3 class="border-bottom padding-bottom">Most Wanted</h3>
+                <h3 class="heading">Popular Products</h3>
                 </div> 
         </div>
         <div class="row margin-top">

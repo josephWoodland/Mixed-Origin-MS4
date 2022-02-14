@@ -604,9 +604,13 @@ id="future">
  
 ## Future Features - App Roadmap
  
-### Emails to Partners
+### Save to later function
  
-I would like to build out the automated email function, so we can send each owner of a product ordered an email with the product and order details. 
+- The save for later function will remove products from the users cart, and save it on the users profile so can be easily added to future carts.
+  
+- ### Emails to Partners
+ 
+- I would like to build out the automated email function, so we can send each owner of a product ordered an email with the product and order details. 
  
 ### Blog Section
  

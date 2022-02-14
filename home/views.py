@@ -15,6 +15,9 @@ def home(request):
     custom_range, products, paginator = paginateProdcuts(request, products, 4)
     promoted_partner = get_object_or_404(PartnerProfile, promoted=True)
 
+    if not promoted_partner:
+        promoted_partner = None
+
     context = {
         "products": products,
         "paginator": paginator,

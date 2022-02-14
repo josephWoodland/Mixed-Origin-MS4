@@ -69,6 +69,32 @@ def partner_request(sender, instance, created, **kwargs):
         send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email])
 
 
+def partner_request(sender, instance, created, **kwargs):
+    """
+    Sends a email instance triggered by the acceptance of a partner Application
+    """
+
+    profile = instance
+    is_partner = profile.is_partner
+    partner_email = profile.partner_email_sent
+    email = profile.email
+
+    if is_partner == True and partner_email == False:
+
+        subject = render_to_string(
+            "profiles/email_request/partner_accepted_subject.txt",
+            {"profile": profile},
+        )
+        body = render_to_string(
+            "profiles/email_request/partner_accepted_body.txt",
+            {"profile": profile},
+        )
+
+        partner_email = True
+
+        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email])
+
+
 def create_partner_slug(sender, instance, created, **kwargs):
     """
     Creates a Slug for a Partner profile on creation
@@ -78,7 +104,7 @@ def create_partner_slug(sender, instance, created, **kwargs):
     slug = partner.slug
 
     if not created:
-        if slug is None:
+        if slug is None or len(slug) < 4:
             id = partner.id.hex
             id_splice = id[0:8]
             name = slugify(partner.company_name)

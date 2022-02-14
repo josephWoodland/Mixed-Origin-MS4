@@ -35,7 +35,7 @@
     <div class="row">
         {% for item in order.items.all %}
             <div class="order-items">
-                <h3 class="small-text bold"><a href="{% url 'view-product' item.product.id %}">
+                <h3 class="small-text bold"><a href="{% url 'view-product' item.product.slug %}">
                     {{ item.product.name }}
                 </a>
                 </h3>
