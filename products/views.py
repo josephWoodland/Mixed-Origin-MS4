@@ -1,12 +1,16 @@
+from email.mime import image
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from mixed.settings import BASE_DIR
 
 from profiles.models import PartnerProfile
 from .models import Product, Tag
 from .forms import ProductForm
 from django.db.models import Q
 from home.helper import paginateProdcuts
+from django.conf import settings
+
 import os
 
 
@@ -158,7 +162,9 @@ def edit_product(request, pk):
         "product": product,
     }
 
-    webp_image = f"{product.image.path}.webp"
+    path = BASE_DIR
+
+    webp_image = path + f"/media/{product.image}.webp"
 
     if request.method == "POST":
 
