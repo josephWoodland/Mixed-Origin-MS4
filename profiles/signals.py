@@ -30,7 +30,9 @@ def create_partner(sender, instance, created, **kwargs):
     profile = instance
 
     if profile.is_partner:
-        partner = PartnerProfile.objects.create(partner=profile)
+        partner = PartnerProfile.objects.filter(partner=profile)
+        if not partner:
+            PartnerProfile.objects.create(partner=profile)
 
 
 def create_wallet(sender, instance, created, **kwargs):

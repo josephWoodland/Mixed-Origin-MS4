@@ -28,6 +28,17 @@ class TestProductUrls(TestCase):
             partner=self.profile, company_name="Test Shop"
         )
 
+        # create tag instances Tag.objects.create()
+        self.tag_1 = Tag.objects.create(
+            name="Tag 1",
+        )
+        tag_2 = Tag.objects.create(
+            name="Tag 2",
+        )
+        tag_3 = Tag.objects.create(
+            name="Tag 3",
+        )
+
         # Create Product object
         self.product = Product.objects.create(
             owner=self.partner,
@@ -37,8 +48,13 @@ class TestProductUrls(TestCase):
         self.products = Product.objects.all()
 
         # Add the tag to the product
-        self.product.tags.create(name="Test Tag")
+        self.product.tags.add(self.tag_1)
+        # .add tags to the product
 
     def test_products_url_resolves(self):
         url = reverse("products")
         self.assertEquals(resolve(url).func, products)
+
+    def test_products_tags_resolves(self):
+        url = reverse("product_tags", kwargs={"tag": self.tag_1.name})
+        self.assertEquals(resolve(url).func, product_tags)

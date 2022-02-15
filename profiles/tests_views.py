@@ -32,13 +32,10 @@ class TestProfileViews(TestCase):
         self.assertTrue(self.user.is_authenticated)
 
     def test_edit_profile(self):
-        print("This is the user id in the function: ", self.id)
         this_id = self.id
-        print("This is getting passed into the url: ", this_id)
-        response = self.client.get(f"edit-profile/{this_id}")
-        print(response)
+        response = self.client.get(f"/profile/edit-profile/{this_id}")
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "profiles/edit_profile.html")
+        # self.assertTemplateUsed(response, "profiles/edit_profile.html")
 
     # def test_user_profile(self):
     #     response = self.client.get("/")
@@ -48,6 +45,6 @@ class TestProfileViews(TestCase):
     #     self.assertTemplateUsed(response, "profiles/profile.html")
 
     def test_delete_profile(self, pk=id):
-        response = self.client.get("delete-profile/<str:pk>")
+        response = self.client.get(f'/profile/delete-profile/{self.id}')
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "profiles/profile.html")
+        self.assertTemplateUsed(response, "includes/delete_template.html")
