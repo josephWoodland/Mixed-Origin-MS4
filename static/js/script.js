@@ -36,9 +36,9 @@ function fadeIn(el) {
 if (message) {
   messageClose.addEventListener("click", fadeOut);
   // Run the fadeOut function after 3 seconds
-  setTimeout(() => {
-    fadeOut(message);
-  }, 3000);
+  // setTimeout(() => {
+  //   fadeOut(message);
+  // }, 3000);
 }
 
 // Updating the quantity on the product view page by selecting a single element //

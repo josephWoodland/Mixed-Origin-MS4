@@ -175,7 +175,6 @@ const cartNotificationSeen = document.getElementById("cartNotificationSeen");
 const productTotal = document.getElementById("productTotal");
 const cartTotal = document.getElementById("cartTotal");
 const productPriceElement = document.getElementById("productPrice");
-const orderItem = document.getElementById("orderItem");
 
 // function to trigger the submit event on a form
 function submitForm(form) {

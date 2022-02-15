@@ -11,7 +11,7 @@
         
             </p>
             <p><strong>Follow Us</strong><br>
-            <a href="www.twitter.com">@mixed-origins</a>
+            <a href="https://twitter.com/?lang=en" target="_blank">@mixed-origins</a>
             </p>
         </div>
         <div class="footer-text">
@@ -21,21 +21,19 @@
             <p>Office: 07715177823 <br>
                 Email: <a href="mailto:service@mixed-origin.com">
                     service@mixed-origins.com
-                </a></p>
-            <p><a href="#">Returns Policy</a><br>
-            <a href="#">Contact Us</a><br>
+                </a>
             </p>
         </div>
         <div class="footer-text">
             <h6>
                 Links
             </h6>
-            <ul class="">
-                <li><a href="#">home</a></li>
-                <li><a href="#">products</a></li>
-                <li><a href="#">search</a></li>
-                <li><a href="#">blog</a></li>
-                <li><a href="#">orders</a></li>
+            <ul>
+                <li><a href="{% url 'home' %}">home</a></li>
+                <li><a href="{% url 'products' %}">products</a></li>
+                <li><a href="{% url 'partners' %}">partners</a></li>
+                <li><a href="{% url 'blog' %}">blog</a></li>
+                <li><a href="{% url 'about' %}">about us</a></li>
             </ul>
         </div>
     </div>

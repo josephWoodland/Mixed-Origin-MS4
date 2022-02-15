@@ -93,7 +93,7 @@ TEMPLATES = [
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
-                "django.template.context_processors.request",  # `allauth` needs this from django
+                "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "cart.contexts.cart_contents",
@@ -131,7 +131,8 @@ WSGI_APPLICATION = "mixed.wsgi.application"
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 if "DATABASE_URL" in os.environ:
-    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+    DATABASES = {"default": dj_database_url.parse(
+        os.environ.get("DATABASE_URL"))}
 
 else:
     DATABASES = {
@@ -147,16 +148,20 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",  # nopep8
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -221,7 +226,8 @@ STRIPE_PUBLIC_KEY = os.environ.get(
 STRIPE_SECRET_KEY = os.environ.get(
     "STRIPE_SECRET_KEY_MO", config("STRIPE_SECRET_KEY_MO")
 )
-STRIPE_WH_SECRET = os.environ.get("STRIPE_WH_SECRET_MO", config("STRIPE_WH_SECRET_MO"))
+STRIPE_WH_SECRET = os.environ.get(
+    "STRIPE_WH_SECRET_MO", config("STRIPE_WH_SECRET_MO"))
 STRIPE_CURRENCY = "gbp"
 
 # Email set up

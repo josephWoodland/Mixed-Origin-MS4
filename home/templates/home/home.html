@@ -123,11 +123,11 @@
                             <span class="card-title">{{ product.name|truncatechars:17 }}</span>
                         </div>
                         <div class="card-action">
-                            <span class="card-price bold">£ <span id="productPrice">
+                            <span class="card-price bold">£ <span>
                                 {{ product.price }}
                             </span>
                             </span>
-                            <a href="{% url 'view-product' product.slug %}" class="btn" id="orderItem" aria-label="Button to view more details on the product">View Product</a>    
+                            <a href="{% url 'view-product' product.slug %}" class="btn" aria-label="Button to view more details on the product">View Product</a>    
                         </div>
                     </div>
                 </a>

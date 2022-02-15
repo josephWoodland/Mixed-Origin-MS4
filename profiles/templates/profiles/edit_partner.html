@@ -23,18 +23,18 @@
         </p>
 </header>
 <section class="container">
-    <form action="" method="POST" class="form col s10 m8"  enctype="multipart/form-data">
+    <form method="POST" class="form col s10 m8"  enctype="multipart/form-data">
     {% csrf_token %}
     <img src="{{ partner_profile.company_image.url }}" alt="Image for {{partner_profile.company_name}}" class="form-image">
       <div class="input-wrapper margin-top">
-          <label for="form-input" class="form-input">Company image</label>
+          <label class="form-input">Company image</label>
           <input type="file" name="company_image" accept="image/*" id="id_company_image">
       </div>  
     {% for field in partner_form %}
             {% if field.label == "Company image" %}
             {% else%}
                 <div class="input-wrapper">
-                    <label for="form-input" class="form-input">{{ field.label }}</label>
+                    <label class="form-input">{{ field.label }}</label>
                     {{ field }}
                 </div>
             {% endif %}

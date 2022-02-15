@@ -5,7 +5,7 @@
     <h1 class="hide-on-small-and-down">Products</h1>
     <h3 class="hide-on-med-and-up">{{ partner.company_name }} Products</h3>
     <div class="flex">
-        <form id="searchForm" action="" method="GET" class="flex">
+        <form id="searchForm" method="GET" class="flex">
             <input class="btn margin-right" type="submit" value="Search" />
             <input class="input input--text" id="search_query" type="text" name="search_query"
             value="{{ search_query }}" placeholder="Search by Product" />
@@ -33,11 +33,11 @@
                                 <span class="card-title">{{ product.name|truncatechars:17 }}</span>
                             </div>
                             <div class="card-action">
-                                <span class="card-price bold">£ <span id="productPrice">
+                                <span class="card-price bold">£ <span>
                                     {{ product.price }}
                                 </span>
                                 </span>
-                                <a href="{% url 'view-product' product.slug %}" class="btn" id="orderItem">View Product</a>    
+                                <a href="{% url 'view-product' product.slug %}" class="btn">View Product</a>    
                             </div>
                         </div>
                     </a>

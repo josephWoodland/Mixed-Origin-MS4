@@ -155,7 +155,7 @@ a .logo,
 }
 
 .dropdown-wrapper {
-	position: absolute;
+	position: relative;
 	display: none;
 	width: 100%;
 	justify-content: center;
@@ -267,7 +267,8 @@ a .logo,
 	height: 100%;
 	align-items: center;
 	justify-content: center;
-	color: var(--background-grey);
+	color: var(--background-color);
+	line-height: 4rem;
 }
 
 .alert-message {
@@ -293,13 +294,29 @@ a .logo,
 	background-color: var(--message-info);
 }
 
-@media only screen and (min-width: 1333px) {
-	.alert-message {
-		font-size: 1rem;
-	}
+@media only screen and (max-width: 1333px) {
 
 	.message {
 		width: 40%;
+	}
+}
+
+@media only screen and (max-width: 800px ) {
+	.alert-message {
+		padding: .5rem;
+		font-size: 1rem;
+
+	}
+}
+
+@media only screen and (max-width: 600px) {
+
+	.message {
+		width: 100%;
+	}
+
+	.alert-close{
+		margin-right: .5rem;
 	}
 }
 
@@ -321,7 +338,7 @@ a .logo,
 }
 
 footer a {
-	color: var(--background-color);
+	color: var(--text-color);
 }
 
 footer a:hover {
@@ -906,9 +923,7 @@ label {
 }
 
 @media  only screen and (max-width:600px) {
-	.promoted-card{
 
-	}
 }
 
 /* /////////////////////////// Allauth ///////////////////// */
@@ -977,6 +992,11 @@ label {
 	margin-bottom: 3rem;
 }
 
+@media  only screen and (max-width:600px) {
+	.allauth-wrapper {
+		width: 80%;
+	}
+}
 /* /////////////////////////// Product View ///////////////////// */
 
 .product-view-banner {

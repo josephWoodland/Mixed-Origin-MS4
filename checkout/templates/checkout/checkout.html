@@ -13,7 +13,7 @@
             </div>
             <hr>
             <div class="row">
-                <form action="" method="POST"  class="col s10 offset-s1" id="payment-form">
+                <form method="POST"  class="col s10 offset-s1" id="payment-form">
                     {% csrf_token %}
                     <div class="checkout-items">
                         <h3>
@@ -127,7 +127,7 @@
 {% block stripe %}
 {{ stripe_public_key|json_script:"id_stripe_public_key"}}
 {{ client_secret|json_script:"id_client_secret"}}
-<script type="text/javascript" src="{% static 'js/stripe_element.js' %}">
+<script src="{% static 'js/stripe_element.js' %}">
  
 
 </script>

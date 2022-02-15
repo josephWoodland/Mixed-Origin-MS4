@@ -13,7 +13,7 @@
     {% endif %}
 </header>
 <section class="container">
-    <form action="" method="POST" class="form col s10 m8"  enctype="multipart/form-data">
+    <form method="POST" class="form col s10 m8"  enctype="multipart/form-data">
     {% csrf_token %}
         {% if profile.profile.image.url %}
         <img src="{{ profile.profile_image.url }}" alt="Image for {{ profile.name }}" class="form-image">

@@ -4,7 +4,7 @@
     <h1 class="hide-on-med-and-down">Products</h1>
     <h3 class="hide-on-med-and-up">Products</h3>
     <div class="flex">
-        <form id="searchForm" action="" method="GET" class="flex">
+        <form id="searchForm" method="GET" class="flex">
             <input class="btn margin-right" type="submit" value="Search" />
                 <input class="input input--text" id="search_query" type="text" name="search_query"
                 value="{{ search_query }}" placeholder="Word search" />
@@ -22,6 +22,9 @@
 <section class="featured-products padding-top">
     <div class="container">
         <div class="row">
+            {% if products|length < 1 %}
+            <h2 class="text-center">We don't have this product.</h2>
+            {% endif %}
         {% for product in products %}
             <div class="col s10 offset-s1 m6 l4 xl3">
                 <a href="{% url 'view-product' product.slug %}">
@@ -33,11 +36,11 @@
                             <span class="card-title">{{ product.name|truncatechars:17 }}</span>
                         </div>
                         <div class="card-action">
-                            <span class="card-price bold">£ <span id="productPrice">
+                            <span class="card-price bold">£ <span>
                                 {{ product.price }}
                             </span>
                             </span>
-                            <a href="{% url 'view-product' product.slug %}" class="btn" id="orderItem">View Product</a>    
+                            <a href="{% url 'view-product' product.slug %}" class="btn">View Product</a>    
                         </div>
                     </div>
                 </a>

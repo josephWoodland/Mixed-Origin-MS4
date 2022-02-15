@@ -4,7 +4,7 @@
     <h1 class="hide-on-med-and-down">Partners</h1>
     <h3 class="hide-on-med-and-up">Our Partners</h3>
     <div class="flex">
-        <form id="searchForm" action="" method="GET" class="flex">
+        <form id="searchForm" method="GET" class="flex">
             <input class="btn margin-right" type="submit" value="Search" />
                 <input class="input input--text" id="search_query" type="text" name="search_query"
                 value="{{ search_query }}" placeholder="Search by Partner Name" />
@@ -32,13 +32,16 @@
 <section class="featured-partners padding-top padding-bottom">
     <div class="container">
         <div class="margin-top partner-display">
+            {% if partners|length < 1 %}
+            <h1>We have no partners with this name.</h1>
+            {% endif %}
             {% for partner in partners %}
                 <div class="partner-card">
                     <div class="row">
                         <div class="col s7 no-padding">
                             <div class="image-container">
                                 <a href="{% url 'partner-profile' partner.slug %}">
-                                    <img width="400" src="{{ partner.company_image.url }}">
+                                    <img width="400" src="{{ partner.company_image.url }}" alt="Image for {{ partner.company_name }}">
                                 </a>
                             </div>
                         </div>

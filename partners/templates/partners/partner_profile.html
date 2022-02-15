@@ -7,7 +7,7 @@
         {% if request.user.profile.id == partner.partner_id %}
             <div class="flex flex-end">
                 <a href="{% url 'product-list' partner.id %}" class="btn margin-right">Product List</a>
-                <a href="{% url 'edit-profile' partner.partner_id %}" class="btn">Edit profile</a>
+                <a href="{% url 'edit-partner' partner.partner_id %}" class="btn">Edit profile</a>
             </div>
         {% endif %}
     {% endif %}

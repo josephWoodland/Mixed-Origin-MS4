@@ -36,7 +36,7 @@ A copy of the brief can be accessed [here](static/assets/readme/design_brief.pdf
 
 Some of the colour hue's have changes slightly on client testing and feedback.
  
-## Summary of the brief
+## Summary Of The Brief
  
 The client has requested a web app that has full functionality as an e-commerce store, must be styled and follow assumed functionality and layout from both users and partners.
  
@@ -264,11 +264,11 @@ I used modules to help me code the app faster using pre-written code to speed up
 - DateTime - This module has been used to record timestamps by the app.
 - UUID - I used this module to create ids for database entries.
  
-## Outside libraries
+## Outside Libraries
  
 - Font Awesome - I used font awesome for some of my icons.
  
-## App dependencies
+## App Dependencies
  
 The full list of dependencies can be found [here](requirements.txt)
  
@@ -337,7 +337,7 @@ One to one - I used this relationship between profiles and wallets.
 Using Django models, and is_valid to validate user input data. Ass the validation is done on the backend it make the app safer to being hacked and manipulated through the HTML.
  
  
-## Online resources
+## Online Resources
  
 These are the online resources that I used throughout the project.
  
@@ -359,10 +359,11 @@ I used unit tests for some of the URLs, Views, Models and Forms. Once hardcoded 
 The tests are in the Github repository in each apps perspective folder.
  
 ### HTML Test
+
+I used a firefox extension to test html code, this allows you to navigate the site, while checking the code against [W3C HTML validator](https://validator.w3.org/) standard HTML practices. 
+
+I had an occurring error throughout out my code, this is due to the stripe extension in my code, I have decided not to change any of this code, as I am not sure how to fixe the errors, and keeping the code working.
  
-I used the [W3C HTML validator](https://validator.w3.org/) to validate each page.
- 
-- Base - Pass
 - Home - Pass
 - Profile - Pass
 - edit_profile - Pass
@@ -414,15 +415,15 @@ I used [PEP8 online](http://pep8online.com/) to validate the Python:
 
 One thing error that came up was checking boolean is equal to by using `==` instead of `is`.
  
-- app.py - Pass
+All files passed through the online pep8 checker with no errors or warnings.
  
-## Manual testing
+## Manual Testing
  
 ### Testing Environments
  
 I used two sets of hardware to undergo building and testing the app; I used a 2012 28 inch iMac and a 2020 13inch Macbook air with the M1 processor. On both, I was using Google Chrome and Firefox web browsers.
  
-### Desktop testing
+### Desktop Testing
  
 Platforms :
  
@@ -476,10 +477,10 @@ I also used the responsive profiles preset in the dev tools of:
 - Laptop (1024px)
 - Laptop L (1440px)
  
-## Major testing issues identified
+## Major Testing Issues Identified
  
  
-## User testing
+## UserTtesting
  
 I gave the app to three people to test and to populate the database with data.
  
@@ -526,7 +527,7 @@ Delete
 - Delete a partner from the database - check
  
  
-### Functionality testing
+### Functionality Testing
  
 ### Users
  
@@ -545,11 +546,11 @@ Delete
 - to be able to update my ‘shop’ profile - check
 - to be able to update any item details that I have in my shop - check
  
-## Issues and challenges I encountered
+## Issues and Challenges I Encountered
  
 The biggest issue I found in the development of this application was the storing of images, as image files are likely to be uploaded as jpg files, which would slow the website download speeds. So I researched how to do this in the model, which took a few days to get right.
  
-## Known bugs
+## Known Bugs
  
 - Image bug - 
  
@@ -565,9 +566,9 @@ id="deployment">
  
 I used one GitHub branch, so clone the main branch in the repo.
  
-### How to deploy
+### How To Deploy
  
-### Run this code locally
+### Run This code Locally
  
 Clone this project from GitHub by the terminal:
  
@@ -588,7 +589,7 @@ Clone this project from GitHub by the Git Desktop:
  
 Further reading and troubleshooting on cloning a repository from GitHub can be found [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
  
-### Running the code
+### Run The Code
  
 To deploy the app locally, once you have cloned the repository, you will need to create an `.env` file in the directory to create the development environment keys that will be needed to use the app.
 
@@ -606,7 +607,7 @@ DEVELOPMENT
 ```
 
  
-### Deploying to Heroku
+### Deploying To Heroku
  
 You will need to sign up for Heroku
 Once logged in, click the create new app button
@@ -642,11 +643,11 @@ id="future">
  
 ## Future Features - App Roadmap
  
-### Save to later function
+### Save To Later Function
  
 - The save for later function will remove products from the users cart, and save it on the users profile so can be easily added to future carts.
   
-### Emails to Partners
+### Emails To Partners
  
 - I would like to build out the automated email function, so we can send each owner of a product ordered an email with the product and order details. 
  

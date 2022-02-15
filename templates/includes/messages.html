@@ -2,7 +2,7 @@
     {% for message in messages %}
         <div class="container" id="message">
             <div class="row message">
-                <div class="alert alert-{{ message.tags}} col s10 offset-s1 m8 offset-m2 no-padding">   
+                <div class="alert alert-{{ message.tags}} col s12 m8 offset-m2 no-padding">   
                     {% if message.tags == 'error' %}
                         <div class="alert-icon-box error">        
                             <i class="fas fa-exclamation-triangle" style="font-size: 3rem;"></i>

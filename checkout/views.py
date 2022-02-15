@@ -99,7 +99,7 @@ def checkout(request):
                         quantity=quantity,
                         item_total=item_total,
                     )
-
+                    print(order_item)
                     order_item.save()
 
                 except Product.DoesNotExist:

@@ -5,7 +5,7 @@
 <h1>{{ profile.name }} Wallet</h1>
 </header>
 <section class="container form">
-    <form action="" method="POST">
+    <form  method="POST">
         {% csrf_token %}
             {{ form|crispy }}
             <input type="submit" value="Save" class="btn">

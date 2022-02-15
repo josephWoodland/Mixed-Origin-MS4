@@ -8,7 +8,7 @@
     {% endif %}
 </header>
 <section class="container row">
-        <form action="" method="POST" class="form">
+        <form method="POST" class="form">
             {% csrf_token %}
             {% if object.username %}
                 <h3 class="text-center">Are you sure you want to delete {{ object.first_name }} {{ object.second_name }}'s profile</h3>

@@ -27,8 +27,14 @@ class ProductForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
 
-        for name, fields in self.fields.items():
-            names = name.capitalize()
-            fields.widget.attrs.update(
-                {"class": "input", "placeholder": names}
-            )
+        for name, field in self.fields.items():
+            if name == "tags" or name == "image":
+                field.widget.attrs.update(
+                    {"class": "input", }
+                )
+            else:
+                names = name.capitalize()
+
+                field.widget.attrs.update(
+                    {"class": "input", "placeholder": names}
+                )
