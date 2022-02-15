@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.template import Origin
 from products.models import Product
 from django.contrib import messages
 
@@ -13,6 +14,7 @@ def cart(request):
     """
     template = "cart/cart.html"
     context = {}
+
     return render(request, template, context)
 
 
@@ -25,6 +27,8 @@ def add_to_cart(request, item_id):
     Returns:
         [session object]: Returns an updated cart object to the session cookie
     """
+    print("This should be an id: ----- ", item_id)
+    print("------------------------------------------------------------")
     product = Product.objects.get(id=item_id)
     quantity = request.POST.get("order-amount")
     # If order does not come from the product view order set to 1
@@ -54,7 +58,7 @@ def add_to_cart(request, item_id):
 
     request.session["cart"] = cart
 
-    time.sleep(2)
+    time.sleep(1)
 
     return redirect(redirect_url)
 
@@ -62,7 +66,7 @@ def add_to_cart(request, item_id):
 def update_cart(request, pk):
     """
     Updates the cart with the items and
-    adjust the stock amount for a given product in the datebses
+    adjust the stock amount for a given product in the database
     """
     product = Product.objects.get(id=pk)
     id = pk

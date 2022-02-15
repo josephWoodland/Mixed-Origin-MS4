@@ -35,7 +35,7 @@
                                         </p>
                                 </div>
                                 <div class="item-quantity">
-                                    <form method="POST" action="{% url 'update-cart' item.product.id %}" class="item-quantity">
+                                    <form method="POST"  action="{% url 'add-to-cart' item.product.id %}" class="item-quantity">
                                         {% csrf_token %}
                                         <div class="row cart-quantity">
                                             <button class="product-quantity" id="cart-minus"><i class="fas fa-minus small-icon"></i></button>

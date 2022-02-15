@@ -91,7 +91,6 @@ def checkout(request):
             for item_id, quantity in cart.items():
                 try:
                     product = get_object_or_404(Product, pk=item_id)
-                    print(product)
                     item_total = product.price * quantity
 
                     order_item = OrderItem(
@@ -101,7 +100,6 @@ def checkout(request):
                         item_total=item_total,
                     )
 
-                    print(order_item)
                     order_item.save()
 
                 except Product.DoesNotExist:
@@ -143,8 +141,6 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-
-    client_secret = intent.client_secret
 
     if request.user.is_authenticated:
         # Poopulate the form if there are details saved
@@ -191,7 +187,7 @@ def checkout(request):
         "cart": cart,
         "form": form,
         "stripe_public_key": stripe_public_key,
-        "client_secret": client_secret,
+        "client_secret": intent.client_secret,
     }
 
     return render(request, template, context)
