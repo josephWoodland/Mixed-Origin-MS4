@@ -7,7 +7,7 @@
     </div>
 </header>
 <section class="container">
-    <form  method="POST" class="form col s10 m8"  enctype="multipart/form-data">
+    <form  method="POST" class="form col s12 m8"  enctype="multipart/form-data">
     {% csrf_token %}
     <img src="{{ product.image.url }}.webp" alt="Image for {{ product.name}}" class="form-image">
     <div class="input-wrapper margin-top">

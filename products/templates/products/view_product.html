@@ -8,9 +8,9 @@
 </header>
 <section class="container">
     <div class="row product-view">
-        <div class="col s12 m7 flex-wrapper column">
+        <div class="col s10 offset-s1 m7 flex-wrapper column">
             <div class="card-image margin-top">
-                <img height="300" src="{{ product.image.url }}.webp" alt="Image for {{ product.name }}">
+                <img id="product-image" src="{{ product.image.url }}.webp" alt="Image for {{ product.name }}">
             </div>
             {% if partner_profile.id == product.owner.id %}
                 <div class="flex-wrapper">
@@ -19,9 +19,9 @@
                 </div>
             {% endif %}
         </div>
-        <div class="col s12 m5 product-order">
+        <div class="col s10 offset-s1 m5 product-order">
             <h3 class="product-name">{{ product.name }}</h3>
-            <h4>£<strong id="productPrice">{{ product.price }}</strong></h4>
+            <h4>£<strong id="productPrice" class="small-view">{{ product.price }}</strong></h4>
             
             <div class="row product-number">
                 {% if product.stock_numbers > 0 %}
@@ -45,13 +45,16 @@
         </div>
     </div>
     
-    <div class="row">
+    <div class="row hide-on-med-and-down">
         <h3>You may also like...</h3>
     </div>
 </section>
-<section class="product-suggestion">
-    <div class="row margin-top hide-on-med-and-down">
+<section class="product-suggestion hide-on-med-and-down">
+    <div class="row margin-top">
         <div class="container">
+            {% if products|length < 1 %}
+            <h2>We have no similar products.</h2>
+            {% endif %}
             {% for product in products %}
                 <div class="col s10 offset-s1 m6 l4 xl3">
                     <a href="{% url 'view-product' product.slug %}">

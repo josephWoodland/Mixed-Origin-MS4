@@ -91,11 +91,16 @@ class OrderItem(models.Model):
     item_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, default=0, editable=False
     )
-    # Uses the individual product owner slug to store owner details
-    product_owner = models.CharField(max_length=200, null=True, unique=True)
+
+    id = models.UUIDField(
+        default=uuid.uuid4, unique=True, primary_key=True, editable=False
+    )
+
+    product_owner = models.CharField(max_length=100, null=True, blank=True)
 
     def total(self, *args, **kwargs):
         self.item_total = int(self.product.price * self.quantity)
+        self.product_owner = self.product.owner.id
         super().save(*args, **kwargs)
 
     def __str__(self):

@@ -19,7 +19,6 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderItemAdmin,)
 
     readonly_fields = (
-        "id",
         "delivery_costs",
         "sub_total",
         "grand_total",
@@ -27,7 +26,6 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
     list_display = (
-        "id",
         "full_name",
         "created",
         "email",
@@ -35,7 +33,6 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
     list_display_links = (
-        "id",
         "email",
         "created",
     )

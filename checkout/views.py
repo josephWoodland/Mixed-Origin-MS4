@@ -91,6 +91,7 @@ def checkout(request):
             for item_id, quantity in cart.items():
                 try:
                     product = get_object_or_404(Product, pk=item_id)
+                    print(product)
                     item_total = product.price * quantity
 
                     order_item = OrderItem(
@@ -99,6 +100,7 @@ def checkout(request):
                         quantity=quantity,
                         item_total=item_total,
                     )
+
                     print(order_item)
                     order_item.save()
 
