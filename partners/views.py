@@ -51,8 +51,8 @@ def partner_profile(request, slug):
 def partner_products(request, pk):
     template = "partners/partner_products.html"
     partner = get_object_or_404(PartnerProfile, id=pk)
-
     products = partner.product_set.all()
+    custom_range, products, paginator = paginateProdcuts(request, products, 4)
 
     search_query = ""
 
@@ -66,6 +66,8 @@ def partner_products(request, pk):
     context = {
         "partner": partner,
         "products": products,
+        "paginator": paginator,
+        "custom_range": custom_range,
     }
 
     return render(request, template, context)

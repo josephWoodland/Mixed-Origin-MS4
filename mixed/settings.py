@@ -97,6 +97,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'django.template.context_processors.media',
                 "cart.contexts.cart_contents",
                 "products.contexts.tag_products",
             ],
@@ -192,12 +193,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
+# /Users/josephwoodland/Documents/Courses/Full Stack Diploma/CI/Projects/Mixed-Origin-MS4/media/default.png
+print("ROOT: ", MEDIA_ROOT)
+print("URL: ", MEDIA_URL)
+
 if "USE_AWS" in os.environ:
     # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
         "Expires": "Thu, 31 Dec 2099 20:00:00 GMT",
         "CacheControl": "max-age=94608000",
     }
+
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = "mixed-origin-ms4"
     AWS_S3_REGION_NAME = "eu-west-2"

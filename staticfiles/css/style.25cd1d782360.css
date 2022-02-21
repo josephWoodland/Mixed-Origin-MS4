@@ -366,7 +366,7 @@ footer .footer-bar p {
 /* /////////////////////////// Home ///////////////////// */
 
 .hero {
-	background-image: url(../img/banner_img.png);
+	background-image: url("../img/banner_img.787cd3d7cfd2.png");
 	background-position: bottom center;
 	background-size: cover;
 	height: 40vh;
@@ -459,7 +459,7 @@ footer .footer-bar p {
 }
 
 .promoted-image {
-	background-image: url(../img/books.jpg);
+	background-image: url("../img/books.234b945f0763.jpg");
 	height: 15rem;
 	background-size: cover;
 	background-position: center;
@@ -833,18 +833,18 @@ form div .error {
 /* /////////////////////////// Profile ///////////////////// */
 
 .profile-banner {
-	background-image: url(../img/profile-banner.jpg);
+	background-image: url("../img/profile-banner.e292b982b1eb.jpg");
 	background-size: cover;
 	background-position: left center;
 }
 
 .order-banner {
-	background-image: url(../img/order-banner.jpg);
+	background-image: url("../img/order-banner.632421b2c4ed.jpg");
 	background-size: cover;
 }
 
 .wallet-banner {
-	background-image: url(../img/wallet-banner.jpg);
+	background-image: url("../img/wallet-banner.6bf23c1735f6.jpg");
 	background-size: cover;
 }
 
@@ -871,7 +871,7 @@ form div .error {
 /* /////////////////////////// Partner ///////////////////// */
 
 .partner-banner {
-	background-image: url(../img/partner-banner.jpg);
+	background-image: url("../img/partner-banner.1f921655bc8c.jpg");
 	background-size: cover;
 
 }
@@ -882,7 +882,7 @@ form div .error {
 
 .edit-product-banner,
 .list-banner{
-	background-image: url(../img/list-banner.jpg);
+	background-image: url("../img/list-banner.1110966ad2b2.jpg");
 	background-size: cover;
 }
 
@@ -959,17 +959,17 @@ form div .error {
 }
 
 .login {
-	background-image: url(../img/login.png);
+	background-image: url("../img/login.29031f6cf580.png");
 	height: 100%;
 }
 
 .signup {
-	background-image: url(../img/signup.png);
+	background-image: url("../img/signup.dd813baada5b.png");
 	height: 100%;
 }
 
 .logout {
-	background-image: url(../img/logout.jpg);
+	background-image: url("../img/logout.581d3508726a.jpg");
 	height: 100%;
 	background-position: center;
 	background-size: cover;
@@ -977,13 +977,13 @@ form div .error {
 
 /* Page user is redirected to when pressed confirmation link */
 .email-confirm{
-	background-image: url(../img/signup.png);
+	background-image: url("../img/signup.dd813baada5b.png");
 	height: 100%;
 }
 
 /* Page user is redirected to when signing up */
 .verification-sent{
-	background-image: url(../img/verification.png);
+	background-image: url("../img/verification.5c798eadd1a6.png");
 	height: 100%;
 }
 
@@ -1025,7 +1025,7 @@ form div .error {
 /* /////////////////////////// Product View ///////////////////// */
 
 .product-view-banner {
-	background-image: url(../img/product-view-banner.jpg);
+	background-image: url("../img/product-view-banner.8a29137a5816.jpg");
 	background-size: cover;
 	color: var(--text-logo);
 	/* background-position: center; */
@@ -1103,7 +1103,7 @@ form div .error {
 .blog-banner{
 	padding-top: 5vh;
 	height: 30vh;
-	background-image: url(../img/blog-banner.jpg);
+	background-image: url("../img/blog-banner.3e1dffc29b8c.jpg");
 	background-size: cover;
 	background-position: center;
 }
@@ -1139,7 +1139,7 @@ form div .error {
 .checkout-banner{
 	padding-top: 5vh;
 	height: 30vh;
-	background-image: url(../img/checkout-banner.jpg);
+	background-image: url("../img/checkout-banner.f85903e31fde.jpg");
 	background-size: cover;
 	background-position: center;
 }
@@ -1186,7 +1186,7 @@ form div .error {
 
 /* /////////////////////////// Cart ///////////////////// */
 .cart-banner{
-	background-image: url(../img/cart-banner.jpg);
+	background-image: url("../img/cart-banner.1187d09cceab.jpg");
 	background-size: cover;
 	background-position: center;
 }
@@ -1456,7 +1456,7 @@ hr {
 .product-banner {
 	padding-top: 5vh;
 	height: 40vh;
-	background-image: url(../img/product-banner.jpg);
+	background-image: url("../img/product-banner.aa8d35072c94.jpg");
 	background-position: center;
  	background-size: cover;
 }

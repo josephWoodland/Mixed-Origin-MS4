@@ -552,11 +552,7 @@ The biggest issue I found in the development of this application was the storing
  
 ## Known Bugs
  
-- Image bug - 
- 
-- AttributeError - 
- 
-- Session Bug - 
+- Webp Image bug - There is a bug in the Heroku version of the app, where webp images are not being saved on the server on the creation of edit of a product. This is a problem as this slows down the website for the live version. As some browsers do not support webp format there is already if statements in place to cover if the browser cannot find teh file anyway.
  
 <span
 id="deployment">
@@ -593,7 +589,7 @@ Further reading and troubleshooting on cloning a repository from GitHub can be f
  
 To deploy the app locally, once you have cloned the repository, you will need to create an `.env` file in the directory to create the development environment keys that will be needed to use the app.
 
-Sample `.env` file
+Sample `.env` file for this project to run locally
 
 ```
 MY_SECRET_KEY="your_secret_key"
@@ -602,8 +598,8 @@ STRIPE_SECRET_KEY_MO="your_secret_key"
 STRIPE_WH_SECRET_MO="Your_webhook_key"
 EMAIL_HOST_USER="your_email_user"
 EMAIL_HOST_PASSWORD="your_email_host_password"
-
 DEVELOPMENT
+VIRTUAL_ENV
 ```
 
  
@@ -633,9 +629,15 @@ SECRET_KEY <Your secret key>
 STRIPE_PUBLIC_KEY_MO <Your stripe public key>
 STRIPE_SECRET_KEY_MO <Your stripe secret key>
 STRIPE_WH_SECRET_MO <Your stripe webhook key>
-STRIPE_WH_SECRET_MO True
-```
 
+```
+### Using The App
+
+Points of note when using the app.
+
+- Creating a partner Profile - The application can be sent from the profile section of the app. From there the Admin is notified, and then in the Profile in the admin panel the users partner application can be verified, by selecting True on the is_partner section. The next time the user navigates to the profile they will be met with a message to complete a Partner profile, they will now have access to be able to add products to there store, and the site.
+
+- To test the stripe payments please use the following details
  
 <span
 id="future">

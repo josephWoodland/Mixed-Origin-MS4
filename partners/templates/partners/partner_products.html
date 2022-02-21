@@ -1,3 +1,4 @@
+{% load static %}
 {% extends 'base.html' %}
 {% block content %}
 <header class="container product-banner">
@@ -27,7 +28,7 @@
                     <a href="{% url 'view-product' product.slug %}">
                         <div class="card no-shadow">
                             <div class="card-image">
-                                <img src="{{ product.image.url }}.webp" alt="Thumbnail image for {{ product.name }}">
+                                <img {% if product.image.url.webp %} src="{{ product.image.url }}.webp" {% else %} src="{{ product.image.url }}" {% endif %} alt="Thumbnail image for {{ product.name }}">
                             </div>
                             <div class="card-content">
                                 <span class="card-title">{{ product.name|truncatechars:17 }}</span>
