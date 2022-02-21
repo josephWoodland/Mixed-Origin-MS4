@@ -35,20 +35,6 @@ class Product(models.Model):
 
     slug = models.CharField(max_length=200, null=True, unique=True)
 
-    def save(self, *args, **kwargs):
-
-        if self.image:
-
-            image = Image.open(self.image)
-            image = image.convert("RGB")
-            name = str(self.image) + ".webp"
-            root = MEDIA_ROOT
-            image.save(f"{root}/{name}", "webp")
-            print(f"{root}/{name}")
-            self.image = name
-
-        super().save(*args, **kwargs)
-
     def __str__(self):
         return self.name
 
