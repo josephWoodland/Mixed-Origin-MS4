@@ -1,6 +1,6 @@
 from django.db import models
 import uuid
-from mixed.settings import MEDIA_ROOT
+from mixed.settings import MEDIA_URL
 from profiles.models import PartnerProfile
 from PIL import Image
 import os
@@ -34,6 +34,19 @@ class Product(models.Model):
     )
 
     slug = models.CharField(max_length=200, null=True, unique=True)
+
+    def save(self, *args, **kwargs):
+
+        if self.image:
+
+            image = Image.open(self.image)
+            image = image.convert("RGB")
+            name = str(self.image) + ".webp"
+            aws_media_folder = MEDIA_URL
+            image.save(f"{aws_media_folder}/{name}", "webp")
+            self.image = name
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
