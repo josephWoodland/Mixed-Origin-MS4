@@ -11,7 +11,7 @@
             </h3>
             <div class="popup-details">
               <div class="image-container">
-                  <img width="150" src="{{ product.image.url }}" alt="Image for {{ product.name }}">
+                  <img width="150" src="{{ product.image.url }}.webp" onerror="this.src='{{ product.image.url }}'"alt="Image for {{ product.name }}">
               </div>
               <div class="popup-product">
                 <h3 class="small-text flex-wrapper popup-qty">

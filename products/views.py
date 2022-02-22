@@ -99,13 +99,11 @@ def view_product(request, slug):
     product = get_object_or_404(Product, slug=slug)
     partner_profile = None
     products = Product.objects.all()
-    print(products)
 
     # Check to see if product has tags
     if len(product.tags.all()) > 0:
         # Get the first Tag
         tag = product.tags.all()[0]
-        print(tag)
         # Search items with that tag
         tags = Tag.objects.filter(name__icontains=tag)
         products = Product.objects.distinct().filter(Q(tags__in=tags))

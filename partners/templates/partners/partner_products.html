@@ -1,5 +1,5 @@
-{% load static %}
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <header class="container product-banner">
     <h1 class="hide-on-small-and-down no-margin">{{ partner.company_name }}</h1>
@@ -23,12 +23,15 @@
 <section class="partner-products padding-top">
     <div class="container">
         <div class="row">
+            {% if products|length < 1 %}
+                <h2 class="text-center">We don't have this product.</h2>
+            {% endif %}
             {% for product in products %}
                 <div class="col s10 offset-s1 m6 l4 xl3">
                     <a href="{% url 'view-product' product.slug %}">
                         <div class="card no-shadow">
                             <div class="card-image">
-                                <img {% if product.image.url.webp %} src="{{ product.image.url }}.webp" {% else %} src="{{ product.image.url }}" {% endif %} alt="Thumbnail image for {{ product.name }}">
+                                <img  src="{{ product.image.url }}.webp" onerror="this.src='{{ product.image.url }}'" alt="Thumbnail image for {{ product.name }}">
                             </div>
                             <div class="card-content">
                                 <span class="card-title">{{ product.name|truncatechars:17 }}</span>

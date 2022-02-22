@@ -1,6 +1,6 @@
 from django.db import models
 import uuid
-from mixed.settings import MEDIA_URL
+from mixed.settings import MEDIA_ROOT, MEDIA_URL
 from profiles.models import PartnerProfile
 from PIL import Image
 import os
@@ -37,16 +37,22 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
 
+        super().save(*args, **kwargs)
+
         if self.image:
 
             image = Image.open(self.image)
             image = image.convert("RGB")
             name = str(self.image) + ".webp"
-            aws_media_folder = MEDIA_URL
-            image.save(f"{aws_media_folder}/{name}", "webp")
-            self.image = name
 
-        super().save(*args, **kwargs)
+            if "USE_AWS" in os.environ:
+                media_folder = MEDIA_URL
+                image.save(f"{media_folder}{name}", "webp")
+            else:
+                media_folder = MEDIA_ROOT
+                image.save(f"{media_folder}/{name}", "webp")
+
+            self.image = name
 
     def __str__(self):
         return self.name

@@ -466,7 +466,7 @@ footer .footer-bar p {
 }
 
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-width: 1700px) {
 	
 	.trending {
 		flex-direction: column-reverse;

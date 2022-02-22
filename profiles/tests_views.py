@@ -25,7 +25,6 @@ class TestProfileViews(TestCase):
         self.profile.email = (self.user.email,)
         self.profile.save()
         self.id = self.profile.id
-        print("Self id: ", self.id)
         id = self.id
 
     def test_login_user(self):
@@ -35,14 +34,6 @@ class TestProfileViews(TestCase):
         this_id = self.id
         response = self.client.get(f"/profile/edit-profile/{this_id}")
         self.assertEqual(response.status_code, 200)
-        # self.assertTemplateUsed(response, "profiles/edit_profile.html")
-
-    # def test_user_profile(self):
-    #     response = self.client.get("/")
-    #     # print(request.user)
-    #     print(response)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertTemplateUsed(response, "profiles/profile.html")
 
     def test_delete_profile(self, pk=id):
         response = self.client.get(f'/profile/delete-profile/{self.id}')

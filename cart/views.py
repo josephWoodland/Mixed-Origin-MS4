@@ -27,8 +27,6 @@ def add_to_cart(request, item_id):
     Returns:
         [session object]: Returns an updated cart object to the session cookie
     """
-    print("This should be an id: ----- ", item_id)
-    print("------------------------------------------------------------")
     product = Product.objects.get(id=item_id)
     quantity = request.POST.get("order-amount")
     # If order does not come from the product view order set to 1

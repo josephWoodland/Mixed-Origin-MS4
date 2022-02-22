@@ -638,6 +638,8 @@ Points of note when using the app.
 - Creating a partner Profile - The application can be sent from the profile section of the app. From there the Admin is notified, and then in the Profile in the admin panel the users partner application can be verified, by selecting True on the is_partner section. The next time the user navigates to the profile they will be met with a message to complete a Partner profile, they will now have access to be able to add products to there store, and the site.
 
 - To test the stripe payments please use the following details
+
+- You can only have one partner promoted at anyone time, this can be selected in the admin portal. On each partner profile there is a boolean value selector, if this is yes the profile will be promoted on the home page of the website.
  
 <span
 id="future">
@@ -669,6 +671,8 @@ id="future">
 id="credits">
 </span>
  
+
+
 ## CREDITS
  
 My mentor Jack helped guide me throughout the project.
