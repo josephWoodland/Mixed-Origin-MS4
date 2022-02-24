@@ -161,10 +161,10 @@ def edit_product(request, pk):
 
     if "USE_AWS" in os.environ:
         media_folder = MEDIA_URL
-        image.save(f"{media_folder}{product.image}", "webp")
+        webp_image = f"{media_folder}{product.image}.webp"
     else:
         media_folder = MEDIA_ROOT
-        webp_image = f"{media_folder}/{product.image})"
+        webp_image = f"{media_folder}/{product.image}.webp"
 
     if request.method == "POST":
 

@@ -54,6 +54,8 @@ class Product(models.Model):
 
             self.image = name
 
+        # super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
