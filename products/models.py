@@ -37,7 +37,7 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
 
-        # super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
         if self.image:
 
@@ -53,8 +53,6 @@ class Product(models.Model):
                 image.save(f"{media_folder}/{name}", "webp")
 
             self.image = name
-
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
