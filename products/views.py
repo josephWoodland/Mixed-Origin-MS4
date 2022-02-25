@@ -159,17 +159,7 @@ def edit_product(request, pk):
         "product": product,
     }
 
-    if "USE_AWS" in os.environ:
-        media_folder = MEDIA_URL
-        webp_image = f"{media_folder}{product.image}.webp"
-    else:
-        media_folder = MEDIA_ROOT
-        webp_image = f"{media_folder}/{product.image}.webp"
-
     if request.method == "POST":
-
-        if os.path.exists(webp_image):
-            os.remove(webp_image)
 
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
