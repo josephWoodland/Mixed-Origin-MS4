@@ -30,9 +30,9 @@ Credits
  
 ## The App Brief
  
-The company concept and proposition can be accessed [here](static/assests/readme/concept.pdf)
+The company concept and proposition can be accessed [here](/static/assets/readme/concept.md)
 
-A copy of the brief can be accessed [here](static/assets/readme/design_brief.pdf)
+A copy of the brief can be accessed [here](/static/assets/readme/design_brief.md)
 
 Some of the colour hue's have changes slightly on client testing and feedback.
  
@@ -135,7 +135,7 @@ Here is the successful journey of a Partner.
 ## User Stories
  
 These user stories revolve around essential actions for each user and the desired software outcome to satisfy the user need.
-The user stories that I use to build the functionality of the app are available [here](static/assets/readme/user_stories.pdf)
+The user stories that I use to build the functionality of the app are available [here](static/assets/readme/user_stories.md)
  
 ## Sections of the Web App
  
@@ -235,7 +235,7 @@ HTML5 - I used HTML 5 for the layout and structure of the website.
  
 CSS - CSS has been used to style some HTML elements.
  
-jQuery - jQuery language has been used to create front end interactivity of some HTML elements from Materialize CSS.
+JQuery - jQuery language has been used to create front end interactivity of some HTML elements from Materialize CSS.
  
 JavaScript - I have used custom JS to add to the interactivity of DOM elements.
  
@@ -289,21 +289,7 @@ I used VS Code as my code editor. In the code editor, the extensions that I used
 - Black: automatically format my code for basic formatting mistakes and have a consistent style throughout the code.
 - Image preview: I used this extension to identify whether or not the image URL path is correct.
 - Markdown all in one: I used this extension to help me edit the readme file in VS Code.
- 
-## Website Structure
- 
-The diagram here is a layout of the website’s information structure and how it will flow for the user.
- 
-<details
->
- 
-<summary
->Click here to view the image</summary>
- 
-![flowchart](static/assets/readme/user_flow_chart.jpg)
- 
-</details>
- 
+  
 ## Coding Architecture
  
 I have used a simple architecture for this app with all the code from each language in one file and separated the code into sections by comment lines.
@@ -328,7 +314,7 @@ One to one - I used this relationship between profiles and wallets.
 <summary
 >Click here to view the database</summary>
  
-![Image of the database](static/assets/readme/users_database%20.png)
+![Image of the database](static/assets/readme/database_image.png)
 
 </details> 
 
@@ -360,7 +346,7 @@ The tests are in the Github repository in each apps perspective folder.
  
 ### HTML Test
 
-I used a firefox extension to test html code, this allows you to navigate the site, while checking the code against [W3C HTML validator](https://validator.w3.org/) standard HTML practices. 
+I used a firefox extension to test html code, this allows you to navigate the site, while checking the code against [W3C HTML validator](https://validator.w3.org/) standard HTML practices. To test the HTML I view the page source from right clicking on the live page and copied the code from there.
 
 I had an occurring error throughout out my code, this is due to the stripe extension in my code, I have decided not to change any of this code, as I am not sure how to fixe the errors, and keeping the code working.
  
@@ -388,7 +374,7 @@ I had an occurring error throughout out my code, this is due to the stripe exten
  
 I used the [W3C CSS validator](https://jigsaw.w3.org/css-validator/) to validate the css:
  
-- style.css - Pass
+- style.css - Pass - With no Errors, I had many warnings, they were due to the fact that I am using variables and vendor extended pseudo-class.
  
 ### JavaScript Test
  
@@ -407,8 +393,12 @@ Added the stripe variable for the validation for the stripe.js
 
 `/* global Stripe:false */`
 
-- stripe_element.js
+- stripe_element.js - Pass
  
+Added the stripe variable for the validation for the stripe_element.js 
+
+`/* global Stripe:false */`
+
 ### Python Tests
  
 I used [PEP8 online](http://pep8online.com/) to validate the Python:
@@ -486,15 +476,15 @@ I gave the app to three people to test and to populate the database with data.
  
 ### User Tests
  
-1. **User One** - This user accessed the app via:
- 
-2. **User Two** - This user accessed the app via :
- 
-3. **User Three** - This user accessed the app via:
+1. **User One** - This user accessed the app via Dell Laptop:
+        This user had a problem when setting up the app on a local device, after helping this user get the app working, I created more in depth steps to setting up the app. I noticed that without an initial Partner Profile the app would not work. This user found no other issues using the app.
+2. **User Two** - This user accessed the app via Mobile:
+        This user experience some problems with the formatting on some of the pages, this was due to image and box sizes.  
+
  
 ## Testing User Stories Checklists
  
-The checklist and notes from the user stories are [here](static/assets/readme/user_stories_checklist.pdf)
+The checklist and notes from the user stories are [here](static/assets/readme/user_stories_checklist.md)
  
 ### CRUD Database tests
  
@@ -553,17 +543,20 @@ The biggest issue I found in the development of this application was the storing
 ## Known Bugs
  
 - Webp Image bug - There is a bug in the Heroku version of the app, webp images are not being saved on the server. This is a problem as this slows down the website for the live version. As some browsers do not support webp format, in these instance's I have coded an `onerror` option into the HTML, so the original image upload will be used.
+  
 - Deletion of webp images - There is a bug in the final code in the local env, on the edit or deletion of a product the webp version of the stored image is not deleted. At one stage there was code to clear this file, however this created a issue in the Heroku version of the app.  
+  
+- Stripe payment input box - On some small screens this is misshapen, I struggled to find a solution to change the css of a stripe object. With more time I am looking to change this. 
  
 <span
 id="deployment">
 </span>
  
-## Deployment
+# Deployment
  
 I used one GitHub branch, so clone the main branch in the repo.
  
-### How To Deploy
+## How To Deploy
  
 ### Run This code Locally
  
@@ -603,7 +596,32 @@ DEVELOPMENT
 VIRTUAL_ENV
 ```
 
+Copy and paste the relevant keys from your stripe account, you will have to create a webhook to get your `STRIPE_WH_SECRET_MO`.
+
+### Superuser
+
+You will need a super user for this app in the command line enter `python3 manage.py createsuperuser` and follow the steps required.
+
+### Download The Requirements
+
+In the command line please enter the following code `pip3 install -r requirements.txt`. All the requirements to run the app should download, please follow the instructions returned in the console for any debug information that is needed.
+
+### Migrate 
+
+To migrate all the models to the admin portal, use the following code in the command line `python3 manage.py migrate`. 
+
+### Create A Profile
+
+You will have to log into the admin portal to create an initial user profile. Create a user profile attached to the superuser you have created. Please look at the image for clarity.
+
+### Create A Partner Profile
  
+You will have to create a partner profile to use the app, please create one attached to the profile you have just created. Adding 1 to the slug field, once you save this will be created automatically and updated.
+
+### Run The Server
+
+Now you can run the server, please enter `python3 manage.py runserver` in the command line.
+
 ### Deploying To Heroku
  
 You will need to sign up for Heroku
@@ -638,10 +656,20 @@ Points of note when using the app.
 
 - Creating a partner Profile - The application can be sent from the profile section of the app. From there the Admin is notified, and then in the Profile in the admin panel the users partner application can be verified, by selecting True on the is_partner section. The next time the user navigates to the profile they will be met with a message to complete a Partner profile, they will now have access to be able to add products to there store, and the site.
 
-- To test the stripe payments please use the following details
+- To test the stripe payments please use the following card details 
+    ```
+    Card number 4242424242424242
+    CVC Any 3 digits 
+    ```
+    This will test a visa card. For more testing options please look at the documentation [here](https://stripe.com/docs/testing)
 
 - You can only have one partner promoted at anyone time, this can be selected in the admin portal. On each partner profile there is a boolean value selector, if this is yes the profile will be promoted on the home page of the website.
  
+- Tags - Tags must be created in the admin portal by a superuser. 
+  
+- Product Creation - You can only create a product if you are logged in as a Partner, if you navigate to your profile and from there product list, here you can add a product to your store. 
+
+
 <span
 id="future">
 </span>
@@ -677,5 +705,7 @@ id="credits">
 ## CREDITS
  
 My mentor Jack helped guide me throughout the project.
+
+The online Tutor support, where I had a particular long chat with, going through 3 tutors and about 10 hours. Not coming to a solution to my image/webp issues throughout the app, but I was grateful for their time and help.
  
 I used StackOverflow as a reference point throughout the project whenever I got stuck.

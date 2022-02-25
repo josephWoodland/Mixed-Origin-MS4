@@ -1,0 +1,13 @@
+### [Back to ReadMe](../../../readme.md)
+
+![page1](design_brief/page_1.jpg)
+![page2](design_brief/page_2.jpg)
+![page3](design_brief/page_3.jpg)
+![page4](design_brief/page_4.jpg)
+![page5](design_brief/page_5.jpg)
+![page6](design_brief/page_6.jpg)
+![page7](design_brief/page_7.jpg)
+![page8](design_brief/page_8.jpg)
+![page9](design_brief/page_9.jpg)
+![page10](design_brief/page_10.jpg)
+![page11](design_brief/page_11.jpg)
