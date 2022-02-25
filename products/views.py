@@ -1,4 +1,3 @@
-from email.mime import image
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -8,10 +7,6 @@ from .models import Product, Tag
 from .forms import ProductForm
 from django.db.models import Q
 from home.helper import paginateProdcuts
-from django.conf import settings
-
-import os
-from mixed.settings import MEDIA_URL, MEDIA_ROOT
 
 # Create your views here.
 

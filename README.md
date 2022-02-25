@@ -548,11 +548,12 @@ Delete
  
 ## Issues and Challenges I Encountered
  
-The biggest issue I found in the development of this application was the storing of images, as image files are likely to be uploaded as jpg files, which would slow the website download speeds. So I researched how to do this in the model, which took a few days to get right.
+The biggest issue I found in the development of this application was the storing of images, as image files are likely to be uploaded as jpg files, which would slow the website download speeds. So I researched how to do this in the model, which took a few days to get right in the development env. Try to implement this into the code proved to be very difficult and created problem's throughout the app in development and in the Heroku version of the app. This has resulted in the function not being finished.
  
 ## Known Bugs
  
-- Webp Image bug - There is a bug in the Heroku version of the app, where webp images are not being saved on the server on the creation of edit of a product. This is a problem as this slows down the website for the live version. As some browsers do not support webp format there is already if statements in place to cover if the browser cannot find teh file anyway.
+- Webp Image bug - There is a bug in the Heroku version of the app, webp images are not being saved on the server. This is a problem as this slows down the website for the live version. As some browsers do not support webp format, in these instance's I have coded an `onerror` option into the HTML, so the original image upload will be used.
+- Deletion of webp images - There is a bug in the final code in the local env, on the edit or deletion of a product the webp version of the stored image is not deleted. At one stage there was code to clear this file, however this created a issue in the Heroku version of the app.  
  
 <span
 id="deployment">

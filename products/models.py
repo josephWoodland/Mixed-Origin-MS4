@@ -39,22 +39,17 @@ class Product(models.Model):
 
         super().save(*args, **kwargs)
 
-        if self.image:
+        if "DEVELOPMENT" in os.environ:
 
-            image = Image.open(self.image)
-            image = image.convert("RGB")
-            name = str(self.image) + ".webp"
+            if self.image:
 
-            if "USE_AWS" in os.environ:
-                media_folder = MEDIA_URL
-                image.save(f"{media_folder}{name}", "webp")
-            else:
+                image = Image.open(self.image)
+                image = image.convert("RGB")
+                name = str(self.image) + ".webp"
                 media_folder = MEDIA_ROOT
                 image.save(f"{media_folder}/{name}", "webp")
 
-            self.image = name
-
-        # super().save(*args, **kwargs)
+                self.image = name
 
     def __str__(self):
         return self.name
