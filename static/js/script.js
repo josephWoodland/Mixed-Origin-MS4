@@ -157,7 +157,7 @@ if (plusBtn) {
       }
 
       if (curOrderAmount < maxOrderNumber) {
-        alert.classList.add("hidden");
+        alert.classList.remove("hidden");
       }
     });
   });
