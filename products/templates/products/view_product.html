@@ -10,7 +10,7 @@
     <div class="row product-view">
         <div class="col s10 offset-s1 m7 flex-wrapper column">
             <div class="card-image margin-top">
-                    <img id="product-image" src="{{ product.image.url }}.webp" onerror="this.src='{{ product.image.url }}'"  alt="Thumbnail image for {{ product.name }}">
+                    <img id="product-image" src="{{ product.image.url }}" onerror="this.src='{{ product.image.url }}'"  alt="Thumbnail image for {{ product.name }}">
             </div>
             {% if partner_profile.id == product.owner.id %}
                 <div class="flex-wrapper">
@@ -60,7 +60,7 @@
                     <a href="{% url 'view-product' product.slug %}">
                         <div class="card no-shadow">
                             <div class="card-image">
-                                <img src="{{ product.image.url }}.webp" onerror="this.src='{{ product.image.url }}'" alt="Thumbnail image for {{ product.name }}">
+                                <img src="{{ product.image.url }}" onerror="this.src='{{ product.image.url }}'" alt="Thumbnail image for {{ product.name }}">
                             </div>
                             <div class="card-content">
                                 <span class="card-title">{{ product.name|truncatechars:17 }}</span>

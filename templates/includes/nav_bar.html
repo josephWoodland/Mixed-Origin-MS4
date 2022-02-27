@@ -66,7 +66,7 @@
             <div class="nav-dropdown">
                 <div class="tag-item">
                     <div class="image-container">
-                        <img height="130" src="{{ product.image.url }}.webp" onerror="this.src='{{ product.image.url }}'" alt="Image for {{ product.name }}">
+                        <img height="130" src="{{ product.image.url }}" onerror="this.src='{{ product.image.url }}'" alt="Image for {{ product.name }}">
                     </div>
                     <a href="{% url 'view-product' product.slug %}">
                         <div class="dropdown-link">{{ product.name }}</div>

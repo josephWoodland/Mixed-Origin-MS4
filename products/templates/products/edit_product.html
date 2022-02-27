@@ -9,7 +9,7 @@
 <section class="container">
     <form  method="POST" class="form col s12 m8"  enctype="multipart/form-data">
     {% csrf_token %}
-    <img src="{{ product.image.url }}.webp" onerror="this.src='{{ product.image.url }}'" alt="Image for {{ product.name}}" class="form-image">
+    <img src="{{ product.image.url }}" onerror="this.src='{{ product.image.url }}'" alt="Image for {{ product.name}}" class="form-image">
     <div class="input-wrapper margin-top">
         <label class="form-input">Image</label>
         <input type="file" name="image" accept="image/*" id="id_image">

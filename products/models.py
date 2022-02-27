@@ -35,22 +35,6 @@ class Product(models.Model):
 
     slug = models.CharField(max_length=200, null=True, unique=True)
 
-    def save(self, *args, **kwargs):
-
-        super().save(*args, **kwargs)
-
-        if "DEVELOPMENT" in os.environ:
-
-            if self.image:
-
-                image = Image.open(self.image)
-                image = image.convert("RGB")
-                name = str(self.image) + ".webp"
-                media_folder = MEDIA_ROOT
-                image.save(f"{media_folder}/{name}", "webp")
-
-                self.image = name
-
     def __str__(self):
         return self.name
 
