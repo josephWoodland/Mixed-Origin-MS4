@@ -470,7 +470,7 @@ I also used the responsive profiles preset in the dev tools of:
 ## Major Testing Issues Identified
  
  
-## UserTtesting
+## User Testing
  
 I gave the app to three people to test and to populate the database with data.
  
@@ -553,6 +553,8 @@ The biggest issue I found in the development of this application was the storing
 - I had an issue with Chrome at one point, on an update the file upload browser button would not trigger the finder to let you select an image to upload, this would happen in the web app and also the admin backend.
 
 - Debug Images - When Debug is set to `False` on the development server can create a bug where the server cannot find the media files, when set to `True` all works fine.
+  
+- Key deployed to Github - I have pushed my deployment secret key to github at the begging of my project.
  
 <span
 id="deployment">
