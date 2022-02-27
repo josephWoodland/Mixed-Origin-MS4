@@ -128,15 +128,10 @@ if (plusBtn) {
       let inputBox = el.previousElementSibling;
       let curOrderAmount = parseInt(inputBox.value);
       let maxOrderNumber = parseInt(inputBox.max);
-      let alert = el.closest(".row").nextElementSibling;
 
       if (curOrderAmount < maxOrderNumber) {
         curOrderAmount++;
         inputBox.value = curOrderAmount;
-      }
-
-      if (curOrderAmount == maxOrderNumber) {
-        alert.classList.remove("hidden");
       }
     });
   });
@@ -148,16 +143,9 @@ if (plusBtn) {
 
       let inputBox = el.nextElementSibling;
       let curOrderAmount = parseInt(inputBox.value);
-      let maxOrderNumber = parseInt(inputBox.max);
-      let alert = el.closest(".row").nextElementSibling;
-
       if (curOrderAmount >= 1) {
         curOrderAmount--;
         inputBox.value = curOrderAmount;
-      }
-
-      if (curOrderAmount < maxOrderNumber) {
-        alert.classList.remove("hidden");
       }
     });
   });
