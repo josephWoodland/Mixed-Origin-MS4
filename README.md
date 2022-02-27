@@ -547,6 +547,12 @@ The biggest issue I found in the development of this application was the storing
 - Deletion of webp images - There is a bug in the final code in the local env, on the edit or deletion of a product the webp version of the stored image is not deleted. At one stage there was code to clear this file, however this created a issue in the Heroku version of the app.  
   
 - Stripe payment input box - On some small screens this is misshapen, I struggled to find a solution to change the css of a stripe object. With more time I am looking to change this. 
+
+- Favicon.ico I have not decided to have a favicon icon in the tab of the browser, but I get an error sometime appear in the terminal. I do not know where in the code base this is being called from to get an error. I assume it is coming from a module I have installed, so I am reluctant to start deleting lines of code from a module incase it stop working.
+
+- I had an issue with Chrome at one point, on an update the file upload browser button would not trigger the finder to let you select an image to upload, this would happen in the web app and also the admin backend.
+
+- Debug Images - When Debug is set to `False` on the development server can create a bug where the server cannot find the media files, when set to `True` all works fine.
  
 <span
 id="deployment">
@@ -668,7 +674,6 @@ Points of note when using the app.
 - Tags - Tags must be created in the admin portal by a superuser. 
   
 - Product Creation - You can only create a product if you are logged in as a Partner, if you navigate to your profile and from there product list, here you can add a product to your store. 
-
 
 <span
 id="future">
